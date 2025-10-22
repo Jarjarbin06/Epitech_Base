@@ -1,0 +1,10 @@
+*~
+*#
+*.o
+*.a
+*.so
+*.out
+*.c.off
+*.gcda
+*.gcno
+*.pch
