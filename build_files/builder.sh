@@ -4,11 +4,13 @@
 
 # ──────────────────────────────
 # Colors
-GREEN="\033[32m"
-RED="\033[31m"
-YELLOW="\033[33m"
-BG_WHITE="\033[7m"
 RESET="\033[0m"
+WHITE="\033[97m"
+BLACK="\033[2m"
+BG_WHITE="\033[1m\033[47m"
+BG_GREEN="\033[42m"
+BG_RED="\033[41m"
+BG_YELLOW="\033[43m"
 
 DIR_WIDTH=50  # maximum width for directory names
 
@@ -46,13 +48,13 @@ build_dir() {
     if [[ ! -e "$dir/Makefile" ]]; then
         cp /home/jarjarbin/Desktop/c/GIT/Epitech_Base/build_files/Makefile "$dir/"
         if make --no-print-directory -C "$dir" build > /dev/null 2>&1; then
-            printf "${BG_WHITE}  %-*s ${RESET}${GREEN}: built${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${BG_GREEN}             built ${RESET}\n" "$DIR_WIDTH" "$name"
         else
-            printf "${BG_WHITE}  %-*s ${RESET}${RED}: failed to build${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BLACK}  %-*s : ${RESET}${BG_RED}   failed to build ${RESET}\n" "$DIR_WIDTH" "$name"
             return
         fi
     else
-        printf "${BG_WHITE}  %-*s ${RESET}${YELLOW}: already built${RESET}\n" "$DIR_WIDTH" "$name"
+        printf "${BLACK}  %-*s : ${RESET}${BG_YELLOW}     already built ${RESET}\n" "$DIR_WIDTH" "$name"
         return
     fi
 }
@@ -66,13 +68,13 @@ unbuild_dir() {
 
     if [[ -e "$dir/Makefile" ]]; then
         if make --no-print-directory -C "$dir" var_ALLOW_UNBUILD=true unbuild > /dev/null 2>&1; then
-            printf "${BG_WHITE}  %-*s ${RESET}${GREEN}: unbuilt${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${BG_GREEN}           unbuilt ${RESET}\n" "$DIR_WIDTH" "$name"
             rm -f "$dir/Makefile"
         else
-            printf "${BG_WHITE}  %-*s ${RESET}${RED}: failed to unbuild${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BLACK}  %-*s : ${RESET}${BG_RED} failed to unbuild ${RESET}\n" "$DIR_WIDTH" "$name"
         fi
     else
-        printf "${BG_WHITE}  %-*s ${RESET}${YELLOW}: no build found${RESET}\n" "$DIR_WIDTH" "$name"
+        printf "${BLACK}  %-*s : ${RESET}${BG_YELLOW}    no build found ${RESET}\n" "$DIR_WIDTH" "$name"
     fi
 }
 
@@ -88,11 +90,11 @@ rebuild_dir() {
         if make --no-print-directory -C "$dir" var_ALLOW_UNBUILD=true unbuild > /dev/null 2>&1; then
             rm -f "$dir/Makefile"
         else
-            printf "${BG_WHITE}  %-*s ${RESET}${RED}: failed to unbuild${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BLACK}  %-*s : ${RESET}${BG_RED} failed to unbuild ${RESET}\n" "$DIR_WIDTH" "$name"
             return
         fi
     else
-        printf "${BG_WHITE}  %-*s ${RESET}${YELLOW}: no build found${RESET}\n" "$DIR_WIDTH" "$name"
+        printf "${BLACK}  %-*s : ${RESET}${BG_YELLOW}    no build found ${RESET}\n" "$DIR_WIDTH" "$name"
         return
     fi
 
@@ -100,19 +102,19 @@ rebuild_dir() {
     if [[ ! -e "$dir/Makefile" ]]; then
         cp /home/jarjarbin/Desktop/c/GIT/Epitech_Base/build_files/Makefile "$dir/"
         if make --no-print-directory -C "$dir" build > /dev/null 2>&1; then
-            printf "${BG_WHITE}  %-*s ${RESET}${GREEN}: rebuilt${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${BG_GREEN}           rebuilt ${RESET}\n" "$DIR_WIDTH" "$name"
         else
-            printf "${BG_WHITE}  %-*s ${RESET}${RED}: failed to rebuild${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BLACK}  %-*s : ${RESET}${BG_RED} failed to rebuild ${RESET}\n" "$DIR_WIDTH" "$name"
         fi
     else
-        printf "${BG_WHITE}  %-*s ${RESET}${YELLOW}: already rebuilt${RESET}\n" "$DIR_WIDTH" "$name"
+        printf "${BLACK}  %-*s : ${RESET}${BG_YELLOW}   already rebuild ${RESET}\n" "$DIR_WIDTH" "$name"
     fi
 }
 
 # ──────────────────────────────
 # Main logic
 if [[ -n "$2" ]]; then
-    echo "Too many arguments. Use -h for help."
+    printf "\n${BG_WHITE}Too many arguments. Use -h for help.${RESET}\n"
     exit 1
 fi
 
@@ -122,40 +124,35 @@ case "$1" in
         ;;
 
     -u|--unbuild)
-        read -p "Are you sure yout want to delete all files in the following directories? (yes/no)
-        $(dir)
-        
-        >>> " ALLOW_UNBUILD
+        echo -ne "Are you sure yout want to delete all files in the following directories? (yes/no)\n\n$(dir)\n\n    >>> "
+        read -p "" ALLOW_UNBUILD
         if [[ "$ALLOW_UNBUILD" = "yes" ]]; then
-            echo "Unbuilding all directories..."
+            printf "\n${BG_WHITE}Unbuilding all directories...${RESET}\n\n"
             for dir in */; do
                 [[ -d "$dir" ]] && unbuild_dir "$dir"
             done
-            echo "Unbuild complete."
+            printf "\n${BG_WHITE}Unbuild complete.${RESET}\n"
         else
-            echo "Unbuild cancelled."
+            printf "\n${BG_WHITE}Unbuild cancelled.${RESET}\n"
         fi
         ;;
 
     -r|--rebuild)
-        read -p "Are you sure yout want to delete all files in the following directories? (yes/no)
-        $(dir)
-        
-        >>> " ALLOW_UNBUILD
-        if [[ "$ALLOW_UNBUILD" = "yes" ]]; then
-            echo "Rebuilding all directories..."
+        echo -ne "Are you sure yout want to delete all files in the following directories? (yes/no)\n\n$(dir)\n\n    >>> "
+        read -p "" ALLOW_REBUILD
+        if [[ "$ALLOW_REBUILD" = "yes" ]]; then
+            printf "\n${BG_WHITE}Rebuilding all directories...${RESET}\n\n"
             for dir in */; do
                 [[ -d "$dir" ]] && rebuild_dir "$dir"
             done
-            echo "Rebuild complete."
+            printf "\n${BG_WHITE}Rebuild complete.${RESET}\n"
         else
-            echo "Rebuild cancelled."
+            printf "\n${BG_WHITE}Rebuild cancelled${RESET}\n"
         fi
         ;;
 
     "-d"|--description)
-        echo "Short description:
-        Builds, unbuilds, or rebuilds all subdirectories with Makefiles, showing color-coded status for each operation."
+        echo "Builds, unbuilds, or rebuilds all subdirectories with Makefiles, showing color-coded status for each operation."
         echo -e "\n\nFull description:
         This script automates the process of building, unbuilding, and rebuilding all subdirectories that contain source code and Makefiles.
         
@@ -174,14 +171,14 @@ case "$1" in
         ;;
 
     ""|-b|--build)
-        echo "Building all directories..."
+        printf "${BG_WHITE}Building all directories...${RESET}\n\n"
         for dir in */; do
             [[ -d "$dir" ]] && build_dir "$dir"
         done
-            echo "Build complete."
+            printf "\n${BG_WHITE}Build complete.${RESET}\n"
         ;;
     
     *)
-        echo "Invalid option. Use -h for help."
+        printf "\n${BG_WHITE}Invalid option. Use -h for help.${RESET}\n"
         ;;
 esac
