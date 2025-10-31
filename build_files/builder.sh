@@ -1,5 +1,5 @@
 #!/bin/bash
-# build_all.sh
+# builder.sh
 # Build, unbuild, and rebuild subdirectories with Makefiles, with color-coded output.
 
 # ──────────────────────────────
@@ -44,7 +44,7 @@ build_dir() {
     name=$(truncate_dir "$dir")
 
     if [[ ! -e "$dir/Makefile" ]]; then
-        cp Makefile "$dir/"
+        cp /home/jarjarbin/Desktop/c/GIT/Epitech_Base/build_files/Makefile "$dir/"
         if make --no-print-directory -C "$dir" build > /dev/null 2>&1; then
             printf "${BG_WHITE}  %-*s ${RESET}${GREEN}: built${RESET}\n" "$DIR_WIDTH" "$name"
         else
@@ -98,7 +98,7 @@ rebuild_dir() {
 
     # Then build
     if [[ ! -e "$dir/Makefile" ]]; then
-        cp Makefile "$dir/"
+        cp /home/jarjarbin/Desktop/c/GIT/Epitech_Base/build_files/Makefile "$dir/"
         if make --no-print-directory -C "$dir" build > /dev/null 2>&1; then
             printf "${BG_WHITE}  %-*s ${RESET}${GREEN}: rebuilt${RESET}\n" "$DIR_WIDTH" "$name"
         else
@@ -153,6 +153,26 @@ case "$1" in
         fi
         ;;
 
+    "-d"|--description)
+        echo "Short description:
+        Builds, unbuilds, or rebuilds all subdirectories with Makefiles, showing color-coded status for each operation."
+        echo -e "\n\nFull description:
+        This script automates the process of building, unbuilding, and rebuilding all subdirectories that contain source code and Makefiles.
+        
+        It checks each subdirectory, applies a standard Makefile if one is missing, executes the build process silently, and provides color-coded feedback for each operation:
+                - green indicates success, 
+                - yellow indicates already built or missing build files,
+                - red indicates failure.
+        
+        The script supports optional flags for :
+                - building (-b/--build),
+                - unbuilding (-u/--unbuild),
+                - rebuilding (-r/--rebuild),
+                - displaying help (-h/--help).
+        
+        Directory names are truncated for neat output, and the script ensures safe operations by prompting for confirmation before deleting any files."
+        ;;
+
     ""|-b|--build)
         echo "Building all directories..."
         for dir in */; do
@@ -160,7 +180,7 @@ case "$1" in
         done
             echo "Build complete."
         ;;
-
+    
     *)
         echo "Invalid option. Use -h for help."
         ;;
