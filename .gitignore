@@ -8,3 +8,6 @@
 *.gcda
 *.gcno
 *.pch
+.idea/
+.vscode/
+.obsidian/
