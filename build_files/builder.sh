@@ -1,5 +1,6 @@
 #!/bin/bash
 # builder.sh
+# by Jarjarbin's studio (with help of ChatGPT)
 # Build, unbuild, and rebuild subdirectories with Makefiles, with color-coded output.
 
 # ──────────────────────────────
@@ -7,7 +8,7 @@
 RESET="\033[0m"
 WHITE="\033[97m"
 BLACK="\033[2m"
-BG_WHITE="\033[1m\033[47m"
+BG_WHITE="\033[7m"
 BG_GREEN="\033[42m"
 BG_RED="\033[41m"
 BG_YELLOW="\033[43m"
@@ -31,10 +32,11 @@ print_help() {
     cat <<EOF
 Usage: build_all.sh [option]
 Options:
-  -h, --help       Show this help message
-  -r               Rebuild all directories (overwrite existing Makefiles)
-  -u, --unbuild    Unbuild all directories (remove Makefiles)
-  (no option)      Build only directories without a Makefile
+  -h, --help							    Show this help message
+  -d, --description				    Show a complete description of the program
+  -r, --rebuild						    Rebuild all directories (overwrite existing Makefiles)
+  -u, --unbuild               Unbuild all directories (remove Makefiles)
+  (no option), -b, --build    Build only directories without a Makefile
 EOF
 }
 
@@ -162,7 +164,7 @@ case "$1" in
                 - red indicates failure.
         
         The script supports optional flags for :
-                - building (-b/--build),
+                - building ((no option)/-b/--build),
                 - unbuilding (-u/--unbuild),
                 - rebuilding (-r/--rebuild),
                 - displaying help (-h/--help).
@@ -179,6 +181,10 @@ case "$1" in
         ;;
     
     *)
-        printf "\n${BG_WHITE}Invalid option. Use -h for help.${RESET}\n"
+        if [ -d "$1" ]; then
+            build_dir "$1"
+        else
+            printf "\n${BG_WHITE}The specified directory does not exist.${RESET}\n"
+        fi
         ;;
 esac
