@@ -123,6 +123,9 @@ build:
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** test_seg.c\n** File description:\n** None\n*/\n\n#include <criterion/criterion.h>\n#include "../include/include_test.h"\n\nTest(main, test, .init=redirect_all_std)\n{\n    cr_assert(1);\n}' > test/test_seg.c || true
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** test_redirect.c\n** File description:\n** None\n*/\n\n#include <criterion/redirect.h>\n\nvoid redirect_all_std(void)\n{\n    cr_redirect_stdout();\n    cr_redirect_stderr();\n}' > test/test_redirect.c || true
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** main.c\n** File description:\n** <description>\n*/\n\n#include "include/include_file.h"\n\nint main(int argc, char **argv)\n{\n    bool err = false;\n\n    err = ((function()) ? (true) : (err));\n    return (!(err) ? (EXIT_SUCCESS) : (EXIT_ERROR));\n}' > main.c || true
+	@git add bonus/* include/* source/* test/* main.c Makefile
+	@git commit -m "[INIT] initial build files"
+	@git push origin main
 
 else
 build:

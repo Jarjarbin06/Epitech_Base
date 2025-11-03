@@ -11,18 +11,18 @@
 # ./source/ #
 var_SRC_PATH = source
 
-var_SRC	=	$(var_SRC_PATH)/file.c
+var_SRC	=	$(var_SRC_PATH)/source_file.c
 
 # ./bonus/ #
 var_BONUS_PATH = bonus
 
-var_BONUS	=	$(var_BONUS_PATH)/file.c
+var_BONUS	=	$(var_BONUS_PATH)/bonus_file.c
 
 # ./includes/ #
 var_INCLUDE_PATH	=	include
 
-var_INCLUDE	=	$(var_INCLUDE_PATH)/include.h
-var_INCLUDE	+=	$(var_INCLUDE_PATH)/test_h
+var_INCLUDE	=	$(var_INCLUDE_PATH)/include_file.h
+var_INCLUDE	+=	$(var_INCLUDE_PATH)/include_test.h
 
 # ./ #
 var_MAIN	=	main.c
@@ -30,11 +30,11 @@ var_MAIN	=	main.c
 # ./tests/ #
 var_TEST_PATH	=	test
 
-var_TEST_R	=	$(var_TEST_PATH)/redirect.c
+var_TEST_R	=	$(var_TEST_PATH)/test_redirect.c
 
 var_TEST_SEG	=	$(var_TEST_PATH)/test_seg.c
 
-var_TEST	=	$(var_TEST_PATH)/test.c
+var_TEST	=	$(var_TEST_PATH)/test_file.c
 
 # other #
 var_COMPILER	=	clang
@@ -45,6 +45,28 @@ var_SEG_NAME	=	seg_tests
 var_ALLOW_UNBUILD	=	false
 var_FILE_TREE = $(shell ls)
 var_FILE_TREE_ECHO = $(shell echo $(var_FILE_TREE))
+
+show_var:
+	@printf "\033[4mvar_SRC_PATH\033[0m\033[0m :\n"; echo $(var_SRC_PATH)
+	@printf "\n\033[4mvar_SRC\033[0m :\n"; echo $(var_SRC)
+	@printf "\n\033[4mvar_BONUS_PATH\033[0m :\n"; echo $(var_BONUS_PATH)
+	@printf "\n\033[4mvar_BONUS\033[0m :\n"; echo $(var_BONUS)
+	@printf "\n\033[4mvar_INCLUDE_PATH\033[0m :\n"; echo $(var_INCLUDE_PATH)
+	@printf "\n\033[4mvar_INCLUDE\033[0m :\n"; echo $(var_INCLUDE)
+	@printf "\n\033[4mvar_MAIN\033[0m :\n"; echo $(var_MAIN)
+	@printf "\n\033[4mvar_TEST_PATH\033[0m :\n"; echo $(var_TEST_PATH)
+	@printf "\n\033[4mvar_TEST_R\033[0m :\n"; echo $(var_TEST_R)
+	@printf "\n\033[4mvar_TEST_SEG\033[0m :\n"; echo $(var_TEST_SEG)
+	@printf "\n\033[4mvar_TEST\033[0m :\n"; echo $(var_TEST)
+	@printf "\n\033[4mvar_COMPILER\033[0m :\n"; echo $(var_COMPILER)
+	@printf "\n\033[4mvar_COMPILE_NAME\033[0m :\n"; echo $(var_COMPILE_NAME)
+	@printf "\n\033[4mvar_COMPILE_FLAGS\033[0m :\n"; echo $(var_COMPILE_FLAGS)
+	@printf "\n\033[4mvar_TEST_NAME\033[0m :\n"; echo $(var_TEST_NAME)
+	@printf "\n\033[4mvar_TEST_FLAGS\033[0m :\n"; echo $(var_TEST_FLAGS)
+	@printf "\n\033[4mvar_SEG_NAME\033[0m :\n"; echo $(var_SEG_NAME)
+	@printf "\n\033[4mvar_ALLOW_UNBUILD\033[0m :\n"; echo $(var_ALLOW_UNBUILD)
+	@printf "\n\033[4mvar_FILE_TREE\033[0m :\n"; echo $(var_FILE_TREE)
+	@printf "\n\033[4mvar_FILE_TREE_ECHO\033[0m :\n"; echo $(var_FILE_TREE_ECHO)
 
 #################
 ## Basic rules ##
@@ -123,6 +145,9 @@ build:
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** test_seg.c\n** File description:\n** None\n*/\n\n#include <criterion/criterion.h>\n#include "../include/include_test.h"\n\nTest(main, test, .init=redirect_all_std)\n{\n    cr_assert(1);\n}' > test/test_seg.c || true
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** test_redirect.c\n** File description:\n** None\n*/\n\n#include <criterion/redirect.h>\n\nvoid redirect_all_std(void)\n{\n    cr_redirect_stdout();\n    cr_redirect_stderr();\n}' > test/test_redirect.c || true
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** main.c\n** File description:\n** <description>\n*/\n\n#include "include/include_file.h"\n\nint main(int argc, char **argv)\n{\n    bool err = false;\n\n    err = ((function()) ? (true) : (err));\n    return (!(err) ? (EXIT_SUCCESS) : (EXIT_ERROR));\n}' > main.c || true
+	@git add bonus/* include/* source/* test/* main.c Makefile
+	@git commit -m "[INIT] initial build files"
+	@git push origin main
 
 else
 build:
