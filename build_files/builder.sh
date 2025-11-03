@@ -184,7 +184,7 @@ case "$1" in
         if [ -d "$1" ]; then
             build_dir "$1"
         else
-            printf "\n${BG_WHITE}The specified directory does not exist.${RESET}\n"
+            printf "\n${BG_WHITE}The specified directory does not exist or is not a folder.${RESET}\n"
         fi
         ;;
 esac
