@@ -39,12 +39,37 @@ var_TEST	=	$(var_TEST_PATH)/test_file.c
 # other #
 var_COMPILER	=	clang
 var_COMPILE_NAME	=	compiled_program
+var_COMPILE_FLAGS	=	-W -Wall -Wextra -Wpedantic -Wunused-parameter -Wshadow -Wuninitialized -Wmaybe-uninitialized -Werror
 var_TEST_FLAGS	=	--coverage -lcriterion
 var_TEST_NAME	=	unit_tests
 var_SEG_NAME	=	seg_tests
 var_ALLOW_UNBUILD	=	false
 var_FILE_TREE = $(shell ls)
 var_FILE_TREE_ECHO = $(shell echo $(var_FILE_TREE))
+
+#################
+## Basic rules ##
+#################
+all:	$(var_COMPILE_NAME)
+
+$(var_COMPILE_NAME):
+	@$(var_COMPILER) -o $(var_COMPILE_NAME) $(var_SRC) $(var_MAIN) -I$(var_INCLUDE_PATH) $(var_COMPILE_FLAGS) || true
+
+clean:
+	@rm -f *.o
+	@rm -f *.a
+	@rm -f *.out
+	@rm -f *.pch
+	@rm -f *.gc*
+	@rm -f *~
+	@rm -f *#
+
+fclean:	clean
+	@rm -f $(var_COMPILE_NAME)
+	@rm -f $(var_TEST_NAME)
+	@rm -f $(var_SEG_NAME)
+
+re:	fclean all
 
 show_var:
 	@printf "\033[4mvar_SRC_PATH\033[0m\033[0m :\n"; echo $(var_SRC_PATH)
@@ -68,41 +93,17 @@ show_var:
 	@printf "\n\033[4mvar_FILE_TREE\033[0m :\n"; echo $(var_FILE_TREE)
 	@printf "\n\033[4mvar_FILE_TREE_ECHO\033[0m :\n"; echo $(var_FILE_TREE_ECHO)
 
-#################
-## Basic rules ##
-#################
-all:	$(var_COMPILE_NAME)
-
-$(var_COMPILE_NAME):
-	@$(var_COMPILER) -o $(var_COMPILE_NAME) $(var_SRC) $(var_MAIN) -I$(var_INCLUDE_PATH) || true
-
-clean:
-	@rm -f *.o
-	@rm -f *.a
-	@rm -f *.out
-	@rm -f *.pch
-	@rm -f *.gc*
-	@rm -f *~
-	@rm -f *#
-
-fclean:	clean
-	@rm -f $(var_COMPILE_NAME)
-	@rm -f $(var_TEST_NAME)
-	@rm -f $(var_SEG_NAME)
-
-re:	fclean all
-
 ###################
 ## testing rules ##
 ###################
 test_$(var_TEST_NAME): clean
-	@$(var_COMPILER) -o $(var_TEST_NAME) $(var_SRC) $(var_TEST_R) $(var_TEST) -I$(var_INCLUDE_PATH) $(var_TEST_FLAGS) || true
+	@$(var_COMPILER) -o $(var_TEST_NAME) $(var_SRC) $(var_TEST_R) $(var_TEST) -I$(var_INCLUDE_PATH) $(var_TEST_FLAGS) $(var_COMPILE_FLAGS) || true
 
 test_$(var_TEST_NAME)_run: fclean test_$(var_TEST_NAME)
 	@./$(var_TEST_NAME)
 
 test_$(var_SEG_NAME): clean
-	@$(var_COMPILER) -o $(var_SEG_NAME) $(var_SRC) $(var_TEST_R) $(var_TEST_SEG) -I$(var_INCLUDE_PATH) $(var_TEST_FLAGS) || true
+	@$(var_COMPILER) -o $(var_SEG_NAME) $(var_SRC) $(var_TEST_R) $(var_TEST_SEG) -I$(var_INCLUDE_PATH) $(var_TEST_FLAGS) $(var_COMPILE_FLAGS) || true
 
 test_$(var_SEG_NAME)_run: fclean test_$(var_SEG_NAME)
 	@./$(var_SEG_NAME)
@@ -140,12 +141,13 @@ build:
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** <file>\n** File description:\n** <description>\n*/\n\n#include "../include/include_file.h"\n\nint bonus_function(void)\n{\n    return true;\n}' > bonus/bonus_file.c || true
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** include.h\n** File description:\n** <description>\n*/\n\n#ifndef INCLUDE_H\n    #define INCLUDE_H\n    #define EXIT_SUCCESS 0\n    #define EXIT_ERROR 84\n    #include <stdbool.h>\n\nint function(void);\n\n#endif' > include/include_file.h || true
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** test.h\n** File description:\n** <description>\n*/\n\n#ifndef TEST_H\n    #define TEST_H\n\nvoid redirect_all_std(void);\n\n#endif\n' > include/include_test.h || true
-	@echo -e '/*\n** EPITECH PROJECT, 2025\n** <file>\n** File description:\n** <description>\n*/\n\n#include "../include/include_file.h"\n\nint function(void)\n{\n    return true;\n}' > source/source_file.c || true
+	@echo -e '/*\n** EPITECH PROJECT, 2025\n** <file>\n** File description:\n** <description>\n*/\n\n#include "../include/include_file.h"\n\nint function(void)\n{\n    return EXIT_SUCCESS;\n}' > source/source_file.c || true
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** test_file.c\n** File description:\n** None\n*/\n\n#include <criterion/criterion.h>\n#include "../include/include_test.h"\n\nTest(main, test, .init=redirect_all_std)\n{\n    cr_assert(1);\n}' > test/test_file.c || true
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** test_seg.c\n** File description:\n** None\n*/\n\n#include <criterion/criterion.h>\n#include "../include/include_test.h"\n\nTest(main, test, .init=redirect_all_std)\n{\n    cr_assert(1);\n}' > test/test_seg.c || true
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** test_redirect.c\n** File description:\n** None\n*/\n\n#include <criterion/redirect.h>\n\nvoid redirect_all_std(void)\n{\n    cr_redirect_stdout();\n    cr_redirect_stderr();\n}' > test/test_redirect.c || true
 	@echo -e '/*\n** EPITECH PROJECT, 2025\n** main.c\n** File description:\n** <description>\n*/\n\n#include "include/include_file.h"\n\nint main(int argc, char **argv)\n{\n    bool err = false;\n\n    err = ((function()) ? (true) : (err));\n    return (!(err) ? (EXIT_SUCCESS) : (EXIT_ERROR));\n}' > main.c || true
-	@git add bonus/* include/* source/* test/* main.c Makefile
+	@echo -e '#*\n~*\n*.o\n*.a\n*.out\n*.off\n*.gc*\n*.pch\n*.iml\n.idea\n.obsidian\nperso\ncompiled_program\nunit_tests\nseg_tests' > .gitignore || true
+	@git add bonus/* include/* source/* test/* .gitignore main.c Makefile
 	@git commit -m "[INIT] initial build files"
 	@git push origin main
 
