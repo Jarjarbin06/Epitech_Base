@@ -4,10 +4,9 @@
 *.a
 *.so
 *.out
-*.c.off
-*.gcda
-*.gcno
+*.off
+*gc*
 *.pch
-.idea/
-.vscode/
-.obsidian/
+.idea
+.vscode
+.obsidian

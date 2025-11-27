@@ -1,14 +1,14 @@
 ##
 ## EPITECH PROJECT, 2025
-## build_files - Makefile
+## build_files - lib - Makefile
 ## File description:
-## make the build_files
+## make the lib
 ##
 
 ##########
 ## info ##
 ##########
-info_NAME	=	build_files
+info_NAME	=	lib
 info_VERSION	=	v0.0.1
 info_LAST_UPDATE	=	2025-11-27 15:51:13.323668
 info_LIB_MAKER	=	Makefile
