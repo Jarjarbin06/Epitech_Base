@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2025
-## build_files - Makefile
+## Epitech_Base - build_files - Makefile
 ## File description:
 ## make the build_files
 ##
@@ -25,13 +25,13 @@ var_NAME	=	$(info_NAME)
 all:	$(var_NAME)
 
 $(var_NAME):
-	@$(var_LIB_CREATOR) $(var_LIB_NAME).a $(var_SRC_OBJ)
+	@make -C lib all
 
 clean:
-	@rm -f $(var_SRC_PATH)/*.o
+	@make -C lib clean
 
 fclean:	clean
-	@rm -f $(var_LIB_NAME)
+	@make -C lib fclean
 
 re:	fclean all
 

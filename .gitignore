@@ -1,12 +1,23 @@
+#Temp
 *~
 *#
+
+#Inactive
+*.out
+old_lib
+
+#Compiled - Build - Object
 *.o
 *.a
-*.so
-*.out
+*.pch
 *.off
 *gc*
-*.pch
+
+#Folder
 .idea
 .vscode
 .obsidian
+
+#CMake
+cmake-build-debug
+CMakeLists.txt

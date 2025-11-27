@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2025
-## build_files - lib - llist - Makefile
+## Epitech_Base - build_files - lib - llist - Makefile
 ## File description:
 ## make the llist lib
 ##

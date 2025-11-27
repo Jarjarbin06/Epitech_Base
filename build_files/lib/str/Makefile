@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2025
-## build_files - lib - str - Makefile
+## Epitech_Base - build_files - lib - str - Makefile
 ## File description:
 ## make the str lib
 ##
