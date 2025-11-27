@@ -1,12 +1,12 @@
 ##
 ## EPITECH PROJECT, 2025
-## Epitech_Base - build_files - lib - Makefile
+## lib - Makefile
 ## File description:
 ## make the lib
 ##
 
 ##########
-## info ##
+## Info ##
 ##########
 info_NAME	=	lib
 info_VERSION	=	v0.0.1
@@ -14,10 +14,19 @@ info_LAST_UPDATE	=	2025-11-27 15:51:13.323668
 info_LIB_MAKER	=	Makefile
 
 #########
-## var ##
+## Var ##
 #########
+# ./test_lib #
+var_MAIN_PATH	=	test_lib
+var_MAIN	=	$(var_MAIN_PATH)/main.c
+
 # lib #
 var_NAME	=	$(info_NAME)
+
+# test #
+var_TEST_COMPILER	=	clang
+var_TEST_NAME	=	_test
+var_TEST_FLAG	=	-I./lib/2list/include/ -I./lib/llist/include/ -I./lib/str/include/ -L./ -l2list -lllist -lstr
 
 #################
 ## Basic rules ##
@@ -25,21 +34,24 @@ var_NAME	=	$(info_NAME)
 all:	$(var_NAME)
 
 $(var_NAME):
-	@make -C 2list all
-	@make -C llist all
-	@make -C str all
+	@make -sC 2list all
+	@make -sC llist all
+	@make -sC str all
+	cp */*.a ./
 
 clean:
-	@make -C 2list clean
-	@make -C llist clean
-	@make -C str clean
+	@make -sC 2list clean
+	@make -sC llist clean
+	@make -sC str clean
+	@rm -f $(var_TEST_NAME)
 
-fclean:	clean
-	@make -C 2list fclean
-	@make -C llist fclean
-	@make -C str fclean
+fclean: clean
+	@make -sC 2list fclean
+	@make -sC llist fclean
+	@make -sC str fclean
+	@rm -f *.a
 
-re:	fclean all
+re: fclean all
 
 show_info:
 	@printf "\033[4minfo_NAME\033[0m : "; echo $(info_NAME)
@@ -49,3 +61,13 @@ show_info:
 
 show_var:
 	@printf "\033[4mvar_NAME\033[0m : "; echo $(var_NAME)
+	@printf "\033[4mvar_TEST_COMPILER\033[0m : "; echo $(var_TEST_COMPILER)
+	@printf "\033[4mvar_TEST_NAME\033[0m : "; echo $(var_TEST_NAME)
+	@printf "\033[4mvar_TEST_FLAG\033[0m : "; echo $(var_TEST_FLAG)
+
+################
+## Test rules ##
+################
+run_test:	re
+	@$(var_TEST_COMPILER) -o $(var_TEST_NAME) $(var_MAIN) $(var_TEST_FLAG)
+	@./$(var_TEST_NAME)

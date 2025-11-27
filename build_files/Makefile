@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2025
-## Epitech_Base - build_files - Makefile
+## build_files - Makefile
 ## File description:
 ## make the build_files
 ##
@@ -25,13 +25,15 @@ var_NAME	=	$(info_NAME)
 all:	$(var_NAME)
 
 $(var_NAME):
-	@make -C lib all
+	@make -sC lib all
+	cp */*.a ./
 
 clean:
-	@make -C lib clean
+	@make -sC lib clean
 
 fclean:	clean
-	@make -C lib fclean
+	@make -sC lib fclean
+	@rm -f *.a
 
 re:	fclean all
 
@@ -43,3 +45,9 @@ show_info:
 
 show_var:
 	@printf "\033[4mvar_NAME\033[0m : "; echo $(var_NAME)
+
+################
+## Test rules ##
+################
+run_test:
+	@make -sC lib run_test

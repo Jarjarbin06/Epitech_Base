@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2025
-## Epitech_Base - build_files - lib - str - Makefile
+## str - Makefile
 ## File description:
 ## make the str lib
 ##
@@ -18,26 +18,26 @@ info_LIB_MAKER	=	Makefile
 #########
 # ./source/ #
 var_SRC_PATH	=	source
-var_SRC	=	$(var_SRC_PATH)/source_file.c
+var_SRC	=	$(var_SRC_PATH)/_str.c
 var_SRC_OBJ	=	$(var_SRC:.c=.o)
 
 # lib #
 var_LIB_CREATOR	=	ar rc
-var_LIB_NAME	=	$(info_NAME)
+var_LIB_NAME	=	lib$(info_NAME)
 
 #################
 ## Basic rules ##
 #################
 all:	$(var_LIB_NAME)
 
-$(var_LIB_NAME):
+$(var_LIB_NAME):	$(var_SRC_OBJ)
 	@$(var_LIB_CREATOR) $(var_LIB_NAME).a $(var_SRC_OBJ)
 
 clean:
 	@rm -f $(var_SRC_PATH)/*.o
 
 fclean:	clean
-	@rm -f $(var_LIB_NAME)
+	@rm -f $(var_LIB_NAME).a
 
 re:	fclean all
 
