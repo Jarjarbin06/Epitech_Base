@@ -6,8 +6,8 @@
 */
 
 // TEST INCLUDE //
-#ifndef TEST
-    #define TEST
+#ifndef TEST_LIB_H
+    #define TEST_LIB_H
 
     #include <criterion/criterion.h>
     #include <criterion/redirect.h>

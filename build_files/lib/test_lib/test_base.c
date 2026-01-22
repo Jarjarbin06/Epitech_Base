@@ -5,11 +5,14 @@
 ** None
 */
 
+#include <stdio.h>
+
 #include "test.h"
 
 void test_start(void)
 {
-    printf("test started");
+    printf("test start\n");
+    fflush(stdout);
 }
 
 void redirect_all_std(void)

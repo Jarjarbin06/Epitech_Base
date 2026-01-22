@@ -27,7 +27,19 @@ var_NAME	=	$(info_NAME)
 # test #
 var_TEST_COMPILER	=	clang
 var_TEST_NAME	=	_test
-var_TEST_FLAG	=	-I./lib/2list/include/ -I./lib/llist/include/ -I./lib/str/include/ -L./ -l2list -lllist -lstr -Wall -Werror --coverage -lcriterion
+var_TEST_FLAG	=	\
+	-I/2list/include/ \
+	-I./lib/llist/include/ \
+	-I./lib/str/include/ \
+	-I./lib/test_lib/ \
+	-L./ \
+	-Wall \
+	-Werror \
+	--coverage \
+	-lcriterion \
+	-l2list \
+	-lllist \
+	-lstr
 
 #################
 ## Basic rules ##
@@ -71,6 +83,7 @@ show_var:
 ## Test rules ##
 ################
 run_test:	re
+	ls
 	$(var_TEST_COMPILER) -o $(var_TEST_NAME) $(var_TEST) $(var_TEST_FLAG)
 	@./$(var_TEST_NAME) || true
 	@make --no-print-directory fclean
