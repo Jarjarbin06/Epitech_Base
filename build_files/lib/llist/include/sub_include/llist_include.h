@@ -16,7 +16,9 @@
     #ifndef LLIST_I_LIB_C
         #define LLIST_I_LIB_C
 
-        #include <stdio.h>
+        #include <stddef.h>
+        #include <stdbool.h>
+
 
         // add <...> includes here //
 

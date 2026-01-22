@@ -16,8 +16,13 @@
     #ifndef STR_D_EXIT
         #define STR_D_EXIT
 
-        #define EXIT_SUCCESS 0
-        #define EXIT_FAILURE 84
+        #ifndef EXIT_SUCCESS
+            #define EXIT_SUCCESS 0
+        #endif
+
+        #ifndef EXIT_FAILURE
+            #define EXIT_FAILURE 84
+        #endif
 
     #endif
 

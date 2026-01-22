@@ -5,6 +5,8 @@
 ** <description>
 */
 
+#include <stdio.h>
+
 #include "../include/2list.h"
 
 void _2list_show_macro(void)

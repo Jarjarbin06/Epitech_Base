@@ -5,6 +5,8 @@
 ** <description>
 */
 
+#include <stdio.h>
+
 #include "../include/llist.h"
 
 void _llist_show_macro(void)

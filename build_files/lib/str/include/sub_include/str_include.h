@@ -16,7 +16,9 @@
     #ifndef STR_I_LIB_C
         #define STR_I_LIB_C
 
-        #include <stdio.h>
+        #include <stddef.h>
+        #include <stdbool.h>
+
 
         // add <...> includes here //
 

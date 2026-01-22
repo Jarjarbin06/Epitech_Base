@@ -5,6 +5,8 @@
 ** <description>
 */
 
+#include <stdio.h>
+
 #include "../include/str.h"
 
 void _str_show_macro(void)

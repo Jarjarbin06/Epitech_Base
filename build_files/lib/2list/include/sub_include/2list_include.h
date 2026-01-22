@@ -16,7 +16,8 @@
     #ifndef TWOLIST_I_LIB_C
         #define TWOLIST_I_LIB_C
 
-        #include <stdio.h>
+        #include <stddef.h>
+        #include <stdbool.h>
 
         // add <...> includes here //
 
