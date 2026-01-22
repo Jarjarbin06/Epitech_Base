@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_strsup.c
+** source - my_strdup.c
 ** File description:
-** None
+** <description>
 */
 
 #include <stdlib.h>

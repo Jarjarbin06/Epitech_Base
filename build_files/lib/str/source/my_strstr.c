@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_strstr.c
+** source - my_strstr.c
 ** File description:
-** None
+** <description>
 */
 
 #include "../include/str.h"

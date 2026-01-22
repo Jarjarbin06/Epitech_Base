@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_evil_str.c
+** source - my_getnbr.c
 ** File description:
-** None
+** <description>
 */
 
 #include "../include/str.h"

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_strlen.c
+** source - my_strlen.c
 ** File description:
-** None
+** <description>
 */
 
 #include "../include/str.h"

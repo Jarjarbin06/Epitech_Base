@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_strcmp.c
+** source - my_strcmp.c
 ** File description:
-** None
+** <description>
 */
 
 #include "../include/str.h"

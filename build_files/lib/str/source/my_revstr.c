@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_revstr.c
+** source - my_revstr.c
 ** File description:
-** None
+** <description>
 */
 
 #include "../include/str.h"

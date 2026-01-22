@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_strupcase.c
+** source - my_strcapitalize.c
 ** File description:
-** None
+** <description>
 */
 
 #include "../include/str.h"

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_str_to_word_array.c
+** source - my_str_to_word_array.c
 ** File description:
-** None
+** <description>
 */
 
 #include <stdlib.h>

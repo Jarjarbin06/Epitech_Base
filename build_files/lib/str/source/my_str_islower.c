@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_str_isalpha.c
+** source - my_str_islower.c
 ** File description:
-** None
+** <description>
 */
 
 #include "../include/str.h"

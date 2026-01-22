@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_strncpy.c
+** source - my_strncpy.c
 ** File description:
-** None
+** <description>
 */
 
 #include "../include/str.h"

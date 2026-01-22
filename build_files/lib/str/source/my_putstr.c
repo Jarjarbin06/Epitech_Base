@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_putstr.c
+** source - my_putstr.c
 ** File description:
-** None
+** <description>
 */
 
 #include <unistd.h>

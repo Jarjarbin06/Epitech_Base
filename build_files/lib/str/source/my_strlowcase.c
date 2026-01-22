@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2025
-** my_strlowcase.c
+** source - my_strlowcase.c
 ** File description:
-** None
+** <description>
 */
 
 #include "../include/str.h"
