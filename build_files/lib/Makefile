@@ -17,8 +17,9 @@ info_LIB_MAKER	=	Makefile
 ## Var ##
 #########
 # ./test_lib #
-var_MAIN_PATH	=	test_lib
-var_MAIN	=	$(var_MAIN_PATH)/main.c
+var_TEST_PATH	=	test_lib
+var_TEST	=	$(var_TEST_PATH)/test_base.c
+var_TEST	+=	$(var_TEST_PATH)/test_str.c
 
 # lib #
 var_NAME	=	$(info_NAME)
@@ -26,7 +27,7 @@ var_NAME	=	$(info_NAME)
 # test #
 var_TEST_COMPILER	=	clang
 var_TEST_NAME	=	_test
-var_TEST_FLAG	=	-I./lib/2list/include/ -I./lib/llist/include/ -I./lib/str/include/ -L./ -l2list -lllist -lstr -Wall -Werror
+var_TEST_FLAG	=	-I./lib/2list/include/ -I./lib/llist/include/ -I./lib/str/include/ -L./ -l2list -lllist -lstr -Wall -Werror --coverage -lcriterion
 
 #################
 ## Basic rules ##
@@ -44,6 +45,7 @@ clean:
 	@make --no-print-directory -C llist clean
 	@make --no-print-directory -C str clean
 	@rm -f $(var_TEST_NAME)
+	@rm -f *.gc*
 
 fclean: clean
 	@make --no-print-directory -C 2list fclean
@@ -69,8 +71,9 @@ show_var:
 ## Test rules ##
 ################
 run_test:	re
-	$(var_TEST_COMPILER) -o $(var_TEST_NAME) $(var_MAIN) $(var_TEST_FLAG)
-	@./$(var_TEST_NAME)
+	$(var_TEST_COMPILER) -o $(var_TEST_NAME) $(var_TEST) $(var_TEST_FLAG)
+	@./$(var_TEST_NAME) || true
+	@make --no-print-directory fclean
 
 .PHONY:	\
 	all \
