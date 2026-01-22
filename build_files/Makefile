@@ -25,14 +25,14 @@ var_NAME	=	$(info_NAME)
 all:	$(var_NAME)
 
 $(var_NAME):
-	@make -sC lib all
+	@make --no-print-directory -C lib all
 	@cp */*.a ./
 
 clean:
-	@make -sC lib clean
+	@make --no-print-directory -C lib clean
 
 fclean:	clean
-	@make -sC lib fclean
+	@make --no-print-directory -C lib fclean
 	@rm -f *.a
 
 re:	fclean all
@@ -50,7 +50,8 @@ show_var:
 ## Test rules ##
 ################
 run_test:
-	@make -sC lib run_test
+	@make --no-print-directory -C lib run_test
+	@make --no-print-directory fclean
 
 .PHONY:	\
 	all \

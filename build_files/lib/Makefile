@@ -26,7 +26,7 @@ var_NAME	=	$(info_NAME)
 # test #
 var_TEST_COMPILER	=	clang
 var_TEST_NAME	=	_test
-var_TEST_FLAG	=	-I./lib/2list/include/ -I./lib/llist/include/ -I./lib/str/include/ -L./ -l2list -lllist -lstr
+var_TEST_FLAG	=	-I./lib/2list/include/ -I./lib/llist/include/ -I./lib/str/include/ -L./ -l2list -lllist -lstr -Wall -Werror
 
 #################
 ## Basic rules ##
@@ -34,21 +34,21 @@ var_TEST_FLAG	=	-I./lib/2list/include/ -I./lib/llist/include/ -I./lib/str/includ
 all:	$(var_NAME)
 
 $(var_NAME):
-	@make -sC 2list all
-	@make -sC llist all
-	@make -sC str all
+	@make --no-print-directory -C 2list all
+	@make --no-print-directory -C llist all
+	@make --no-print-directory -C str all
 	@cp */*.a ./
 
 clean:
-	@make -sC 2list clean
-	@make -sC llist clean
-	@make -sC str clean
+	@make --no-print-directory -C 2list clean
+	@make --no-print-directory -C llist clean
+	@make --no-print-directory -C str clean
 	@rm -f $(var_TEST_NAME)
 
 fclean: clean
-	@make -sC 2list fclean
-	@make -sC llist fclean
-	@make -sC str fclean
+	@make --no-print-directory -C 2list fclean
+	@make --no-print-directory -C llist fclean
+	@make --no-print-directory -C str fclean
 	@rm -f *.a
 
 re: fclean all
@@ -69,7 +69,7 @@ show_var:
 ## Test rules ##
 ################
 run_test:	re
-	@$(var_TEST_COMPILER) -o $(var_TEST_NAME) $(var_MAIN) $(var_TEST_FLAG)
+	$(var_TEST_COMPILER) -o $(var_TEST_NAME) $(var_MAIN) $(var_TEST_FLAG)
 	@./$(var_TEST_NAME)
 
 .PHONY:	\

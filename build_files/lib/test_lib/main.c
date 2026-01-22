@@ -11,7 +11,5 @@
 
 int main(void)
 {
-    _2list_show_macro();
-    _llist_show_macro();
-    _str_show_macro();
+
 }
