@@ -6,8 +6,8 @@
 */
 
 // Prototype //
-#ifndef _LLIST_P_
-    #define _LLIST_P_
+#ifndef LLIST_P
+    #define LLIST_P
 
     #include "llist_define.h"
     #include "llist_include.h"

@@ -6,8 +6,8 @@
 */
 
 // ALL INCLUDE //
-#ifndef _LLIST_
-    #define _LLIST_
+#ifndef LLIST
+    #define LLIST
 
     #include "sub_include/llist_define.h"
     #include "sub_include/llist_include.h"

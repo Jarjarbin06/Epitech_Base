@@ -6,8 +6,8 @@
 */
 
 // Prototype //
-#ifndef _STR_P_
-    #define _STR_P_
+#ifndef STR_P
+    #define STR_P
 
     #include "str_define.h"
     #include "str_include.h"

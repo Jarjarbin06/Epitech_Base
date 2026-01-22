@@ -6,23 +6,23 @@
 */
 
 // Define //
-#ifndef _2LIST_D_
-    #define _2LIST_D_
+#ifndef TWOLIST_D
+    #define TWOLIST_D
 
     #include "2list_include.h"
     #include "2list_typedef.h"
     #include "2list_prototype.h"
 
-    #ifndef _2LIST_D_EXIT_
-        #define _2LIST_D_EXIT_
+    #ifndef TWOLIST_D_EXIT
+        #define TWOLIST_D_EXIT
 
         #define EXIT_SUCCESS 0
         #define EXIT_FAILURE 84
 
     #endif
 
-    #ifndef _2LIST_D_COLOR_
-        #define _2LIST_D_COLOR_
+    #ifndef TWOLIST_D_COLOR
+        #define TWOLIST_D_COLOR
 
         #define C_ERROR "\033[41m"    // RED //
         #define C_WARNING "\033[43m"  // YELLOW //

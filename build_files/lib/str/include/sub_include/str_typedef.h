@@ -6,22 +6,22 @@
 */
 
 // Typedef //
-#ifndef _STR_T_
-    #define _STR_T_
+#ifndef STR_T
+    #define STR_T
 
     #include "str_define.h"
     #include "str_include.h"
     #include "str_prototype.h"
 
-    #ifndef _STR_T_TYPE_
-        #define _STR_T_TYPE_
+    #ifndef STR_T_TYPE
+        #define STR_T_TYPE
 
         // add type typedefs here //
 
     #endif
 
-    #ifndef _STR_T_STRUCT_
-        #define _STR_T_STRUCT_
+    #ifndef STR_T_STRUCT
+        #define STR_T_STRUCT
 
         // add struct typedefs here //
 

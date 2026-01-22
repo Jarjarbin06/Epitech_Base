@@ -6,15 +6,15 @@
 */
 
 // Include //
-#ifndef _2LIST_I_
-    #define _2LIST_I_
+#ifndef TWOLIST_I
+    #define TWOLIST_I
 
     #include "2list_define.h"
     #include "2list_typedef.h"
     #include "2list_prototype.h"
 
-    #ifndef _2LIST_I_LIB_C_
-        #define _2LIST_I_LIB_C_
+    #ifndef TWOLIST_I_LIB_C
+        #define TWOLIST_I_LIB_C
 
         #include <stdio.h>
 
@@ -22,8 +22,8 @@
 
     #endif
 
-    #ifndef _2LIST_I_CUSTOM_
-        #define _2LIST_I_CUSTOM_
+    #ifndef TWOLIST_I_CUSTO
+        #define TWOLIST_I_CUSTOM
 
         // add "" includes here //
 

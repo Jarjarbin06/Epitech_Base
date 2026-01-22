@@ -26,7 +26,7 @@ all:	$(var_NAME)
 
 $(var_NAME):
 	@make -sC lib all
-	cp */*.a ./
+	@cp */*.a ./
 
 clean:
 	@make -sC lib clean
@@ -51,3 +51,13 @@ show_var:
 ################
 run_test:
 	@make -sC lib run_test
+
+.PHONY:	\
+	all \
+	$(var_NAME) \
+	clean \
+	fclean \
+	re \
+	show_info \
+	show_var \
+	run_test

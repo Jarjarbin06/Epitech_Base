@@ -6,23 +6,23 @@
 */
 
 // Define //
-#ifndef _STR_D_
-    #define _STR_D_
+#ifndef STR_D
+    #define STR_D
 
     #include "str_include.h"
     #include "str_typedef.h"
     #include "str_prototype.h"
 
-    #ifndef _STR_D_EXIT_
-        #define _STR_D_EXIT_
+    #ifndef STR_D_EXIT
+        #define STR_D_EXIT
 
         #define EXIT_SUCCESS 0
         #define EXIT_FAILURE 84
 
     #endif
 
-    #ifndef _STR_D_COLOR_
-        #define _STR_D_D_COLOR_
+    #ifndef STR_D_COLOR
+        #define STR_D_D_COLOR
 
         #define C_ERROR "\033[41m"    // RED //
         #define C_WARNING "\033[43m"  // YELLOW //

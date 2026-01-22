@@ -6,15 +6,15 @@
 */
 
 // Include //
-#ifndef _STR_I_
-    #define _STR_I_
+#ifndef STR_I
+    #define STR_I
 
     #include "str_define.h"
     #include "str_typedef.h"
     #include "str_prototype.h"
 
-    #ifndef _STR_I_LIB_C_
-        #define _STR_I_LIB_C_
+    #ifndef STR_I_LIB_C
+        #define STR_I_LIB_C
 
         #include <stdio.h>
 
@@ -22,8 +22,8 @@
 
     #endif
 
-    #ifndef _STR_I_CUSTOM_
-        #define _STR_I_CUSTOM_
+    #ifndef STR_I_CUSTOM
+        #define STR_I_CUSTOM
 
         // add "" includes here //
 

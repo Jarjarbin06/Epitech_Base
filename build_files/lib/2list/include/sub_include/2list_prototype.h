@@ -6,8 +6,8 @@
 */
 
 // Prototype //
-#ifndef _2LIST_P_
-    #define _2LIST_P_
+#ifndef TWOLIST_P
+    #define TWOLIST_P
 
     #include "2list_define.h"
     #include "2list_include.h"

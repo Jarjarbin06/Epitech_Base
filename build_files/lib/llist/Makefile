@@ -53,3 +53,12 @@ show_var:
 	@printf "\033[4mvar_SRC_OBJ\033[0m : "; echo $(var_SRC_OBJ)
 	@printf "\033[4mvar_LIB_CREATOR\033[0m : "; echo $(var_LIB_CREATOR)
 	@printf "\033[4mvar_LIB_NAME\033[0m : "; echo $(var_LIB_NAME)
+
+.PHONY:	\
+	all \
+	$(var_LIB_NAME) \
+	clean \
+	fclean \
+	re \
+	show_info \
+	show_var

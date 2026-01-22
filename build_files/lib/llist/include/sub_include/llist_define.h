@@ -6,23 +6,23 @@
 */
 
 // Define //
-#ifndef _LLIST_D_
-    #define _LLIST_D_
+#ifndef LLIST_D
+    #define LLIST_D
 
     #include "llist_include.h"
     #include "llist_typedef.h"
     #include "llist_prototype.h"
 
-    #ifndef _LLIST_D_EXIT_
-        #define _LLIST_D_EXIT_
+    #ifndef LLIST_D_EXIT
+        #define LLIST_D_EXIT
 
         #define EXIT_SUCCESS 0
         #define EXIT_FAILURE 84
 
     #endif
 
-    #ifndef _LLIST_D_COLOR_
-        #define _LLIST_D_D_COLOR_
+    #ifndef LLIST_D_COLOR
+        #define LLIST_D_D_COLOR
 
         #define C_ERROR "\033[41m"    // RED //
         #define C_WARNING "\033[43m"  // YELLOW //

@@ -6,22 +6,22 @@
 */
 
 // Typedef //
-#ifndef _LLIST_T_
-    #define _LLIST_T_
+#ifndef LLIST_T
+    #define LLIST_T
 
     #include "llist_define.h"
     #include "llist_include.h"
     #include "llist_prototype.h"
 
-    #ifndef _LLIST_T_TYPE_
-        #define _LLIST_T_TYPE_
+    #ifndef LLIST_T_TYPE
+        #define LLIST_T_TYPE
 
         // add type typedefs here //
 
     #endif
 
-    #ifndef _LLIST_T_STRUCT_
-        #define _LLIST_T_STRUCT_
+    #ifndef LLIST_T_STRUCT
+        #define LLIST_T_STRUCT
 
         // add struct typedefs here //
 

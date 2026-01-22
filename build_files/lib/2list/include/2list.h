@@ -6,8 +6,8 @@
 */
 
 // ALL INCLUDE //
-#ifndef _2LIST_
-    #define _2LIST_
+#ifndef TWOLIST
+    #define TWOLIST
 
     #include "sub_include/2list_define.h"
     #include "sub_include/2list_include.h"

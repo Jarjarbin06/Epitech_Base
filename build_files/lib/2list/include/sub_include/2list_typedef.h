@@ -6,22 +6,22 @@
 */
 
 // Typedef //
-#ifndef _2LIST_T_
-    #define _2LIST_T_
+#ifndef TWOLIST_T
+    #define TWOLIST_T
 
     #include "2list_define.h"
     #include "2list_include.h"
     #include "2list_prototype.h"
 
-    #ifndef _2LIST_T_TYPE_
-        #define _2LIST_T_TYPE_
+    #ifndef TWOLIST_T_TYPE
+        #define TWOLIST_T_TYPE
 
         // add type typedefs here //
 
     #endif
 
-    #ifndef _2LIST_T_STRUCT_
-        #define _2LIST_T_STRUCT_
+    #ifndef TWOLIST_T_STRUCT
+        #define TWOLIST_T_STRUCT
 
         // add struct typedefs here //
 

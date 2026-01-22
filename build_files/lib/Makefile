@@ -37,7 +37,7 @@ $(var_NAME):
 	@make -sC 2list all
 	@make -sC llist all
 	@make -sC str all
-	cp */*.a ./
+	@cp */*.a ./
 
 clean:
 	@make -sC 2list clean
@@ -71,3 +71,13 @@ show_var:
 run_test:	re
 	@$(var_TEST_COMPILER) -o $(var_TEST_NAME) $(var_MAIN) $(var_TEST_FLAG)
 	@./$(var_TEST_NAME)
+
+.PHONY:	\
+	all \
+	$(var_NAME) \
+	clean \
+	fclean \
+	re \
+	show_info \
+	show_var \
+	run_test

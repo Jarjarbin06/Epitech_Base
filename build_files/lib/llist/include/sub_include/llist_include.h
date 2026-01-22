@@ -6,15 +6,15 @@
 */
 
 // Include //
-#ifndef _LLIST_I_
-    #define _LLIST_I_
+#ifndef LLIST_I
+    #define LLIST_I
 
     #include "llist_define.h"
     #include "llist_typedef.h"
     #include "llist_prototype.h"
 
-    #ifndef _LLIST_I_LIB_C_
-        #define _LLIST_I_LIB_C_
+    #ifndef LLIST_I_LIB_C
+        #define LLIST_I_LIB_C
 
         #include <stdio.h>
 
@@ -22,8 +22,8 @@
 
     #endif
 
-    #ifndef _LLIST_I_CUSTOM_
-        #define _LLIST_I_CUSTOM_
+    #ifndef LLIST_I_CUSTOM
+        #define LLIST_I_CUSTOM
 
         // add "" includes here //
 

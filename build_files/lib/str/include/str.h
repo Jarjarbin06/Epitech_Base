@@ -6,8 +6,8 @@
 */
 
 // ALL INCLUDE //
-#ifndef _STR_
-    #define _STR_
+#ifndef STR
+    #define STR
 
     #include "sub_include/str_define.h"
     #include "sub_include/str_include.h"
