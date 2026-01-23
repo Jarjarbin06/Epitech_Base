@@ -18,7 +18,7 @@ void _str_show_macro(void);
 // my_getnbr.c //
 int my_getnbr(const char *str);
 // my_putnbr.c //
-int my_put_nbr(int nb);
+void my_put_nbr(int nbr);
 // my_putchar.c //
 void my_putchar(char c);
 // my_putstr.c //

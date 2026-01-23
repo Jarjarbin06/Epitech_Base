@@ -9,9 +9,9 @@
 
 #include "../include/str.h"
 
-int my_put_nbr(const int nb)
+static void do_put_nbr(const int nbr)
 {
-    int c1 = nb;
+    int c1 = nbr;
     int c2 = 0;
     const char neg = '-';
 
@@ -19,11 +19,18 @@ int my_put_nbr(const int nb)
         c1 *= -1;
         write(1, &neg, 1);
     }
-    if (c1 >= 1) {
+    if (c1 > 0) {
         c2 = (c1 % 10) + 48;
         c1 = c1 / 10;
-        my_put_nbr(c1);
+        do_put_nbr(c1);
         write(1, &c2, 1);
     }
-    return EXIT_SUCCESS;
+}
+
+void my_put_nbr(const int nbr)
+{
+    if (nbr == 0)
+        write(1, "0", 1);
+    else
+        do_put_nbr(nbr);
 }

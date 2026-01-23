@@ -83,7 +83,6 @@ show_var:
 ## Test rules ##
 ################
 run_test:	re
-	ls
 	$(var_TEST_COMPILER) -o $(var_TEST_NAME) $(var_TEST) $(var_TEST_FLAG)
 	@./$(var_TEST_NAME) || true
 	@make --no-print-directory fclean

@@ -12,6 +12,10 @@
     #include <criterion/criterion.h>
     #include <criterion/redirect.h>
 
+    #include "../2list/include/2list.h"
+    #include "../llist/include/llist.h"
+    #include "../str/include/str.h"
+
     void test_start(void);
     void redirect_all_std(void);
 
