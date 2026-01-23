@@ -11,6 +11,8 @@
 
 int my_putstr(const char *str)
 {
+    if (!str)
+        return EXIT_FAILURE;
     for (int idx = 0; str[idx] != '\0'; idx++)
         write(1, &str[idx], 1);
     return EXIT_SUCCESS;

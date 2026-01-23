@@ -12,6 +12,8 @@ char *my_revstr(char *str)
     int n = 0;
     const int len = my_strlen(str);
 
+    if (!str)
+        return NULL;
     for (int i = (len - 1); i > n; i--) {
         my_swap_char(&str[i], &str[n]);
         n = n + 1;

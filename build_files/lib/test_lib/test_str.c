@@ -55,9 +55,137 @@ Test(my_put_nbr, test_my_put_nbr_negative, .init = redirect_all_std)
 }
 
 // my_putchar //
-
 Test(my_putchar, test_my_putchar, .init = redirect_all_std)
 {
     my_putchar('0');
     cr_assert_stdout_eq_str("0");
+}
+
+// my_putstr //
+Test(my_putstr, test_my_putstr_basic, .init = redirect_all_std)
+{
+    cr_assert(!my_putstr("Hello World"));
+    cr_assert_stdout_eq_str("Hello World");
+}
+
+Test(my_putstr, test_my_putstr_empty, .init = redirect_all_std)
+{
+    cr_assert(!my_putstr(""));
+    cr_assert_stdout_eq_str("");
+}
+
+Test(my_putstr, test_my_putstr_invalid, .init = redirect_all_std)
+{
+    cr_assert(my_putstr(NULL));
+    cr_assert_stdout_eq_str("");
+}
+
+// my_revstr //
+Test(my_revstr, test_my_revstr_basic)
+{
+    char str[12] = "Hello World";
+    cr_assert(my_revstr(str));
+    cr_assert_str_eq(str, "dlroW olleH");
+}
+
+Test(my_revstr, test_my_revstr_empty)
+{
+    char str[12] = "";
+    cr_assert(my_revstr(str));
+    cr_assert_str_eq(str, "");
+}
+
+Test(my_revstr, test_my_revstr_invalid)
+{
+    cr_assert(!my_revstr(NULL));
+}
+
+// my_str_isalpha //
+Test(my_str_isalpha, my_str_isalpha_valid)
+{
+    cr_assert(my_str_isalpha("abcABC"));
+}
+
+Test(my_str_isalpha, my_str_isalpha_invalid_1)
+{
+    cr_assert(!my_str_isalpha("123abc"));
+}
+
+Test(my_str_isalpha, my_str_isalpha_invalid_2)
+{
+    cr_assert(my_str_isalpha(""));
+}
+
+// my_str_islower //
+Test(my_str_islower, my_str_islower_valid)
+{
+    cr_assert(my_str_islower("abc"));
+}
+
+Test(my_str_islower, my_str_islower_invalid_1)
+{
+    cr_assert(!my_str_islower("abcABC"));
+}
+
+Test(my_str_islower, my_str_islower_invalid_2)
+{
+    cr_assert(!my_str_islower("123abc"));
+}
+
+Test(my_str_islower, my_str_islower_invalid_3)
+{
+    cr_assert(my_str_islower(""));
+}
+
+// my_str_isnum //
+Test(my_str_isnum, my_str_isnum_valid)
+{
+    cr_assert(my_str_isnum("123"));
+}
+
+Test(my_str_isnum, my_str_isnum_invalid_1)
+{
+    cr_assert(!my_str_isnum("123abc"));
+}
+
+Test(my_str_isnum, my_str_isnum_invalid_2)
+{
+    cr_assert(my_str_isnum(""));
+}
+
+// my_str_isprintable //
+Test(my_str_isprintable, my_str_isprintable_valid)
+{
+    cr_assert(my_str_isprintable("+-123abc"));
+}
+
+Test(my_str_isprintable, my_str_isprintable_invalid_1)
+{
+    cr_assert(!my_str_isprintable("\n"));
+}
+
+Test(my_str_isprintable, my_str_isprintable_invalid_2)
+{
+    cr_assert(my_str_isprintable(""));
+}
+
+// my_str_isupper //
+Test(my_str_isupper, my_str_isupper_valid)
+{
+    cr_assert(my_str_isupper("ABC"));
+}
+
+Test(my_str_isupper, my_str_isupper_invalid_1)
+{
+    cr_assert(!my_str_isupper("abcABC"));
+}
+
+Test(my_str_isupper, my_str_isupper_invalid_2)
+{
+    cr_assert(!my_str_isupper("123abc"));
+}
+
+Test(my_str_isupper, my_str_isupper_invalid_3)
+{
+    cr_assert(my_str_isupper(""));
 }
