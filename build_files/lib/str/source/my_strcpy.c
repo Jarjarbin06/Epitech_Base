@@ -13,7 +13,7 @@ char *my_strcpy(char *dest, const char *src)
 {
     const int len = my_strlen(src);
 
-    if (!src) {
+    if (!dest || !src) {
         if (dest)
             free(dest);
         return NULL;

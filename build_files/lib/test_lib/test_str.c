@@ -319,3 +319,173 @@ Test(my_strcpy, my_strcpy_invalid_1)
     dest = my_strcpy(dest, NULL);
     cr_assert(!dest);
 }
+
+Test(my_strcpy, my_strcpy_invalid_2)
+{
+    char *dest = NULL;
+
+    dest = my_strcpy(dest, "Hello World");
+    cr_assert(!dest);
+}
+
+// my_strdup //
+Test(my_strdup, my_strdup_valid)
+{
+    char *dest = my_strdup("Hello World");
+
+    cr_assert_str_eq(dest, "Hello World");
+    free(dest);
+}
+
+Test(my_strdup, my_strdup_empty)
+{
+    char *dest = my_strdup("");
+
+    cr_assert_str_eq(dest, "");
+    free(dest);
+}
+
+Test(my_strdup, my_strdup_invalid)
+{
+    char *dest = my_strdup(NULL);
+
+    cr_assert(!dest);
+}
+
+// my_strlen //
+Test(my_strlen, my_strlen_valid)
+{
+    cr_assert_eq(my_strlen("Hello World"), 11);
+}
+
+Test(my_strlen, my_strlen_empty)
+{
+    cr_assert_eq(my_strlen(""), 0);
+}
+
+Test(my_strlen, my_strlen_invalid)
+{
+    cr_assert_eq(my_strlen(NULL), 0);
+}
+
+// my_strlowcase //
+Test(my_strlowcase, my_strlowcase_valid)
+{
+    char str[] = "Hello World+-123";
+
+    cr_assert_str_eq(my_strlowcase(str), "hello world+-123");
+}
+
+Test(my_strlowcase, my_strlowcase_no_action)
+{
+    char str[] = "hello world+-123";
+
+    cr_assert_str_eq(my_strlowcase(str), "hello world+-123");
+}
+
+Test(my_strlowcase, my_strlowcase_full_action)
+{
+    char str[] = "HELLO WORLD+-123";
+
+    cr_assert_str_eq(my_strlowcase(str), "hello world+-123");
+}
+
+Test(my_strlowcase, my_strlowcase_invalid)
+{
+    cr_assert(!my_strlowcase(NULL));
+}
+
+// my_strstr //
+Test(my_strstr, my_strstr_beggining)
+{
+    cr_assert_str_eq(my_strstr("Hello World", "Hello"), "Hello World");
+}
+
+Test(my_strstr, my_strstr_end)
+{
+    cr_assert_str_eq(my_strstr("Hello World", "World"), "World");
+}
+
+Test(my_strstr, my_strstr_not_found)
+{
+    cr_assert_str_eq(my_strstr("Hello World", "z"), "Hello World");
+}
+
+Test(my_strstr, my_strstr_invalid_1)
+{
+    cr_assert(!my_strstr("Hello World", NULL));
+}
+
+Test(my_strstr, my_strstr_invalid_2)
+{
+    cr_assert(!my_strstr(NULL, "Hello World"));
+}
+
+Test(my_strstr, my_strstr_invalid_3)
+{
+    cr_assert(!my_strstr(NULL, NULL));
+}
+
+// my_strupcase //
+Test(my_strupcase, my_strupcase_valid)
+{
+    char str[] = "Hello World+-123";
+
+    cr_assert_str_eq(my_strupcase(str), "HELLO WORLD+-123");
+}
+
+Test(my_strupcase, my_strupcase_no_action)
+{
+    char str[] = "HELLO WORLD+-123";
+
+    cr_assert_str_eq(my_strupcase(str), "HELLO WORLD+-123");
+}
+
+Test(my_strupcase, my_strupcase_full_action)
+{
+    char str[] = "hello world+-123";
+
+    cr_assert_str_eq(my_strupcase(str), "HELLO WORLD+-123");
+}
+
+Test(my_strupcase, my_strupcase_invalid)
+{
+    cr_assert(!my_strupcase(NULL));
+}
+
+// my_swap_char //
+Test(my_swap_char, my_swap_char_valid)
+{
+    char c_1 = 'a';
+    char c_2 = 'b';
+
+    cr_assert_eq(c_1, 'a');
+    cr_assert_eq(c_2, 'b');
+    my_swap_char(&c_1, &c_2);
+    cr_assert_eq(c_1, 'b');
+    cr_assert_eq(c_2, 'a');
+}
+
+Test(my_swap_char, my_swap_char_invalid_1)
+{
+    char c_2 = 'b';
+
+    cr_assert_eq(c_2, 'b');
+    my_swap_char(NULL, &c_2);
+    cr_assert_eq(c_2, 'b');
+}
+
+Test(my_swap_char, my_swap_char_invalid_2)
+{
+    char c_1 = 'a';
+
+    cr_assert_eq(c_1, 'a');
+    my_swap_char(&c_1, NULL);
+    cr_assert_eq(c_1, 'a');
+}
+
+Test(my_swap_char, my_swap_char_invalid_3)
+{
+    my_swap_char(NULL, NULL);
+    cr_assert(1);
+}
