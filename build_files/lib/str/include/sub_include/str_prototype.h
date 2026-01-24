@@ -45,7 +45,7 @@ char **my_str_to_word_array(const char *str);
 // my_strcapitalize.c //
 char *my_strcapitalize(char *str);
 // my_strcat.c //
-char *my_strcat(char *dest, const char *src);
+char *my_strcat(char *src_1, const char *src_2);
 // my_strcmp.c //
 int my_strcmp(const char *str1, const char *str2);
 // my_strcpy.c //

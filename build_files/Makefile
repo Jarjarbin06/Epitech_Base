@@ -49,6 +49,9 @@ show_var:
 ################
 ## Test rules ##
 ################
+test:
+	@make --no-print-directory -C lib test
+
 run_test:
 	@make --no-print-directory -C lib run_test
 	@make --no-print-directory fclean

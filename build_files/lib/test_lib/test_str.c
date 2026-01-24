@@ -83,14 +83,16 @@ Test(my_putstr, test_my_putstr_invalid, .init = redirect_all_std)
 // my_revstr //
 Test(my_revstr, test_my_revstr_basic)
 {
-    char str[12] = "Hello World";
+    char str[] = "Hello World";
+
     cr_assert(my_revstr(str));
     cr_assert_str_eq(str, "dlroW olleH");
 }
 
 Test(my_revstr, test_my_revstr_empty)
 {
-    char str[12] = "";
+    char str[] = "";
+
     cr_assert(my_revstr(str));
     cr_assert_str_eq(str, "");
 }
@@ -196,22 +198,124 @@ Test(my_str_isupper, my_str_isupper_invalid_3)
 Test(my_strcapitalize, my_strcapitalize_valid)
 {
     char str[] = "hello world+-123";
+
     cr_assert_str_eq(my_strcapitalize(str), "Hello World+-123");
 }
 
 Test(my_strcapitalize, my_strcapitalize_no_action)
 {
     char str[] = "Hello World+-123";
+
     cr_assert_str_eq(my_strcapitalize(str), "Hello World+-123");
 }
 
 Test(my_strcapitalize, my_strcapitalize_full_action)
 {
     char str[] = "hELLO wORLD+-123";
+
     cr_assert_str_eq(my_strcapitalize(str), "Hello World+-123");
 }
 
 Test(my_strcapitalize, my_strcapitalize_invalid)
 {
     cr_assert(!my_strcapitalize(NULL));
+}
+
+// my_strcat //
+Test(my_strcat, my_strcat_valid)
+{
+    cr_assert_str_eq(my_strcat("Hello ", "World"), "Hello World");
+}
+
+Test(my_strcat, my_strcat_empty_1)
+{
+    cr_assert_str_eq(my_strcat("", "World"), "World");
+}
+
+Test(my_strcat, my_strcat_empty_2)
+{
+    cr_assert_str_eq(my_strcat("Hello ", ""), "Hello ");
+}
+
+Test(my_strcat, my_strcat_empty_3)
+{
+    cr_assert_str_eq(my_strcat("", ""), "");
+}
+
+Test(my_strcat, my_strcat_invalid_1)
+{
+    cr_assert(!my_strcat(NULL, "World"));
+}
+
+Test(my_strcat, my_strcat_invalid_2)
+{
+    cr_assert(!my_strcat("Hello ", NULL));
+}
+
+Test(my_strcat, my_strcat_invalid_3)
+{
+    cr_assert(!my_strcat(NULL, NULL));
+}
+
+// my_strcmp //
+Test(my_strcmp, my_strcmp_true)
+{
+    cr_assert_eq(my_strcmp("Hello World", "Hello World"), 0);
+}
+
+Test(my_strcmp, my_strcmp_shorter)
+{
+    cr_assert_eq(my_strcmp("Hello World", "Hello Worl"), 1);
+}
+
+Test(my_strcmp, my_strcmp_longer)
+{
+    cr_assert_eq(my_strcmp("Hello Worl", "Hello World"), -1);
+}
+
+Test(my_strcmp, my_strcmp_different)
+{
+    cr_assert_eq(my_strcmp("Hello World", "Hallo World"), 1);
+}
+
+Test(my_strcmp, my_strcmp_invalid_1)
+{
+    cr_assert_eq(my_strcmp(NULL, "Hello World"), 1);
+}
+
+Test(my_strcmp, my_strcmp_invalid_2)
+{
+    cr_assert_eq(my_strcmp("Hello World", NULL), 1);
+}
+
+Test(my_strcmp, my_strcmp_invalid_3)
+{
+    cr_assert_eq(my_strcmp(NULL, NULL), 1);
+}
+
+// my_strcpy //
+Test(my_strcpy, my_strcpy_valid)
+{
+    char *dest = (char *)malloc(sizeof(char) * 12);
+
+    dest = my_strcpy(dest, "Hello World");
+    cr_assert_str_eq(dest, "Hello World");
+    free(dest);
+}
+
+Test(my_strcpy, my_strcpy_empty)
+{
+    char *dest = (char *)malloc(sizeof(char) * 1);
+
+    dest = my_strcpy(dest, "");
+    cr_assert_str_eq(dest, "");
+    free(dest);
+}
+
+Test(my_strcpy, my_strcpy_invalid_1)
+{
+    char *dest = (char *)malloc(sizeof(char) * 1);
+
+    dest = my_strcpy(dest, NULL);
+    cr_assert(!dest);
 }

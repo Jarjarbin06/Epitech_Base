@@ -20,6 +20,6 @@ int my_strcmp(const char *str1, const char *str2)
         return 1;
     for (int idx = 0; idx < str1_len; idx++)
         if (str1[idx] != str2[idx])
-            return (1);
-    return (0);
+            return 1;
+    return 0;
 }
