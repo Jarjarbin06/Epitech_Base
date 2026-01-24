@@ -189,3 +189,29 @@ Test(my_str_isupper, my_str_isupper_invalid_3)
 {
     cr_assert(my_str_isupper(""));
 }
+
+//my_str_to_word_array //
+
+// my_strcapitalize //
+Test(my_strcapitalize, my_strcapitalize_valid)
+{
+    char str[] = "hello world+-123";
+    cr_assert_str_eq(my_strcapitalize(str), "Hello World+-123");
+}
+
+Test(my_strcapitalize, my_strcapitalize_no_action)
+{
+    char str[] = "Hello World+-123";
+    cr_assert_str_eq(my_strcapitalize(str), "Hello World+-123");
+}
+
+Test(my_strcapitalize, my_strcapitalize_full_action)
+{
+    char str[] = "hELLO wORLD+-123";
+    cr_assert_str_eq(my_strcapitalize(str), "Hello World+-123");
+}
+
+Test(my_strcapitalize, my_strcapitalize_invalid)
+{
+    cr_assert(!my_strcapitalize(NULL));
+}

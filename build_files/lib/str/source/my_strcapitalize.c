@@ -12,6 +12,8 @@ char *my_strcapitalize(char *str)
     const int str_len = my_strlen(str);
     int up_next = 1;
 
+    if (!str)
+        return NULL;
     for (int idx = 0; idx < str_len; idx++) {
         if (up_next && ('a' <= str[idx] && str[idx] <= 'z'))
             str[idx] = str[idx] - 32;

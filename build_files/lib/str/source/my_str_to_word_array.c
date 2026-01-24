@@ -51,7 +51,7 @@ static int malloc_word_size(const char *str, const int idx_diff)
 {
     if (!str)
         return -1;
-    return (sizeof(char) * (get_first_word_len(str, idx_diff)));
+    return ((int)sizeof(char) * (get_first_word_len(str, idx_diff)));
 }
 
 static bool cmp_idx_len(const char *str, const int idx, const int idx_diff)
@@ -61,8 +61,7 @@ static bool cmp_idx_len(const char *str, const int idx, const int idx_diff)
     return (idx < get_first_word_len(str, idx_diff));
 }
 
-static bool cmp_idxs_len(const char *str, const int idx, const int idx_diff)
-{
+static bool cmp_idxs_len(const char *str, const int idx, const int idx_diff) {
     if (!str)
         return false;
     return (idx + idx_diff < my_strlen(str));
