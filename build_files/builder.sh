@@ -8,6 +8,7 @@
 RESET="\033[0m"
 WHITE="\033[97m"
 BLACK="\033[2m"
+DARK="\033[30m"
 BG_WHITE="\033[7m"
 BG_GREEN="\033[42m"
 BG_RED="\033[41m"
@@ -48,15 +49,15 @@ build_dir() {
     name=$(truncate_dir "$dir")
 
     if [[ ! -e "$dir/Makefile" ]]; then
-        cp /home/jarjarbin/Desktop/c/GIT/Epitech_Base/build_files/Makefile "$dir/"
+        cp /home/jarjarbin/Desktop/c/GIT/Epitech_Base/Makefile "$dir/"
         if make --no-print-directory -C "$dir" build > /dev/null 2>&1; then
-            printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${BG_GREEN}             built ${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${DARK}${BG_GREEN}             built ${RESET}\n" "$DIR_WIDTH" "$name"
         else
-            printf "${BLACK}  %-*s : ${RESET}${BG_RED}   failed to build ${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BLACK}  %-*s : ${RESET}${DARK}${BG_RED}   failed to build ${RESET}\n" "$DIR_WIDTH" "$name"
             return
         fi
     else
-        printf "${BLACK}  %-*s : ${RESET}${BG_YELLOW}     already built ${RESET}\n" "$DIR_WIDTH" "$name"
+        printf "${BLACK}  %-*s : ${RESET}${DARK}${BG_YELLOW}     already built ${RESET}\n" "$DIR_WIDTH" "$name"
         return
     fi
 }
@@ -69,14 +70,14 @@ unbuild_dir() {
     name=$(truncate_dir "$dir")
 
     if [[ -e "$dir/Makefile" ]]; then
-        if make --no-print-directory -C "$dir" var_ALLOW_UNBUILD=true unbuild > /dev/null 2>&1; then
-            printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${BG_GREEN}           unbuilt ${RESET}\n" "$DIR_WIDTH" "$name"
+        if make --no-print-directory -C "$dir" ALLOW_UNBUILD=true unbuild > /dev/null 2>&1; then
+            printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${DARK}${BG_GREEN}           unbuilt ${RESET}\n" "$DIR_WIDTH" "$name"
             rm -f "$dir/Makefile"
         else
-            printf "${BLACK}  %-*s : ${RESET}${BG_RED} failed to unbuild ${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BLACK}  %-*s : ${RESET}${DARK}${BG_RED} failed to unbuild ${RESET}\n" "$DIR_WIDTH" "$name"
         fi
     else
-        printf "${BLACK}  %-*s : ${RESET}${BG_YELLOW}    no build found ${RESET}\n" "$DIR_WIDTH" "$name"
+        printf "${BLACK}  %-*s : ${RESET}${DARK}${BG_YELLOW}    no build found ${RESET}\n" "$DIR_WIDTH" "$name"
     fi
 }
 
@@ -89,27 +90,27 @@ rebuild_dir() {
 
     # First unbuild
     if [[ -e "$dir/Makefile" ]]; then
-        if make --no-print-directory -C "$dir" var_ALLOW_UNBUILD=true unbuild > /dev/null 2>&1; then
+        if make --no-print-directory -C "$dir" ALLOW_UNBUILD=true unbuild > /dev/null 2>&1; then
             rm -f "$dir/Makefile"
         else
-            printf "${BLACK}  %-*s : ${RESET}${BG_RED} failed to unbuild ${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BLACK}  %-*s : ${RESET}${DARK}${BG_RED} failed to unbuild ${RESET}\n" "$DIR_WIDTH" "$name"
             return
         fi
     else
-        printf "${BLACK}  %-*s : ${RESET}${BG_YELLOW}    no build found ${RESET}\n" "$DIR_WIDTH" "$name"
+        printf "${BLACK}  %-*s : ${RESET}${DARK}${BG_YELLOW}    no build found ${RESET}\n" "$DIR_WIDTH" "$name"
         return
     fi
 
     # Then build
     if [[ ! -e "$dir/Makefile" ]]; then
-        cp /home/jarjarbin/Desktop/c/GIT/Epitech_Base/build_files/Makefile "$dir/"
+        cp /home/jarjarbin/Desktop/c/GIT/Epitech_Base/Makefile "$dir/"
         if make --no-print-directory -C "$dir" build > /dev/null 2>&1; then
-            printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${BG_GREEN}           rebuilt ${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${DARK}${BG_GREEN}           rebuilt ${RESET}\n" "$DIR_WIDTH" "$name"
         else
-            printf "${BLACK}  %-*s : ${RESET}${BG_RED} failed to rebuild ${RESET}\n" "$DIR_WIDTH" "$name"
+            printf "${BLACK}  %-*s : ${RESET}${DARK}${BG_RED} failed to rebuild ${RESET}\n" "$DIR_WIDTH" "$name"
         fi
     else
-        printf "${BLACK}  %-*s : ${RESET}${BG_YELLOW}   already rebuild ${RESET}\n" "$DIR_WIDTH" "$name"
+        printf "${BLACK}  %-*s : ${RESET}${DARK}${BG_YELLOW}   already rebuild ${RESET}\n" "$DIR_WIDTH" "$name"
     fi
 }
 
