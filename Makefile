@@ -128,6 +128,8 @@ test_style_check:
 	@epiclang $(MAIN) $(SRC) $(BONUS) $(INCLUDE) $(TEST_REDIRECT) $(TEST_SEG) $(TEST)
 	@printf '\033[92mepiclang done\033[0m\n'
 
+test_run: test_$(TESTCNAME)_run #TA
+
 ###############
 ## git rules ##
 ###############
