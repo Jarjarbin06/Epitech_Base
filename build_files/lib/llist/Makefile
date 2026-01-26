@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	llist
-info_VERSION	=	v0.0.1
-info_LAST_UPDATE	=	2025-11-27 15:51:13.323668
+info_VERSION	=	v0.1.0
+info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
 
 #########

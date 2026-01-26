@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	build_files
-info_VERSION	=	v0.0.1
-info_LAST_UPDATE	=	2025-11-27 15:51:13.323668
+info_VERSION	=	v0.1.0
+info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
 
 #########
@@ -26,7 +26,11 @@ all:	$(var_NAME)
 
 $(var_NAME):
 	@make --no-print-directory -C lib all
-	@cp */*.a ./
+	@cp */*.a .
+	@cp *.a tree/lib
+	@cp -r lib/2list/include/* tree/lib/2list
+	@cp -r lib/llist/include/* tree/lib/llist
+	@cp -r lib/str/include/* tree/lib/str
 
 clean:
 	@make --no-print-directory -C lib clean
@@ -34,6 +38,10 @@ clean:
 fclean:	clean
 	@make --no-print-directory -C lib fclean
 	@rm -f *.a
+	@rm -f tree/lib/*.a
+	@rm -rdf tree/lib/2list/*
+	@rm -rdf tree/lib/llist/*
+	@rm -rdf tree/lib/str/*
 
 re:	fclean all
 
@@ -56,7 +64,7 @@ run_test:
 	@make --no-print-directory -C lib run_test
 	@make --no-print-directory fclean
 
-.PHONY:	\
+.PHONY: \
 	all \
 	$(var_NAME) \
 	clean \
