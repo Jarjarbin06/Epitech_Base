@@ -100,6 +100,9 @@ fclean:	clean
 
 re:	fclean all
 
+run: re
+	@./$(CNAME)
+
 ###################
 ## testing rules ##
 ###################
