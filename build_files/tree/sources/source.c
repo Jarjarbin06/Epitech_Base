@@ -12,5 +12,5 @@
 int function(const int argc, const char **argv)
 {
     printf("%d - \"%s\"\n", argc, argv[0]);
-    return true;
+    return EXIT_SUCCESS;
 }
