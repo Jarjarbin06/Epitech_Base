@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** include - 2list.h
+** includes - 2list.h
 ** File description:
 ** <description>
 */

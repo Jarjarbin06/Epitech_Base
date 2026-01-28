@@ -13,18 +13,18 @@
     #include "str_include.h"
     #include "str_prototype.h"
 
-    #ifndef STR_T_TYPE
-        #define STR_T_TYPE
+#ifndef STR_T_TYPE
+    #define STR_T_TYPE
 
-        // add type typedefs here //
+    // add type typedefs here //
 
-    #endif
+#endif
 
-    #ifndef STR_T_STRUCT
-        #define STR_T_STRUCT
+#ifndef STR_T_STRUCT
+    #define STR_T_STRUCT
 
-        // add struct typedefs here //
+    // add struct typedefs here //
 
-    #endif
+#endif
 
 #endif

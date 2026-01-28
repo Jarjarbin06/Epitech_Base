@@ -24,7 +24,7 @@ var_TEST	+=	$(var_TEST_PATH)/test_str.c
 # lib #
 var_NAME	=	$(info_NAME)
 
-# test #
+# tests #
 var_TEST_COMPILER	=	clang
 var_TEST_NAME	=	_test
 var_TEST_FLAG	=	\

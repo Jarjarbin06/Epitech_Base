@@ -13,18 +13,18 @@
     #include "2list_include.h"
     #include "2list_prototype.h"
 
-    #ifndef TWOLIST_T_TYPE
-        #define TWOLIST_T_TYPE
+#ifndef TWOLIST_T_TYPE
+    #define TWOLIST_T_TYPE
 
-        // add type typedefs here //
+// add type typedefs here //
 
-    #endif
+#endif
 
-    #ifndef TWOLIST_T_STRUCT
-        #define TWOLIST_T_STRUCT
+#ifndef TWOLIST_T_STRUCT
+    #define TWOLIST_T_STRUCT
 
-        // add struct typedefs here //
+// add struct typedefs here //
 
-    #endif
+#endif
 
 #endif

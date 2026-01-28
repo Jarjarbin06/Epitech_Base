@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** include - str.h
+** includes - str.h
 ** File description:
 ** <description>
 */

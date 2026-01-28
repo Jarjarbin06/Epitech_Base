@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2026
-** EpitechBase - test.h
+** EpitechBase - tests.h
 ** File description:
 ** <description>
 */

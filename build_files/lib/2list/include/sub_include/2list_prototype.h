@@ -13,8 +13,8 @@
     #include "2list_include.h"
     #include "2list_typedef.h"
 
-    void _2list_show_macro(void);
-
-    // add type prototype here //
+// 2list //
+void _2list_show_macro(void);
+void _2list_exist(void);
 
 #endif

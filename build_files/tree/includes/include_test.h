@@ -1,12 +1,14 @@
 /*
 ** EPITECH PROJECT, 2025
-** test.h
+** includes - include_test.h
 ** File description:
 ** <description>
 */
 
-#ifndef TEST_H
-    #define TEST_H
+#ifndef TEST
+    #define TEST
+
+    #include "include.h"
 
 void redirect_all_std(void);
 

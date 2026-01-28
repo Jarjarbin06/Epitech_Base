@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** test_redirect.c
+** tests - test_redirect.c
 ** File description:
 ** None
 */

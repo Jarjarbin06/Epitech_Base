@@ -13,8 +13,8 @@
     #include "llist_include.h"
     #include "llist_typedef.h"
 
-    void _llist_show_macro(void);
-
-    // add type prototype here //
+// _llist.c //
+void _llist_show_macro(void);
+void _llist_exist(void);
 
 #endif

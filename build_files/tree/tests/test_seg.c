@@ -1,12 +1,13 @@
 /*
 ** EPITECH PROJECT, 2025
-** test_seg.c
+** tests - test_seg.c
 ** File description:
 ** None
 */
 
 #include <criterion/criterion.h>
-#include "../include/include_test.h"
+#include <criterion/redirect.h>
+#include "../includes/include_test.h"
 
 Test(main, test, .init=redirect_all_std)
 {

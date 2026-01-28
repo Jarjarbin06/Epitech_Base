@@ -13,22 +13,22 @@
     #include "llist_typedef.h"
     #include "llist_prototype.h"
 
-    #ifndef LLIST_I_LIB_C
-        #define LLIST_I_LIB_C
+#ifndef LLIST_I_LIB_C
+    #define LLIST_I_LIB_C
 
-        #include <stddef.h>
-        #include <stdbool.h>
+    #include <stddef.h>
+    #include <stdbool.h>
 
 
-        // add <...> includes here //
+// add <...> includes here //
 
-    #endif
+#endif
 
-    #ifndef LLIST_I_CUSTOM
-        #define LLIST_I_CUSTOM
+#ifndef LLIST_I_CUSTOM
+    #define LLIST_I_CUSTOM
 
-        // add "" includes here //
+// add "" includes here //
 
-    #endif
+#endif
 
 #endif

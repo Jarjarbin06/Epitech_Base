@@ -5,32 +5,6 @@
 ## <description>
 ##
 
-###############
-## important ##
-###############
-all:	$(CNAME)
-
-help:
-	@echo "Usage: make [rule]"
-	@echo ""
-	@echo "Main rules:"
-	@echo "    make                         Compile the project"
-	@echo "    make clean                   Remove temporary and unnecessary files"
-	@echo "    make fclean                  Clean + remove binaries"
-	@echo "    make re                      Recompile everything"
-	@echo ""
-	@echo "Testing:"
-	@echo "    make test_[test_name]        Compile tests"
-	@echo "    make test_[test_name]_run    Run unit tests"
-	@echo "    make test_valgrind           Run valgrind"
-	@echo "    make test_gcovr              Code coverage"
-	@echo "    make test_style_check        Check coding style"
-	@echo ""
-	@echo "Utilities:"
-	@echo "    make show_var                Show internal variables"
-	@echo "    make build                   Initialize project (dangerous)"
-	@echo "    make unbuild                 Remove project files (dangerous)"
-
 ##########
 ## info ##
 ##########
@@ -45,19 +19,25 @@ info_LIB_MAKER	=	Makefile
 EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/GIT/Epitech_Base/
 
 # ./source/ #
-SRC_PATH = source
+SRC_PATH	=	source
 
-SRC	=	$(SRC_PATH)/source_file.c
+SRC	=	$(SRC_PATH)/source.c
+
+OBJ	=	$(SR	C:.c=.o)
 
 # ./bonus/ #
-BONUS_PATH = bonus
+BONUS_PATH	=	bonus
 
-BONUS	=	$(BONUS_PATH)/bonus_file.c
+BONUS	=	$(BONUS_PATH)/bonu.c
 
 # ./includes/ #
 INCLUDE_DIR	=	include
 
-INCLUDE	=	$(INCLUDE_DIR)/include_file.h
+INCLUDE	=	$(INCLUDE_DIR)/sub_include/include_define.h
+INCLUDE	+=	$(INCLUDE_DIR)/sub_include/include_include.h
+INCLUDE	+=	$(INCLUDE_DIR)/sub_include/include_prototype.h
+INCLUDE	+=	$(INCLUDE_DIR)/sub_include/include_typedef.h
+INCLUDE	+=	$(INCLUDE_DIR)/include.h
 INCLUDE	+=	$(INCLUDE_DIR)/include_test.h
 
 # ./lib/ #
@@ -78,21 +58,27 @@ TEST	=	$(TEST_PATH)/test_file.c
 # other #
 CC	=	clang
 CNAME	=	compiled_program
-CFLAGS	=	 -I./$(INCLUDE_DIR) -L./$(LIB_PATH) -lstr -llist -l2list -Wall -Wextra -Werror
+CFLAGS	=	 -I./$(INCLUDE_DIR) -I./$(LIB_PATH)/2list -I./$(LIB_PATH)/llist -I./$(LIB_PATH)/str -L./$(LIB_PATH) -lstr -lllist -l2list -Wall -Wextra -Werror
 TESTCNAME	=	unit_tests
 TESTSEGCNAME	=	seg_tests
 TESTCFLAGS	=	--coverage -lcriterion
 ALLOW_UNBUILD	=	false
-FILE_TREE = $(wildcard *)
 
 #################
 ## Basic rules ##
 #################
-$(CNAME):
-	@$(CC) -o $(CNAME) $(SRC) $(MAIN) -I$(INCLUDE_DIR)
+all:	$(CNAME)
+
+$(CNAME): $(OBJ)
+	$(CC) -o $(CNAME) $(OBJ) $(MAIN) $(CFLAGS)
 
 clean:
-	@rm -f *.o *.a *.out *.pch *.gc* *~ *#
+	@rm -f *.o */*.o */*/*.o
+	@rm -f *.out */*.out */*/*.out
+	@rm -f *.pch */*.pch */*/*.pch
+	@rm -f *.gc* */*.gc* */*/*.gc*
+	@rm -f *~* */*~* */*/*~*
+	@rm -f *# */*# */*/*#
 
 fclean:	clean
 	@rm -f $(CNAME)
@@ -145,7 +131,7 @@ git_info:
 ################
 ## repo setup ##
 ################
-ifeq ($(FILE_TREE), Makefile)
+ifeq ($(wildcard *), Makefile)
 build:
 	@make -sC $(EPITECH_BASE_PATH)/build_files/ re
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/tree/* ./
@@ -163,7 +149,7 @@ endif
 
 ifeq ($(ALLOW_UNBUILD), true)
 unbuild: fclean
-	@rm -fr bonus include lib source test main.c
+	@rm -fr bonus includes lib sources test main.c
 
 else
 unbuild:
@@ -172,12 +158,36 @@ unbuild:
 
 endif
 
+###########
+## other ##
+###########
+help:
+	@echo "Usage: make [rule]"
+	@echo ""
+	@echo "Main rules:"
+	@echo "    make                         Compile the project"
+	@echo "    make clean                   Remove temporary and unnecessary files"
+	@echo "    make fclean                  Clean + remove binaries"
+	@echo "    make re                      Recompile everything"
+	@echo ""
+	@echo "Testing:"
+	@echo "    make test_[test_name]        Compile tests"
+	@echo "    make test_[test_name]_run    Run unit tests"
+	@echo "    make test_valgrind           Run valgrind"
+	@echo "    make test_gcovr              Code coverage"
+	@echo "    make test_style_check        Check coding style"
+	@echo ""
+	@echo "Utilities:"
+	@echo "    make show_var                Show internal variables"
+	@echo "    make build                   Initialize project (dangerous)"
+	@echo "    make unbuild                 Remove project files (dangerous)"
+
+
 ##########################
-## Built-in Target Name ##
+## built-in target name ##
 ##########################
 .PHONY: \
 	all \
-	help \
 	$(CNAME) \
 	clean \
 	fclean \
@@ -193,4 +203,5 @@ endif
 	git_pull \
 	git_info \
 	build \
-	unbuild
+	unbuild \
+	help

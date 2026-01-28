@@ -13,22 +13,22 @@
     #include "str_typedef.h"
     #include "str_prototype.h"
 
-    #ifndef STR_I_LIB_C
-        #define STR_I_LIB_C
+#ifndef STR_I_LIB_C
+    #define STR_I_LIB_C
 
-        #include <stddef.h>
-        #include <stdbool.h>
+    #include <stddef.h>
+    #include <stdbool.h>
 
 
-        // add <...> includes here //
+// add <...> includes here //
 
-    #endif
+#endif
 
-    #ifndef STR_I_CUSTOM
-        #define STR_I_CUSTOM
+#ifndef STR_I_CUSTOM
+    #define STR_I_CUSTOM
 
-        // add "" includes here //
+// add "" includes here //
 
-    #endif
+#endif
 
 #endif

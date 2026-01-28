@@ -1,20 +1,20 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - 2list_define.h
+** sub_include - include_define.h
 ** File description:
 ** <description>
 */
 
 // Define //
-#ifndef TWOLIST_D
-    #define TWOLIST_D
+#ifndef INCLUDE_D
+    #define INCLUDE_D
 
-    #include "2list_include.h"
-    #include "2list_typedef.h"
-    #include "2list_prototype.h"
+    #include "include_include.h"
+    #include "include_typedef.h"
+    #include "include_prototype.h"
 
-#ifndef TWOLIST_D_EXIT
-    #define TWOLIST_D_EXIT
+#ifndef INCLUDE_D_EXIT
+    #define INCLUDE_D_EXIT
 
 #ifndef EXIT_SUCCESS
     #define EXIT_SUCCESS 0
@@ -26,8 +26,8 @@
 
 #endif
 
-#ifndef TWOLIST_D_COLOR
-    #define TWOLIST_D_COLOR
+#ifndef INCLUDE_D_COLOR
+    #define INCLUDE_D_COLOR
 
     #define C_ERROR "\033[41m"    // RED //
     #define C_WARNING "\033[43m"  // YELLOW //

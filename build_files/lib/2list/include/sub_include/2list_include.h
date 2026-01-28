@@ -13,21 +13,21 @@
     #include "2list_typedef.h"
     #include "2list_prototype.h"
 
-    #ifndef TWOLIST_I_LIB_C
-        #define TWOLIST_I_LIB_C
+#ifndef TWOLIST_I_LIB_C
+    #define TWOLIST_I_LIB_C
 
-        #include <stddef.h>
-        #include <stdbool.h>
+    #include <stddef.h>
+    #include <stdbool.h>
 
-        // add <...> includes here //
+// add <...> includes here //
 
-    #endif
+#endif
 
-    #ifndef TWOLIST_I_CUSTO
-        #define TWOLIST_I_CUSTOM
+#ifndef TWOLIST_I_CUSTO
+    #define TWOLIST_I_CUSTOM
 
-        // add "" includes here //
+// add "" includes here //
 
-    #endif
+#endif
 
 #endif

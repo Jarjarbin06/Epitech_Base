@@ -5,12 +5,12 @@
 ** <description>
 */
 
-#include "include/include_file.h"
+#include "includes/include.h"
 
-int main(int argc, char **argv)
+int main(const int argc, const char **argv)
 {
-    bool err = false;
-
-    err = ((function()) ? (true) : (err));
-    return (!(err) ? (EXIT_SUCCESS) : (EXIT_ERROR));
+    _2list_exist();
+    _llist_exist();
+    _str_exist();
+    return function(argc, argv);
 }

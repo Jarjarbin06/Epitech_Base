@@ -13,18 +13,18 @@
     #include "llist_include.h"
     #include "llist_prototype.h"
 
-    #ifndef LLIST_T_TYPE
-        #define LLIST_T_TYPE
+#ifndef LLIST_T_TYPE
+    #define LLIST_T_TYPE
 
-        // add type typedefs here //
+// add type typedefs here //
 
-    #endif
+#endif
 
-    #ifndef LLIST_T_STRUCT
-        #define LLIST_T_STRUCT
+#ifndef LLIST_T_STRUCT
+    #define LLIST_T_STRUCT
 
-        // add struct typedefs here //
+// add struct typedefs here //
 
-    #endif
+#endif
 
 #endif

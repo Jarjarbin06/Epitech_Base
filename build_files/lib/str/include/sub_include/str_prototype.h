@@ -15,6 +15,7 @@
 
 // _str.c //
 void _str_show_macro(void);
+void _str_exist(void);
 // my_getnbr.c //
 int my_getnbr(const char *str);
 // my_putnbr.c //
@@ -68,7 +69,5 @@ char *my_strstr(char *str, const char *to_find);
 char *my_strupcase(char *str);
 // my_swap_char.c //
 void my_swap_char(char *ptr_a, char *ptr_b);
-
-    // add type prototype here //
 
 #endif

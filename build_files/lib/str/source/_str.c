@@ -24,3 +24,7 @@ void _str_show_macro(void)
     printf("    C_UNDERLINE : %stext%s\n",C_UNDERLINE, C_RESET);
     printf("    C_DIM : %stext%s\n",C_DIM, C_RESET);
 }
+
+void _str_exist(void)
+{
+}
