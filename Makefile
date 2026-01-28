@@ -18,27 +18,28 @@ info_LIB_MAKER	=	Makefile
 #########
 EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/GIT/Epitech_Base/
 
-# ./source/ #
-SRC_PATH	=	source
+# ./sources/ #
+SRC_PATH	=	sources
 
 SRC	=	$(SRC_PATH)/source.c
 
-OBJ	=	$(SR	C:.c=.o)
+OBJ	=	$(SRC:.c=.o)
 
 # ./bonus/ #
 BONUS_PATH	=	bonus
 
-BONUS	=	$(BONUS_PATH)/bonu.c
+BONUS	=	$(BONUS_PATH)/bonus.c
 
 # ./includes/ #
 INCLUDE_DIR	=	include
 
-INCLUDE	=	$(INCLUDE_DIR)/sub_include/include_define.h
-INCLUDE	+=	$(INCLUDE_DIR)/sub_include/include_include.h
-INCLUDE	+=	$(INCLUDE_DIR)/sub_include/include_prototype.h
-INCLUDE	+=	$(INCLUDE_DIR)/sub_include/include_typedef.h
-INCLUDE	+=	$(INCLUDE_DIR)/include.h
-INCLUDE	+=	$(INCLUDE_DIR)/include_test.h
+INCLUDE	=	\
+	$(INCLUDE_DIR)/sub_include/include_define.h \
+	$(INCLUDE_DIR)/sub_include/include_include.h \
+	$(INCLUDE_DIR)/sub_include/include_prototype.h \
+	$(INCLUDE_DIR)/sub_include/include_typedef.h \
+	$(INCLUDE_DIR)/include.h \
+	$(INCLUDE_DIR)/include_test.h
 
 # ./lib/ #
 LIB_PATH	=	lib
@@ -58,10 +59,22 @@ TEST	=	$(TEST_PATH)/test_file.c
 # other #
 CC	=	clang
 CNAME	=	compiled_program
-CFLAGS	=	 -I./$(INCLUDE_DIR) -I./$(LIB_PATH)/2list -I./$(LIB_PATH)/llist -I./$(LIB_PATH)/str -L./$(LIB_PATH) -lstr -lllist -l2list -Wall -Wextra -Werror
+CFLAGS	=	 \
+	-I./$(INCLUDE_DIR) \
+	-I./$(LIB_PATH)/2list \
+	-I./$(LIB_PATH)/llist \
+	-I./$(LIB_PATH)/str \
+	-L./$(LIB_PATH) \
+	-lstr \
+	-lllist \
+	-l2list \
+	-Wall \
+	-Wextra
 TESTCNAME	=	unit_tests
 TESTSEGCNAME	=	seg_tests
-TESTCFLAGS	=	--coverage -lcriterion
+TESTCFLAGS	=	\
+	--coverage \
+	-lcriterion
 ALLOW_UNBUILD	=	false
 
 #################
@@ -91,13 +104,13 @@ re:	fclean all
 ## testing rules ##
 ###################
 test_$(TESTCNAME): clean
-	@$(CC) -o $(TESTCNAME) $(SRC) $(TEST_REDIRECT) $(TEST) -I$(INCLUDE_DIR) $(TESTCFLAGS)
+	@$(CC) -o $(TESTCNAME) $(SRC) $(TEST_REDIRECT) $(TEST) $(CFLAGS) $(TESTCFLAGS)
 
 test_$(TESTCNAME)_run: fclean test_$(TESTCNAME)
 	@./$(TESTCNAME)
 
 test_$(TESTSEGCNAME): clean
-	@$(CC) -o $(TESTSEGCNAME) $(SRC) $(TEST_REDIRECT) $(TEST_SEG) -I$(INCLUDE_DIR) $(TESTCFLAGS)
+	@$(CC) -o $(TESTSEGCNAME) $(SRC) $(TEST_REDIRECT) $(TEST_SEG) $(CFLAGS) $(TESTCFLAGS)
 
 test_$(TESTSEGCNAME)_run: fclean test_$(TESTSEGCNAME)
 	@./$(TESTSEGCNAME)
@@ -149,7 +162,7 @@ endif
 
 ifeq ($(ALLOW_UNBUILD), true)
 unbuild: fclean
-	@rm -fr bonus includes lib sources test main.c
+	@rm -fr bonus includes lib sources tests main.c
 
 else
 unbuild:
