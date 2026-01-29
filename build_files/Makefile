@@ -28,7 +28,7 @@ $(var_NAME):
 	@make --no-print-directory -C lib all
 	@cp */*.a .
 	@cp *.a tree/lib
-	@cp -r lib/2list/include/* tree/lib/2list
+	@cp -r lib/twod_list/include/* tree/lib/twod_list
 	@cp -r lib/llist/include/* tree/lib/llist
 	@cp -r lib/str/include/* tree/lib/str
 
@@ -39,7 +39,7 @@ fclean:	clean
 	@make --no-print-directory -C lib fclean
 	@rm -f *.a
 	@rm -f tree/lib/*.a
-	@rm -rdf tree/lib/2list/*
+	@rm -rdf tree/lib/twod_list/*
 	@rm -rdf tree/lib/llist/*
 	@rm -rdf tree/lib/str/*
 

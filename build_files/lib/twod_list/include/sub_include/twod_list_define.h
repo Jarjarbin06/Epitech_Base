@@ -1,20 +1,20 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - 2list_define.h
+** sub_include - twod_list_define.h
 ** File description:
 ** <description>
 */
 
 // Define //
-#ifndef TWOLIST_D
-    #define TWOLIST_D
+#ifndef TWODLIST_D
+    #define TWODLIST_D
 
-    #include "2list_include.h"
-    #include "2list_typedef.h"
-    #include "2list_prototype.h"
+    #include "twod_list_include.h"
+#include "twod_list_typedef.h"
+#include "twod_list_prototype.h"
 
-#ifndef TWOLIST_D_EXIT
-    #define TWOLIST_D_EXIT
+#ifndef TWODLIST_D_EXIT
+    #define TWODLIST_D_EXIT
 
 #ifndef EXIT_SUCCESS
     #define EXIT_SUCCESS 0
@@ -26,8 +26,8 @@
 
 #endif
 
-#ifndef TWOLIST_D_COLOR
-    #define TWOLIST_D_COLOR
+#ifndef TWODLIST_D_COLOR
+    #define TWODLIST_D_COLOR
 
     #define C_ERROR "\033[41m"    // RED //
     #define C_WARNING "\033[43m"  // YELLOW //
@@ -38,6 +38,13 @@
     #define C_UNDERLINE "\033[4m" // UNDERLINE //
     #define C_DIM "\033[2m"       // DIM //
     #define C_RESET "\033[0m"     // RESET //
+
+#endif
+
+#ifndef TWODLIST_D_OTHER
+    #define TWODLIST_D_OTHER
+
+// your defines here //
 
 #endif
 

@@ -1,15 +1,15 @@
 /*
 ** EPITECH PROJECT, 2025
-** 2list - _2list.c
+** llist - llist.c
 ** File description:
 ** <description>
 */
 
 #include <stdio.h>
 
-#include "../include/2list.h"
+#include "../include/llist.h"
 
-void _2list_show_macro(void)
+void llist_show_macro(void)
 {
     printf("EXIT :\n");
     printf("    EXIT_SUCCESS : %d\n",EXIT_SUCCESS);
@@ -25,6 +25,6 @@ void _2list_show_macro(void)
     printf("    C_DIM : %stext%s\n",C_DIM, C_RESET);
 }
 
-void _2list_exist(void)
+void llist_exist(void)
 {
 }

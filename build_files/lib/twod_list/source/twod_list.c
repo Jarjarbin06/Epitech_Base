@@ -1,15 +1,15 @@
 /*
 ** EPITECH PROJECT, 2025
-** str - _str.c
+** 2list - two_dlist.c
 ** File description:
 ** <description>
 */
 
 #include <stdio.h>
 
-#include "../include/str.h"
+#include "../include/twod_list.h"
 
-void _str_show_macro(void)
+void twod_list_show_macro(void)
 {
     printf("EXIT :\n");
     printf("    EXIT_SUCCESS : %d\n",EXIT_SUCCESS);
@@ -25,6 +25,6 @@ void _str_show_macro(void)
     printf("    C_DIM : %stext%s\n",C_DIM, C_RESET);
 }
 
-void _str_exist(void)
+void twod_list_exist(void)
 {
 }

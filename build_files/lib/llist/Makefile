@@ -18,7 +18,7 @@ info_LIB_MAKER	=	Makefile
 #########
 # ./sources/ #
 var_SRC_PATH	=	source
-var_SRC	=	$(var_SRC_PATH)/_llist.c
+var_SRC	=	$(var_SRC_PATH)/llist.c
 var_SRC_OBJ	=	$(var_SRC:.c=.o)
 
 # lib #

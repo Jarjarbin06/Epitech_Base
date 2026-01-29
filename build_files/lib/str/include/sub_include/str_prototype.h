@@ -14,8 +14,8 @@
     #include "str_typedef.h"
 
 // _str.c //
-void _str_show_macro(void);
-void _str_exist(void);
+void str_show_macro(void);
+void str_exist(void);
 // my_getnbr.c //
 int my_getnbr(const char *str);
 // my_putnbr.c //

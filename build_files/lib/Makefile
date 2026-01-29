@@ -28,7 +28,7 @@ var_NAME	=	$(info_NAME)
 var_TEST_COMPILER	=	clang
 var_TEST_NAME	=	_test
 var_TEST_FLAG	=	\
-	-I/2list/include/ \
+	-I/twod_list/include/ \
 	-I./lib/llist/include/ \
 	-I./lib/str/include/ \
 	-I./lib/test_lib/ \
@@ -37,7 +37,7 @@ var_TEST_FLAG	=	\
 	-Werror \
 	--coverage \
 	-lcriterion \
-	-l2list \
+	-ltwod_list \
 	-lllist \
 	-lstr
 
@@ -47,20 +47,20 @@ var_TEST_FLAG	=	\
 all:	$(var_NAME)
 
 $(var_NAME):
-	@make --no-print-directory -C 2list all
+	@make --no-print-directory -C twod_list all
 	@make --no-print-directory -C llist all
 	@make --no-print-directory -C str all
 	@cp */*.a ./
 
 clean:
-	@make --no-print-directory -C 2list clean
+	@make --no-print-directory -C twod_list clean
 	@make --no-print-directory -C llist clean
 	@make --no-print-directory -C str clean
 	@rm -f $(var_TEST_NAME)
 	@rm -f *.gc*
 
 fclean: clean
-	@make --no-print-directory -C 2list fclean
+	@make --no-print-directory -C twod_list fclean
 	@make --no-print-directory -C llist fclean
 	@make --no-print-directory -C str fclean
 	@rm -f *.a

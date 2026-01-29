@@ -8,7 +8,7 @@
 ##########
 ## info ##
 ##########
-info_NAME	=	2list
+info_NAME	=	twod_list
 info_VERSION	=	v0.1.0
 info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
@@ -18,7 +18,7 @@ info_LIB_MAKER	=	Makefile
 #########
 # ./sources/ #
 var_SRC_PATH	=	source
-var_SRC	=	$(var_SRC_PATH)/_2list.c
+var_SRC	=	$(var_SRC_PATH)/twod_list.c
 var_SRC_OBJ	=	$(var_SRC:.c=.o)
 
 # lib #

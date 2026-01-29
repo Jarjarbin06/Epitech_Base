@@ -6,15 +6,15 @@
 */
 
 // Include //
-#ifndef TWOLIST_I
-    #define TWOLIST_I
+#ifndef TWODLIST_I
+    #define TWODLIST_I
 
-    #include "2list_define.h"
-    #include "2list_typedef.h"
-    #include "2list_prototype.h"
+    #include "twod_list_define.h"
+#include "twod_list_typedef.h"
+#include "twod_list_prototype.h"
 
-#ifndef TWOLIST_I_LIB_C
-    #define TWOLIST_I_LIB_C
+#ifndef TWODLIST_I_LIB_C
+    #define TWODLIST_I_LIB_C
 
     #include <stddef.h>
     #include <stdbool.h>
@@ -23,8 +23,8 @@
 
 #endif
 
-#ifndef TWOLIST_I_CUSTO
-    #define TWOLIST_I_CUSTOM
+#ifndef TWODLIST_I_CUSTO
+    #define TWODLIST_I_CUSTOM
 
 // add "" includes here //
 

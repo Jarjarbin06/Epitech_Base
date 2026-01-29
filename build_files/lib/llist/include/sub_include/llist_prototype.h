@@ -14,7 +14,7 @@
     #include "llist_typedef.h"
 
 // _llist.c //
-void _llist_show_macro(void);
-void _llist_exist(void);
+void llist_show_macro(void);
+void llist_exist(void);
 
 #endif
