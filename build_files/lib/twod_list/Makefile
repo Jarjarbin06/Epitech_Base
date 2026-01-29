@@ -17,27 +17,27 @@ info_LIB_MAKER	=	Makefile
 ## var ##
 #########
 # ./sources/ #
-var_SRC_PATH	=	source
-var_SRC	=	$(var_SRC_PATH)/twod_list.c
-var_SRC_OBJ	=	$(var_SRC:.c=.o)
+SRC_PATH	=	source
+SRC	=	$(SRC_PATH)/twod_list.c
+SRC_OBJ	=	$(SRC:.c=.o)
 
 # lib #
-var_LIB_CREATOR	=	ar rc
-var_LIB_NAME	=	lib$(info_NAME)
+LIB_CREATOR	=	ar rc
+LIB_NAME	=	lib$(info_NAME)
 
 #################
 ## Basic rules ##
 #################
-all:	$(var_LIB_NAME)
+all:	$(LIB_NAME)
 
-$(var_LIB_NAME):	$(var_SRC_OBJ)
-	@$(var_LIB_CREATOR) $(var_LIB_NAME).a $(var_SRC_OBJ)
+$(LIB_NAME):	$(SRC_OBJ)
+	@$(LIB_CREATOR) $(LIB_NAME).a $(SRC_OBJ)
 
 clean:
-	@rm -f $(var_SRC_PATH)/*.o
+	@rm -f $(SRC_PATH)/*.o
 
 fclean:	clean
-	@rm -f $(var_LIB_NAME).a
+	@rm -f $(LIB_NAME).a
 
 re:	fclean all
 
@@ -48,15 +48,15 @@ show_info:
 	@printf "\033[4minfo_LIB_MAKER\033[0m : "; echo $(info_LIB_MAKER)
 
 show_var:
-	@printf "\033[4mvar_SRC_PATH\033[0m : "; echo $(var_SRC_PATH)
-	@printf "\033[4mvar_SRC\033[0m : "; echo $(var_SRC)
-	@printf "\033[4mvar_SRC_OBJ\033[0m : "; echo $(var_SRC_OBJ)
-	@printf "\033[4mvar_LIB_CREATOR\033[0m : "; echo $(var_LIB_CREATOR)
-	@printf "\033[4mvar_LIB_NAME\033[0m : "; echo $(var_LIB_NAME)
+	@printf "\033[4mSRC_PATH\033[0m : "; echo $(SRC_PATH)
+	@printf "\033[4mSRC\033[0m : "; echo $(SRC)
+	@printf "\033[4mSRC_OBJ\033[0m : "; echo $(SRC_OBJ)
+	@printf "\033[4mLIB_CREATOR\033[0m : "; echo $(LIB_CREATOR)
+	@printf "\033[4mLIB_NAME\033[0m : "; echo $(LIB_NAME)
 
 .PHONY:	\
 	all \
-	$(var_LIB_NAME) \
+	$(LIB_NAME) \
 	clean \
 	fclean \
 	re \

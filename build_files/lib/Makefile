@@ -17,17 +17,17 @@ info_LIB_MAKER	=	Makefile
 ## Var ##
 #########
 # ./test_lib #
-var_TEST_PATH	=	test_lib
-var_TEST	=	$(var_TEST_PATH)/test_base.c
-var_TEST	+=	$(var_TEST_PATH)/test_str.c
+TEST_PATH	=	test_lib
+TEST	=	$(TEST_PATH)/test_base.c
+TEST	+=	$(TEST_PATH)/test_str.c
 
 # lib #
-var_NAME	=	$(info_NAME)
+NAME	=	$(info_NAME)
 
 # tests #
-var_TEST_COMPILER	=	clang
-var_TEST_NAME	=	_test
-var_TEST_FLAG	=	\
+TEST_COMPILER	=	clang
+TEST_NAME	=	_test
+TEST_FLAG	=	\
 	-I/twod_list/include/ \
 	-I./lib/llist/include/ \
 	-I./lib/str/include/ \
@@ -44,9 +44,9 @@ var_TEST_FLAG	=	\
 #################
 ## Basic rules ##
 #################
-all:	$(var_NAME)
+all:	$(NAME)
 
-$(var_NAME):
+$(NAME):
 	@make --no-print-directory -C twod_list all
 	@make --no-print-directory -C llist all
 	@make --no-print-directory -C str all
@@ -56,7 +56,7 @@ clean:
 	@make --no-print-directory -C twod_list clean
 	@make --no-print-directory -C llist clean
 	@make --no-print-directory -C str clean
-	@rm -f $(var_TEST_NAME)
+	@rm -f $(TEST_NAME)
 	@rm -f *.gc*
 
 fclean: clean
@@ -74,24 +74,24 @@ show_info:
 	@printf "\033[4minfo_LIB_MAKER\033[0m : "; echo $(info_LIB_MAKER)
 
 show_var:
-	@printf "\033[4mvar_NAME\033[0m : "; echo $(var_NAME)
-	@printf "\033[4mvar_TEST_COMPILER\033[0m : "; echo $(var_TEST_COMPILER)
-	@printf "\033[4mvar_TEST_NAME\033[0m : "; echo $(var_TEST_NAME)
-	@printf "\033[4mvar_TEST_FLAG\033[0m : "; echo $(var_TEST_FLAG)
+	@printf "\033[4mNAME\033[0m : "; echo $(NAME)
+	@printf "\033[4mTEST_COMPILER\033[0m : "; echo $(TEST_COMPILER)
+	@printf "\033[4mTEST_NAME\033[0m : "; echo $(TEST_NAME)
+	@printf "\033[4mTEST_FLAG\033[0m : "; echo $(TEST_FLAG)
 
 ################
 ## Test rules ##
 ################
 test: re
-	$(var_TEST_COMPILER) -o $(var_TEST_NAME) $(var_TEST) $(var_TEST_FLAG)
+	$(TEST_COMPILER) -o $(TEST_NAME) $(TEST) $(TEST_FLAG)
 
 run_test:	test
-	@./$(var_TEST_NAME) || true
+	@./$(TEST_NAME) || true
 	@make --no-print-directory fclean
 
 .PHONY: \
 	all \
-	$(var_NAME) \
+	$(NAME) \
 	clean \
 	fclean \
 	re \

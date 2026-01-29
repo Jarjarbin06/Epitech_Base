@@ -17,14 +17,14 @@ info_LIB_MAKER	=	Makefile
 ## var ##
 #########
 # lib #
-var_NAME	=	$(info_NAME)
+NAME	=	$(info_NAME)
 
 #################
 ## Basic rules ##
 #################
-all:	$(var_NAME)
+all:	$(NAME)
 
-$(var_NAME):
+$(NAME):
 	@make --no-print-directory -C lib all
 	@cp */*.a .
 	@cp *.a tree/lib
@@ -52,7 +52,7 @@ show_info:
 	@printf "\033[4minfo_LIB_MAKER\033[0m : "; echo $(info_LIB_MAKER)
 
 show_var:
-	@printf "\033[4mvar_NAME\033[0m : "; echo $(var_NAME)
+	@printf "\033[4mNAME\033[0m : "; echo $(NAME)
 
 ################
 ## Test rules ##
@@ -66,7 +66,7 @@ run_test:
 
 .PHONY: \
 	all \
-	$(var_NAME) \
+	$(NAME) \
 	clean \
 	fclean \
 	re \
