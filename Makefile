@@ -26,10 +26,10 @@ SRC	=	$(SRC_PATH)/source.c
 # ./bonus/ #
 BONUS_PATH	=	bonus
 
-BONUS	=	$(BONUS_PATH)/bonus.c
+BONUS	=	$(BONUS_PATH)/bonus_file.c
 
 # ./includes/ #
-INCLUDE_DIR	=	include
+INCLUDE_DIR	=	includes
 
 INCLUDE	=	\
 	$(INCLUDE_DIR)/sub_include/include_define.h \
@@ -127,7 +127,7 @@ test_gcovr: test_$(TESTCNAME)
 	@gcovr -e $(TEST_PATH)
 
 test_style_check:
-	@epiclang $(MAIN) $(SRC) $(BONUS) $(INCLUDE) $(TEST_REDIRECT) $(TEST_SEG) $(TEST)
+	@epiclang $(MAIN) $(SRC) $(BONUS) $(INCLUDE) $(CFLAGS)
 	@printf '\033[92mepiclang done\033[0m\n'
 
 test_run: test_$(TESTCNAME)_run #TA
