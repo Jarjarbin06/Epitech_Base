@@ -60,8 +60,8 @@ show_var:
 test:
 	@make --no-print-directory -C lib test
 
-run_test:
-	@make --no-print-directory -C lib run_test
+test_run:
+	@make --no-print-directory -C lib test_run
 	@make --no-print-directory fclean
 
 .PHONY: \

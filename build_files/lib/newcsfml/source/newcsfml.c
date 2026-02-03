@@ -1,15 +1,15 @@
 /*
 ** EPITECH PROJECT, 2025
-** 2list - twodlist.c
+** newcsfml - newcsfml.c
 ** File description:
 ** <description>
 */
 
 #include <stdio.h>
 
-#include "../include/twodlist.h"
+#include "../include/newcsfml.h"
 
-void twodlist_show_macro(void)
+void newcsfml_show_macro(void)
 {
     printf("EXIT :\n");
     printf("    EXIT_SUCCESS : %d\n", EXIT_SUCCESS);
@@ -25,6 +25,6 @@ void twodlist_show_macro(void)
     printf("    C_DIM : %stext%s\n", C_DIM, C_RESET);
 }
 
-void twodlist_exist(void)
+void newcsfml_exist(void)
 {
 }

@@ -1,20 +1,20 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - twodlist_define.h
+** sub_include - newcsfml_define.h
 ** File description:
 ** <description>
 */
 
 // Define //
-#ifndef TWODLIST_D
-    #define TWODLIST_D
+#ifndef NEWCSFML_D
+    #define NEWCSFML_D
 
-    #include "twodlist_include.h"
-    #include "twodlist_typedef.h"
-    #include "twodlist_prototype.h"
+    #include "newcsfml_include.h"
+    #include "newcsfml_typedef.h"
+    #include "newcsfml_prototype.h"
 
-#ifndef TWODLIST_D_EXIT
-    #define TWODLIST_D_EXIT
+#ifndef NEWCSFML_D_EXIT
+    #define NEWCSFML_D_EXIT
 
 #ifndef EXIT_SUCCESS
     #define EXIT_SUCCESS 0
@@ -26,8 +26,8 @@
 
 #endif
 
-#ifndef TWODLIST_D_COLOR
-    #define TWODLIST_D_COLOR
+#ifndef NEWCSFML_COLOR
+    #define NEWCSFML_COLOR
 
     #define C_ERROR "\033[41m"    // RED //
     #define C_WARNING "\033[43m"  // YELLOW //
@@ -38,13 +38,6 @@
     #define C_UNDERLINE "\033[4m" // UNDERLINE //
     #define C_DIM "\033[2m"       // DIM //
     #define C_RESET "\033[0m"     // RESET //
-
-#endif
-
-#ifndef TWODLIST_D_OTHER
-    #define TWODLIST_D_OTHER
-
-// your defines here //
 
 #endif
 

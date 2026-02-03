@@ -19,6 +19,9 @@ info_LIB_MAKER	=	Makefile
 # ./test_lib #
 TEST_PATH	=	test_lib
 TEST	=	$(TEST_PATH)/test_base.c
+TEST	+=	$(TEST_PATH)/test_newcsfml.c
+TEST	+=	$(TEST_PATH)/test_twodlist.c
+TEST	+=	$(TEST_PATH)/test_llist.c
 TEST	+=	$(TEST_PATH)/test_str.c
 
 # lib #
@@ -26,9 +29,10 @@ NAME	=	$(info_NAME)
 
 # tests #
 TEST_COMPILER	=	clang
-TEST_NAME	=	_test
+TEST_NAME	=	test
 TEST_FLAG	=	\
-	-I/twodlist/include/ \
+	-I./lib/newcsfml/include/ \
+	-I./lib/twodlist/include/ \
 	-I./lib/llist/include/ \
 	-I./lib/str/include/ \
 	-I./lib/test_lib/ \
@@ -37,6 +41,7 @@ TEST_FLAG	=	\
 	-Werror \
 	--coverage \
 	-lcriterion \
+	-lnewcsfml \
 	-ltwodlist \
 	-lllist \
 	-lstr
@@ -47,12 +52,14 @@ TEST_FLAG	=	\
 all:	$(NAME)
 
 $(NAME):
+	@make --no-print-directory -C newcsfml all
 	@make --no-print-directory -C twodlist all
 	@make --no-print-directory -C llist all
 	@make --no-print-directory -C str all
 	@cp */*.a ./
 
 clean:
+	@make --no-print-directory -C newcsfml clean
 	@make --no-print-directory -C twodlist clean
 	@make --no-print-directory -C llist clean
 	@make --no-print-directory -C str clean
@@ -60,6 +67,7 @@ clean:
 	@rm -f *.gc*
 
 fclean: clean
+	@make --no-print-directory -C newcsfml fclean
 	@make --no-print-directory -C twodlist fclean
 	@make --no-print-directory -C llist fclean
 	@make --no-print-directory -C str fclean
@@ -85,7 +93,7 @@ show_var:
 test: re
 	$(TEST_COMPILER) -o $(TEST_NAME) $(TEST) $(TEST_FLAG)
 
-run_test:	test
+test_run:	test
 	@./$(TEST_NAME) || true
 	@make --no-print-directory fclean
 

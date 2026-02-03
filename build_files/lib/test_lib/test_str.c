@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** test_printf_basic.c
+** test_lib - test_str.c
 ** File description:
 ** None
 */
@@ -8,10 +8,16 @@
 #include "test.h"
 
 // test_start //
-Test(test_start, test_test_start, .init = redirect_all_std)
+Test(test_start, test_str_test_start, .init = redirect_all_std)
 {
     test_start();
     cr_assert_stdout_eq_str("test start\n");
+}
+
+Test(str_exist, test_str_exist)
+{
+    str_exist();
+    cr_assert(1);
 }
 
 // my_getnbr //
