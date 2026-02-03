@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2025
-** 2list - two_dlist.c
+** 2list - twodlist.c
 ** File description:
 ** <description>
 */
 
 #include <stdio.h>
 
-#include "../include/twod_list.h"
+#include "../include/twodlist.h"
 
 void twod_list_show_macro(void)
 {

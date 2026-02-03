@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - 2list_typedef.h
+** sub_include - twlist_typedef.h
 ** File description:
 ** <description>
 */
@@ -9,9 +9,9 @@
 #ifndef TWODLIST_T
     #define TWODLIST_T
 
-    #include "twod_list_define.h"
-#include "twod_list_include.h"
-#include "twod_list_prototype.h"
+    #include "twodlist_define.h"
+#include "twodlist_include.h"
+#include "twodlist_prototype.h"
 
 #ifndef TWODLIST_T_TYPE
     #define TWODLIST_T_TYPE

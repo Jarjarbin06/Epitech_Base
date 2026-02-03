@@ -56,7 +56,6 @@ show_var:
 
 .PHONY:	\
 	all \
-	$(LIB_NAME) \
 	clean \
 	fclean \
 	re \

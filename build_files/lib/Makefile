@@ -28,7 +28,7 @@ NAME	=	$(info_NAME)
 TEST_COMPILER	=	clang
 TEST_NAME	=	_test
 TEST_FLAG	=	\
-	-I/twod_list/include/ \
+	-I/twodlist/include/ \
 	-I./lib/llist/include/ \
 	-I./lib/str/include/ \
 	-I./lib/test_lib/ \
@@ -37,7 +37,7 @@ TEST_FLAG	=	\
 	-Werror \
 	--coverage \
 	-lcriterion \
-	-ltwod_list \
+	-ltwodlist \
 	-lllist \
 	-lstr
 
@@ -47,20 +47,20 @@ TEST_FLAG	=	\
 all:	$(NAME)
 
 $(NAME):
-	@make --no-print-directory -C twod_list all
+	@make --no-print-directory -C twodlist all
 	@make --no-print-directory -C llist all
 	@make --no-print-directory -C str all
 	@cp */*.a ./
 
 clean:
-	@make --no-print-directory -C twod_list clean
+	@make --no-print-directory -C twodlist clean
 	@make --no-print-directory -C llist clean
 	@make --no-print-directory -C str clean
 	@rm -f $(TEST_NAME)
 	@rm -f *.gc*
 
 fclean: clean
-	@make --no-print-directory -C twod_list fclean
+	@make --no-print-directory -C twodlist fclean
 	@make --no-print-directory -C llist fclean
 	@make --no-print-directory -C str fclean
 	@rm -f *.a
@@ -91,7 +91,6 @@ run_test:	test
 
 .PHONY: \
 	all \
-	$(NAME) \
 	clean \
 	fclean \
 	re \

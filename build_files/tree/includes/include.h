@@ -15,8 +15,5 @@
     #include "sub_include/include_include.h"
     #include "sub_include/include_typedef.h"
     #include "sub_include/include_prototype.h"
-    #include "../lib/2list/2list.h"
-    #include "../lib/llist/llist.h"
-    #include "../lib/str/str.h"
 
 #endif

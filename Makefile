@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.1.0
-info_LAST_UPDATE	=	2026-01-26 11:05:23.047
+info_VERSION	=	v0.1.1
+info_LAST_UPDATE	=	2026-02-03 11:59:56.337
 info_LIB_MAKER	=	Makefile
 
 #########
@@ -22,8 +22,6 @@ EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/GIT/Epitech_Base/
 SRC_PATH	=	sources
 
 SRC	=	$(SRC_PATH)/source.c
-
-OBJ	=	$(SRC:.c=.o)
 
 # ./bonus/ #
 BONUS_PATH	=	bonus
@@ -48,7 +46,7 @@ LIB_PATH	=	lib
 MAIN	=	main.c
 
 # ./tests/ #
-TEST_PATH	=	test
+TEST_PATH	=	tests
 
 TEST_REDIRECT	=	$(TEST_PATH)/test_redirect.c
 
@@ -57,8 +55,10 @@ TEST_SEG	=	$(TEST_PATH)/test_seg.c
 TEST	=	$(TEST_PATH)/test_file.c
 
 # other #
+OBJ	=	$(SRC:.c=.o) $(MAIN:.c=.o)
 CC	=	clang
 CNAME	=	compiled_program
+CARG	=
 CFLAGS	=	 \
 	-I./$(INCLUDE_DIR) \
 	-I./$(LIB_PATH)/2list \
@@ -67,7 +67,7 @@ CFLAGS	=	 \
 	-L./$(LIB_PATH) \
 	-lstr \
 	-lllist \
-	-l2list \
+	-ltwodlist \
 	-Wall \
 	-Wextra
 TESTCNAME	=	unit_tests
@@ -83,7 +83,7 @@ ALLOW_UNBUILD	=	false
 all:	$(CNAME)
 
 $(CNAME): $(OBJ)
-	$(CC) -o $(CNAME) $(OBJ) $(MAIN) $(CFLAGS)
+	$(CC) -o $(CNAME) $(OBJ) $(CFLAGS)
 
 clean:
 	@rm -f *.o */*.o */*/*.o
@@ -101,7 +101,7 @@ fclean:	clean
 re:	fclean all
 
 run: re
-	@./$(CNAME)
+	./$(CNAME) $(CARG)
 
 ###################
 ## testing rules ##
@@ -119,7 +119,7 @@ test_$(TESTSEGCNAME)_run: fclean test_$(TESTSEGCNAME)
 	@./$(TESTSEGCNAME)
 
 test_valgrind: fclean $(CNAME) test_$(TESTCNAME) test_$(TESTSEGCNAME)
-	@valgrind ./$(CNAME)
+	@valgrind ./$(CNAME) $(CARG)
 	@valgrind ./$(TESTCNAME)
 	@valgrind ./$(TESTSEGCNAME)
 
@@ -204,13 +204,10 @@ help:
 ##########################
 .PHONY: \
 	all \
-	$(CNAME) \
 	clean \
 	fclean \
 	re \
-	test_$(TESTCNAME) \
 	test_$(TESTCNAME)_run \
-	test_$(TESTSEGCNAME) \
 	test_$(TESTSEGCNAME)_run \
 	test_valgrind \
 	test_gcovr \

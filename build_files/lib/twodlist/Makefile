@@ -8,7 +8,7 @@
 ##########
 ## info ##
 ##########
-info_NAME	=	twod_list
+info_NAME	=	twodlist
 info_VERSION	=	v0.1.0
 info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
@@ -18,7 +18,7 @@ info_LIB_MAKER	=	Makefile
 #########
 # ./sources/ #
 SRC_PATH	=	source
-SRC	=	$(SRC_PATH)/twod_list.c
+SRC	=	$(SRC_PATH)/twodlist.c
 SRC_OBJ	=	$(SRC:.c=.o)
 
 # lib #
@@ -56,7 +56,6 @@ show_var:
 
 .PHONY:	\
 	all \
-	$(LIB_NAME) \
 	clean \
 	fclean \
 	re \

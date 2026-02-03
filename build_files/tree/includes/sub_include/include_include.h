@@ -10,8 +10,8 @@
     #define INCLUDE_I
 
     #include "include_define.h"
-#include "include_typedef.h"
-#include "include_prototype.h"
+    #include "include_typedef.h"
+    #include "include_prototype.h"
 
 #ifndef INCLUDE_I_LIB_C
     #define INCLUDE_I_LIB_C
@@ -27,6 +27,9 @@
 #ifndef INCLUDE_I_CUSTOM
     #define INCLUDE_I_CUSTOM
 
+    #include "../../lib/twodlist/twodlist.h"
+    #include "../../lib/llist/llist.h"
+    #include "../../lib/str/str.h"
 // add "" includes here //
 
 #endif

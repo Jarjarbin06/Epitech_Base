@@ -12,7 +12,7 @@
     #include <criterion/criterion.h>
     #include <criterion/redirect.h>
 
-    #include "../twod_list/include/twod_list.h"
+    #include "../twodlist/include/twodlist.h"
 #include "../llist/include/llist.h"
     #include "../str/include/str.h"
 
