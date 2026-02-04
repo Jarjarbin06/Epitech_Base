@@ -9,10 +9,6 @@
 #ifndef LLIST_D
     #define LLIST_D
 
-    #include "llist_include.h"
-    #include "llist_typedef.h"
-    #include "llist_prototype.h"
-
 #ifndef LLIST_D_EXIT
     #define LLIST_D_EXIT
 

@@ -9,9 +9,7 @@
 #ifndef NEWCSFML_T
     #define NEWCSFML_T
 
-    #include "newcsfml_define.h"
     #include "newcsfml_include.h"
-    #include "newcsfml_prototype.h"
 
     #include <SFML/Graphics/Sprite.h>
 
@@ -25,6 +23,11 @@
 #ifndef NEWCSFML_T_STRUCT
     #define NEWCSFML_T_STRUCT
 
+typedef struct free_s {
+    bool condition;
+    void *ptr;
+} free_t;
+
 typedef struct sprite_s {
     sfSprite *sprite;
     sfTexture *texture;
@@ -32,12 +35,12 @@ typedef struct sprite_s {
     sfVector2f origin;
     sfVector2f position;
     float rotation;
-} sprite_t;
+} nsfSprite;
 
 typedef struct background_s {
     sfSprite *sprite;
     sfTexture *texture;
-} background_t;
+} nsfBackground;
 
 // add struct typedefs here //
 

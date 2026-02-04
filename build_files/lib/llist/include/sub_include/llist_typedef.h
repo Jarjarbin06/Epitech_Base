@@ -9,9 +9,7 @@
 #ifndef LLIST_T
     #define LLIST_T
 
-    #include "llist_define.h"
     #include "llist_include.h"
-    #include "llist_prototype.h"
 
 #ifndef LLIST_T_TYPE
     #define LLIST_T_TYPE

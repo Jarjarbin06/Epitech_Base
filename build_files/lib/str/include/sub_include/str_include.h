@@ -9,10 +9,6 @@
 #ifndef STR_I
     #define STR_I
 
-    #include "str_define.h"
-    #include "str_typedef.h"
-    #include "str_prototype.h"
-
 #ifndef STR_I_LIB_C
     #define STR_I_LIB_C
 

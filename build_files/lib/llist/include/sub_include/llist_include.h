@@ -9,10 +9,6 @@
 #ifndef LLIST_I
     #define LLIST_I
 
-    #include "llist_define.h"
-    #include "llist_typedef.h"
-    #include "llist_prototype.h"
-
 #ifndef LLIST_I_LIB_C
     #define LLIST_I_LIB_C
 

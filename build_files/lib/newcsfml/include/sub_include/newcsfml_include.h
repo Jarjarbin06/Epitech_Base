@@ -9,10 +9,6 @@
 #ifndef NEWCSFML_I
     #define NEWCSFML_I
 
-    #include "newcsfml_define.h"
-    #include "newcsfml_typedef.h"
-    #include "newcsfml_prototype.h"
-
 #ifndef NEWCSFML_I_LIB_C
     #define NEWCSFML_I_LIB_C
 

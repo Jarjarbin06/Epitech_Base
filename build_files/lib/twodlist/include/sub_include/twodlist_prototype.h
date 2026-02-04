@@ -13,7 +13,7 @@
     #include "twodlist_include.h"
     #include "twodlist_typedef.h"
 
-// 2list //
+// twodlist.c //
 void twodlist_show_macro(void);
 void twodlist_exist(void);
 

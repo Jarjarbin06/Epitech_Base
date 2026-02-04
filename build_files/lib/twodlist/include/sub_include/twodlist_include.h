@@ -9,10 +9,6 @@
 #ifndef TWODLIST_I
     #define TWODLIST_I
 
-    #include "twodlist_define.h"
-    #include "twodlist_typedef.h"
-    #include "twodlist_prototype.h"
-
 #ifndef TWODLIST_I_LIB_C
     #define TWODLIST_I_LIB_C
 

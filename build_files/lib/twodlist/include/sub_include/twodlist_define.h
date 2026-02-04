@@ -9,10 +9,6 @@
 #ifndef TWODLIST_D
     #define TWODLIST_D
 
-    #include "twodlist_include.h"
-    #include "twodlist_typedef.h"
-    #include "twodlist_prototype.h"
-
 #ifndef TWODLIST_D_EXIT
     #define TWODLIST_D_EXIT
 

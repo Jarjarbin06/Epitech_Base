@@ -9,9 +9,7 @@
 #ifndef STR_T
     #define STR_T
 
-    #include "str_define.h"
     #include "str_include.h"
-    #include "str_prototype.h"
 
 #ifndef STR_T_TYPE
     #define STR_T_TYPE

@@ -13,7 +13,7 @@
     #include "llist_include.h"
     #include "llist_typedef.h"
 
-// _llist.c //
+// llist.c //
 void llist_show_macro(void);
 void llist_exist(void);
 

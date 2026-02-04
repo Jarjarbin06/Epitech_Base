@@ -9,10 +9,6 @@
 #ifndef NEWCSFML_D
     #define NEWCSFML_D
 
-    #include "newcsfml_include.h"
-    #include "newcsfml_typedef.h"
-    #include "newcsfml_prototype.h"
-
 #ifndef NEWCSFML_D_EXIT
     #define NEWCSFML_D_EXIT
 

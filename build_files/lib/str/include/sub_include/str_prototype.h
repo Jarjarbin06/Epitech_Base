@@ -13,7 +13,7 @@
     #include "str_include.h"
     #include "str_typedef.h"
 
-// _str.c //
+// str.c //
 void str_show_macro(void);
 void str_exist(void);
 // my_getnbr.c //

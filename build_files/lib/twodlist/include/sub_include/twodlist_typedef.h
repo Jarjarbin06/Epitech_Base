@@ -9,9 +9,7 @@
 #ifndef TWODLIST_T
     #define TWODLIST_T
 
-    #include "twodlist_define.h"
     #include "twodlist_include.h"
-    #include "twodlist_prototype.h"
 
 #ifndef TWODLIST_T_TYPE
     #define TWODLIST_T_TYPE

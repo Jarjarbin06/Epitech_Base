@@ -9,10 +9,6 @@
 #ifndef STR_D
     #define STR_D
 
-    #include "str_include.h"
-    #include "str_typedef.h"
-    #include "str_prototype.h"
-
 #ifndef STR_D_EXIT
     #define STR_D_EXIT
 
