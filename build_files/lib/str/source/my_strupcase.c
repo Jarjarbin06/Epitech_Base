@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_strupcase.c
+** sources - my_strupcase.c
 ** File description:
 ** <description>
 */

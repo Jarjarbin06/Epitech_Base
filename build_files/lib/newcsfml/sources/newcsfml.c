@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - newcsfml.c
+** sources - newcsfml.c
 ** File description:
 ** <description>
 */
 
 #include <stdio.h>
 
-#include "../include/newcsfml.h"
+#include "../includes/newcsfml.h"
 
 void newcsfml_show_macro(void)
 {

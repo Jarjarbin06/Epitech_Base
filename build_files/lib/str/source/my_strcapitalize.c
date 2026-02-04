@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_strcapitalize.c
+** sources - my_strcapitalize.c
 ** File description:
 ** <description>
 */

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - newcsfml_include.h
+** sub_includes - newcsfml_include.h
 ** File description:
 ** <description>
 */
@@ -14,7 +14,6 @@
 
     #include <stddef.h>
     #include <stdbool.h>
-
 
 // add <...> includes here //
 

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - newcsfml_typedef.h
+** sub_includes - newcsfml_typedef.h
 ** File description:
 ** <description>
 */
@@ -9,12 +9,14 @@
 #ifndef NEWCSFML_T
     #define NEWCSFML_T
 
-    #include "newcsfml_include.h"
-
     #include <SFML/Graphics/Sprite.h>
+
+    #include "newcsfml_include.h"
 
 #ifndef NEWCSFML_T_TYPE
     #define NEWCSFML_T_TYPE
+
+typedef void *(*vf)(void *);
 
 // add type typedefs here //
 
@@ -26,21 +28,22 @@
 typedef struct free_s {
     bool condition;
     void *ptr;
+    vf free_func;
 } free_t;
 
-typedef struct sprite_s {
+typedef struct nsf_sprite_s {
     sfSprite *sprite;
     sfTexture *texture;
     sfVector2f size;
     sfVector2f origin;
     sfVector2f position;
     float rotation;
-} nsfSprite;
+} nsf_sprite;
 
-typedef struct background_s {
+typedef struct nsf_background_s {
     sfSprite *sprite;
     sfTexture *texture;
-} nsfBackground;
+} nsf_background;
 
 // add struct typedefs here //
 

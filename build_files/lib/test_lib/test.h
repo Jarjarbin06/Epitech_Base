@@ -12,8 +12,8 @@
     #include <criterion/criterion.h>
     #include <criterion/redirect.h>
 
-    #include "../newcsfml/include/newcsfml.h"
-    #include "../twodlist/include/twodlist.h"
+    #include "../newcsfml/includes/newcsfml.h"
+#include "../twodlist/include/twodlist.h"
     #include "../llist/include/llist.h"
     #include "../str/include/str.h"
 

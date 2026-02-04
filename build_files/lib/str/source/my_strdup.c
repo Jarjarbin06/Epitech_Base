@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_strdup.c
+** sources - my_strdup.c
 ** File description:
 ** <description>
 */

@@ -16,6 +16,8 @@ info_LIB_MAKER	=	Makefile
 #########
 ## var ##
 #########
+DO_VALGRIND	=	false
+
 # lib #
 NAME	=	$(info_NAME)
 
@@ -61,7 +63,7 @@ test:
 	@make --no-print-directory -C lib test
 
 test_run:
-	@make --no-print-directory -C lib test_run
+	@make --no-print-directory -C lib DO_VALGRIND=$(DO_VALGRIND) test_run
 	@make --no-print-directory fclean
 
 .PHONY: \

@@ -17,8 +17,10 @@ info_LIB_MAKER	=	Makefile
 ## var ##
 #########
 # ./sources/ #
-SRC_PATH	=	source
+SRC_PATH	=	sources
 SRC	=	$(SRC_PATH)/newcsfml.c
+SRC	+=	$(SRC_PATH)/struct/sprite.c
+SRC	+=	$(SRC_PATH)/utils/alloc_any.c
 SRC_OBJ	=	$(SRC:.c=.o)
 
 # lib #
@@ -34,7 +36,7 @@ $(LIB_NAME):	$(SRC_OBJ)
 	@$(LIB_CREATOR) $(LIB_NAME).a $(SRC_OBJ)
 
 clean:
-	@rm -f $(SRC_PATH)/*.o
+	@rm -f $(SRC_PATH)/*.o $(SRC_PATH)/*/*.o
 
 fclean:	clean
 	@rm -f $(LIB_NAME).a

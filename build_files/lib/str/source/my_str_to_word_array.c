@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_str_to_word_array.c
+** sources - my_str_to_word_array.c
 ** File description:
 ** <description>
 */

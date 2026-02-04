@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_strlen.c
+** sources - my_strlen.c
 ** File description:
 ** <description>
 */

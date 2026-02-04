@@ -9,27 +9,32 @@
 ## Info ##
 ##########
 info_NAME	=	lib
-info_VERSION	=	v0.1.0
-info_LAST_UPDATE	=	2026-01-26 11:05:23.047
+info_VERSION	=	v0.1.1
+info_LAST_UPDATE	=	2026-02-04 20:19:43.709
 info_LIB_MAKER	=	Makefile
 
 #########
 ## Var ##
 #########
+DO_VALGRIND	=	false
+
 # ./test_lib #
 TEST_PATH	=	test_lib
-TEST	=	$(TEST_PATH)/test_base.c
-TEST	+=	$(TEST_PATH)/test_newcsfml.c
-TEST	+=	$(TEST_PATH)/test_twodlist.c
-TEST	+=	$(TEST_PATH)/test_llist.c
-TEST	+=	$(TEST_PATH)/test_str.c
+TEST_BASE	=	$(TEST_PATH)/test_base.c
+TEST_NEWCSFML	=	$(TEST_PATH)/test_newcsfml.c
+TEST_TWODLIST	=	$(TEST_PATH)/test_twodlist.c
+TEST_LLIST	=	$(TEST_PATH)/test_llist.c
+TEST_STR	=	$(TEST_PATH)/test_str.c
 
 # lib #
 NAME	=	$(info_NAME)
 
 # tests #
 TEST_COMPILER	=	clang
-TEST_NAME	=	test
+TEST_NAME_NEWCSFML	=	test_newcsfml
+TEST_NAME_TWODLIST	=	test_twodlist
+TEST_NAME_LLIST	=	test_llist
+TEST_NAME_STR	=	test_str
 TEST_FLAG	=	\
 	-I./lib/newcsfml/include/ \
 	-I./lib/twodlist/include/ \
@@ -44,7 +49,8 @@ TEST_FLAG	=	\
 	-lnewcsfml \
 	-ltwodlist \
 	-lllist \
-	-lstr
+	-lstr \
+	-lcsfml-graphics
 
 #################
 ## Basic rules ##
@@ -63,7 +69,10 @@ clean:
 	@make --no-print-directory -C twodlist clean
 	@make --no-print-directory -C llist clean
 	@make --no-print-directory -C str clean
-	@rm -f $(TEST_NAME)
+	@rm -f $(TEST_NAME_NEWCSFML)
+	@rm -f $(TEST_NAME_TWODLIST)
+	@rm -f $(TEST_NAME_LLIST)
+	@rm -f $(TEST_NAME_STR)
 	@rm -f *.gc*
 
 fclean: clean
@@ -84,18 +93,46 @@ show_info:
 show_var:
 	@printf "\033[4mNAME\033[0m : "; echo $(NAME)
 	@printf "\033[4mTEST_COMPILER\033[0m : "; echo $(TEST_COMPILER)
-	@printf "\033[4mTEST_NAME\033[0m : "; echo $(TEST_NAME)
+	@printf "\033[4mTEST_NAME_NEWCSFML\033[0m : "; echo $(TEST_NAME_NEWCSFML)
+	@printf "\033[4mTEST_NAME_TWODLIST\033[0m : "; echo $(TEST_NAME_TWODLIST)
+	@printf "\033[4mTEST_NAME_LLIST\033[0m : "; echo $(TEST_NAME_LLIST)
+	@printf "\033[4mTEST_NAME_STR\033[0m : "; echo $(TEST_NAME_STR)
 	@printf "\033[4mTEST_FLAG\033[0m : "; echo $(TEST_FLAG)
 
 ################
 ## Test rules ##
 ################
 test: re
-	$(TEST_COMPILER) -o $(TEST_NAME) $(TEST) $(TEST_FLAG)
+	$(TEST_COMPILER) -o $(TEST_NAME_NEWCSFML) $(TEST_BASE) $(TEST_NEWCSFML) $(TEST_FLAG)
+	$(TEST_COMPILER) -o $(TEST_NAME_TWODLIST) $(TEST_BASE) $(TEST_TWODLIST) $(TEST_FLAG)
+	$(TEST_COMPILER) -o $(TEST_NAME_LLIST) $(TEST_BASE) $(TEST_LLIST) $(TEST_FLAG)
+	$(TEST_COMPILER) -o $(TEST_NAME_STR) $(TEST_BASE) $(TEST_STR) $(TEST_FLAG)
 
+ifeq ($(DO_VALGRIND), true)
 test_run:	test
-	@./$(TEST_NAME) || true
+	@printf "\033[4mNEWCSFML\033[0m\n"
+	-@valgrind --leak-check=full ./$(TEST_NAME_NEWCSFML)
+	@printf "\033[4mTWODLIST\033[0m\n"
+	-@valgrind --leak-check=full ./$(TEST_NAME_TWODLIST)
+	@printf "\033[4mLLIST\033[0m\n"
+	-@valgrind --leak-check=full ./$(TEST_NAME_LLIST)
+	@printf "\033[4mSTR\033[0m\n"
+	-@valgrind --leak-check=full ./$(TEST_NAME_STR)
 	@make --no-print-directory fclean
+
+else
+test_run:	test
+	@printf "\033[4mNEWCSFML\033[0m\n"
+	-@./$(TEST_NAME_NEWCSFML)
+	@printf "\033[4mTWODLIST\033[0m\n"
+	-@./$(TEST_NAME_TWODLIST)
+	@printf "\033[4mLLIST\033[0m\n"
+	-@./$(TEST_NAME_LLIST)
+	@printf "\033[4mSTR\033[0m\n"
+	-@./$(TEST_NAME_STR)
+	@make --no-print-directory fclean
+
+endif
 
 .PHONY: \
 	all \

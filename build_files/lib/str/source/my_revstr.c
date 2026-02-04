@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_revstr.c
+** sources - my_revstr.c
 ** File description:
 ** <description>
 */

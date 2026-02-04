@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_put_nbr.c
+** sources - my_put_nbr.c
 ** File description:
 ** <description>
 */

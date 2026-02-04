@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_strcmp.c
+** sources - my_strcmp.c
 ** File description:
 ** <description>
 */

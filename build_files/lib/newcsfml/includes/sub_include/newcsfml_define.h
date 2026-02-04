@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - newcsfml_define.h
+** sub_includes - newcsfml_define.h
 ** File description:
 ** <description>
 */

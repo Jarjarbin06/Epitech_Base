@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_swap_char.c
+** sources - my_swap_char.c
 ** File description:
 ** <description>
 */

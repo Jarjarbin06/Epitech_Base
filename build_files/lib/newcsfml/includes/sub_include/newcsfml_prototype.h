@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - newcsfml_prototype.h
+** sub_includes - newcsfml_prototype.h
 ** File description:
 ** <description>
 */
@@ -19,11 +19,13 @@ void newcsfml_exist(void);
 
 /* STRUCT */
 // sprite.c //
+nsf_sprite *nsf_sprite_create(void);
+void *nsf_sprite_destroy(nsf_sprite *nsf_sprite);
 
 /* UTILS */
 // alloc_any.c //
-void *malloc_any(int size);
-void free_any(void *ptr);
-void auto_free(int len, free_t free_list[]);
+void *malloc_any(unsigned size);
+void *free_any(void *ptr);
+bool auto_free(unsigned len, free_t free_list[]);
 
 #endif

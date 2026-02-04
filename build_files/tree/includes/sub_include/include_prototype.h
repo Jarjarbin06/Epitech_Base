@@ -13,7 +13,7 @@
     #include "include_include.h"
     #include "include_typedef.h"
 
-// source.c //
+// sources.c //
 int function(int argc, const char **argv);
 
 #endif

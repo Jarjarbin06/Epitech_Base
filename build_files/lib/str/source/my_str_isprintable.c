@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_str_isprintable.c
+** sources - my_str_isprintable.c
 ** File description:
 ** <description>
 */

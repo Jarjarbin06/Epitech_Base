@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_str_isalpha.c
+** sources - my_str_isalpha.c
 ** File description:
 ** <description>
 */

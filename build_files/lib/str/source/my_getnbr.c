@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** source - my_getnbr.c
+** sources - my_getnbr.c
 ** File description:
 ** <description>
 */
