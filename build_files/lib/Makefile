@@ -111,13 +111,13 @@ test: re
 ifeq ($(DO_VALGRIND), true)
 test_run:	test
 	@printf "\033[4mNEWCSFML\033[0m\n"
-	-@valgrind --leak-check=full ./$(TEST_NAME_NEWCSFML)
+	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_NEWCSFML)
 	@printf "\033[4mTWODLIST\033[0m\n"
-	-@valgrind --leak-check=full ./$(TEST_NAME_TWODLIST)
+	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_TWODLIST)
 	@printf "\033[4mLLIST\033[0m\n"
-	-@valgrind --leak-check=full ./$(TEST_NAME_LLIST)
+	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_LLIST)
 	@printf "\033[4mSTR\033[0m\n"
-	-@valgrind --leak-check=full ./$(TEST_NAME_STR)
+	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_STR)
 	@make --no-print-directory fclean
 
 else
