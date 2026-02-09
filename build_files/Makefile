@@ -33,6 +33,7 @@ $(NAME):
 	@cp -r lib/twodlist/include/* tree/lib/twodlist
 	@cp -r lib/llist/include/* tree/lib/llist
 	@cp -r lib/str/include/* tree/lib/str
+	@cp -r lib/newcsfml/include/* tree/lib/newcsfml
 
 clean:
 	@make --no-print-directory -C lib clean
@@ -44,6 +45,7 @@ fclean:	clean
 	@rm -rdf tree/lib/twodlist/*
 	@rm -rdf tree/lib/llist/*
 	@rm -rdf tree/lib/str/*
+	@rm -rdf tree/lib/newcsfml/*
 
 re:	fclean all
 

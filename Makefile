@@ -64,7 +64,9 @@ CFLAGS	=	 \
 	-I./$(LIB_PATH)/2list \
 	-I./$(LIB_PATH)/llist \
 	-I./$(LIB_PATH)/str \
+	-I./$(LIB_PATH)/newcsfml \
 	-L./$(LIB_PATH) \
+	-lnewcsfml \
 	-lstr \
 	-lllist \
 	-ltwodlist \
