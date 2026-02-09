@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-#include "../include/str.h"
+#include "../includes/str.h"
 
 static int get_first_word_len(const char *str, int idx)
 {

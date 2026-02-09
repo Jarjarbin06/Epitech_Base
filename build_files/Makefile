@@ -30,10 +30,10 @@ $(NAME):
 	@make --no-print-directory -C lib all
 	@cp */*.a .
 	@cp *.a tree/lib
-	@cp -r lib/twodlist/include/* tree/lib/twodlist
-	@cp -r lib/llist/include/* tree/lib/llist
-	@cp -r lib/str/include/* tree/lib/str
-	@cp -r lib/newcsfml/include/* tree/lib/newcsfml
+	@cp -r lib/twodlist/includes/* tree/lib/twodlist
+	@cp -r lib/llist/includes/* tree/lib/llist
+	@cp -r lib/str/includes/* tree/lib/str
+	@cp -r lib/newcsfml/includes/* tree/lib/newcsfml
 
 clean:
 	@make --no-print-directory -C lib clean

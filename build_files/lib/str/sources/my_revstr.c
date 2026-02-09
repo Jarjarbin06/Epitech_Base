@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "../include/str.h"
+#include "../includes/str.h"
 
 char *my_revstr(char *str)
 {

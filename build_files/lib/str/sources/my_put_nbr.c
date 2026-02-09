@@ -7,7 +7,7 @@
 
 #include <unistd.h>
 
-#include "../include/str.h"
+#include "../includes/str.h"
 
 static void do_put_nbr(const int nbr)
 {

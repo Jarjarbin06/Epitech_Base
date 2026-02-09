@@ -7,7 +7,7 @@
 
 #include <unistd.h>
 
-#include "../include/str.h"
+#include "../includes/str.h"
 
 int my_putstr(const char *str)
 {

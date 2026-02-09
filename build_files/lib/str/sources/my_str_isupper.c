@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "../include/str.h"
+#include "../includes/str.h"
 
 bool is_upper(const char c)
 {

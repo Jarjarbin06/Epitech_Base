@@ -13,9 +13,9 @@
     #include <criterion/redirect.h>
 
     #include "../newcsfml/includes/newcsfml.h"
-#include "../twodlist/include/twodlist.h"
-    #include "../llist/include/llist.h"
-    #include "../str/include/str.h"
+#include "../twodlist/includes/twodlist.h"
+#include "../llist/includes/llist.h"
+#include "../str/includes/str.h"
 
 void test_start(void);
 void redirect_all_std(void);

@@ -1,25 +1,25 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_str_islower.c
+** sources - my_str_isalpha.c
 ** File description:
 ** <description>
 */
 
-#include "../include/str.h"
+#include "../includes/str.h"
 
-bool is_lower(const char c)
+bool is_alpha(const char c)
 {
-    if (('a' <= c && c <= 'z'))
+    if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
         return true;
     return false;
 }
 
-bool my_str_islower(const char *str)
+bool my_str_isalpha(const char *str)
 {
     if (!str)
         return false;
     for (int idx = 0; str[idx] != '\0'; idx++)
-        if (!is_lower(str[idx]))
+        if (!is_alpha(str[idx]))
             return false;
     return true;
 }

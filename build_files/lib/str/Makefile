@@ -17,7 +17,7 @@ info_LIB_MAKER	=	Makefile
 ## var ##
 #########
 # ./sources/ #
-SRC_PATH	=	source
+SRC_PATH	=	sources
 SRC	=	$(SRC_PATH)/str.c
 SRC	+=	$(SRC_PATH)/my_getnbr.c
 SRC	+=	$(SRC_PATH)/my_put_nbr.c

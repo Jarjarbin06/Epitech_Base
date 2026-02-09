@@ -1,15 +1,15 @@
 /*
 ** EPITECH PROJECT, 2025
-** str - str.c
+** llist - llist.c
 ** File description:
 ** <description>
 */
 
 #include <stdio.h>
 
-#include "../include/str.h"
+#include "../includes/llist.h"
 
-void str_show_macro(void)
+void llist_show_macro(void)
 {
     printf("EXIT :\n");
     printf("    EXIT_SUCCESS : %d\n", EXIT_SUCCESS);
@@ -25,6 +25,6 @@ void str_show_macro(void)
     printf("    C_DIM : %stext%s\n", C_DIM, C_RESET);
 }
 
-void str_exist(void)
+void llist_exist(void)
 {
 }

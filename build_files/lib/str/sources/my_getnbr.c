@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "../include/str.h"
+#include "../includes/str.h"
 
 static bool is_good_char(const char *str, const int len, const int last_idx)
 {

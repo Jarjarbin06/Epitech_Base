@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-#include "../include/str.h"
+#include "../includes/str.h"
 
 char *my_strcat(char *src_1, const char *src_2)
 {

@@ -17,7 +17,7 @@ info_LIB_MAKER	=	Makefile
 ## var ##
 #########
 # ./sources/ #
-SRC_PATH	=	source
+SRC_PATH	=	sources
 SRC	=	$(SRC_PATH)/llist.c
 SRC_OBJ	=	$(SRC:.c=.o)
 

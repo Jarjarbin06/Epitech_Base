@@ -1,25 +1,25 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_str_isalpha.c
+** sources - my_str_isnum.c
 ** File description:
 ** <description>
 */
 
-#include "../include/str.h"
+#include "../includes/str.h"
 
-bool is_alpha(const char c)
+bool is_num(const char c)
 {
-    if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
+    if (('0' <= c && c <= '9'))
         return true;
     return false;
 }
 
-bool my_str_isalpha(const char *str)
+bool my_str_isnum(const char *str)
 {
     if (!str)
         return false;
     for (int idx = 0; str[idx] != '\0'; idx++)
-        if (!is_alpha(str[idx]))
+        if (!is_num(str[idx]))
             return false;
     return true;
 }

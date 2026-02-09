@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "../include/str.h"
+#include "../includes/str.h"
 
 void my_swap_char(char *ptr_a, char *ptr_b)
 {
