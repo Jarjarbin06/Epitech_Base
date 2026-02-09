@@ -16,7 +16,7 @@ info_LIB_MAKER	=	Makefile
 #########
 ## var ##
 #########
-EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/GIT/Epitech_Base/
+EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/Epitech_Base
 
 # ./sources/ #
 SRC_PATH	=	sources
