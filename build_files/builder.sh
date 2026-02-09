@@ -49,7 +49,7 @@ build_dir() {
     name=$(truncate_dir "$dir")
 
     if [[ ! -e "$dir/Makefile" ]]; then
-        cp /home/jarjarbin/Desktop/c/GIT/Epitech_Base/Makefile "$dir/"
+        cp -f /home/jarjarbin/Desktop/c/Epitech_Base/Makefile "$dir/"
         if make --no-print-directory -C "$dir" build > /dev/null 2>&1; then
             printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${DARK}${BG_GREEN}             built ${RESET}\n" "$DIR_WIDTH" "$name"
         else
@@ -103,7 +103,7 @@ rebuild_dir() {
 
     # Then build
     if [[ ! -e "$dir/Makefile" ]]; then
-        cp /home/jarjarbin/Desktop/c/GIT/Epitech_Base/Makefile "$dir/"
+        cp -f /home/jarjarbin/Desktop/c/Epitech_Base/Makefile "$dir/"
         if make --no-print-directory -C "$dir" build > /dev/null 2>&1; then
             printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${DARK}${BG_GREEN}           rebuilt ${RESET}\n" "$DIR_WIDTH" "$name"
         else
