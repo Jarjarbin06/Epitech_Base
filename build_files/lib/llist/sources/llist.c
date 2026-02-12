@@ -5,25 +5,32 @@
 ** <description>
 */
 
-#include <stdio.h>
-
 #include "../includes/llist.h"
 
+#ifdef print
 void llist_show_macro(void)
 {
-    printf("EXIT :\n");
-    printf("    EXIT_SUCCESS : %d\n", EXIT_SUCCESS);
-    printf("    EXIT_FAILURE : %d\n", EXIT_FAILURE);
-    printf("C (COLOR) :\n");
-    printf("    C_ERROR : %stext%s\n", C_ERROR, C_RESET);
-    printf("    C_WARNING : %stext%s\n", C_WARNING, C_RESET);
-    printf("    C_VALID : %stext%s\n", C_VALID, C_RESET);
-    printf("    C_INFO : %stext%s\n", C_INFO, C_RESET);
-    printf("    C_ITALIC : %stext%s\n", C_ITALIC, C_RESET);
-    printf("    C_BOLD : %stext%s\n", C_BOLD, C_RESET);
-    printf("    C_UNDERLINE : %stext%s\n", C_UNDERLINE, C_RESET);
-    printf("    C_DIM : %stext%s\n", C_DIM, C_RESET);
+    print("EXIT :\n");
+    print("    EXIT_SUCCESS : %d\n", EXIT_SUCCESS);
+    print("    EXIT_FAILURE : %d\n", EXIT_FAILURE);
+    print("C (COLOR) :\n");
+    print("    C_ERROR : %stext%s\n", C_ERROR, C_RESET);
+    print("    C_WARNING : %stext%s\n", C_WARNING, C_RESET);
+    print("    C_VALID : %stext%s\n", C_VALID, C_RESET);
+    print("    C_INFO : %stext%s\n", C_INFO, C_RESET);
+    print("    C_ITALIC : %stext%s\n", C_ITALIC, C_RESET);
+    print("    C_BOLD : %stext%s\n", C_BOLD, C_RESET);
+    print("    C_UNDERLINE : %stext%s\n", C_UNDERLINE, C_RESET);
+    print("    C_DIM : %stext%s\n", C_DIM, C_RESET);
 }
+#else
+    #include <unistd.h>
+void llist_show_macro(void)
+{
+    write(1, "llist_show_macro not available\n", 31);
+    write(1, "import libprint to use it\n", 26);
+}
+#endif
 
 void llist_exist(void)
 {

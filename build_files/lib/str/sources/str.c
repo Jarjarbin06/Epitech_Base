@@ -5,10 +5,9 @@
 ** <description>
 */
 
-#include "../../print/includes/print.h"
-
 #include "../includes/str.h"
 
+#ifdef print
 void str_show_macro(void)
 {
     print("EXIT :\n");
@@ -24,6 +23,14 @@ void str_show_macro(void)
     print("    C_UNDERLINE : %stext%s\n", C_UNDERLINE, C_RESET);
     print("    C_DIM : %stext%s\n", C_DIM, C_RESET);
 }
+#else
+    #include <unistd.h>
+void str_show_macro(void)
+{
+    write(1, "str_show_macro not available\n", 29);
+    write(1, "import libprint to use it\n", 26);
+}
+#endif
 
 void str_exist(void)
 {
