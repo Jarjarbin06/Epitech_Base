@@ -27,9 +27,11 @@
 #ifndef INCLUDE_I_CUSTOM
     #define INCLUDE_I_CUSTOM
 
-    #include "../../lib/twodlist/twodlist.h"
-    #include "../../lib/llist/llist.h"
-    #include "../../lib/str/str.h"
+    #include "../lib_includes/llist/llist.h"
+    #include "../lib_includes/str/str.h"
+    #include "../lib_includes/newcsfml/newcsfml.h"
+    #include "../lib_includes/twodlist/twodlist.h"
+
 // add "" includes here //
 
 #endif

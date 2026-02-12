@@ -9,7 +9,7 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.1.1
+info_VERSION	=	v0.1.3
 info_LAST_UPDATE	=	2026-02-03 11:59:56.337
 info_LIB_MAKER	=	Makefile
 
@@ -20,8 +20,14 @@ EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/Epitech_Base
 
 # ./sources/ #
 SRC_PATH	=	sources
+LIB_SRC_PATH	=	sources
 
 SRC	=	$(SRC_PATH)/source.c
+LIB_SRC	=	\
+	$(wildcard $(LIB_SRC_PATH)/llist/sources) \
+	$(wildcard $(LIB_SRC_PATH)/twodlist/sources) \
+	$(wildcard $(LIB_SRC_PATH)/newcsfml/sources) \
+	$(wildcard $(LIB_SRC_PATH)/str/sources) \
 
 # ./bonus/ #
 BONUS_PATH	=	bonus
@@ -32,10 +38,14 @@ BONUS	=	$(BONUS_PATH)/bonus_file.c
 INCLUDE_DIR	=	includes
 
 INCLUDE	=	\
-	$(INCLUDE_DIR)/sub_include/include_define.h \
-	$(INCLUDE_DIR)/sub_include/include_include.h \
-	$(INCLUDE_DIR)/sub_include/include_prototype.h \
-	$(INCLUDE_DIR)/sub_include/include_typedef.h \
+	$(INCLUDE_DIR)/sub_includes/include_define.h \
+	$(INCLUDE_DIR)/sub_includes/include_include.h \
+	$(INCLUDE_DIR)/sub_includes/include_prototype.h \
+	$(INCLUDE_DIR)/sub_includes/include_typedef.h \
+	$(INCLUDE_DIR)/lib_includes/str/str.h \
+	$(INCLUDE_DIR)/lib_includes/newcsfml/newcsfml.h \
+	$(INCLUDE_DIR)/lib_includes/llist/llist.h \
+	$(INCLUDE_DIR)/lib_includes/twodlist/twodlist.h \
 	$(INCLUDE_DIR)/include.h \
 	$(INCLUDE_DIR)/include_test.h
 
@@ -55,23 +65,20 @@ TEST_SEG	=	$(TEST_PATH)/test_seg.c
 TEST	=	$(TEST_PATH)/test_file.c
 
 # other #
-OBJ	=	$(SRC:.c=.o) $(MAIN:.c=.o)
+OBJ	=	$(SRC:.c=.o) $(LIB_SRC:.c=.o) $(MAIN:.c=.o)
 CC	=	clang
 CNAME	=	compiled_program
 CARG	=
 CFLAGS	=	 \
 	-I./$(INCLUDE_DIR) \
-	-I./$(LIB_PATH)/2list \
-	-I./$(LIB_PATH)/llist \
-	-I./$(LIB_PATH)/str \
-	-I./$(LIB_PATH)/newcsfml \
+	-Wall \
+	-Wextra
+CFLAGS_PLUS	=	\
 	-L./$(LIB_PATH) \
 	-lnewcsfml \
 	-lstr \
 	-lllist \
-	-ltwodlist \
-	-Wall \
-	-Wextra
+	-ltwodlist
 TESTCNAME	=	unit_tests
 TESTSEGCNAME	=	seg_tests
 TESTCFLAGS	=	\
@@ -82,10 +89,15 @@ ALLOW_UNBUILD	=	false
 #################
 ## Basic rules ##
 #################
-all:	$(CNAME)
+all: $(CNAME)
 
 $(CNAME): $(OBJ)
-	$(CC) -o $(CNAME) $(OBJ) $(CFLAGS)
+	-@make -sC lib/newcsfml re
+	-@make -sC lib/str re
+	-@make -sC lib/llist re
+	-@make -sC lib/twodlist re
+	@cp -f lib/*/*.a lib/
+	$(CC) -o $(CNAME) $(OBJ) $(CFLAGS) $(CFLAGS_PLUS)
 
 clean:
 	@rm -f *.o */*.o */*/*.o
@@ -94,11 +106,20 @@ clean:
 	@rm -f *.gc* */*.gc* */*/*.gc*
 	@rm -f *~* */*~* */*/*~*
 	@rm -f *# */*# */*/*#
+	-@make -sC lib/newcsfml clean
+	-@make -sC lib/str clean
+	-@make -sC lib/llist clean
+	-@make -sC lib/twodlist clean
 
 fclean:	clean
 	@rm -f $(CNAME)
 	@rm -f $(TESTCNAME)
 	@rm -f $(TESTSEGCNAME)
+	@rm -f lib/*.a
+	-@make -sC lib/newcsfml fclean
+	-@make -sC lib/str fclean
+	-@make -sC lib/llist fclean
+	-@make -sC lib/twodlist fclean
 
 re:	fclean all
 
@@ -151,9 +172,15 @@ git_info:
 ################
 ifeq ($(wildcard *), Makefile)
 build:
-	@make -sC $(EPITECH_BASE_PATH)/build_files/ re
-	@cp -rf $(EPITECH_BASE_PATH)/build_files/tree/* ./
-	@make -sC $(EPITECH_BASE_PATH)/build_files/ fclean
+	cp -rf $(EPITECH_BASE_PATH)/build_files/tree/* ./
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
+	cp -rf lib/str/includes/* ./includes/lib_includes/str/
+	cp -rf lib/llist/includes/* ./includes/lib_includes/llist/
+	cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist/
+	cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml/
 	-@git add bonus/* include/* source/* test/* main.c Makefile
 	-@git commit -m "[INIT] initial build files"
 	-@git push origin main

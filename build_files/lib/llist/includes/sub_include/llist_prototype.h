@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - llist_prototype.h
+** sub_includes - llist_prototype.h
 ** File description:
 ** <description>
 */

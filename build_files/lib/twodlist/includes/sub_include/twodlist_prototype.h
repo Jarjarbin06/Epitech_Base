@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - twodlist_prototype.h
+** sub_includes - twodlist_prototype.h
 ** File description:
 ** <description>
 */

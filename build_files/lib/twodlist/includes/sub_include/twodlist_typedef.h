@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - twlist_typedef.h
+** sub_includes - twlist_typedef.h
 ** File description:
 ** <description>
 */

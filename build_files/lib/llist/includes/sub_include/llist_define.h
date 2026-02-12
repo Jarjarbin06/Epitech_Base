@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - llist_define.h
+** sub_includes - llist_define.h
 ** File description:
 ** <description>
 */

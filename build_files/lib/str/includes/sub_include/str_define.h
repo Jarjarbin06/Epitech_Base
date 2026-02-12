@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_include - str_define.h
+** sub_includes - str_define.h
 ** File description:
 ** <description>
 */
