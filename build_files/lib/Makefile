@@ -21,6 +21,7 @@ DO_VALGRIND	=	false
 # ./test_lib #
 TEST_PATH	=	test_lib
 TEST_BASE	=	$(TEST_PATH)/test_base.c
+TEST_PRINT	=	$(TEST_PATH)/test_print.c
 TEST_NEWCSFML	=	$(TEST_PATH)/test_newcsfml.c
 TEST_TWODLIST	=	$(TEST_PATH)/test_twodlist.c
 TEST_LLIST	=	$(TEST_PATH)/test_llist.c
@@ -35,11 +36,13 @@ TEST_NAME_NEWCSFML	=	test_newcsfml
 TEST_NAME_TWODLIST	=	test_twodlist
 TEST_NAME_LLIST	=	test_llist
 TEST_NAME_STR	=	test_str
+TEST_NAME_PRINT	=	test_print
 TEST_FLAG	=	\
-	-I./lib/newcsfml/include/ \
-	-I./lib/twodlist/include/ \
-	-I./lib/llist/include/ \
-	-I./lib/str/include/ \
+	-I./lib/newcsfml/includes/ \
+	-I./lib/twodlist/includes/ \
+	-I./lib/llist/includes/ \
+	-I./lib/str/includes/ \
+	-I./lib/print/includes/ \
 	-I./lib/test_lib/ \
 	-L./ \
 	-Wall \
@@ -50,6 +53,7 @@ TEST_FLAG	=	\
 	-ltwodlist \
 	-lllist \
 	-lstr \
+	-lprint \
 	-lcsfml-graphics
 
 #################
@@ -62,6 +66,7 @@ $(NAME):
 	@make --no-print-directory -C twodlist all
 	@make --no-print-directory -C llist all
 	@make --no-print-directory -C str all
+	@make --no-print-directory -C print all
 	@cp */*.a ./
 
 clean:
@@ -69,10 +74,12 @@ clean:
 	@make --no-print-directory -C twodlist clean
 	@make --no-print-directory -C llist clean
 	@make --no-print-directory -C str clean
+	@make --no-print-directory -C print clean
 	@rm -f $(TEST_NAME_NEWCSFML)
 	@rm -f $(TEST_NAME_TWODLIST)
 	@rm -f $(TEST_NAME_LLIST)
 	@rm -f $(TEST_NAME_STR)
+	@rm -f $(TEST_NAME_PRINT)
 	@rm -f *.gc*
 
 fclean: clean
@@ -80,6 +87,7 @@ fclean: clean
 	@make --no-print-directory -C twodlist fclean
 	@make --no-print-directory -C llist fclean
 	@make --no-print-directory -C str fclean
+	@make --no-print-directory -C print fclean
 	@rm -f *.a
 
 re: fclean all
@@ -97,6 +105,7 @@ show_var:
 	@printf "\033[4mTEST_NAME_TWODLIST\033[0m : "; echo $(TEST_NAME_TWODLIST)
 	@printf "\033[4mTEST_NAME_LLIST\033[0m : "; echo $(TEST_NAME_LLIST)
 	@printf "\033[4mTEST_NAME_STR\033[0m : "; echo $(TEST_NAME_STR)
+	@printf "\033[4mTEST_NAME_PRINT\033[0m : "; echo $(TEST_NAME_PRINT)
 	@printf "\033[4mTEST_FLAG\033[0m : "; echo $(TEST_FLAG)
 
 ################
@@ -107,6 +116,7 @@ test: re
 	$(TEST_COMPILER) -o $(TEST_NAME_TWODLIST) $(TEST_BASE) $(TEST_TWODLIST) $(TEST_FLAG)
 	$(TEST_COMPILER) -o $(TEST_NAME_LLIST) $(TEST_BASE) $(TEST_LLIST) $(TEST_FLAG)
 	$(TEST_COMPILER) -o $(TEST_NAME_STR) $(TEST_BASE) $(TEST_STR) $(TEST_FLAG)
+	$(TEST_COMPILER) -o $(TEST_NAME_PRINT) $(TEST_BASE) $(TEST_PRINT) $(TEST_FLAG)
 
 ifeq ($(DO_VALGRIND), true)
 test_run:	test
@@ -118,6 +128,8 @@ test_run:	test
 	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_LLIST)
 	@printf "\033[4mSTR\033[0m\n"
 	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_STR)
+	@printf "\033[4mPRINT\033[0m\n"
+	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_PRINT)
 	@make --no-print-directory fclean
 
 else
@@ -130,6 +142,8 @@ test_run:	test
 	-@./$(TEST_NAME_LLIST)
 	@printf "\033[4mSTR\033[0m\n"
 	-@./$(TEST_NAME_STR)
+	@printf "\033[4mPRINT\033[0m\n"
+	-@./$(TEST_NAME_PRINT)
 	@make --no-print-directory fclean
 
 endif

@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.1.3
-info_LAST_UPDATE	=	2026-02-03 11:59:56.337
+info_VERSION	=	v0.1.4
+info_LAST_UPDATE	=	2026-02-12 11:07:45.451
 info_LIB_MAKER	=	Makefile
 
 #########
@@ -24,10 +24,10 @@ LIB_SRC_PATH	=	sources
 
 SRC	=	$(SRC_PATH)/source.c
 LIB_SRC	=	\
-	$(wildcard $(LIB_SRC_PATH)/llist/sources) \
-	$(wildcard $(LIB_SRC_PATH)/twodlist/sources) \
-	$(wildcard $(LIB_SRC_PATH)/newcsfml/sources) \
-	$(wildcard $(LIB_SRC_PATH)/str/sources) \
+	$(wildcard $(LIB_SRC_PATH)/llist/sources/*.c) \
+	$(wildcard $(LIB_SRC_PATH)/twodlist/sources/*.c) \
+	$(wildcard $(LIB_SRC_PATH)/newcsfml/sources/*.c) \
+	$(wildcard $(LIB_SRC_PATH)/str/sources/*.c) \
 
 # ./bonus/ #
 BONUS_PATH	=	bonus

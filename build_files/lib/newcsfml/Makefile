@@ -36,7 +36,7 @@ $(LIB_NAME):	$(SRC_OBJ)
 	@$(LIB_CREATOR) $(LIB_NAME).a $(SRC_OBJ)
 
 clean:
-	@rm -f $(SRC_PATH)/*.o $(SRC_PATH)/*/*.o
+	@rm -f $(SRC_OBJ)
 
 fclean:	clean
 	@rm -f $(LIB_NAME).a
