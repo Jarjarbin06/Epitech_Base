@@ -25,10 +25,14 @@
 #ifndef COLOR_D
     #define COLOR_D
 
-    #define C_ERROR "\033[41m"    // RED //
-    #define C_WARNING "\033[43m"  // YELLOW //
-    #define C_VALID "\033[42m"     // GREEN //
-    #define C_DEBUG "\033[44m"     // BLUE //
+    #define C_ERROR_TITLE "\033[41m"    // RED //
+    #define C_ERROR "\033[31m"    // RED //
+    #define C_WARNING_TITLE "\033[43m"  // YELLOW //
+    #define C_WARNING "\033[33m"  // YELLOW //
+    #define C_VALID_TITLE "\033[42m"     // GREEN //
+    #define C_VALID "\033[32m"     // GREEN //
+    #define C_DEBUG_TITLE "\033[44m"     // BLUE //
+    #define C_DEBUG "\033[34m"     // BLUE //
     #define C_INFO "\033[7m"      // WHITE //
     #define C_ITALIC "\033[3m"    // ITALIC //
     #define C_BOLD "\033[1m"      // BOLD //
