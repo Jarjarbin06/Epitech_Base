@@ -13,10 +13,31 @@
     #include "llist_include.h"
     #include "llist_typedef.h"
 
-#ifndef _LLIST_P_BASE
-    #define _LLIST_P_BASE
+#ifndef LLIST_P_BASE
+    #define LLIST_P_BASE
 void llist_show_macro(void);
 void llist_exist(void);
+#endif
+
+/* UTILS */
+#ifndef P_MALLOC_ANY
+    #define P_MALLOC_ANY
+void *malloc_any(unsigned size);
+#endif
+
+#ifndef P_FREE_ANY
+    #define P_FREE_ANY
+void *free_any(void *ptr);
+#endif
+
+#ifndef P_AUTO_FREE
+    #define P_AUTO_FREE
+bool auto_free(unsigned len, free_t free_list[]);
+#endif
+
+#ifndef P_FREE_ARRAY
+    #define P_FREE_ARRAY
+void free_array(void **array);
 #endif
 
 #endif

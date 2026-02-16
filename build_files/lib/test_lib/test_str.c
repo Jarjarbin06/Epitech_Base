@@ -199,6 +199,30 @@ Test(my_str_isupper, my_str_isupper_invalid_3)
 }
 
 //my_str_to_word_array //
+Test(my_str_to_word_array, my_str_to_word_array_valid)
+{
+    char **arr = my_str_to_word_array("hello world");
+
+    cr_assert_str_eq(arr[0], "hello");
+    cr_assert_str_eq(arr[1], "world");
+    cr_assert(!arr[2]);
+
+    free_array((void **)arr);
+}
+
+Test(my_str_to_word_array, my_str_to_word_array_empty)
+{
+    char **arr = my_str_to_word_array("");
+
+    cr_assert(!arr);
+}
+
+Test(my_str_to_word_array, my_str_to_word_array_invalid)
+{
+    char **arr = my_str_to_word_array(NULL);
+
+    cr_assert(!arr);
+}
 
 // my_strcapitalize //
 Test(my_strcapitalize, my_strcapitalize_valid)

@@ -13,25 +13,30 @@
     #include "utils_include.h"
     #include "utils_typedef.h"
 
-#ifndef _UTILS_P_BASE
-    #define _UTILS_P_BASE
+#ifndef UTILS_P_BASE
+    #define UTILS_P_BASE
 void utils_show_macro(void);
 void utils_exist(void);
 #endif
 
-#ifndef _P_MALLOC_ANY
-    #define _P_MALLOC_ANY
+#ifndef P_MALLOC_ANY
+    #define P_MALLOC_ANY
 void *malloc_any(unsigned size);
 #endif
 
-#ifndef _P_FREE_ANY
-    #define _P_FREE_ANY
+#ifndef P_FREE_ANY
+    #define P_FREE_ANY
 void *free_any(void *ptr);
 #endif
 
-#ifndef _P_AUTO_FREE
-    #define _P_AUTO_FREE
+#ifndef P_AUTO_FREE
+    #define P_AUTO_FREE
 bool auto_free(unsigned len, free_t free_list[]);
+#endif
+
+#ifndef P_FREE_ARRAY
+    #define P_FREE_ARRAY
+void free_array(void **array);
 #endif
 
 #endif

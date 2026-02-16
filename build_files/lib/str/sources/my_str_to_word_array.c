@@ -1,104 +1,58 @@
 /*
-** EPITECH PROJECT, 2025
-** sources - my_str_to_word_array.c
+** EPITECH PROJECT, 2026
+** bsminishell - str_to_word_array.c
 ** File description:
 ** <description>
 */
 
-#include <stdlib.h>
-
 #include "../includes/str.h"
 
-static int get_first_word_len(const char *str, int idx)
+static unsigned int get_word_amount(const char *str)
 {
-    if (!str)
-        return -1;
-    for (;str[idx] != '\0'; idx++)
-        if (!is_alpha(str[idx]))
-            return (idx);
-    return idx;
+    unsigned int word_amount = 1;
+
+    if (my_strlen(str) == 0)
+        return (0);
+    for (int idx = 0; str[idx] != '\0'; idx++)
+        if (str[idx] == ' ')
+            word_amount++;
+    return (word_amount);
 }
 
-static bool switch_alpha(const char *str, const int idx)
+static int get_len_word(const char *str, int idx)
 {
-    if (!str)
-        return false;
-    return is_alpha(str[idx]);
+    int len = 0;
+    for (; str[idx] != '\0' && str[idx] != ' '; idx++, len++);
+    return (len);
 }
 
-static int get_word_count(const char *str)
+static int goto_next_word(const char *str, int idx)
 {
-    int is_word = 0;
-    int word_count = 0;
-    int idx_word = 0;
-
-    if (!str)
-        return -1;
-    for (int idx = 0; idx < my_strlen(str); idx++) {
-        if (is_alpha(str[idx]))
-            is_word = switch_alpha(str, idx);
-        idx_word = idx;
-        for (; ((idx_word < my_strlen(str)) && is_word); idx_word++) {
-            is_word = switch_alpha(str, idx);
-            idx++;
-        }
-        word_count += 1;
-    }
-    return word_count;
-}
-
-static int malloc_word_size(const char *str, const int idx_diff)
-{
-    if (!str)
-        return -1;
-    return ((int)sizeof(char) * (get_first_word_len(str, idx_diff)));
-}
-
-static bool cmp_idx_len(const char *str, const int idx, const int idx_diff)
-{
-    if (!str)
-        return false;
-    return (idx < get_first_word_len(str, idx_diff));
-}
-
-static bool cmp_idxs_len(const char *str, const int idx, const int idx_diff) {
-    if (!str)
-        return false;
-    return (idx + idx_diff < my_strlen(str));
-}
-
-static bool cmp_all(const char *str, const int idx, const int idx_diff)
-{
-    int is_true = true;
-
-    if (!str)
-        return false;
-    if (!(cmp_idx_len(str, idx, idx_diff)))
-        is_true = false;
-    if (!(cmp_idxs_len(str, idx, idx_diff)))
-        is_true = false;
-    if (get_first_word_len(str, idx_diff) != 0)
-        is_true = false;
-    return (is_true);
+    if (idx == 0 && str[idx] != ' ')
+        return (idx);
+    for (; str[idx] != '\0' && str[idx] != ' '; idx++);
+    for (; str[idx] != '\0' && str[idx] == ' '; idx++);
+    return (idx);
 }
 
 char **my_str_to_word_array(const char *str)
 {
-    const int word_count = get_word_count(str);
-    char **arr = malloc(sizeof(char *) * (word_count + 1));
-    int idx_diff = 0;
-    int idx = 0;
-    int arr_idx = 0;
+    const unsigned int word_amount = get_word_amount(str);
+    char **ret = malloc_any(sizeof(char *) * (word_amount + 1));
+    int ret_idx = 0;
 
-    for (; arr_idx < word_count; arr_idx++) {
-        idx = 0;
-        arr[arr_idx] = malloc(malloc_word_size(str, idx_diff));
-        for (; cmp_all(str, idx, idx_diff); idx++)
-            arr[arr_idx][idx] = str[idx + idx_diff];
-        if (get_first_word_len(str, idx_diff) == idx)
-            idx += 1;
-        idx_diff += idx;
+    if (!ret || word_amount == 0)
+        return ((auto_free(1, (free_t[]){{ret, &ret, free_any}})) ?
+            (NULL) : (NULL));
+    for (int idx = 0; idx < my_strlen(str); idx++) {
+        idx = goto_next_word(str, idx);
+        ret[ret_idx] = my_strndup(&str[idx], get_len_word(str, idx));
+        if (!ret[ret_idx]) {
+            free_array((void **)ret);
+            return (NULL);
+        }
+        ret_idx++;
     }
-    arr[arr_idx] = 0;
-    return arr;
+    ret[word_amount] = NULL;
+    return (ret);
 }

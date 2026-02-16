@@ -14,13 +14,11 @@ Test(test_start, test_utils_test_start, .init = redirect_all_std)
     cr_assert_stdout_eq_str("test start\n");
 }
 
-#ifdef _UTILS_P_BASE
 Test(utils_exist, test_utils_exist)
 {
     utils_exist();
     cr_assert(1);
 }
-#endif
 
 // alloc_any.c //
 Test(malloc_any, test_utils_malloc_any)

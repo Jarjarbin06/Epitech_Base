@@ -14,8 +14,8 @@
 #ifndef UTILS_T_TYPE
     #define UTILS_T_TYPE
 
-#ifndef _T_VOID_FUNC
-    #define _T_VOID_FUNC
+#ifndef T_VOID_FUNC
+    #define T_VOID_FUNC
 typedef void *(*void_func)(void *);
 #endif
 
@@ -26,8 +26,8 @@ typedef void *(*void_func)(void *);
 #ifndef UTILS_T_STRUCT
     #define UTILS_T_STRUCT
 
-#ifndef _T_FREE
-    #define _T_FREE
+#ifndef T_FREE
+    #define T_FREE
 typedef struct free_s {
     bool condition;
     void *ptr;

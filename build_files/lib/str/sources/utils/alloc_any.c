@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-#include "../includes/utils.h"
+#include "../../includes/str.h"
 
 void *malloc_any(const unsigned size)
 {
