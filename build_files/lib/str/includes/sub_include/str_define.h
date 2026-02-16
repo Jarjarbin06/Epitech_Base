@@ -9,8 +9,8 @@
 #ifndef STR_D
     #define STR_D
 
-#ifndef STR_D_EXIT
-    #define STR_D_EXIT
+#ifndef EXIT_D
+    #define EXIT_D
 
 #ifndef EXIT_SUCCESS
     #define EXIT_SUCCESS 0
@@ -22,8 +22,8 @@
 
 #endif
 
-#ifndef STR_D_COLOR
-    #define STR_D_COLOR
+#ifndef COLOR_D
+    #define COLOR_D
 
     #define C_ERROR "\033[41m"    // RED //
     #define C_WARNING "\033[43m"  // YELLOW //

@@ -1,14 +1,14 @@
 /*
 ** EPITECH PROJECT, 2025
-** str - str.c
+** sources - newcsfml.c
 ** File description:
 ** <description>
 */
 
-#include "../includes/str.h"
+#include "../includes/utils.h"
 
 #ifdef PRINT
-void str_show_macro(void)
+void utils_show_macro(void)
 {
     print("EXIT :\n");
     print("    EXIT_SUCCESS : %d\n", EXIT_SUCCESS);
@@ -25,13 +25,13 @@ void str_show_macro(void)
 }
 #else
     #include <unistd.h>
-void str_show_macro(void)
+void utils_show_macro(void)
 {
-    write(1, "str_show_macro not available\n", 29);
+    write(1, "utils_show_macro not available\n", 31);
     write(1, "import libprint to use it\n", 26);
 }
 #endif
 
-void str_exist(void)
+void utils_exist(void)
 {
 }

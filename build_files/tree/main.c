@@ -9,8 +9,11 @@
 
 int main(const int argc, const char **argv)
 {
-    twodlist_exist();
     llist_exist();
+    newcsfml_exist();
+    print_exist();
     str_exist();
+    twodlist_exist();
+    utils_exist();
     return function(argc, argv);
 }

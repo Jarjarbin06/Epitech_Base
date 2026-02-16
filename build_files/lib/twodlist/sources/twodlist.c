@@ -7,7 +7,7 @@
 
 #include "../includes/twodlist.h"
 
-#ifdef print
+#ifdef PRINT
 void twodlist_show_macro(void)
 {
     print("EXIT :\n");

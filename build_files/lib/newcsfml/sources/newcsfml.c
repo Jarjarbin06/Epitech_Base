@@ -7,7 +7,7 @@
 
 #include "../includes/newcsfml.h"
 
-#ifdef print
+#ifdef PRINT
 void newcsfml_show_macro(void)
 {
     print("EXIT :\n");

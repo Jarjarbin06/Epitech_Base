@@ -9,8 +9,8 @@
 #ifndef LLIST_D
     #define LLIST_D
 
-#ifndef LLIST_D_EXIT
-    #define LLIST_D_EXIT
+#ifndef EXIT_D
+    #define EXIT_D
 
 #ifndef EXIT_SUCCESS
     #define EXIT_SUCCESS 0
@@ -22,8 +22,8 @@
 
 #endif
 
-#ifndef LLIST_D_COLOR
-    #define LLIST_D_COLOR
+#ifndef COLOR_D
+    #define COLOR_D
 
     #define C_ERROR "\033[41m"    // RED //
     #define C_WARNING "\033[43m"  // YELLOW //

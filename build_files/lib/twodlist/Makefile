@@ -9,7 +9,7 @@
 ## info ##
 ##########
 info_NAME	=	twodlist
-info_VERSION	=	v0.1.0
+info_VERSION	=	v0.1.1
 info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
 
@@ -31,7 +31,7 @@ LIB_NAME	=	lib$(info_NAME)
 all:	$(LIB_NAME)
 
 $(LIB_NAME):	$(SRC_OBJ)
-	@$(LIB_CREATOR) $(LIB_NAME).a $(SRC_OBJ)
+	$(LIB_CREATOR) $(LIB_NAME).a $(SRC_OBJ)
 
 clean:
 	@rm -f $(SRC_OBJ)

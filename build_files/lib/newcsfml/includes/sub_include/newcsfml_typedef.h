@@ -16,7 +16,10 @@
 #ifndef NEWCSFML_T_TYPE
     #define NEWCSFML_T_TYPE
 
-typedef void *(*vf)(void *);
+#ifndef _T_VOID_FUNC
+    #define _T_VOID_FUNC
+typedef void *(*void_func)(void *);
+#endif
 
 // add type typedefs here //
 
@@ -25,12 +28,17 @@ typedef void *(*vf)(void *);
 #ifndef NEWCSFML_T_STRUCT
     #define NEWCSFML_T_STRUCT
 
+#ifndef _T_FREE
+    #define _T_FREE
 typedef struct free_s {
     bool condition;
     void *ptr;
-    vf free_func;
+    void_func free_func;
 } free_t;
+#endif
 
+#ifndef _T_NSF_SPRITE
+    #define _T_NSF_SPRITE
 typedef struct nsf_sprite_s {
     sfSprite *sprite;
     sfTexture *texture;
@@ -39,11 +47,15 @@ typedef struct nsf_sprite_s {
     sfVector2f position;
     float rotation;
 } nsf_sprite;
+#endif
 
+#ifndef _T_NSF_BACKGROUND
+    #define _T_NSF_BACKGROUND
 typedef struct nsf_background_s {
     sfSprite *sprite;
     sfTexture *texture;
 } nsf_background;
+#endif
 
 // add struct typedefs here //
 

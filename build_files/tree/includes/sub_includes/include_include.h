@@ -31,6 +31,8 @@
     #include "../lib_includes/str/str.h"
     #include "../lib_includes/newcsfml/newcsfml.h"
     #include "../lib_includes/twodlist/twodlist.h"
+    #include "../lib_includes/print/print.h"
+    #include "../lib_includes/utils/utils.h"
 
 // add "" includes here //
 

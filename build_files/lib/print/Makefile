@@ -9,7 +9,7 @@
 ## info ##
 ##########
 info_NAME	=	print
-info_VERSION	=	v0.1.0
+info_VERSION	=	v0.1.1
 info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
 
@@ -19,6 +19,7 @@ info_LIB_MAKER	=	Makefile
 # ./sources/ #
 SRC_PATH	=	.
 SRC	=	\
+	$(SRC_PATH)/base/print.c \
 	$(SRC_PATH)/base/base_is_inf_or_nan.c \
 	$(SRC_PATH)/base/base_is_num.c \
 	$(SRC_PATH)/base/base_my_get_nbr.c \

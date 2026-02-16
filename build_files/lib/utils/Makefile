@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2025
-## llist - Makefile
+## utils - Makefile
 ## File description:
 ## make the llist lib
 ##
@@ -8,8 +8,8 @@
 ##########
 ## info ##
 ##########
-info_NAME	=	llist
-info_VERSION	=	v0.1.3
+info_NAME	=	utils
+info_VERSION	=	v0.1.1
 info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
 
@@ -18,7 +18,7 @@ info_LIB_MAKER	=	Makefile
 #########
 # ./sources/ #
 SRC_PATH	=	sources
-SRC	=	$(SRC_PATH)/llist.c
+SRC	=	$(SRC_PATH)/alloc_any.c
 SRC_OBJ	=	$(SRC:.c=.o)
 
 # lib #

@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_includes - twodlist_define.h
+** sub_includes - utils_define.h
 ** File description:
 ** <description>
 */
 
 // Define //
-#ifndef TWODLIST_D
-    #define TWODLIST_D
+#ifndef UTILS_D
+    #define UTILS_D
 
 #ifndef EXIT_D
     #define EXIT_D
@@ -34,13 +34,6 @@
     #define C_UNDERLINE "\033[4m" // UNDERLINE //
     #define C_DIM "\033[2m"       // DIM //
     #define C_RESET "\033[0m"     // RESET //
-
-#endif
-
-#ifndef TWODLIST_D_OTHER
-    #define TWODLIST_D_OTHER
-
-// your defines here //
 
 #endif
 

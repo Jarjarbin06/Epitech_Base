@@ -7,7 +7,7 @@
 
 #include "../includes/llist.h"
 
-#ifdef print
+#ifdef PRINT
 void llist_show_macro(void)
 {
     print("EXIT :\n");

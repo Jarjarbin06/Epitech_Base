@@ -13,8 +13,10 @@
     #include "llist_include.h"
     #include "llist_typedef.h"
 
-// llist.c //
+#ifndef LLIST_P_BASE
+    #define LLIST_P_BASE
 void llist_show_macro(void);
 void llist_exist(void);
+#endif
 
 #endif

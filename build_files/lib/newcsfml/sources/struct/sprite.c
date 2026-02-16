@@ -17,7 +17,7 @@ nsf_sprite *nsf_sprite_create(void)
 
     if (auto_free(2, (free_t[]){
         {!nsf_sprite, &(nsf_sprite), free_any},
-        {!sf_sprite, &(sf_sprite), (vf)sfSprite_destroy}
+        {!sf_sprite, &(sf_sprite), (void_func)sfSprite_destroy}
     }))
         return NULL;
     return nsf_sprite;
@@ -27,9 +27,9 @@ void *nsf_sprite_destroy(nsf_sprite *nsf_sprite)
 {
     auto_free(3, (free_t[]){
         {(nsf_sprite && nsf_sprite->sprite), &(nsf_sprite->sprite),
-            (vf)sfSprite_destroy},
+            (void_func)sfSprite_destroy},
         {(nsf_sprite && nsf_sprite->texture), &(nsf_sprite->texture),
-            (vf)sfTexture_destroy},
+            (void_func)sfTexture_destroy},
         {nsf_sprite, nsf_sprite, free_any}
     });
     return NULL;

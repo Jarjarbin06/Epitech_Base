@@ -9,7 +9,7 @@
 ## info ##
 ##########
 info_NAME	=	build_files
-info_VERSION	=	v0.1.0
+info_VERSION	=	v0.1.1
 info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
 
@@ -34,6 +34,8 @@ $(NAME):
 	@cp -r lib/llist/includes/* tree/lib/llist
 	@cp -r lib/str/includes/* tree/lib/str
 	@cp -r lib/newcsfml/includes/* tree/lib/newcsfml
+	@cp -r lib/utils/includes/* tree/lib/utils
+	@cp -r lib/print/includes/* tree/lib/print
 
 clean:
 	@make --no-print-directory -C lib clean
@@ -46,6 +48,8 @@ fclean:	clean
 	@rm -rdf tree/lib/llist/*
 	@rm -rdf tree/lib/str/*
 	@rm -rdf tree/lib/newcsfml/*
+	@rm -rdf tree/lib/print/*
+	@rm -rdf tree/lib/utils/*
 
 re:	fclean all
 

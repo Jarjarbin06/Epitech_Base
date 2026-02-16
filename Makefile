@@ -9,7 +9,7 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.1.4
+info_VERSION	=	v0.1.6
 info_LAST_UPDATE	=	2026-02-12 11:07:45.451
 info_LIB_MAKER	=	Makefile
 
@@ -20,14 +20,16 @@ EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/Epitech_Base
 
 # ./sources/ #
 SRC_PATH	=	sources
-LIB_SRC_PATH	=	sources
+LIB_SRC_PATH	=	lib
 
 SRC	=	$(SRC_PATH)/source.c
 LIB_SRC	=	\
 	$(wildcard $(LIB_SRC_PATH)/llist/sources/*.c) \
 	$(wildcard $(LIB_SRC_PATH)/twodlist/sources/*.c) \
 	$(wildcard $(LIB_SRC_PATH)/newcsfml/sources/*.c) \
+	$(wildcard $(LIB_SRC_PATH)/print/sources/*.c) \
 	$(wildcard $(LIB_SRC_PATH)/str/sources/*.c) \
+	$(wildcard $(LIB_SRC_PATH)/utils/sources/*.c)
 
 # ./bonus/ #
 BONUS_PATH	=	bonus
@@ -45,6 +47,7 @@ INCLUDE	=	\
 	$(INCLUDE_DIR)/lib_includes/str/str.h \
 	$(INCLUDE_DIR)/lib_includes/newcsfml/newcsfml.h \
 	$(INCLUDE_DIR)/lib_includes/llist/llist.h \
+	$(INCLUDE_DIR)/lib_includes/twodlist/twodlist.h \
 	$(INCLUDE_DIR)/lib_includes/twodlist/twodlist.h \
 	$(INCLUDE_DIR)/include.h \
 	$(INCLUDE_DIR)/include_test.h
@@ -78,6 +81,8 @@ CFLAGS_PLUS	=	\
 	-lnewcsfml \
 	-lstr \
 	-lllist \
+	-lprint \
+	-lutils \
 	-ltwodlist
 TESTCNAME	=	unit_tests
 TESTSEGCNAME	=	seg_tests
@@ -92,11 +97,13 @@ ALLOW_UNBUILD	=	false
 all: $(CNAME)
 
 $(CNAME): $(OBJ)
-	-@make -sC lib/newcsfml re
-	-@make -sC lib/str re
-	-@make -sC lib/llist re
-	-@make -sC lib/twodlist re
-	@cp -f lib/*/*.a lib/
+	-make -sC lib/newcsfml re
+	-make -sC lib/str re
+	-make -sC lib/llist re
+	-make -sC lib/twodlist re
+	-make -sC lib/print re
+	-make -sC lib/utils re
+	-@cp -f lib/*/*.a lib/
 	$(CC) -o $(CNAME) $(OBJ) $(CFLAGS) $(CFLAGS_PLUS)
 
 clean:
@@ -130,13 +137,13 @@ run: re
 ## testing rules ##
 ###################
 test_$(TESTCNAME): clean
-	@$(CC) -o $(TESTCNAME) $(SRC) $(TEST_REDIRECT) $(TEST) $(CFLAGS) $(TESTCFLAGS)
+	@$(CC) -o $(TESTCNAME) $(SRC) $(TEST_REDIRECT) $(TEST) $(CFLAGS) $(CFLAGS_PLUS) $(TESTCFLAGS)
 
 test_$(TESTCNAME)_run: fclean test_$(TESTCNAME)
 	@./$(TESTCNAME)
 
 test_$(TESTSEGCNAME): clean
-	@$(CC) -o $(TESTSEGCNAME) $(SRC) $(TEST_REDIRECT) $(TEST_SEG) $(CFLAGS) $(TESTCFLAGS)
+	@$(CC) -o $(TESTSEGCNAME) $(SRC) $(TEST_REDIRECT) $(TEST_SEG) $(CFLAGS) $(CFLAGS_PLUS) $(TESTCFLAGS)
 
 test_$(TESTSEGCNAME)_run: fclean test_$(TESTSEGCNAME)
 	@./$(TESTSEGCNAME)
@@ -172,17 +179,23 @@ git_info:
 ################
 ifeq ($(wildcard *), Makefile)
 build:
+	cp -rf $(EPITECH_BASE_PATH)/.gitignore ./
+
 	cp -rf $(EPITECH_BASE_PATH)/build_files/tree/* ./
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/print/* ./lib/print
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/utils/* ./lib/utils
 	cp -rf lib/str/includes/* ./includes/lib_includes/str/
 	cp -rf lib/llist/includes/* ./includes/lib_includes/llist/
 	cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist/
 	cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml/
-	-@git add bonus/* include/* source/* test/* main.c Makefile
-	-@git commit -m "[INIT] initial build files"
+	cp -rf lib/print/includes/* ./includes/lib_includes/print/
+	cp -rf lib/utils/includes/* ./includes/lib_includes/utils/
+	-@git add bonus/* includes/* sources/* tests/* lib/* .gitignore main.c Makefile
+	-@git commit -m "[INIT] Initial build files"
 	-@git push origin main
 
 else
