@@ -13,8 +13,8 @@
     #include "newcsfml_include.h"
     #include "newcsfml_typedef.h"
 
-#ifndef NEWCSFML_P_BASE
-    #define NEWCSFML_P_BASE
+#ifndef _NEWCSFML_P_BASE
+    #define _NEWCSFML_P_BASE
 void newcsfml_show_macro(void);
 void newcsfml_exist(void);
 #endif

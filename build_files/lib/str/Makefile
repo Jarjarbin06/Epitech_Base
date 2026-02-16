@@ -9,7 +9,7 @@
 ## info ##
 ##########
 info_NAME	=	str
-info_VERSION	=	v0.1.1
+info_VERSION	=	v0.1.2
 info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
 
@@ -18,31 +18,10 @@ info_LIB_MAKER	=	Makefile
 #########
 # ./sources/ #
 SRC_PATH	=	sources
-SRC	=	$(SRC_PATH)/str.c
-SRC	+=	$(SRC_PATH)/my_getnbr.c
-SRC	+=	$(SRC_PATH)/my_put_nbr.c
-SRC	+=	$(SRC_PATH)/my_putchar.c
-SRC	+=	$(SRC_PATH)/my_putstr.c
-SRC	+=	$(SRC_PATH)/my_revstr.c
-SRC	+=	$(SRC_PATH)/my_str_isalpha.c
-SRC	+=	$(SRC_PATH)/my_str_islower.c
-SRC	+=	$(SRC_PATH)/my_str_isnum.c
-SRC	+=	$(SRC_PATH)/my_str_isprintable.c
-SRC	+=	$(SRC_PATH)/my_str_isupper.c
-SRC	+=	$(SRC_PATH)/my_str_to_word_array.c
-SRC	+=	$(SRC_PATH)/my_strcapitalize.c
-SRC	+=	$(SRC_PATH)/my_strcat.c
-SRC	+=	$(SRC_PATH)/my_strcmp.c
-SRC	+=	$(SRC_PATH)/my_strcpy.c
-SRC	+=	$(SRC_PATH)/my_strdup.c
-SRC	+=	$(SRC_PATH)/my_strlen.c
-SRC	+=	$(SRC_PATH)/my_strlowcase.c
-#SRC	+=	$(SRC_PATH)/my_strncat.c
-#SRC	+=	$(SRC_PATH)/my_strncmp.c
-#SRC	+=	$(SRC_PATH)/my_strncpy.c
-SRC	+=	$(SRC_PATH)/my_strstr.c
-SRC	+=	$(SRC_PATH)/my_strupcase.c
-SRC	+=	$(SRC_PATH)/my_swap_char.c
+SRC	=	\
+	$(wildcard $(SRC_PATH)/*.c) \
+	$(wildcard $(SRC_PATH)/*/*.c) \
+	$(wildcard $(SRC_PATH)/*/*/*.c)
 SRC_OBJ	=	$(SRC:.c=.o)
 
 # lib #

@@ -13,8 +13,8 @@
     #include "utils_include.h"
     #include "utils_typedef.h"
 
-#ifndef UTILS_P_BASE
-    #define UTILS_P_BASE
+#ifndef _UTILS_P_BASE
+    #define _UTILS_P_BASE
 void utils_show_macro(void);
 void utils_exist(void);
 #endif

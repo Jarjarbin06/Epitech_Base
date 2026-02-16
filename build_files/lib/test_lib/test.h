@@ -19,6 +19,7 @@
     #include "../llist/includes/llist.h"
     #include "../str/includes/str.h"
     #include "../print/includes/print.h"
+    #include "../utils/includes/utils.h"
 
 void test_start(void);
 void redirect_all_std(void);

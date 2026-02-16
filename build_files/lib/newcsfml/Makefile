@@ -9,7 +9,7 @@
 ## info ##
 ##########
 info_NAME	=	newcsfml
-info_VERSION	=	v0.1.1
+info_VERSION	=	v0.1.2
 info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
 
@@ -18,9 +18,10 @@ info_LIB_MAKER	=	Makefile
 #########
 # ./sources/ #
 SRC_PATH	=	sources
-SRC	=	$(SRC_PATH)/newcsfml.c
-SRC	+=	$(SRC_PATH)/struct/sprite.c
-SRC	+=	$(SRC_PATH)/utils/alloc_any.c
+SRC	=	\
+	$(wildcard $(SRC_PATH)/*.c) \
+	$(wildcard $(SRC_PATH)/*/*.c) \
+	$(wildcard $(SRC_PATH)/*/*/*.c)
 SRC_OBJ	=	$(SRC:.c=.o)
 
 # lib #

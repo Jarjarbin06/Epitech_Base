@@ -13,8 +13,8 @@
     #include "str_include.h"
     #include "str_typedef.h"
 
-#ifndef STR_P_BASE
-    #define STR_P_BASE
+#ifndef _STR_P_BASE
+    #define _STR_P_BASE
 void str_show_macro(void);
 void str_exist(void);
 #endif

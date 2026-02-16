@@ -16,8 +16,8 @@
 #endif
     #define UP_CASE(c, up) ((up) ? (c - 32) : (c))
 
-#ifndef PRINT_P_BASE
-    #define PRINT_P_BASE
+#ifndef _PRINT_P_BASE
+    #define _PRINT_P_BASE
 void print_show_macro(void);
 void print_exist(void);
 #endif

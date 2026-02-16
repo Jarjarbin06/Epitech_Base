@@ -13,8 +13,8 @@
     #include "twodlist_include.h"
     #include "twodlist_typedef.h"
 
-#ifndef TWODLIST_P_BASE
-    #define TWODLIST_P_BASE
+#ifndef _TWODLIST_P_BASE
+    #define _TWODLIST_P_BASE
 void twodlist_show_macro(void);
 void twodlist_exist(void);
 #endif

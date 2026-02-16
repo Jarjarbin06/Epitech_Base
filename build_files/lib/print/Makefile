@@ -9,7 +9,7 @@
 ## info ##
 ##########
 info_NAME	=	print
-info_VERSION	=	v0.1.1
+info_VERSION	=	v0.1.2
 info_LAST_UPDATE	=	2026-01-26 11:05:23.047
 info_LIB_MAKER	=	Makefile
 
@@ -19,36 +19,9 @@ info_LIB_MAKER	=	Makefile
 # ./sources/ #
 SRC_PATH	=	.
 SRC	=	\
-	$(SRC_PATH)/base/print.c \
-	$(SRC_PATH)/base/base_is_inf_or_nan.c \
-	$(SRC_PATH)/base/base_is_num.c \
-	$(SRC_PATH)/base/base_my_get_nbr.c \
-	$(SRC_PATH)/base/base_my_printf.c \
-	$(SRC_PATH)/base/base_my_put_char.c \
-	$(SRC_PATH)/base/base_my_put_str.c \
-	$(SRC_PATH)/base/base_my_strlen.c \
-	$(SRC_PATH)/conv/conv_display_conv.c \
-	$(SRC_PATH)/conv/conv_err.c \
-	$(SRC_PATH)/conv/conv_len_to_var.c \
-	$(SRC_PATH)/conv/conv_put_char.c \
-	$(SRC_PATH)/conv/conv_put_float.c \
-	$(SRC_PATH)/conv/conv_put_g.c \
-	$(SRC_PATH)/conv/conv_put_line.c \
-	$(SRC_PATH)/conv/conv_put_modulo.c \
-	$(SRC_PATH)/conv/conv_put_nbr.c \
-	$(SRC_PATH)/conv/conv_put_nbr_base.c \
-	$(SRC_PATH)/conv/conv_put_pointer.c \
-	$(SRC_PATH)/conv/conv_put_scientific.c \
-	$(SRC_PATH)/conv/conv_put_str.c \
-	$(SRC_PATH)/conv/conv_stderr.c \
-	$(SRC_PATH)/flag/flag_err.c \
-	$(SRC_PATH)/flag/flag_get_flag.c \
-	$(SRC_PATH)/flag/flag_get_hashtag.c \
-	$(SRC_PATH)/flag/flag_get_plus.c \
-	$(SRC_PATH)/flag/flag_get_plus.c \
-	$(SRC_PATH)/flag/flag_get_precision.c \
-	$(SRC_PATH)/flag/flag_get_space.c \
-	$(SRC_PATH)/len_mod/len_mod_err.c
+	$(wildcard $(SRC_PATH)/*.c) \
+	$(wildcard $(SRC_PATH)/*/*.c) \
+	$(wildcard $(SRC_PATH)/*/*/*.c)
 SRC_OBJ	=	$(SRC:.c=.o)
 
 # lib #
