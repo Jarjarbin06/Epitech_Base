@@ -97,12 +97,12 @@ ALLOW_UNBUILD	=	false
 all: $(CNAME)
 
 $(CNAME): $(OBJ)
-	-make --no-print-directory -C lib/newcsfml re
-	-make --no-print-directory -C lib/str re
-	-make --no-print-directory -C lib/llist re
-	-make --no-print-directory -C lib/twodlist re
-	-make --no-print-directory -C lib/print re
-	-make --no-print-directory -C lib/utils re
+	-@make --no-print-directory -C lib/newcsfml re
+	-@make --no-print-directory -C lib/str re
+	-@make --no-print-directory -C lib/llist re
+	-@make --no-print-directory -C lib/twodlist re
+	-@make --no-print-directory -C lib/print re
+	-@make --no-print-directory -C lib/utils re
 	-@cp -f lib/*/*.a lib/
 	$(CC) -o $(CNAME) $(OBJ) $(CFLAGS) $(CFLAGS_PLUS)
 
