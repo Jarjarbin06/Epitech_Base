@@ -28,6 +28,7 @@
     #define C_ERROR "\033[41m"    // RED //
     #define C_WARNING "\033[43m"  // YELLOW //
     #define C_VALID "\033[42m"     // GREEN //
+    #define C_DEBUG "\033[44m"     // BLUE //
     #define C_INFO "\033[7m"      // WHITE //
     #define C_ITALIC "\033[3m"    // ITALIC //
     #define C_BOLD "\033[1m"      // BOLD //
