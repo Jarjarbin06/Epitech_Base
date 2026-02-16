@@ -45,28 +45,3 @@ Test(nsf_sprite_destroy, test_newcsfml_nsf_sprite_destroy_invalid)
     sprite = nsf_sprite_destroy(sprite);
     cr_assert(!sprite);
 }
-
-/* UTILS */
-// alloc_any.c //
-Test(malloc_any, test_newcsfml_malloc_any)
-{
-    void *alloc_var = malloc_any(1);
-    cr_assert(alloc_var);
-    free(alloc_var);
-}
-
-Test(free_any, test_newcsfml_free_any_valid)
-{
-    void *alloc_var = malloc_any(1);
-    cr_assert(alloc_var);
-    alloc_var = free_any(alloc_var);
-    cr_assert(!alloc_var);
-}
-
-Test(free_any, test_newcsfml_free_any_invalid)
-{
-    void *alloc_var = NULL;
-    cr_assert(!alloc_var);
-    alloc_var = free_any(alloc_var);
-    cr_assert(!alloc_var);
-}

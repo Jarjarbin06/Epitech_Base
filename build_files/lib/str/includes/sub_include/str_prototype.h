@@ -182,7 +182,7 @@ void *free_any(void *ptr);
 
 #ifndef P_AUTO_FREE
     #define P_AUTO_FREE
-bool auto_free(unsigned len, free_t free_list[]);
+int auto_free(unsigned len, free_t free_list[]);
 #endif
 
 #ifndef P_FREE_ARRAY

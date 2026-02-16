@@ -25,17 +25,17 @@ void *free_any(void *ptr)
     return NULL;
 }
 
-bool auto_free(const unsigned len, free_t free_list[])
+int auto_free(const unsigned len, free_t free_list[])
 {
-    bool free_done = false;
+    int freed = 0;
 
     for (int idx = 0; idx < (int)len; idx++)
         if (free_list[idx].condition) {
             free_list[idx].free_func(*(void **)free_list[idx].ptr);
             *(void **)free_list[idx].ptr = NULL;
-            free_done = true;
+            freed++;
         }
-    return free_done;
+    return freed;
 }
 
 void free_array(void **array)

@@ -25,7 +25,7 @@ void *free_any(void *ptr)
     return NULL;
 }
 
-bool auto_free(const unsigned len, free_t free_list[])
+int auto_free(const unsigned len, free_t free_list[])
 {
     bool free_done = false;
 
