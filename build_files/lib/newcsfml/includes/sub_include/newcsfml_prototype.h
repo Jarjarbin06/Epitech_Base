@@ -22,15 +22,15 @@ void newcsfml_exist(void);
 /* STRUCT */
 #ifndef P_NSF_SPRITE_CREATE
     #define P_NSF_SPRITE_CREATE
-nsf_sprite *nsf_sprite_create(void);
+nsf_sprite *nsf_sprite_create(const char name[]);
 #endif
 
 #ifndef P_NSF_SPRITE_DESTROY
     #define P_NSF_SPRITE_DESTROY
-void *nsf_sprite_destroy(nsf_sprite *nsf_sprite);
+int nsf_sprite_destroy(nsf_sprite **nsf_sprite);
 #endif
 
-/* UTILS */
+/* OTHER LIB */
 #ifndef P_MALLOC_ANY
     #define P_MALLOC_ANY
 void *malloc_any(unsigned size);
@@ -49,6 +49,16 @@ int auto_free(unsigned len, free_t free_list[]);
 #ifndef P_FREE_ARRAY
     #define P_FREE_ARRAY
 void free_array(void **array);
+#endif
+
+#ifndef P_MY_STRDUP
+    #define P_MY_STRDUP
+char *my_strdup(const char *src);
+#endif
+
+#ifndef P_MY_STRLEN
+    #define P_MY_STRLEN
+int my_strlen(const char *str);
 #endif
 
 #endif

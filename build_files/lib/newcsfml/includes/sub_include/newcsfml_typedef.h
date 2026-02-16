@@ -37,6 +37,7 @@ typedef struct nsf_sprite_s {
     sfVector2f origin;
     sfVector2f position;
     float rotation;
+    char *name;
 } nsf_sprite;
 #endif
 

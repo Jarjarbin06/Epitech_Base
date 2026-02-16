@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2025
-## utils - Makefile
+## other_lib - Makefile
 ## File description:
 ## make the llist lib
 ##

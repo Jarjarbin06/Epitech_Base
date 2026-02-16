@@ -19,7 +19,7 @@ void twodlist_show_macro(void);
 void twodlist_exist(void);
 #endif
 
-/* UTILS */
+/* OTHER LIB */
 #ifndef P_MALLOC_ANY
     #define P_MALLOC_ANY
 void *malloc_any(unsigned size);

@@ -19,7 +19,7 @@ void llist_show_macro(void);
 void llist_exist(void);
 #endif
 
-/* UTILS */
+/* OTHER LIB */
 #ifndef P_MALLOC_ANY
     #define P_MALLOC_ANY
 void *malloc_any(unsigned size);

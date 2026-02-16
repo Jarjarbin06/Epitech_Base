@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2026
-** EpitechBase - alloc_any.c
+** other_lib - alloc_any.c
 ** File description:
 ** <description>
 */

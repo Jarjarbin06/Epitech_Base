@@ -5,9 +5,7 @@
 ** <description>
 */
 
-#include <stdlib.h>
-
-#include "../includes/str.h"
+#include "../../includes/newcsfml.h"
 
 char *my_strdup(const char *src)
 {

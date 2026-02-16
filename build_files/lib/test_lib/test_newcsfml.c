@@ -24,7 +24,7 @@ Test(newcsfml_exist, test_newcsfml_exist)
 // sprite.c //
 Test(nsf_sprite_create, test_newcsfml_nsf_sprite_create)
 {
-    nsf_sprite *sprite = nsf_sprite_create();
+    nsf_sprite *sprite = nsf_sprite_create("test sprite");
     cr_assert(sprite);
     free(sprite->sprite);
     free(sprite);
@@ -32,9 +32,9 @@ Test(nsf_sprite_create, test_newcsfml_nsf_sprite_create)
 
 Test(nsf_sprite_destroy, test_newcsfml_nsf_sprite_destroy_valid)
 {
-    nsf_sprite *sprite = malloc(sizeof(nsf_sprite));
+    nsf_sprite *sprite = (nsf_sprite *)malloc(sizeof(nsf_sprite));
     cr_assert(sprite);
-    sprite = nsf_sprite_destroy(sprite);
+    nsf_sprite_destroy(&sprite);
     cr_assert(!sprite);
 }
 
@@ -42,6 +42,6 @@ Test(nsf_sprite_destroy, test_newcsfml_nsf_sprite_destroy_invalid)
 {
     nsf_sprite *sprite = NULL;
     cr_assert(!sprite);
-    sprite = nsf_sprite_destroy(sprite);
+    nsf_sprite_destroy(&sprite);
     cr_assert(!sprite);
 }

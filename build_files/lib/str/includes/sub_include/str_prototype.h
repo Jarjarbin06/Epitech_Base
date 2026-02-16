@@ -169,7 +169,7 @@ char *my_strupcase(char *str);
 void my_swap_char(char *ptr_a, char *ptr_b);
 #endif
 
-/* UTILS */
+/* OTHER LIB */
 #ifndef P_MALLOC_ANY
     #define P_MALLOC_ANY
 void *malloc_any(unsigned size);

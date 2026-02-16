@@ -17,7 +17,7 @@ char *my_strndup(const char *src, const int n)
     len = ((n < len) ? (n) : (len));
     if (!src)
         return NULL;
-    dest = malloc(sizeof(char) * (len + 1));
+    dest = (char *)malloc_any(sizeof(char) * (len + 1));
     for (int idx = 0; idx < len; idx++)
         dest[idx] = src[idx];
     dest[len] = '\0';
