@@ -58,6 +58,14 @@ INCLUDE	=	\
 # ./lib/ #
 LIB_PATH	=	lib
 
+LIBS_LIST	=	\
+	llist \
+	newcsfml \
+	print \
+	str \
+	twodlist \
+	utils
+
 # ./ #
 MAIN	=	main.c
 
@@ -79,14 +87,12 @@ CFLAGS	=	 \
 	-I./$(INCLUDE_DIR) \
 	-Wall \
 	-Wextra
-CFLAGS_PLUS	=	\
-	-L./$(LIB_PATH) \
-	-lnewcsfml \
-	-lstr \
-	-lllist \
-	-lprint \
-	-lutils \
-	-ltwodlist
+CFLAGS_PLUS	=	-L./$(LIB_PATH)
+$(foreach lib,$(LIBS_LIST), \
+  $(if $(wildcard lib/$(lib)), \
+    $(eval CFLAGS_PLUS += -l$(lib)) \
+  ) \
+)
 TESTCNAME	=	unit_tests
 TESTSEGCNAME	=	seg_tests
 TESTCFLAGS	=	\
