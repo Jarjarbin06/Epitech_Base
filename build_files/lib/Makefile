@@ -10,7 +10,7 @@
 ##########
 info_NAME	=	lib
 info_VERSION	=	v0.1.2
-info_LAST_UPDATE	=	2026-02-04 20:19:43.709
+info_LAST_UPDATE	=	2026/02/16 11:46
 info_LIB_MAKER	=	Makefile
 
 #########

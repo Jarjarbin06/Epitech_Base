@@ -10,7 +10,7 @@
 ##########
 info_NAME	=	llist
 info_VERSION	=	v0.1.4
-info_LAST_UPDATE	=	2026-01-26 11:05:23.047
+info_LAST_UPDATE	=	2026/02/16 11:46
 info_LIB_MAKER	=	Makefile
 
 #########

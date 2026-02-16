@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.1.6
-info_LAST_UPDATE	=	2026-02-12 11:07:45.451
+info_VERSION	=	v0.1.7
+info_LAST_UPDATE	=	2026/02/16 11:46
 info_LIB_MAKER	=	Makefile
 
 #########
@@ -97,12 +97,12 @@ ALLOW_UNBUILD	=	false
 all: $(CNAME)
 
 $(CNAME): $(OBJ)
-	-make -sC lib/newcsfml re
-	-make -sC lib/str re
-	-make -sC lib/llist re
-	-make -sC lib/twodlist re
-	-make -sC lib/print re
-	-make -sC lib/utils re
+	-make --no-print-directory -C lib/newcsfml re
+	-make --no-print-directory -C lib/str re
+	-make --no-print-directory -C lib/llist re
+	-make --no-print-directory -C lib/twodlist re
+	-make --no-print-directory -C lib/print re
+	-make --no-print-directory -C lib/utils re
 	-@cp -f lib/*/*.a lib/
 	$(CC) -o $(CNAME) $(OBJ) $(CFLAGS) $(CFLAGS_PLUS)
 
@@ -113,20 +113,20 @@ clean:
 	@rm -f *.gc* */*.gc* */*/*.gc*
 	@rm -f *~* */*~* */*/*~*
 	@rm -f *# */*# */*/*#
-	-@make -sC lib/newcsfml clean
-	-@make -sC lib/str clean
-	-@make -sC lib/llist clean
-	-@make -sC lib/twodlist clean
+	-@make --no-print-directory -C lib/newcsfml clean
+	-@make --no-print-directory -C lib/str clean
+	-@make --no-print-directory -C lib/llist clean
+	-@make --no-print-directory -C lib/twodlist clean
 
 fclean:	clean
 	@rm -f $(CNAME)
 	@rm -f $(TESTCNAME)
 	@rm -f $(TESTSEGCNAME)
 	@rm -f lib/*.a
-	-@make -sC lib/newcsfml fclean
-	-@make -sC lib/str fclean
-	-@make -sC lib/llist fclean
-	-@make -sC lib/twodlist fclean
+	-@make --no-print-directory -C lib/newcsfml fclean
+	-@make --no-print-directory -C lib/str fclean
+	-@make --no-print-directory -C lib/llist fclean
+	-@make --no-print-directory -C lib/twodlist fclean
 
 re:	fclean all
 
