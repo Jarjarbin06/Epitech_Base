@@ -11,6 +11,9 @@
 
 int function(const int argc, const char **argv)
 {
-    printf("%d - \"%s\"\n", argc, argv[0]);
+    printf("%d -", argc);
+    for (int idx = 0; idx < argc; idx++)
+        printf(" \"%s\"", argv[idx]);
+    printf("\n");
     return EXIT_SUCCESS;
 }
