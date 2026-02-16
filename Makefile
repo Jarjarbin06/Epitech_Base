@@ -22,7 +22,10 @@ EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/Epitech_Base
 SRC_PATH	=	sources
 LIB_SRC_PATH	=	lib
 
-SRC	=	$(SRC_PATH)/source.c
+SRC	=	\
+	$(wildcard $(SRC_PATH)/*.c) \
+	$(wildcard $(SRC_PATH)/*/*.c) \
+	$(wildcard $(SRC_PATH)/*/*/*.c)
 LIB_SRC	=	\
 	$(wildcard $(LIB_SRC_PATH)/llist/sources/*.c) \
 	$(wildcard $(LIB_SRC_PATH)/twodlist/sources/*.c) \
