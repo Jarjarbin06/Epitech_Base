@@ -9,7 +9,8 @@
 
 #include "../includes/str.h"
 
-void my_putchar(const char c)
+int my_putchar(const char c)
 {
-    write(1, &c, 1);
+    return ((write(1, &c, 1) != 1) ?
+        (EXIT_FAILURE) : (EXIT_SUCCESS));
 }

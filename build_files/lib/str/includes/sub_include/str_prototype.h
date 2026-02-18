@@ -31,7 +31,7 @@ void my_put_nbr(int nbr);
 
 #ifndef P_MY_PUTCHAR
     #define P_MY_PUTCHAR
-void my_putchar(char c);
+int my_putchar(char c);
 #endif
 
 #ifndef P_MY_PUTSTR
