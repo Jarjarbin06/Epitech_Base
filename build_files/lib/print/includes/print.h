@@ -8,19 +8,19 @@
 #ifndef PRINT
     #define PRINT
     #include "print_flag.h"
-#ifndef EXIT_SUCCESS
-    #define EXIT_SUCCESS 0
-#endif
-#ifndef EXIT_ERROR
-    #define EXIT_ERROR 84
-#endif
+    #ifndef EXIT_SUCCESS
+        #define EXIT_SUCCESS 0
+    #endif
+    #ifndef EXIT_ERROR
+        #define EXIT_ERROR 84
+    #endif
     #define UP_CASE(c, up) ((up) ? (c - 32) : (c))
 
-#ifndef _PRINT_P_BASE
-    #define _PRINT_P_BASE
+    #ifndef PRINT_P_BASE
+        #define PRINT_P_BASE
 void print_show_macro(void);
 void print_exist(void);
-#endif
+    #endif
 
 int is_inf_or_nan(my_ld_t nb, int *char_total, int is_maj);
 

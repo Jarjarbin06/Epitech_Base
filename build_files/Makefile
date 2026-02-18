@@ -9,14 +9,18 @@
 ## info ##
 ##########
 info_NAME	=	build_files
-info_VERSION	=	v0.1.1
-info_LAST_UPDATE	=	2026/02/16 11:46
+info_VERSION	=	v0.1.2
+info_LAST_UPDATE	=	2026/02/18 16:56
 info_LIB_MAKER	=	Makefile
 
 #########
 ## var ##
 #########
 DO_VALGRIND	=	false
+CC	=	clang
+CFLAGS	=	 \
+	-Wall \
+	-Wextra
 
 # lib #
 NAME	=	$(info_NAME)
@@ -27,7 +31,7 @@ NAME	=	$(info_NAME)
 all:	$(NAME)
 
 $(NAME):
-	@make --no-print-directory -C lib all
+	@make --no-print-directory -C lib CC=$(CC) all
 	@cp */*.a .
 	@cp *.a tree/lib
 	@cp -r lib/twodlist/includes/* tree/lib/twodlist
@@ -69,7 +73,7 @@ test:
 	@make --no-print-directory -C lib test
 
 test_run:
-	@make --no-print-directory -C lib DO_VALGRIND=$(DO_VALGRIND) test_run
+	@make --no-print-directory -C lib DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) test_run
 	@make --no-print-directory fclean
 
 .PHONY: \

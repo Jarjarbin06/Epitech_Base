@@ -9,21 +9,21 @@
 #ifndef NEWCSFML_I
     #define NEWCSFML_I
 
-#ifndef NEWCSFML_I_LIB_C
-    #define NEWCSFML_I_LIB_C
+    #ifndef NEWCSFML_I_LIB_C
+        #define NEWCSFML_I_LIB_C
 
-    #include <stddef.h>
-    #include <stdbool.h>
+        #include <stddef.h>
+        #include <stdbool.h>
 
 // add <...> includes here //
 
-#endif
+    #endif
 
-#ifndef NEWCSFML_I_CUSTOM
-    #define NEWCSFML_I_CUSTOM
+    #ifndef NEWCSFML_I_CUSTOM
+        #define NEWCSFML_I_CUSTOM
 
 // add "" includes here //
 
-#endif
+    #endif
 
 #endif

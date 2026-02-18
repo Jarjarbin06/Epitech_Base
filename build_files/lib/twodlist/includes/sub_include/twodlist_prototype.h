@@ -13,31 +13,31 @@
     #include "twodlist_include.h"
     #include "twodlist_typedef.h"
 
-#ifndef TWODLIST_P_BASE
-    #define TWODLIST_P_BASE
+    #ifndef TWODLIST_P_BASE
+        #define TWODLIST_P_BASE
 void twodlist_show_macro(void);
 void twodlist_exist(void);
-#endif
+    #endif
 
 /* OTHER LIB */
-#ifndef P_MALLOC_ANY
-    #define P_MALLOC_ANY
+    #ifndef P_MALLOC_ANY
+        #define P_MALLOC_ANY
 void *malloc_any(unsigned size);
-#endif
+    #endif
 
-#ifndef P_FREE_ANY
-    #define P_FREE_ANY
+    #ifndef P_FREE_ANY
+        #define P_FREE_ANY
 void *free_any(void *ptr);
-#endif
+    #endif
 
-#ifndef P_AUTO_FREE
-    #define P_AUTO_FREE
+    #ifndef P_AUTO_FREE
+        #define P_AUTO_FREE
 int auto_free(unsigned len, free_t free_list[]);
-#endif
+    #endif
 
-#ifndef P_FREE_ARRAY
-    #define P_FREE_ARRAY
+    #ifndef P_FREE_ARRAY
+        #define P_FREE_ARRAY
 void free_array(void **array);
-#endif
+    #endif
 
 #endif

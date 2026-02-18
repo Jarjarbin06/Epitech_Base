@@ -9,13 +9,18 @@
 ## info ##
 ##########
 info_NAME	=	str
-info_VERSION	=	v0.1.2
-info_LAST_UPDATE	=	2026/02/16 11:46
+info_VERSION	=	v0.1.3
+info_LAST_UPDATE	=	2026/02/18 16:56
 info_LIB_MAKER	=	Makefile
 
 #########
 ## var ##
 #########
+CC	=	clang
+CFLAGS	=	 \
+	-Wall \
+	-Wextra
+
 # ./sources/ #
 SRC_PATH	=	sources
 SRC	=	\

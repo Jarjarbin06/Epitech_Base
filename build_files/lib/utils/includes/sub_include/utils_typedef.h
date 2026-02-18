@@ -11,32 +11,32 @@
 
     #include "utils_include.h"
 
-#ifndef UTILS_T_TYPE
-    #define UTILS_T_TYPE
+    #ifndef UTILS_T_TYPE
+        #define UTILS_T_TYPE
 
-#ifndef T_VOID_FUNC
-    #define T_VOID_FUNC
-typedef void *(*void_func)(void *);
-#endif
+        #ifndef T_VOID_FUNC
+            #define T_VOID_FUNC
+typedef void *(*void_func_t)(void *);
+        #endif
 
 // add type typedefs here //
 
-#endif
+    #endif
 
-#ifndef UTILS_T_STRUCT
-    #define UTILS_T_STRUCT
+    #ifndef UTILS_T_STRUCT
+        #define UTILS_T_STRUCT
 
-#ifndef T_FREE
-    #define T_FREE
+        #ifndef T_FREE
+            #define T_FREE
 typedef struct free_s {
     bool condition;
     void *ptr;
-    void_func free_func;
+    void_func_t free_func;
 } free_t;
-#endif
+        #endif
 
 // add struct typedefs here //
 
-#endif
+    #endif
 
 #endif

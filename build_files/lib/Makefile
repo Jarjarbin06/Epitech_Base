@@ -9,14 +9,18 @@
 ## Info ##
 ##########
 info_NAME	=	lib
-info_VERSION	=	v0.1.2
-info_LAST_UPDATE	=	2026/02/16 11:46
+info_VERSION	=	v0.1.3
+info_LAST_UPDATE	=	2026/02/18 16:56
 info_LIB_MAKER	=	Makefile
 
 #########
 ## Var ##
 #########
 DO_VALGRIND	=	false
+CC	=	clang
+CFLAGS	=	 \
+	-Wall \
+	-Wextra
 
 # ./test_lib #
 TEST_PATH	=	test_lib
@@ -32,13 +36,14 @@ TEST_STR	=	$(TEST_PATH)/test_str.c
 NAME	=	$(info_NAME)
 
 # tests #
-TEST_COMPILER	=	clang
+TEST_COMPILER	=	$(CC)
 TEST_NAME_NEWCSFML	=	test_newcsfml
 TEST_NAME_TWODLIST	=	test_twodlist
 TEST_NAME_LLIST	=	test_llist
 TEST_NAME_STR	=	test_str
 TEST_NAME_PRINT	=	test_print
 TEST_NAME_UTILS	=	test_utils
+TEST_FLAG_NEWCSFML	=	-lcsfml-graphics
 TEST_FLAG	=	\
 	-I./lib/newcsfml/includes/ \
 	-I./lib/twodlist/includes/ \
@@ -48,17 +53,14 @@ TEST_FLAG	=	\
 	-I./lib/utils/includes/ \
 	-I./lib/test_lib/ \
 	-L./ \
-	-Wall \
-	-Werror \
-	--coverage \
-	-lcriterion \
 	-lnewcsfml \
 	-ltwodlist \
 	-lllist \
 	-lstr \
 	-lprint \
 	-lutils \
-	-lcsfml-graphics
+	--coverage \
+	-lcriterion
 
 #################
 ## Basic rules ##
@@ -66,12 +68,12 @@ TEST_FLAG	=	\
 all:	$(NAME)
 
 $(NAME):
-	@make --no-print-directory -C newcsfml all
-	@make --no-print-directory -C twodlist all
-	@make --no-print-directory -C llist all
-	@make --no-print-directory -C str all
-	@make --no-print-directory -C print all
-	@make --no-print-directory -C utils all
+	-@make --no-print-directory -C newcsfml CC=$(CC) all
+	-@make --no-print-directory -C twodlist CC=$(CC) all
+	-@make --no-print-directory -C llist CC=$(CC) all
+	-@make --no-print-directory -C str CC=$(CC) all
+	-@make --no-print-directory -C print CC=$(CC) all
+	-@make --no-print-directory -C utils CC=$(CC) all
 	@cp */*.a ./
 
 clean:
@@ -121,12 +123,12 @@ show_var:
 ## Test rules ##
 ################
 test: re
-	$(TEST_COMPILER) -o $(TEST_NAME_NEWCSFML) $(TEST_BASE) $(TEST_NEWCSFML) $(TEST_FLAG)
-	$(TEST_COMPILER) -o $(TEST_NAME_TWODLIST) $(TEST_BASE) $(TEST_TWODLIST) $(TEST_FLAG)
-	$(TEST_COMPILER) -o $(TEST_NAME_LLIST) $(TEST_BASE) $(TEST_LLIST) $(TEST_FLAG)
-	$(TEST_COMPILER) -o $(TEST_NAME_STR) $(TEST_BASE) $(TEST_STR) $(TEST_FLAG)
-	$(TEST_COMPILER) -o $(TEST_NAME_PRINT) $(TEST_BASE) $(TEST_PRINT) $(TEST_FLAG)
-	$(TEST_COMPILER) -o $(TEST_NAME_UTILS) $(TEST_BASE) $(TEST_UTILS) $(TEST_FLAG)
+	-$(TEST_COMPILER) -o $(TEST_NAME_NEWCSFML) $(TEST_BASE) $(TEST_NEWCSFML) $(TEST_FLAG) $(CFLAGS) $(TEST_FLAG_NEWCSFML)
+	-$(TEST_COMPILER) -o $(TEST_NAME_TWODLIST) $(TEST_BASE) $(TEST_TWODLIST) $(TEST_FLAG) $(CFLAGS)
+	-$(TEST_COMPILER) -o $(TEST_NAME_LLIST) $(TEST_BASE) $(TEST_LLIST) $(TEST_FLAG) $(CFLAGS)
+	-$(TEST_COMPILER) -o $(TEST_NAME_STR) $(TEST_BASE) $(TEST_STR) $(TEST_FLAG) $(CFLAGS)
+	-$(TEST_COMPILER) -o $(TEST_NAME_PRINT) $(TEST_BASE) $(TEST_PRINT) $(TEST_FLAG) $(CFLAGS)
+	-$(TEST_COMPILER) -o $(TEST_NAME_UTILS) $(TEST_BASE) $(TEST_UTILS) $(TEST_FLAG) $(CFLAGS)
 
 ifeq ($(DO_VALGRIND), true)
 test_run:	test

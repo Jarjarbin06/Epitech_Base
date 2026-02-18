@@ -17,8 +17,8 @@ nsf_sprite *nsf_sprite_create(const char name[])
     char *sprite_name = my_strdup(name);
 
     if (auto_free(2, (free_t[]){
-        {!nsf_new_sprite, &(nsf_new_sprite), free_any},
-        {!sf_sprite, &(sf_sprite), (void_func)sfSprite_destroy}
+        {!nsf_new_sprite, &(nsf_new_sprite), (void_func_t)free_any},
+        {!sf_sprite, &(sf_sprite), (void_func_t)sfSprite_destroy}
     }))
         return NULL;
     nsf_new_sprite->sprite = sf_sprite;
@@ -32,12 +32,12 @@ int nsf_sprite_destroy(nsf_sprite **nsf_sprite)
         return EXIT_FAILURE;
     auto_free(4, (free_t[]){
         {(*nsf_sprite)->name, &((*nsf_sprite)->name),
-            (void_func)sfSprite_destroy},
+            (void_func_t)sfSprite_destroy},
         {(*nsf_sprite)->sprite, &((*nsf_sprite)->sprite),
-            (void_func)sfSprite_destroy},
+            (void_func_t)sfSprite_destroy},
         {(*nsf_sprite)->texture, &((*nsf_sprite)->texture),
-            (void_func)sfTexture_destroy},
-        {*nsf_sprite, nsf_sprite, free_any}
+            (void_func_t)sfTexture_destroy},
+        {*nsf_sprite, nsf_sprite, (void_func_t)free_any}
     });
     *nsf_sprite = NULL;
     return EXIT_SUCCESS;

@@ -9,21 +9,21 @@
 #ifndef UTILS_I
     #define UTILS_I
 
-#ifndef UTILS_I_LIB_C
-    #define UTILS_I_LIB_C
+    #ifndef UTILS_I_LIB_C
+        #define UTILS_I_LIB_C
 
-    #include <stddef.h>
-    #include <stdbool.h>
+        #include <stddef.h>
+        #include <stdbool.h>
 
 // add <...> includes here //
 
-#endif
+    #endif
 
-#ifndef UTILS_I_CUSTOM
-    #define UTILS_I_CUSTOM
+    #ifndef UTILS_I_CUSTOM
+        #define UTILS_I_CUSTOM
 
 // add "" includes here //
 
-#endif
+    #endif
 
 #endif

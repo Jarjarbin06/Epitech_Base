@@ -13,23 +13,23 @@
 
     #include "newcsfml_include.h"
 
-#ifndef NEWCSFML_T_TYPE
-    #define NEWCSFML_T_TYPE
+    #ifndef NEWCSFML_T_TYPE
+        #define NEWCSFML_T_TYPE
 
-#ifndef T_VOID_FUNC
-    #define T_VOID_FUNC
-typedef void *(*void_func)(void *);
-#endif
+        #ifndef T_VOID_FUNC
+            #define T_VOID_FUNC
+typedef void (*void_func_t)(void *);
+        #endif
 
 // add type typedefs here //
 
-#endif
+    #endif
 
-#ifndef NEWCSFML_T_STRUCT
-    #define NEWCSFML_T_STRUCT
+    #ifndef NEWCSFML_T_STRUCT
+        #define NEWCSFML_T_STRUCT
 
-#ifndef T_NSF_SPRITE
-    #define T_NSF_SPRITE
+        #ifndef T_NSF_SPRITE
+            #define T_NSF_SPRITE
 typedef struct nsf_sprite_s {
     sfSprite *sprite;
     sfTexture *texture;
@@ -39,27 +39,27 @@ typedef struct nsf_sprite_s {
     float rotation;
     char *name;
 } nsf_sprite;
-#endif
+        #endif
 
-#ifndef T_NSF_BACKGROUND
-    #define T_NSF_BACKGROUND
+        #ifndef T_NSF_BACKGROUND
+            #define T_NSF_BACKGROUND
 typedef struct nsf_background_s {
     sfSprite *sprite;
     sfTexture *texture;
 } nsf_background;
-#endif
+        #endif
 
-#ifndef T_FREE
-    #define T_FREE
+        #ifndef T_FREE
+            #define T_FREE
 typedef struct free_s {
     bool condition;
     void *ptr;
-    void_func free_func;
+    void_func_t free_func;
 } free_t;
-#endif
+        #endif
 
 // add struct typedefs here //
 
-#endif
+    #endif
 
 #endif

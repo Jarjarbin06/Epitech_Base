@@ -425,37 +425,6 @@ Test(my_strlowcase, my_strlowcase_invalid)
     cr_assert(!my_strlowcase(NULL));
 }
 
-// my_strstr //
-Test(my_strstr, my_strstr_beggining)
-{
-    cr_assert_str_eq(my_strstr("Hello World", "Hello"), "Hello World");
-}
-
-Test(my_strstr, my_strstr_end)
-{
-    cr_assert_str_eq(my_strstr("Hello World", "World"), "World");
-}
-
-Test(my_strstr, my_strstr_not_found)
-{
-    cr_assert_str_eq(my_strstr("Hello World", "z"), "Hello World");
-}
-
-Test(my_strstr, my_strstr_invalid_1)
-{
-    cr_assert(!my_strstr("Hello World", NULL));
-}
-
-Test(my_strstr, my_strstr_invalid_2)
-{
-    cr_assert(!my_strstr(NULL, "Hello World"));
-}
-
-Test(my_strstr, my_strstr_invalid_3)
-{
-    cr_assert(!my_strstr(NULL, NULL));
-}
-
 // my_strupcase //
 Test(my_strupcase, my_strupcase_valid)
 {

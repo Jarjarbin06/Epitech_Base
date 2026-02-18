@@ -13,7 +13,7 @@ void *malloc_any(const unsigned size)
 {
     void *alloc = malloc(size);
 
-    if(!alloc)
+    if (!alloc)
         return NULL;
     return alloc;
 }
@@ -44,9 +44,9 @@ void free_array(void **array)
         return;
     for (int idx = 0; array[idx]; idx++)
         auto_free(1, (free_t[]){
-            {array[idx], &array[idx], free_any}
+                {array[idx], &array[idx], (void_func_t)free_any}
         });
     auto_free(1, (free_t[]){
-        {array, &array, free_any}
+            {array, &array, (void_func_t)free_any}
     });
 }

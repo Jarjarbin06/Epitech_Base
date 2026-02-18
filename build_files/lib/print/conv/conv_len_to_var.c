@@ -18,6 +18,6 @@ void conv_len_to_var(va_list list, int *char_total, flag_t *Flag)
         return;
     if ((long)pointer != 8)
         return;
-    var = (int *)*pointer;
+    var = (int *) *pointer;
     *var = *char_total;
 }

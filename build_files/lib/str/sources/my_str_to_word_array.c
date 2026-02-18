@@ -22,7 +22,9 @@ static unsigned int get_word_amount(const char *str)
 static int get_len_word(const char *str, int idx)
 {
     int len = 0;
-    for (; str[idx] != '\0' && str[idx] != ' '; idx++, len++);
+
+    for (; str[idx] != '\0' && str[idx] != ' '; idx++)
+        len++;
     return (len);
 }
 
@@ -43,7 +45,7 @@ char **my_str_to_word_array(const char *str)
 
     if (!ret || word_amount == 0)
         return ((auto_free(1, (free_t[]){{ret, &ret, free_any}})) ?
-            (NULL) : (NULL));
+            (NULL) : ((void *)0));
     for (int idx = 0; idx < my_strlen(str); idx++) {
         idx = goto_next_word(str, idx);
         ret[ret_idx] = my_strndup(&str[idx], get_len_word(str, idx));
@@ -55,4 +57,13 @@ char **my_str_to_word_array(const char *str)
     }
     ret[word_amount] = NULL;
     return (ret);
+}
+
+int get_array_len(void **array)
+{
+    int len = 0;
+
+    if (array)
+        for (; array[len]; len++);
+    return (len);
 }
