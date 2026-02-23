@@ -5,6 +5,9 @@
 ** None
 */
 
+#include <criterion/criterion.h>
+#include <criterion/redirect.h>
+
 #include "test.h"
 
 // test_start //
@@ -19,4 +22,3 @@ Test(twodlist_exist, test_twodlist_exist)
     twodlist_exist();
     cr_assert(1);
 }
-

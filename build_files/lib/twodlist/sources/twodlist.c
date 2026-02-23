@@ -8,6 +8,7 @@
 #include "../includes/twodlist.h"
 
 #ifdef PRINT
+
 void twodlist_show_macro(void)
 {
     print("EXIT :\n");
@@ -23,15 +24,14 @@ void twodlist_show_macro(void)
     print("    C_UNDERLINE : %stext%s\n", C_UNDERLINE, C_RESET);
     print("    C_DIM : %stext%s\n", C_DIM, C_RESET);
 }
-
 #else
     #include <unistd.h>
+
 void twodlist_show_macro(void)
 {
     write(1, "twodlist_show_macro not available\n", 34);
     write(1, "import libprint to use it\n", 26);
 }
-
 #endif
 
 void twodlist_exist(void)

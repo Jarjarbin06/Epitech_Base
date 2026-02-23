@@ -5,6 +5,9 @@
 ** None
 */
 
+#include <criterion/criterion.h>
+#include <criterion/redirect.h>
+
 #include "test.h"
 
 // test base //
