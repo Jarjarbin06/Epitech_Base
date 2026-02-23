@@ -10,21 +10,21 @@
     #define INCLUDE_T
 
     #include "include_define.h"
-#include "include_include.h"
-#include "include_prototype.h"
+    #include "include_include.h"
+    #include "include_prototype.h"
 
-#ifndef INCLUDE_T_TYPE
-    #define INCLUDE_T_TYPE
+    #ifndef INCLUDE_T_TYPE
+        #define INCLUDE_T_TYPE
 
-    // add type typedefs here //
+// add type typedefs here //
 
-#endif
+    #endif
 
-#ifndef INCLUDE_T_STRUCT
-    #define INCLUDE_T_STRUCT
+    #ifndef INCLUDE_T_STRUCT
+        #define INCLUDE_T_STRUCT
 
-    // add struct typedefs here //
+// add struct typedefs here //
 
-#endif
+    #endif
 
 #endif

@@ -23,6 +23,7 @@ void llist_show_macro(void)
     print("    C_UNDERLINE : %stext%s\n", C_UNDERLINE, C_RESET);
     print("    C_DIM : %stext%s\n", C_DIM, C_RESET);
 }
+
 #else
     #include <unistd.h>
 void llist_show_macro(void)
@@ -30,6 +31,7 @@ void llist_show_macro(void)
     write(1, "llist_show_macro not available\n", 31);
     write(1, "import libprint to use it\n", 26);
 }
+
 #endif
 
 void llist_exist(void)

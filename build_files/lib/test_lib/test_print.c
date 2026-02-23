@@ -407,6 +407,7 @@ Test(print, test_string_printing_G_11, .init = redirect_all_std)
     print("%G", 0.00123456);
     cr_assert_stdout_eq_str("0.00123456");
 }
+
 */
 
 Test(print, test_string_printing_c_1, .init = redirect_all_std)

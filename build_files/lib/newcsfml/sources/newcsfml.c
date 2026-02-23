@@ -23,6 +23,7 @@ void newcsfml_show_macro(void)
     print("    C_UNDERLINE : %stext%s\n", C_UNDERLINE, C_RESET);
     print("    C_DIM : %stext%s\n", C_DIM, C_RESET);
 }
+
 #else
     #include <unistd.h>
 void newcsfml_show_macro(void)
@@ -30,6 +31,7 @@ void newcsfml_show_macro(void)
     write(1, "newcsfml_show_macro not available\n", 34);
     write(1, "import libprint to use it\n", 26);
 }
+
 #endif
 
 void newcsfml_exist(void)
