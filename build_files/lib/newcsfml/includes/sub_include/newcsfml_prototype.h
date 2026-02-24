@@ -47,7 +47,7 @@ int nsf_game_destroy(nsf_game **nsf_game);
     #ifndef P_NSF_WINDOW_CREATE
         #define P_NSF_WINDOW_CREATE
 nsf_window *nsf_window_create(nsf_window_settings settings,
-    char title[], nsf_game *game);
+    char title[], nsf_window_style window_style, nsf_game *game);
     #endif
 
     #ifndef P_NSF_WINDOW_DESTROY

@@ -11,7 +11,7 @@
 #include "../../includes/newcsfml.h"
 
 nsf_window *nsf_window_create(const nsf_window_settings settings,
-    char title[], nsf_game *game)
+    char title[], const nsf_window_style window_style, nsf_game *game)
 {
     nsf_window *nsf_new_window = nsf_malloc_any(sizeof(nsf_window), game);
     sfRenderWindow *sf_window = NULL;
@@ -19,7 +19,7 @@ nsf_window *nsf_window_create(const nsf_window_settings settings,
 
     sf_window = sfRenderWindow_create(
         (sfVideoMode){settings.width, settings.height, settings.bpp},
-        title_str, sfClose | sfCursorHand, NULL);
+        title_str, (sfWindowStyle)window_style, NULL);
     if (nsf_auto_free(2, (free_t[]){
         {!nsf_new_window, &(nsf_new_window), (void_func_t)nsf_free_any},
         {!sf_window, &(sf_window), (void_func_t)sfRenderWindow_destroy}

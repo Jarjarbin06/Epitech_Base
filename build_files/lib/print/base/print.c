@@ -8,7 +8,6 @@
 #include "../includes/print.h"
 
 #ifdef PRINT
-
 void print_show_macro(void)
 {
     print("EXIT :\n");

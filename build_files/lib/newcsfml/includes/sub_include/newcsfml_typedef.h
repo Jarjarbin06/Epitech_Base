@@ -32,10 +32,9 @@ typedef unsigned int nsf_uint;
 typedef sfEvent nsf_event;
         #endif
 
-        #ifndef T_NSF_EVT
-            #define T_NSF_EVT
-typedef enum
-{
+        #ifndef T_NSF_EVENT_TYPE
+            #define T_NSF_EVENT_TYPE
+typedef enum {
     nsf_evt_closed,
     nsf_evt_resized,
     nsf_evt_lost_focus,
@@ -60,6 +59,19 @@ typedef enum
     nsf_evt_sensor_changed,
     nsf_evt_count
 } nsf_event_type;
+        #endif
+
+        #ifndef T_NSF_WINDOW_STYLE
+            #define T_NSF_WINDOW_STYLE
+typedef enum {
+    nsf_wdw_none = 0,
+    nsf_wdw_titlebar = 1 << 0,
+    nsf_wdw_resize = 1 << 1,
+    nsf_wdw_close = 1 << 2,
+    nsf_wdw_fullscreen = 1 << 3,
+    nsf_wdw_default_style =
+        nsf_wdw_titlebar | nsf_wdw_resize | nsf_wdw_close
+} nsf_window_style;
         #endif
 
 // add type typedefs here //

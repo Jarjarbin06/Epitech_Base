@@ -26,7 +26,8 @@ int main(void)
 {
     nsf_event event;
     nsf_window *window = nsf_window_create((nsf_window_settings)
-        {500, 500, 64, 30}, "my_window", NULL);
+        {500, 500, 64, 30}, "my_window",
+        nsf_wdw_default_style, NULL);
     while (nsf_window_isopen(window)) {
         check_event(window, &event);
         nsf_window_display(window);
