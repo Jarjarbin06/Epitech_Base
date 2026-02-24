@@ -65,12 +65,11 @@ typedef enum {
             #define T_NSF_WINDOW_STYLE
 typedef enum {
     nsf_wdw_none = 0,
-    nsf_wdw_titlebar = 1 << 0,
-    nsf_wdw_resize = 1 << 1,
-    nsf_wdw_close = 1 << 2,
-    nsf_wdw_fullscreen = 1 << 3,
-    nsf_wdw_default_style =
-        nsf_wdw_titlebar | nsf_wdw_resize | nsf_wdw_close
+    nsf_wdw_titlebar = 1,
+    nsf_wdw_resize = 2,
+    nsf_wdw_close = 4,
+    nsf_wdw_fullscreen = 8,
+    nsf_wdw_default_style = nsf_wdw_titlebar | nsf_wdw_resize | nsf_wdw_close
 } nsf_window_style;
         #endif
 
