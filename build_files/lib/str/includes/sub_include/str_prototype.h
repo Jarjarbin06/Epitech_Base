@@ -9,7 +9,6 @@
 #ifndef STR_P
     #define STR_P
 
-    #include "str_define.h"
     #include "str_include.h"
     #include "str_typedef.h"
 

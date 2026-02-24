@@ -24,6 +24,7 @@ CFLAGS	=	 \
 
 # lib #
 NAME	=	$(info_NAME)
+RUN_NAME	=	run
 
 #################
 ## Basic rules ##
@@ -44,7 +45,7 @@ $(NAME):
 clean:
 	@make --no-print-directory -C lib clean
 
-fclean:	clean
+fclean:
 	@make --no-print-directory -C lib fclean
 	@rm -f *.a
 	@rm -f tree/lib/*.a
@@ -54,8 +55,21 @@ fclean:	clean
 	@rm -rdf tree/lib/newcsfml/*
 	@rm -rdf tree/lib/print/*
 	@rm -rdf tree/lib/utils/*
+	@rm -f $(RUN_NAME)
 
 re:	fclean all
+
+run:
+	@make --no-print-directory -C lib CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run
+	@mv lib/$(RUN_NAME) .
+
+ifeq ($(DO_VALGRIND), true)
+run_run:
+	@make --no-print-directory -C lib DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run_run
+else
+run_run:
+	@make --no-print-directory -C lib DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run_run
+endif
 
 show_info:
 	@printf "\033[4minfo_NAME\033[0m : "; echo $(info_NAME)
@@ -81,6 +95,7 @@ test_run:
 	clean \
 	fclean \
 	re \
+	run \
 	show_info \
 	show_var \
 	run_test

@@ -9,7 +9,6 @@
 #ifndef UTILS_P
     #define UTILS_P
 
-    #include "utils_define.h"
     #include "utils_include.h"
     #include "utils_typedef.h"
 

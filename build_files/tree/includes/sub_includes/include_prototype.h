@@ -9,7 +9,6 @@
 #ifndef INCLUDE_P
     #define INCLUDE_P
 
-    #include "include_define.h"
     #include "include_include.h"
     #include "include_typedef.h"
 

@@ -10,6 +10,7 @@
     #define NEWCSFML_T
 
     #include <SFML/Graphics/Sprite.h>
+    #include <SFML/Window/Event.h>
 
     #include "newcsfml_include.h"
 
@@ -19,6 +20,16 @@
         #ifndef T_VOID_FUNC
             #define T_VOID_FUNC
 typedef void (*void_func_t)(void *);
+        #endif
+
+        #ifndef T_NSF_UINT
+            #define T_NSF_UINT
+typedef unsigned int nsf_uint;
+        #endif
+
+        #ifndef T_NSF_EVENT
+            #define T_NSF_EVENT
+typedef sfEvent nsf_event;
         #endif
 
 // add type typedefs here //
@@ -38,6 +49,7 @@ typedef struct nsf_sprite_s {
     sfVector2f position;
     float rotation;
     char *name;
+    void *data;
 } nsf_sprite;
         #endif
 
@@ -47,6 +59,37 @@ typedef struct nsf_background_s {
     sfSprite *sprite;
     sfTexture *texture;
 } nsf_background;
+        #endif
+
+        #ifndef T_NSF_WINDOW_SETTINGS
+            #define T_NSF_WINDOW_SETTINGS
+typedef struct nsf_window_settings_s {
+    nsf_uint width;
+    nsf_uint height;
+    nsf_uint bpp;
+    nsf_uint fps;
+} nsf_window_settings;
+        #endif
+
+        #ifndef T_NSF_WINDOW
+            #define T_NSF_WINDOW
+typedef struct nsf_window_s {
+    nsf_window_settings *settings;
+    sfRenderWindow *window;
+    nsf_uint fps;
+    nsf_background *background;
+    nsf_sprite **sprites;
+    char *title;
+} nsf_window;
+        #endif
+
+        #ifndef T_NSF_GAME
+            #define T_NSF_GAME
+typedef struct nsf_game_s {
+    nsf_window *window;
+    nsf_uint allocations;
+    char *title;
+} nsf_game;
         #endif
 
         #ifndef T_FREE

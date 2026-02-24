@@ -12,7 +12,7 @@ void newcsfml_show_macro(void)
 {
     print("EXIT :\n");
     print("    EXIT_SUCCESS : %d\n", EXIT_SUCCESS);
-    print("    EXIT_FAILURE : %d\n", EXIT_FAILURE);
+    print("    EXIT_ERROR : %d\n", EXIT_ERROR);
     print("C (COLOR) :\n");
     print("    C_ERROR : %stext%s\n", C_ERROR, C_RESET);
     print("    C_WARNING : %stext%s\n", C_WARNING, C_RESET);

@@ -23,6 +23,7 @@ CFLAGS	=	 \
 	-Wextra
 
 # ./test_lib #
+RUN_PATH	=	main.c
 TEST_PATH	=	test_lib
 TEST_BASE	=	$(TEST_PATH)/test_base.c
 TEST_PRINT	=	$(TEST_PATH)/test_print.c
@@ -36,15 +37,9 @@ TEST_STR	=	$(TEST_PATH)/test_str.c
 NAME	=	$(info_NAME)
 
 # tests #
-TEST_COMPILER	=	$(CC)
-TEST_NAME_NEWCSFML	=	test_newcsfml
-TEST_NAME_TWODLIST	=	test_twodlist
-TEST_NAME_LLIST	=	test_llist
-TEST_NAME_STR	=	test_str
-TEST_NAME_PRINT	=	test_print
-TEST_NAME_UTILS	=	test_utils
-TEST_FLAG_NEWCSFML	=	-lcsfml-graphics
-TEST_FLAG	=	\
+RUN_COMPILER	=	$(CC)
+RUN_NAME	=	run
+RUN_FLAGS	=	\
 	-I./lib/newcsfml/includes/ \
 	-I./lib/twodlist/includes/ \
 	-I./lib/llist/includes/ \
@@ -59,6 +54,22 @@ TEST_FLAG	=	\
 	-lstr \
 	-lprint \
 	-lutils \
+	-g
+
+ifeq ($(DO_VALGRIND), false)
+RUN_FLAGS	+=	-fsanitize=address
+endif
+
+TEST_COMPILER	=	$(CC)
+TEST_NAME_NEWCSFML	=	test_newcsfml
+TEST_NAME_TWODLIST	=	test_twodlist
+TEST_NAME_LLIST	=	test_llist
+TEST_NAME_STR	=	test_str
+TEST_NAME_PRINT	=	test_print
+TEST_NAME_UTILS	=	test_utils
+TEST_FLAG_NEWCSFML	=	-lcsfml-graphics
+TEST_FLAG	=	\
+	$(RUN_FLAGS) \
 	--coverage \
 	-lcriterion
 
@@ -99,8 +110,22 @@ fclean: clean
 	@make --no-print-directory -C print fclean
 	@make --no-print-directory -C utils fclean
 	@rm -f *.a
+	@rm -f $(RUN_NAME)
 
 re: fclean all
+
+run: re
+	@$(RUN_COMPILER) -o $(RUN_NAME) $(RUN_PATH) $(RUN_FLAGS) $(CFLAGS) $(TEST_FLAG_NEWCSFML)
+
+ifeq ($(DO_VALGRIND), true)
+run_run: run
+	@valgrind --leak-check=full -s ./$(RUN_NAME)
+	@make --no-print-directory fclean
+else
+run_run: run
+	./$(RUN_NAME)
+	@make --no-print-directory fclean
+endif
 
 show_info:
 	@printf "\033[4minfo_NAME\033[0m : "; echo $(info_NAME)
@@ -169,6 +194,7 @@ endif
 	clean \
 	fclean \
 	re \
+	run \
 	show_info \
 	show_var \
 	run_test
