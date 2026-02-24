@@ -32,6 +32,36 @@ typedef unsigned int nsf_uint;
 typedef sfEvent nsf_event;
         #endif
 
+        #ifndef T_NSF_EVT
+            #define T_NSF_EVT
+typedef enum
+{
+    nsf_evt_closed,
+    nsf_evt_resized,
+    nsf_evt_lost_focus,
+    nsf_evt_gained_focus,
+    nsf_evt_text_entered,
+    nsf_evt_key_pressed,
+    nsf_evt_key_released,
+    nsf_evt_mouse_wheel_scrolled,
+    nsf_evt_mouse_button_pressed,
+    nsf_evt_mouse_button_released,
+    nsf_evt_mouse_moved,
+    nsf_evt_mouse_entered,
+    nsf_evt_mouse_left,
+    nsf_evt_joystick_button_pressed,
+    nsf_evt_joystick_button_released,
+    nsf_evt_joystick_moved,
+    nsf_evt_joystick_connected,
+    nsf_evt_joystick_disconnected,
+    nsf_evt_touch_began,
+    nsf_evt_touch_moved,
+    nsf_evt_touch_ended,
+    nsf_evt_sensor_changed,
+    nsf_evt_count
+} nsf_event_type;
+        #endif
+
 // add type typedefs here //
 
     #endif
@@ -88,7 +118,6 @@ typedef struct nsf_window_s {
 typedef struct nsf_game_s {
     nsf_window *window;
     nsf_uint allocations;
-    char *title;
 } nsf_game;
         #endif
 

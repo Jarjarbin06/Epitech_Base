@@ -23,7 +23,7 @@ CFLAGS	=	 \
 	-Wextra
 
 # ./test_lib #
-RUN_PATH	=	main.c
+RUN_PATH	=	main_test.c
 TEST_PATH	=	test_lib
 TEST_BASE	=	$(TEST_PATH)/test_base.c
 TEST_PRINT	=	$(TEST_PATH)/test_print.c

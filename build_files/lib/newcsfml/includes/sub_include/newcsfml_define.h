@@ -9,6 +9,8 @@
 #ifndef NEWCSFML_D
     #define NEWCSFML_D
 
+    #include <SFML/Window/Event.h>
+
     #ifndef EXIT_D
         #define EXIT_D
 

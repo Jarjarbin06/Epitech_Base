@@ -36,7 +36,7 @@ int nsf_auto_free(nsf_uint len, free_t free_list[], nsf_game *game);
 /* STRUCT */
     #ifndef P_NSF_GAME_CREATE
         #define P_NSF_GAME_CREATE
-nsf_game *nsf_game_create(const char title[]);
+nsf_game *nsf_game_create(void);
     #endif
 
     #ifndef P_NSF_GAME_DESTROY
@@ -46,7 +46,7 @@ int nsf_game_destroy(nsf_game **nsf_game);
 
     #ifndef P_NSF_WINDOW_CREATE
         #define P_NSF_WINDOW_CREATE
-nsf_window *nsf_window_create(const nsf_window_settings settings,
+nsf_window *nsf_window_create(nsf_window_settings settings,
     char title[], nsf_game *game);
     #endif
 
@@ -66,6 +66,11 @@ int nsf_sprite_destroy(nsf_sprite **nsf_sprite, nsf_game *game);
     #endif
 
 /* MANAGE */
+    #ifndef P_NSF_CMP_EVENT
+        #define P_NSF_CMP_EVENT
+bool nsf_cmp_event(const nsf_event *event, nsf_event_type event_type);
+    #endif
+
     #ifndef P_NSF_GAME_DISPLAY
         #define P_NSF_GAME_DISPLAY
 int nsf_game_display(nsf_game *game);
