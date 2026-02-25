@@ -15,7 +15,7 @@ nsf_window *nsf_window_create(const nsf_window_settings settings,
 {
     nsf_window *nsf_new_window = nsf_malloc_any(sizeof(nsf_window), game);
     sfRenderWindow *sf_window = NULL;
-    char *title_str = my_strdup(title);
+    str title_str = my_strdup(title);
 
     sf_window = sfRenderWindow_create(
         (sfVideoMode){settings.width, settings.height, settings.bpp},

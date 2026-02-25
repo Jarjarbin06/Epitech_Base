@@ -32,7 +32,7 @@ void conv_put_line(va_list list, int *char_total, flag_t *Flag);
 
 void conv_put_modulo(va_list list, int *char_total, flag_t *Flag);
 
-void my_put_nbr_base(my_lli_t nb, char const *base, int *c_tt, flag_t *Flag);
+void my_put_nbr_base(my_lli_t nb, const char *base, int *c_tt, flag_t *Flag);
 void conv_to_dec(va_list list, int *char_total, flag_t *Flag);
 void conv_to_dec_u(va_list list, int *char_total, flag_t *Flag);
 

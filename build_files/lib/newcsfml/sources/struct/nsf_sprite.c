@@ -14,7 +14,7 @@ nsf_sprite *nsf_sprite_create(const char name[], nsf_game *game)
 {
     nsf_sprite *nsf_new_sprite = nsf_malloc_any(sizeof(nsf_sprite), game);
     sfSprite *sf_sprite = sfSprite_create();
-    char *sprite_name = my_strdup(name);
+    str sprite_name = my_strdup(name);
 
     if (nsf_auto_free(2, (free_t[]){
         {!nsf_new_sprite || !sf_sprite || !sprite_name, &(nsf_new_sprite),

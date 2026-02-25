@@ -22,9 +22,19 @@
 typedef void (*void_func_t)(void *);
         #endif
 
+        #ifndef T_STR
+            #define  T_STR
+typedef char *str;
+        #endif
+
         #ifndef T_NSF_UINT
             #define T_NSF_UINT
 typedef unsigned int nsf_uint;
+        #endif
+
+        #ifndef T_NSF_VECTOR
+            #define T_NSF_VECTOR
+typedef sfVector2f nsf_vector;
         #endif
 
         #ifndef T_NSF_EVENT
@@ -85,11 +95,11 @@ typedef enum {
 typedef struct nsf_sprite_s {
     sfSprite *sprite;
     sfTexture *texture;
-    sfVector2f size;
-    sfVector2f origin;
-    sfVector2f position;
+    nsf_vector size;
+    nsf_vector origin;
+    nsf_vector position;
     float rotation;
-    char *name;
+    str name;
     void *data;
 } nsf_sprite;
         #endif
@@ -120,7 +130,7 @@ typedef struct nsf_window_s {
     nsf_uint fps;
     nsf_background *background;
     nsf_sprite **sprites;
-    char *title;
+    str title;
 } nsf_window;
         #endif
 
