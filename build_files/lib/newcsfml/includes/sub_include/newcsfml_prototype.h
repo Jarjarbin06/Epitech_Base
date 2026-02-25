@@ -116,6 +116,16 @@ void nsf_window_close(nsf_window *nsf_window);
 bool nsf_window_get_event(nsf_window *nsf_window, nsf_event *event);
     #endif
 
+    #ifndef P_NSF_SPRITE_SET_TEXTURE
+        #define P_NSF_SPRITE_SET_TEXTURE
+int nsf_sprite_set_texture(nsf_sprite *sprite, char path[], nsf_game *game);
+    #endif
+
+    #ifndef P_NSF_SPRITE_DRAW
+        #define P_NSF_SPRITE_DRAW
+int nsf_sprite_draw(nsf_sprite *sprite, nsf_window *window);
+    #endif
+
 /* OTHER LIB */
     #ifndef P_MALLOC_ANY
         #define P_MALLOC_ANY

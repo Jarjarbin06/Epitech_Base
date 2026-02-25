@@ -17,11 +17,14 @@ nsf_sprite *nsf_sprite_create(const char name[], nsf_game *game)
     char *sprite_name = my_strdup(name);
 
     if (nsf_auto_free(2, (free_t[]){
-        {!nsf_new_sprite, &(nsf_new_sprite), (void_func_t)nsf_free_any},
-        {!sf_sprite, &(sf_sprite), (void_func_t)sfSprite_destroy}
+        {!nsf_new_sprite || !sf_sprite || !sprite_name, &(nsf_new_sprite),
+            (void_func_t)free_any}, {!nsf_new_sprite || !sf_sprite ||
+                !sprite_name, &(sf_sprite), (void_func_t)sfSprite_destroy},
+        {!nsf_new_sprite || !sf_sprite || !sprite_name, &(sprite_name),
+            (void_func_t)free_any},
     }, game))
         return NULL;
-    if (sprite_name)
+    if (sprite_name && game)
         game->allocations++;
     nsf_new_sprite->sprite = sf_sprite;
     nsf_new_sprite->name = sprite_name;

@@ -17,6 +17,7 @@ info_LIB_MAKER	=	Makefile
 ## var ##
 #########
 DO_VALGRIND	=	false
+DO_SANITIZE	=	false
 CC	=	clang
 CFLAGS	=	 \
 	-Wall \
@@ -60,15 +61,15 @@ fclean:
 re:	fclean all
 
 run:
-	@make --no-print-directory -C lib CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run
+	@make --no-print-directory -C lib DO_SANITIZE=$(DO_SANITIZE) CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run
 	@mv lib/$(RUN_NAME) .
 
 ifeq ($(DO_VALGRIND), true)
 run_run:
-	@make --no-print-directory -C lib DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run_run
+	@make --no-print-directory -C lib DO_SANITIZE=$(DO_SANITIZE) DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run_run
 else
 run_run:
-	@make --no-print-directory -C lib DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run_run
+	@make --no-print-directory -C lib DO_SANITIZE=$(DO_SANITIZE) DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run_run
 endif
 
 show_info:
@@ -87,7 +88,7 @@ test:
 	@make --no-print-directory -C lib test
 
 test_run:
-	@make --no-print-directory -C lib DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) test_run
+	@make --no-print-directory -C lib DO_SANITIZE=$(DO_SANITIZE) DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) test_run
 	@make --no-print-directory fclean
 
 .PHONY: \

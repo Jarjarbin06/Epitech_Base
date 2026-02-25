@@ -21,13 +21,15 @@ nsf_window *nsf_window_create(const nsf_window_settings settings,
         (sfVideoMode){settings.width, settings.height, settings.bpp},
         title_str, (sfWindowStyle)window_style, NULL);
     if (nsf_auto_free(2, (free_t[]){
-        {!nsf_new_window, &(nsf_new_window), (void_func_t)nsf_free_any},
+        {!nsf_new_window, &(nsf_new_window), (void_func_t)free_any},
         {!sf_window, &(sf_window), (void_func_t)sfRenderWindow_destroy}
     }, game))
         return NULL;
     nsf_new_window->window = sf_window;
     nsf_new_window->fps = settings.fps;
     nsf_new_window->title = title_str;
+    nsf_new_window->sprites = NULL;
+    nsf_new_window->background = NULL;
     return nsf_new_window;
 }
 

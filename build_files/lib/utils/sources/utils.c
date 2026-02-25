@@ -8,7 +8,6 @@
 #include "../includes/utils.h"
 
 #ifdef PRINT
-
 void utils_show_macro(void)
 {
     print("EXIT :\n");

@@ -28,9 +28,14 @@ int main(void)
     nsf_window *window = nsf_window_create(
         (nsf_window_settings){500, 500, 64, 30},
         "my_window", nsf_wdw_default_style, NULL);
+    nsf_sprite *sprite = nsf_sprite_create("my_sprite", NULL);
+    nsf_sprite_set_texture(sprite, "/home/jarjarbin/Pictures/C.png", NULL);
     while (nsf_window_isopen(window)) {
         check_event(window, &event);
+        nsf_sprite_draw(sprite, window);
         nsf_window_display(window);
     }
-    return nsf_window_destroy(&window, NULL);
+    nsf_sprite_destroy(&sprite, NULL);
+    nsf_window_destroy(&window, NULL);
+    return EXIT_SUCCESS;
 }
