@@ -10,21 +10,30 @@
 
 #include "../../includes/newcsfml.h"
 
-nsf_texture *nsf_texture_create(const char path[], nsf_game *game)
+static int check_ptr(nsf_texture **nsf_new_texture, sfTexture **sf_texture,
+    str *name_str, nsf_game *game)
+{
+    return nsf_auto_free(3, (free_t[]){
+        {*nsf_new_texture && (!*sf_texture || !*name_str),
+            nsf_new_texture, (void_func_t)free_any},
+        {*sf_texture && (!*nsf_new_texture || !*name_str),
+            sf_texture, (void_func_t)sfTexture_destroy},
+        {*name_str && (!*nsf_new_texture || !*sf_texture),
+            name_str, (void_func_t)free_any}
+    }, game);
+}
+
+nsf_texture *nsf_texture_create(const char path[], const char name[], nsf_game
+    *game)
 {
     nsf_texture *nsf_new_texture = nsf_malloc_any(sizeof(nsf_texture), game);
     sfTexture *sf_texture = sfTexture_createFromFile(path, NULL);
+    str name_str = my_strdup(name);
 
-    if (nsf_auto_free(2, (free_t[]){
-        {!nsf_new_texture || !sf_texture,
-            &(nsf_new_texture), (void_func_t)free_any},
-        {!nsf_new_texture || !sf_texture,
-            &(sf_texture), (void_func_t)sfTexture_destroy}
-    }, game))
+    if (check_ptr(&nsf_new_texture, &sf_texture, &name_str, game))
         return NULL;
-    if (game)
-        game->allocations++;
     nsf_new_texture->texture = sf_texture;
+    nsf_new_texture->name = name_str;
     return nsf_new_texture;
 }
 
@@ -32,11 +41,10 @@ int nsf_texture_destroy(nsf_texture **nsf_texture, nsf_game *game)
 {
     if (!nsf_texture || !*nsf_texture)
         return EXIT_ERROR;
-    nsf_auto_free(2, (free_t[]){
-        {(*nsf_texture)->texture, &(*nsf_texture)->texture,
-            (void_func_t)sfTexture_destroy},
-        {*nsf_texture, nsf_texture, (void_func_t)free_any}
-    }, game);
-    *nsf_texture = NULL;
+    if ((*nsf_texture)->texture)
+        sfTexture_destroy((*nsf_texture)->texture);
+    if ((*nsf_texture)->name)
+        nsf_free_any((*nsf_texture)->name, game);
+    *nsf_texture = nsf_free_any(*nsf_texture, game);
     return EXIT_SUCCESS;
 }

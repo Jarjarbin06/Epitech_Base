@@ -200,6 +200,7 @@ typedef enum
         #define T_NSF_TEXTURE
 typedef struct nsf_texture_s {
     sfTexture *texture;
+    str name;
 } nsf_texture;
     #endif
 

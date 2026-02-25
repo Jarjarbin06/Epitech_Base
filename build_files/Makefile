@@ -67,9 +67,11 @@ run:
 ifeq ($(DO_VALGRIND), true)
 run_run:
 	@make --no-print-directory -C lib DO_SANITIZE=$(DO_SANITIZE) DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run_run
+	@make --no-print-directory fclean
 else
 run_run:
 	@make --no-print-directory -C lib DO_SANITIZE=$(DO_SANITIZE) DO_VALGRIND=$(DO_VALGRIND) CC=$(CC) CFLAGS=$(CFLAGS) RUN_NAME=$(RUN_NAME) run_run
+	@make --no-print-directory fclean
 endif
 
 show_info:

@@ -73,7 +73,8 @@ int nsf_sprite_set_texture(nsf_sprite *sprite, nsf_texture *texture);
 
     #ifndef P_NSF_TEXTURE_SET_TEXTURE
         #define P_NSF_TEXTURE_SET_TEXTURE
-nsf_texture *nsf_texture_create(const char path[], nsf_game *game);
+nsf_texture *nsf_texture_create(const char path[], const char name[],
+    nsf_game *game);
     #endif
 
     #ifndef P_NSF_TEXTURE_DRAW
