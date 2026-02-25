@@ -16,7 +16,7 @@ nsf_sprite *nsf_sprite_create(const char name[], nsf_game *game)
     sfSprite *sf_sprite = sfSprite_create();
     str sprite_name = my_strdup(name);
 
-    if (nsf_auto_free(2, (free_t[]){
+    if (nsf_auto_free(3, (free_t[]){
         {!nsf_new_sprite || !sf_sprite || !sprite_name, &(nsf_new_sprite),
             (void_func_t)free_any}, {!nsf_new_sprite || !sf_sprite ||
                 !sprite_name, &(sf_sprite), (void_func_t)sfSprite_destroy},
