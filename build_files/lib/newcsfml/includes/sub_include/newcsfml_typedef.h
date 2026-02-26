@@ -37,27 +37,27 @@ typedef sfVector2f nsf_vector;
 
     #ifndef T_NSF_COLOR
         #define T_NSF_COLOR
-typedef sfColor nsf_color;
+typedef sfColor nsf_color_t;
     #endif
 
     #ifndef T_NSF_COLORS
         #define T_NSF_COLORS
 typedef struct nsf_colors_s {
-    nsf_color black;
-    nsf_color white;
-    nsf_color red;
-    nsf_color green;
-    nsf_color blue;
-    nsf_color yellow;
-    nsf_color magenta;
-    nsf_color cyan;
-    nsf_color transparent;
+    nsf_color_t black;
+    nsf_color_t white;
+    nsf_color_t red;
+    nsf_color_t green;
+    nsf_color_t blue;
+    nsf_color_t yellow;
+    nsf_color_t magenta;
+    nsf_color_t cyan;
+    nsf_color_t transparent;
 } nsf_colors_t;
     #endif
 
     #ifndef T_NSF_EVENT
         #define T_NSF_EVENT
-typedef sfEvent nsf_event;
+typedef sfEvent nsf_event_t;
     #endif
 
     #ifndef T_NSF_EVENT_TYPE
@@ -282,36 +282,36 @@ typedef struct free_s {
 
     #ifndef T_NSF_GAMES
         #define T_NSF_GAMES
-typedef struct nsf_games_s {
+typedef struct nsf_game_functions_s {
     nsf_game_t *(*create)(void);
     int (*destroy)(nsf_game_t **);
     int (*display)(nsf_game_t *);
     bool (*isopen)(nsf_game_t *);
     void (*close)(nsf_game_t *);
-    bool (*get_event)(nsf_game_t *, nsf_event *);
+    bool (*get_event)(nsf_game_t *, nsf_event_t *);
     void (*set_window)(nsf_game_t *, nsf_window_t *);
 } nsf_game_functions_t;
     #endif
 
     #ifndef T_NSF_WINDOWS
         #define T_NSF_WINDOWS
-typedef struct nsf_windows_s {
+typedef struct nsf_window_functions_s {
     nsf_window_t *(*create)(nsf_window_settings_t, char[],
         nsf_window_style_t, nsf_game_t *);
     int (*destroy)(nsf_window_t **, nsf_game_t *);
     int (*display)(nsf_window_t *);
     bool (*isopen)(nsf_window_t *);
     void (*close)(nsf_window_t *);
-    bool (*get_event)(nsf_window_t *, nsf_event *);
-    void (*fill)(const nsf_window_t *, nsf_color);
+    bool (*get_event)(nsf_window_t *, nsf_event_t *);
+    void (*fill)(const nsf_window_t *, nsf_color_t);
     void (*draw_line)(const nsf_window_t *window,
-        nsf_vector, nsf_vector, nsf_color);
+        nsf_vector, nsf_vector, nsf_color_t);
 } nsf_window_functions_t;
     #endif
 
     #ifndef T_NSF_SPRITES
         #define T_NSF_SPRITES
-typedef struct nsf_sprites_s {
+typedef struct nsf_sprite_functions_s {
     nsf_sprite_t *(*create)(const char[], nsf_game_t *);
     int (*destroy)(nsf_sprite_t **, nsf_game_t *);
     int (*set_texture)(nsf_sprite_t *, nsf_texture_t *);
@@ -321,11 +321,19 @@ typedef struct nsf_sprites_s {
 
     #ifndef T_NSF_TEXTURES
         #define T_NSF_TEXTURES
-typedef struct nsf_textures_s {
+typedef struct nsf_texture_functions_s {
     nsf_texture_t *(*create)(const char[], const char[],
         nsf_game_t *);
     int (*destroy)(nsf_texture_t **, nsf_game_t *);
 } nsf_texture_functions_t;
+    #endif
+
+    #ifndef T_NSF_EVENTS
+        #define T_NSF_EVENTS
+typedef struct nsf_event_functions_s {
+    bool (*cmp)(const nsf_event_t *, nsf_event_type_t);
+    bool (*cmp_key)(const nsf_event_t *, nsf_key_code);
+} nsf_event_functions_t;
     #endif
 
 #endif

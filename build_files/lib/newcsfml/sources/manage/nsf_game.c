@@ -29,7 +29,7 @@ void nsf_game_close(nsf_game_t *game)
     nsf_window_close(game->window);
 }
 
-bool nsf_game_get_event(nsf_game_t *game, nsf_event *event)
+bool nsf_game_get_event(nsf_game_t *game, nsf_event_t *event)
 {
     if (!game || !game->window)
         return false;

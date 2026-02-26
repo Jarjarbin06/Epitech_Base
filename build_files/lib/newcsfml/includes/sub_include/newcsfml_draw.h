@@ -14,12 +14,12 @@
     #ifndef P_NSF_WINDOW_DRAW_LINE
         #define P_NSF_WINDOW_DRAW_LINE
 void nsf_window_draw_line(const nsf_window_t *window,
-    nsf_vector a, nsf_vector b, nsf_color color);
+    nsf_vector a, nsf_vector b, nsf_color_t color);
     #endif
 
     #ifndef P_NSF_WINDOW_FILL
         #define P_NSF_WINDOW_FILL
-void nsf_window_fill(const nsf_window_t *window, nsf_color color);
+void nsf_window_fill(const nsf_window_t *window, nsf_color_t color);
     #endif
 
     #ifndef P_NSF_SPRITE_DRAW

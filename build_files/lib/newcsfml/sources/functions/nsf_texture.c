@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "../includes/newcsfml.h"
+#include "../../includes/newcsfml.h"
 
 const nsf_texture_functions_t nsf_texture = {
     nsf_texture_create,

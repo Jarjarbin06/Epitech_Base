@@ -13,12 +13,12 @@
 
     #ifndef P_NSF_CMP_EVENT
         #define P_NSF_CMP_EVENT
-bool nsf_cmp_event(const nsf_event *event, nsf_event_type_t event_type);
+bool nsf_cmp_event(const nsf_event_t *event, nsf_event_type_t event_type);
     #endif
 
     #ifndef P_NSF_CMP_KEY
         #define P_NSF_CMP_KEY
-bool nsf_cmp_key(const nsf_event *event, nsf_key_code key_code);
+bool nsf_cmp_key(const nsf_event_t *event, nsf_key_code key_code);
     #endif
 
     #ifndef P_NSF_GAME_DISPLAY
@@ -38,7 +38,7 @@ void nsf_game_close(nsf_game_t *game);
 
     #ifndef P_NSF_GAME_GET_EVENT
         #define P_NSF_GAME_GET_EVENT
-bool nsf_game_get_event(nsf_game_t *game, nsf_event *event);
+bool nsf_game_get_event(nsf_game_t *game, nsf_event_t *event);
     #endif
 
     #ifndef P_NSF_GAME_SET_WINDOW
@@ -63,7 +63,7 @@ void nsf_window_close(nsf_window_t *nsf_window);
 
     #ifndef P_NSF_WINDOW_GET_EVENT
         #define P_NSF_WINDOW_GET_EVENT
-bool nsf_window_get_event(nsf_window_t *nsf_window, nsf_event *event);
+bool nsf_window_get_event(nsf_window_t *nsf_window, nsf_event_t *event);
     #endif
 
     #ifndef P_NSF_SPRITE_SET_TEXTURE

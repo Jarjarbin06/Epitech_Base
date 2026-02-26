@@ -31,7 +31,7 @@ void nsf_window_close(nsf_window_t *nsf_window)
     sfRenderWindow_close(nsf_window->window);
 }
 
-bool nsf_window_get_event(nsf_window_t *nsf_window, nsf_event *event)
+bool nsf_window_get_event(nsf_window_t *nsf_window, nsf_event_t *event)
 {
     if (!nsf_window || !event)
         return false;

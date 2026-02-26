@@ -42,4 +42,9 @@ extern const nsf_sprite_functions_t nsf_sprite;
 extern const nsf_texture_functions_t nsf_texture;
     #endif
 
+    #ifndef T_NSF_EVENTS_STRUCT
+        #define T_NSF_EVENTS_STRUCT
+extern const nsf_event_functions_t nsf_event;
+    #endif
+
 #endif

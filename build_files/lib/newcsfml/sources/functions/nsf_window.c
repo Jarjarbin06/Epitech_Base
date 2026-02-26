@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "../includes/newcsfml.h"
+#include "../../includes/newcsfml.h"
 
 const nsf_window_functions_t nsf_window = {
     nsf_window_create,

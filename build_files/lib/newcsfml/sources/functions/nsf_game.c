@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "../includes/newcsfml.h"
+#include "../../includes/newcsfml.h"
 
 const nsf_game_functions_t nsf_game = {
     nsf_game_create,

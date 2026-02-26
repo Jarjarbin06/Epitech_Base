@@ -14,20 +14,20 @@
 //#include "twodlist/includes/twodlist.h"
 //#include "utils/includes/utils.h"
 
-static void check_event(nsf_window_t *window, nsf_event *event)
+static void check_event(nsf_window_t *window, nsf_event_t *event)
 {
     while (nsf_window.get_event(window, event)) {
-        if (nsf_cmp_event(event, nsf_evt_closed))
+        if (nsf_event.cmp(event, nsf_evt_closed))
             nsf_window.close(window);
-        if (nsf_cmp_event(event, nsf_evt_key_pressed) &&
-            nsf_cmp_key(event, nsf_key_escape))
+        if (nsf_event.cmp(event, nsf_evt_key_pressed) &&
+            nsf_event.cmp_key(event, nsf_key_escape))
             nsf_window.close(window);
     }
 }
 
 int main(void)
 {
-    nsf_event event;
+    nsf_event_t event;
     nsf_window_t *window = nsf_window.create(
         (nsf_window_settings_t){500, 500, 64, 30},
         "my_window", nsf_wdw_default_style, NULL);

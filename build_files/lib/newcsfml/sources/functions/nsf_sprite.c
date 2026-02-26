@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "../includes/newcsfml.h"
+#include "../../includes/newcsfml.h"
 
 const nsf_sprite_functions_t nsf_sprite = {
     nsf_sprite_create,
