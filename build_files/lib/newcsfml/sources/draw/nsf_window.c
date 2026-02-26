@@ -19,8 +19,8 @@ void nsf_window_draw_line(const nsf_window_t *window,
     const nsf_vector a, const nsf_vector b, nsf_color_t color)
 {
     sfVertexArray *line = sfVertexArray_create();
-    const sfVertex vertex1 = {(sfVector2f)a, (sfColor)color};
-    const sfVertex vertex2 = {(sfVector2f)b, (sfColor)color};
+    const sfVertex vertex1 = {(sfVector2f)a, (sfColor)color, {}};
+    const sfVertex vertex2 = {(sfVector2f)b, (sfColor)color, {}};
 
     if (!line || !window)
         return;
