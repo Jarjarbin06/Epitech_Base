@@ -9,5 +9,8 @@
 
 int flag_err(const char *format, int idx, flag_t *Flag)
 {
+    (void)format;
+    (void)idx;
+    (void)Flag;
     return 1;
 }

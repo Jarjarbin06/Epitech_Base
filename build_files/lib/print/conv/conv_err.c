@@ -10,5 +10,7 @@
 
 void conv_err(va_list list, int *char_total, flag_t *Flag)
 {
+    (void)list;
+    (void)Flag;
     my_put_str("[err]", char_total);
 }

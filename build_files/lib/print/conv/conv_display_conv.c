@@ -34,7 +34,7 @@ static const list_t Conv[] = {
     {'\0', NULL}
 };
 
-void display_conv(char conv, va_list list, int *c_tt, flag_t *Flag)
+void display_conv(const char conv, va_list list, int *c_tt, flag_t *Flag)
 {
     for (int i = 0; Conv[i].conv != '\0'; i++)
         if (conv == Conv[i].conv) {

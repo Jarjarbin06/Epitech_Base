@@ -10,5 +10,6 @@
 
 void conv_put_char(va_list list, int *char_total, flag_t *Flag)
 {
+    (void)Flag;
     my_put_char(va_arg(list, int), char_total);
 }

@@ -14,6 +14,7 @@ void conv_put_str(va_list list, int *char_total, flag_t *Flag)
     const var_ptr_t pointer = va_arg(list, var_ptr_t);
     char *str;
 
+    (void)Flag;
     if (pointer == NULL)
         return;
     if ((long)pointer < 1000)

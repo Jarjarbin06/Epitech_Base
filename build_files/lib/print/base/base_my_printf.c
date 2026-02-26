@@ -35,7 +35,7 @@ static const list_t Valid_Conv[] = {
     {'\0', NULL}
 };
 
-static int is_valid(const char *format, int idx, flag_t *Flag)
+static int is_valid(const char *format, const int idx, flag_t *Flag)
 {
     if (get_flag(format, idx, Flag)
         || is_num(format[idx])
@@ -44,7 +44,7 @@ static int is_valid(const char *format, int idx, flag_t *Flag)
     return 0;
 }
 
-static int count_space(const char *format, int idx, int *c_tt, flag_t *Flag)
+static int count_space(const char *format, int idx, flag_t *Flag)
 {
     idx++;
     while (is_valid(format, idx, Flag)) {
@@ -55,7 +55,7 @@ static int count_space(const char *format, int idx, int *c_tt, flag_t *Flag)
     return idx;
 }
 
-static int get_is_conv(char c)
+static int get_is_conv(const char c)
 {
     for (int i = 0; Valid_Conv[i].conv != '\0'; i++)
         if (c == Valid_Conv[i].conv)
@@ -63,13 +63,14 @@ static int get_is_conv(char c)
     return 0;
 }
 
-static void modify_conv_and_done(int *is_conv, int *if_done, int ic, int id)
+static void modify_conv_and_done(int *is_conv, int *if_done,
+    const int ic, const int id)
 {
     *is_conv = ic;
     *if_done = id;
 }
 
-static int check_format(const char *format, int *char_total)
+static int check_format(const char *format)
 {
     int is_conv = 0;
     int width = 0;
@@ -97,7 +98,7 @@ static void display(va_list list, display_param_t *Disp)
     int precision = -1;
     char len_mod = '0';
     flag_t Flag[] = {{0, 0, 0, 0, 0, &width, &precision, &len_mod}};
-    int new_i = count_space(Disp->format, Disp->i, &Disp->char_total, Flag);
+    const int new_i = count_space(Disp->format, Disp->i, Flag);
 
     *(Flag[0].length_mod) = Disp->format[new_i - 1];
     display_conv(Disp->format[new_i], list, &Disp->char_total, Flag);
@@ -110,7 +111,7 @@ int print(const char *format, ...)
     display_param_t Disp;
 
     Disp.format = format;
-    if (!check_format(Disp.format, &Disp.char_total))
+    if (!check_format(Disp.format))
         return -1;
     va_start(list, format);
     Disp.i = 0;
