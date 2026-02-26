@@ -9,7 +9,7 @@
 
 #include "../../includes/newcsfml.h"
 
-int nsf_sprite_draw(nsf_sprite *sprite, nsf_window *window)
+int nsf_sprite_draw(nsf_sprite_t *sprite, nsf_window_t *window)
 {
     if (!sprite || !window)
         return EXIT_ERROR;

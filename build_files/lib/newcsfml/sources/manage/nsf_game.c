@@ -7,7 +7,7 @@
 
 #include "../../includes/newcsfml.h"
 
-int nsf_game_display(nsf_game *game)
+int nsf_game_display(nsf_game_t *game)
 {
     if (!game || !game->window)
         return EXIT_ERROR;
@@ -15,28 +15,28 @@ int nsf_game_display(nsf_game *game)
     return EXIT_SUCCESS;
 }
 
-bool nsf_game_isopen(nsf_game *game)
+bool nsf_game_isopen(nsf_game_t *game)
 {
     if (!game || !game->window)
         return false;
     return nsf_window_isopen(game->window);
 }
 
-void nsf_game_close(nsf_game *game)
+void nsf_game_close(nsf_game_t *game)
 {
     if (!game || !game->window)
         return;
     nsf_window_close(game->window);
 }
 
-bool nsf_game_get_event(nsf_game *game, nsf_event *event)
+bool nsf_game_get_event(nsf_game_t *game, nsf_event *event)
 {
     if (!game || !game->window)
         return false;
     return nsf_window_get_event(game->window, event);
 }
 
-void nsf_game_set_window(nsf_game *game, nsf_window *window)
+void nsf_game_set_window(nsf_game_t *game, nsf_window_t *window)
 {
     if (!game || !window)
         return;

@@ -10,8 +10,8 @@
 
 #include "../../includes/newcsfml.h"
 
-static int check_ptr(nsf_sprite **nsf_new_sprite, sfSprite **sf_sprite,
-    str *sprite_name, nsf_game *game)
+static int check_ptr(nsf_sprite_t **nsf_new_sprite, sfSprite **sf_sprite,
+    str *sprite_name, nsf_game_t *game)
 {
     return nsf_auto_free(3, (free_t[]){
         {*nsf_new_sprite && (!*sf_sprite || !*sprite_name),
@@ -23,9 +23,9 @@ static int check_ptr(nsf_sprite **nsf_new_sprite, sfSprite **sf_sprite,
     }, game);
 }
 
-nsf_sprite *nsf_sprite_create(const char name[], nsf_game *game)
+nsf_sprite_t *nsf_sprite_create(const char name[], nsf_game_t *game)
 {
-    nsf_sprite *nsf_new_sprite = nsf_malloc_any(sizeof(nsf_sprite), game);
+    nsf_sprite_t *nsf_new_sprite = nsf_malloc_any(sizeof(nsf_sprite_t), game);
     sfSprite *sf_sprite = sfSprite_create();
     str sprite_name = my_strdup(name);
 
@@ -40,16 +40,16 @@ nsf_sprite *nsf_sprite_create(const char name[], nsf_game *game)
     return nsf_new_sprite;
 }
 
-int nsf_sprite_destroy(nsf_sprite **nsf_sprite, nsf_game *game)
+int nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game)
 {
-    if (!nsf_sprite || !*nsf_sprite)
+    if (!sprite || !*sprite)
         return EXIT_ERROR;
-    if ((*nsf_sprite)->sprite)
-        sfSprite_destroy((*nsf_sprite)->sprite);
-    if ((*nsf_sprite)->texture)
-        nsf_texture_destroy(&(*nsf_sprite)->texture, game);
-    if ((*nsf_sprite)->name)
-        nsf_free_any((*nsf_sprite)->name, game);
-    *nsf_sprite = nsf_free_any(*nsf_sprite, game);
+    if ((*sprite)->sprite)
+        sfSprite_destroy((*sprite)->sprite);
+    if ((*sprite)->texture)
+        nsf_texture_destroy(&(*sprite)->texture, game);
+    if ((*sprite)->name)
+        nsf_free_any((*sprite)->name, game);
+    *sprite = nsf_free_any(*sprite, game);
     return EXIT_SUCCESS;
 }

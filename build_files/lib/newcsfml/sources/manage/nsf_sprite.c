@@ -9,7 +9,7 @@
 
 #include "../../includes/newcsfml.h"
 
-int nsf_sprite_set_texture(nsf_sprite *sprite, nsf_texture *texture)
+int nsf_sprite_set_texture(nsf_sprite_t *sprite, nsf_texture_t *texture)
 {
     if (!sprite || !texture)
         return EXIT_ERROR;

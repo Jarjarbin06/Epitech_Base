@@ -10,12 +10,12 @@
 
 #include "../../includes/newcsfml.h"
 
-void nsf_window_fill(const nsf_window *window, const nsf_color color)
+void nsf_window_fill(const nsf_window_t *window, const nsf_color color)
 {
     sfRenderWindow_clear(window->window, color);
 }
 
-void nsf_window_draw_line(const nsf_window *window,
+void nsf_window_draw_line(const nsf_window_t *window,
     const nsf_vector a, const nsf_vector b, nsf_color color)
 {
     sfVertexArray *line = sfVertexArray_create();

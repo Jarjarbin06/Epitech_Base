@@ -40,6 +40,21 @@ typedef sfVector2f nsf_vector;
 typedef sfColor nsf_color;
     #endif
 
+    #ifndef T_NSF_COLORS
+        #define T_NSF_COLORS
+typedef struct nsf_colors_s {
+    nsf_color black;
+    nsf_color white;
+    nsf_color red;
+    nsf_color green;
+    nsf_color blue;
+    nsf_color yellow;
+    nsf_color magenta;
+    nsf_color cyan;
+    nsf_color transparent;
+} nsf_colors_t;
+    #endif
+
     #ifndef T_NSF_EVENT
         #define T_NSF_EVENT
 typedef sfEvent nsf_event;
@@ -71,7 +86,7 @@ typedef enum {
     nsf_evt_touch_ended,
     nsf_evt_sensor_changed,
     nsf_evt_count
-} nsf_event_type;
+} nsf_event_type_t;
     #endif
 
     #ifndef T_NSF_WINDOW_STYLE
@@ -83,14 +98,14 @@ typedef enum {
     nsf_wdw_close = (sfWindowStyle)sfFullscreen,
     nsf_wdw_fullscreen = (sfWindowStyle)sfFullscreen,
     nsf_wdw_default_style = (sfWindowStyle)sfDefaultStyle
-} nsf_window_style;
+} nsf_window_style_t;
     #endif
 
     #ifndef T_NSF_KEY
         #define T_NSF_KEY
 typedef enum
 {
-    nsf_key_Unknown = -1,
+    nsf_key_unknown = -1,
     nsf_key_a,
     nsf_key_b,
     nsf_key_c,
@@ -201,21 +216,21 @@ typedef enum
 typedef struct nsf_texture_s {
     sfTexture *texture;
     str name;
-} nsf_texture;
+} nsf_texture_t;
     #endif
 
     #ifndef T_NSF_SPRITE
         #define T_NSF_SPRITE
 typedef struct nsf_sprite_s {
     sfSprite *sprite;
-    nsf_texture *texture;
+    nsf_texture_t *texture;
     nsf_vector size;
     nsf_vector origin;
     nsf_vector position;
     float rotation;
     str name;
     void *data;
-} nsf_sprite;
+} nsf_sprite_t;
     #endif
 
     #ifndef T_NSF_BACKGROUND
@@ -223,7 +238,7 @@ typedef struct nsf_sprite_s {
 typedef struct nsf_background_s {
     sfSprite *sprite;
     sfTexture *texture;
-} nsf_background;
+} nsf_background_t;
     #endif
 
     #ifndef T_NSF_WINDOW_SETTINGS
@@ -233,27 +248,27 @@ typedef struct nsf_window_settings_s {
     nsf_uint height;
     nsf_uint bpp;
     nsf_uint fps;
-} nsf_window_settings;
+} nsf_window_settings_t;
     #endif
 
     #ifndef T_NSF_WINDOW
         #define T_NSF_WINDOW
 typedef struct nsf_window_s {
-    nsf_window_settings *settings;
+    nsf_window_settings_t *settings;
     sfRenderWindow *window;
     nsf_uint fps;
-    nsf_background *background;
-    nsf_sprite **sprites;
+    nsf_background_t *background;
+    nsf_sprite_t **sprites;
     str title;
-} nsf_window;
+} nsf_window_t;
     #endif
 
     #ifndef T_NSF_GAME
         #define T_NSF_GAME
 typedef struct nsf_game_s {
-    nsf_window *window;
+    nsf_window_t *window;
     nsf_uint allocations;
-} nsf_game;
+} nsf_game_t;
     #endif
 
     #ifndef T_FREE
@@ -263,6 +278,54 @@ typedef struct free_s {
     void *ptr;
     void_func_t free_func;
 } free_t;
+    #endif
+
+    #ifndef T_NSF_GAMES
+        #define T_NSF_GAMES
+typedef struct nsf_games_s {
+    nsf_game_t *(*create)(void);
+    int (*destroy)(nsf_game_t **);
+    int (*display)(nsf_game_t *);
+    bool (*isopen)(nsf_game_t *);
+    void (*close)(nsf_game_t *);
+    bool (*get_event)(nsf_game_t *, nsf_event *);
+    void (*set_window)(nsf_game_t *, nsf_window_t *);
+} nsf_game_functions_t;
+    #endif
+
+    #ifndef T_NSF_WINDOWS
+        #define T_NSF_WINDOWS
+typedef struct nsf_windows_s {
+    nsf_window_t *(*create)(nsf_window_settings_t, char[],
+        nsf_window_style_t, nsf_game_t *);
+    int (*destroy)(nsf_window_t **, nsf_game_t *);
+    int (*display)(nsf_window_t *);
+    bool (*isopen)(nsf_window_t *);
+    void (*close)(nsf_window_t *);
+    bool (*get_event)(nsf_window_t *, nsf_event *);
+    void (*fill)(const nsf_window_t *, nsf_color);
+    void (*draw_line)(const nsf_window_t *window,
+        nsf_vector, nsf_vector, nsf_color);
+} nsf_window_functions_t;
+    #endif
+
+    #ifndef T_NSF_SPRITES
+        #define T_NSF_SPRITES
+typedef struct nsf_sprites_s {
+    nsf_sprite_t *(*create)(const char[], nsf_game_t *);
+    int (*destroy)(nsf_sprite_t **, nsf_game_t *);
+    int (*set_texture)(nsf_sprite_t *, nsf_texture_t *);
+    int (*draw)(nsf_sprite_t *, nsf_window_t *);
+} nsf_sprite_functions_t;
+    #endif
+
+    #ifndef T_NSF_TEXTURES
+        #define T_NSF_TEXTURES
+typedef struct nsf_textures_s {
+    nsf_texture_t *(*create)(const char[], const char[],
+        nsf_game_t *);
+    int (*destroy)(nsf_texture_t **, nsf_game_t *);
+} nsf_texture_functions_t;
     #endif
 
 #endif

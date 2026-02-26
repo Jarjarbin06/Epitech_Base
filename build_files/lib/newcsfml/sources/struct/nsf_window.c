@@ -10,16 +10,16 @@
 
 #include "../../includes/newcsfml.h"
 
-static sfRenderWindow *get_new_window(const nsf_window_settings settings,
-    const str *title_str, const nsf_window_style window_style)
+static sfRenderWindow *get_new_window(const nsf_window_settings_t settings,
+    const str *title_str, const nsf_window_style_t window_style)
 {
     return sfRenderWindow_create(
         (sfVideoMode){settings.width, settings.height, settings.bpp},
         *title_str, (sfWindowStyle)window_style, NULL);
 }
 
-static int check_ptr(nsf_window **nsf_new_window, sfRenderWindow **sf_window,
-    str *title_str, nsf_game *game)
+static int check_ptr(nsf_window_t **nsf_new_window, sfRenderWindow **sf_window,
+    str *title_str, nsf_game_t *game)
 {
     return nsf_auto_free(3, (free_t[]){
         {*nsf_new_window && (!*sf_window || !*title_str),
@@ -31,10 +31,10 @@ static int check_ptr(nsf_window **nsf_new_window, sfRenderWindow **sf_window,
     }, game);
 }
 
-nsf_window *nsf_window_create(const nsf_window_settings settings,
-    char title[], const nsf_window_style window_style, nsf_game *game)
+nsf_window_t *nsf_window_create(const nsf_window_settings_t settings,
+    char title[], const nsf_window_style_t window_style, nsf_game_t *game)
 {
-    nsf_window *nsf_new_window = nsf_malloc_any(sizeof(nsf_window), game);
+    nsf_window_t *nsf_new_window = nsf_malloc_any(sizeof(nsf_window_t), game);
     str title_str = my_strdup(title);
     sfRenderWindow *sf_window = get_new_window(settings, &title_str,
         window_style);
@@ -50,7 +50,7 @@ nsf_window *nsf_window_create(const nsf_window_settings settings,
     return nsf_new_window;
 }
 
-int nsf_window_destroy(nsf_window **nsf_window, nsf_game *game)
+int nsf_window_destroy(nsf_window_t **nsf_window, nsf_game_t *game)
 {
     if (!nsf_window || !*nsf_window)
         return EXIT_ERROR;

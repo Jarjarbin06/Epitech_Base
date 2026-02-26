@@ -126,6 +126,8 @@ clean:
 	-@make --no-print-directory -C lib/str clean
 	-@make --no-print-directory -C lib/llist clean
 	-@make --no-print-directory -C lib/twodlist clean
+	-@make --no-print-directory -C lib/print clean
+	-@make --no-print-directory -C lib/utils clean
 
 fclean:	clean
 	@rm -f $(CNAME)
@@ -136,6 +138,8 @@ fclean:	clean
 	-@make --no-print-directory -C lib/str fclean
 	-@make --no-print-directory -C lib/llist fclean
 	-@make --no-print-directory -C lib/twodlist fclean
+	-@make --no-print-directory -C lib/print fclean
+	-@make --no-print-directory -C lib/utils fclean
 
 re:	fclean all
 

@@ -9,9 +9,9 @@
 
 #include "../../includes/newcsfml.h"
 
-nsf_game *nsf_game_create(void)
+nsf_game_t *nsf_game_create(void)
 {
-    nsf_game *nsf_new_game = malloc(sizeof(nsf_game));
+    nsf_game_t *nsf_new_game = malloc(sizeof(nsf_game_t));
 
     if (!nsf_new_game) {
         free(nsf_new_game);
@@ -22,7 +22,7 @@ nsf_game *nsf_game_create(void)
     return nsf_new_game;
 }
 
-int nsf_game_destroy(nsf_game **nsf_game)
+int nsf_game_destroy(nsf_game_t **nsf_game)
 {
     if (!nsf_game || !*nsf_game)
         return EXIT_ERROR;

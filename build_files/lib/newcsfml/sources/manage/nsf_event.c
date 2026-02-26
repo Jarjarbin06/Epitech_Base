@@ -7,7 +7,7 @@
 
 #include "../../includes/newcsfml.h"
 
-bool nsf_cmp_event(const nsf_event *event, const nsf_event_type event_type)
+bool nsf_cmp_event(const nsf_event *event, const nsf_event_type_t event_type)
 {
     return (event->type == (sfEventType)event_type);
 }

@@ -9,7 +9,7 @@
 
 #include "../includes/newcsfml.h"
 
-void *nsf_malloc_any(const nsf_uint size, nsf_game *game)
+void *nsf_malloc_any(const nsf_uint size, nsf_game_t *game)
 {
     void *alloc = malloc(size);
 
@@ -20,7 +20,7 @@ void *nsf_malloc_any(const nsf_uint size, nsf_game *game)
     return alloc;
 }
 
-void *nsf_free_any(void *ptr, nsf_game *game)
+void *nsf_free_any(void *ptr, nsf_game_t *game)
 {
     if (ptr) {
         free(ptr);
@@ -30,7 +30,7 @@ void *nsf_free_any(void *ptr, nsf_game *game)
     return NULL;
 }
 
-int nsf_auto_free(const nsf_uint len, free_t free_list[], nsf_game *game)
+int nsf_auto_free(const nsf_uint len, free_t free_list[], nsf_game_t *game)
 {
     int freed = 0;
 

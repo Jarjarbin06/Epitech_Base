@@ -17,17 +17,29 @@
     #include "sub_include/newcsfml_other.h"
     #include "sub_include/newcsfml_struct.h"
 
-    #ifndef T_NSF_COLORS
-        #define T_NSF_COLORS
-extern const nsf_color nsf_clr_black;
-extern const nsf_color nsf_clr_white;
-extern const nsf_color nsf_clr_red;
-extern const nsf_color nsf_clr_green;
-extern const nsf_color nsf_clr_blue;
-extern const nsf_color nsf_clr_yellow;
-extern const nsf_color nsf_clr_magenta;
-extern const nsf_color nsf_clr_cyan;
-extern const nsf_color nsf_clr_transparent;
+    #ifndef T_NSF_COLORS_STRUCT
+        #define T_NSF_COLORS_STRUCT
+extern const nsf_colors_t nsf_clr;
+    #endif
+
+    #ifndef T_NSF_GAMES_STRUCT
+        #define T_NSF_GAMES_STRUCT
+extern const nsf_game_functions_t nsf_game;
+    #endif
+
+    #ifndef T_NSF_WINDOWS_STRUCT
+        #define T_NSF_WINDOWS_STRUCT
+extern const nsf_window_functions_t nsf_window;
+    #endif
+
+    #ifndef T_NSF_SPRITES_STRUCT
+        #define T_NSF_SPRITES_STRUCT
+extern const nsf_sprite_functions_t nsf_sprite;
+    #endif
+
+    #ifndef T_NSF_TEXTURES_STRUCT
+        #define T_NSF_TEXTURES_STRUCT
+extern const nsf_texture_functions_t nsf_texture;
     #endif
 
 #endif
