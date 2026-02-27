@@ -51,6 +51,16 @@ void nsf_game_set_window(nsf_game_t *game, nsf_window_t *window);
 nsf_window_t *nsf_game_get_window(nsf_game_t *game);
     #endif
 
+    #ifndef P_NSF_GAME_ADD_SPRITE
+        #define  P_NSF_GAME_ADD_SPRITE
+void nsf_game_add_sprite(nsf_game_t *game, nsf_sprite_t *sprite);
+    #endif
+
+    #ifndef P_NSF_GAME_ADD_BUTTON
+        #define  P_NSF_GAME_ADD_BUTTON
+void nsf_game_add_button(nsf_game_t *game, nsf_button_t *button);
+    #endif
+
     #ifndef P_NSF_WINDOW_DISPLAY
         #define P_NSF_WINDOW_DISPLAY
 int nsf_window_display(nsf_window_t *window);

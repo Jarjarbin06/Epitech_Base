@@ -54,8 +54,8 @@ static nsf_button_t *create_elements(nsf_game_t *game)
     nsf_button.set_texture(button,
         nsf_texture.create("/home/jarjarbin/Pictures/Python.png",
             "button texture", game));
-    nsf_window.add_sprite(nsf_game.get_window(game), sprite, game);
-    nsf_window.add_button(nsf_game.get_window(game), button, game);
+    nsf_game.add_sprite(game, sprite);
+    nsf_game.add_button(game, button);
     return button;
 }
 

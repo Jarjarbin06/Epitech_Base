@@ -15,5 +15,7 @@ const nsf_game_functions_t nsf_game = {
     nsf_game_close,
     nsf_game_get_event,
     nsf_game_set_window,
-    nsf_game_get_window
+    nsf_game_get_window,
+    nsf_game_add_sprite,
+    nsf_game_add_button
 };
