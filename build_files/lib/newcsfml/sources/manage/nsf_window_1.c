@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** struct - nsf_window.c
+** struct - nsf_window_1.c
 ** File description:
 ** <description>
 */

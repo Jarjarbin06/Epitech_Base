@@ -46,6 +46,11 @@ bool nsf_game_get_event(nsf_game_t *game, nsf_event_t *event);
 void nsf_game_set_window(nsf_game_t *game, nsf_window_t *window);
     #endif
 
+    #ifndef P_NSF_GAME_GET_WINDOW
+        #define  P_NSF_GAME_GET_WINDOW
+nsf_window_t *nsf_game_get_window(nsf_game_t *game);
+    #endif
+
     #ifndef P_NSF_WINDOW_DISPLAY
         #define P_NSF_WINDOW_DISPLAY
 int nsf_window_display(nsf_window_t *window);
@@ -66,9 +71,26 @@ void nsf_window_close(nsf_window_t *window);
 bool nsf_window_get_event(nsf_window_t *window, nsf_event_t *event);
     #endif
 
+    #ifndef P_NSF_WINDOW_ADD_SPRITE
+        #define P_NSF_WINDOW_ADD_SPRITE
+void nsf_window_add_sprite(nsf_window_t *window, nsf_sprite_t *sprite,
+    nsf_game_t *game);
+    #endif
+
+    #ifndef P_NSF_WINDOW_ADD_BUTTON
+        #define P_NSF_WINDOW_ADD_BUTTON
+void nsf_window_add_button(nsf_window_t *window, nsf_button_t *button,
+    nsf_game_t *game);
+    #endif
+
     #ifndef P_NSF_SPRITE_SET_TEXTURE
         #define P_NSF_SPRITE_SET_TEXTURE
-int nsf_sprite_set_texture(nsf_sprite_t *sprite, nsf_texture_t *texture);
+void nsf_sprite_set_texture(nsf_sprite_t *sprite, nsf_texture_t *texture);
+    #endif
+
+    #ifndef P_NSF_BUTTON_SET_TEXTURE
+        #define P_NSF_BUTTON_SET_TEXTURE
+void nsf_button_set_texture(nsf_button_t *button, nsf_texture_t *texture);
     #endif
 
     #ifndef P_NSF_BUTTON_SET_POSITION
@@ -84,7 +106,8 @@ void nsf_button_set_size(nsf_button_t *button, nsf_vector position);
     #ifndef P_NSF_BUTTON_SET_COLORS
         #define P_NSF_BUTTON_SET_COLORS
 void nsf_button_set_colors(nsf_button_t *button,
-    nsf_color_t fill_color, nsf_color_t outline_color);
+    nsf_color_t fill_color, nsf_color_t outline_color,
+    nsf_uint outline_thickness);
     #endif
 
     #ifndef P_NSF_BUTTON_CHECK_CLICK

@@ -9,10 +9,9 @@
 
 #include "../../includes/newcsfml.h"
 
-int nsf_sprite_draw(nsf_sprite_t *sprite, nsf_window_t *window)
+void nsf_sprite_draw(nsf_sprite_t *sprite, nsf_window_t *window)
 {
     if (!sprite || !window)
-        return EXIT_ERROR;
+        return;
     sfRenderWindow_drawSprite(window->window, sprite->sprite, NULL);
-    return EXIT_SUCCESS;
 }

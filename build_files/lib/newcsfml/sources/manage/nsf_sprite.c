@@ -9,11 +9,10 @@
 
 #include "../../includes/newcsfml.h"
 
-int nsf_sprite_set_texture(nsf_sprite_t *sprite, nsf_texture_t *texture)
+void nsf_sprite_set_texture(nsf_sprite_t *sprite, nsf_texture_t *texture)
 {
     if (!sprite || !texture)
-        return EXIT_ERROR;
+        return;
     sprite->texture = texture;
     sfSprite_setTexture(sprite->sprite, sprite->texture->texture, sfFalse);
-    return EXIT_SUCCESS;
 }

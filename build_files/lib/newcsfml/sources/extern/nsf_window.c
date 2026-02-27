@@ -15,5 +15,8 @@ const nsf_window_functions_t nsf_window = {
     nsf_window_close,
     nsf_window_get_event,
     nsf_window_fill,
-    nsf_window_draw_line
+    nsf_window_draw_line,
+    nsf_window_draw,
+    nsf_window_add_sprite,
+    nsf_window_add_button
 };

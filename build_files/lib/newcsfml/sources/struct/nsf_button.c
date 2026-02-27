@@ -31,6 +31,7 @@ nsf_button_t *nsf_button_create(const char name[], nsf_game_t *game)
     if (check_ptr(&new_button, &sf_button, &name_str, game))
         return NULL;
     new_button->button = sf_button;
+    new_button->texture = NULL;
     new_button->size = (nsf_vector){0, 0};
     new_button->position = (nsf_vector){0, 0};
     new_button->fill_color = (nsf_color_t){0, 0, 0, 0};
@@ -45,6 +46,8 @@ int nsf_button_destroy(nsf_button_t **button, nsf_game_t *game)
         return EXIT_ERROR;
     if ((*button)->button)
         sfRectangleShape_destroy((*button)->button);
+    if ((*button)->texture)
+        nsf_texture_destroy(&(*button)->texture, game);
     if ((*button)->name)
         nsf_free_any((*button)->name, game);
     *button = nsf_free_any(*button, game);

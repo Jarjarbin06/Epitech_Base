@@ -40,10 +40,10 @@ nsf_sprite_t *nsf_sprite_create(const char name[], nsf_game_t *game)
     return new_sprite;
 }
 
-int nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game)
+void nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game)
 {
     if (!sprite || !*sprite)
-        return EXIT_ERROR;
+        return;
     if ((*sprite)->sprite)
         sfSprite_destroy((*sprite)->sprite);
     if ((*sprite)->texture)
@@ -51,5 +51,4 @@ int nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game)
     if ((*sprite)->name)
         nsf_free_any((*sprite)->name, game);
     *sprite = nsf_free_any(*sprite, game);
-    return EXIT_SUCCESS;
 }

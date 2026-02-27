@@ -22,9 +22,14 @@ void nsf_window_draw_line(const nsf_window_t *window,
 void nsf_window_fill(const nsf_window_t *window, nsf_color_t color);
     #endif
 
+    #ifndef P_NSF_WINDOW_DRAW
+        #define P_NSF_WINDOW_DRAW
+void nsf_window_draw(nsf_window_t *window);
+    #endif
+
     #ifndef P_NSF_SPRITE_DRAW
         #define P_NSF_SPRITE_DRAW
-int nsf_sprite_draw(nsf_sprite_t *sprite, nsf_window_t *window);
+void nsf_sprite_draw(nsf_sprite_t *sprite, nsf_window_t *window);
     #endif
 
     #ifndef P_NSF_BUTTON_DRAW

@@ -39,7 +39,7 @@ nsf_sprite_t *nsf_sprite_create(const char name[], nsf_game_t *game);
 
     #ifndef P_NSF_SPRITE_DESTROY
         #define P_NSF_SPRITE_DESTROY
-int nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game);
+void nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game);
     #endif
 
     #ifndef P_NSF_TEXTURE_CREATE

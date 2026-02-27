@@ -10,6 +10,7 @@
 const nsf_button_functions_t nsf_button = {
     nsf_button_create,
     nsf_button_destroy,
+    nsf_button_set_texture,
     nsf_button_set_position,
     nsf_button_set_size,
     nsf_button_set_colors,

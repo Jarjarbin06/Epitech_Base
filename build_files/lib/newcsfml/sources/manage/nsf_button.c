@@ -10,6 +10,15 @@
 
 #include "../../includes/newcsfml.h"
 
+void nsf_button_set_texture(nsf_button_t *button, nsf_texture_t *texture)
+{
+    if (!button || !texture)
+        return;
+    button->texture = texture;
+    sfRectangleShape_setTexture(button->button, button->texture->texture,
+        sfFalse);
+}
+
 void nsf_button_set_position(nsf_button_t *button, const nsf_vector position)
 {
     if (!button)
@@ -25,7 +34,8 @@ void nsf_button_set_size(nsf_button_t *button, const nsf_vector position)
 }
 
 void nsf_button_set_colors(nsf_button_t *button,
-    const nsf_color_t fill_color, const nsf_color_t outline_color)
+    const nsf_color_t fill_color, const nsf_color_t outline_color,
+    const nsf_uint outline_thickness)
 {
     if (!button)
         return;
@@ -33,6 +43,8 @@ void nsf_button_set_colors(nsf_button_t *button,
         sfRectangleShape_setFillColor(button->button, (sfColor)fill_color);
     if (outline_color.a)
     sfRectangleShape_setOutlineColor(button->button, (sfColor)outline_color);
+    sfRectangleShape_setOutlineThickness(button->button,
+        (float)outline_thickness);
 }
 
 bool nsf_button_check_click(nsf_button_t *button, nsf_window_t *window,

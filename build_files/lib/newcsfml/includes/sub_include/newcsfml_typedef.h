@@ -224,6 +224,23 @@ typedef enum
 } nsf_mouse;
     #endif
 
+    #ifndef T_NSF_WINDOW_ELEMENTS
+        #define T_NSF_WINDOW_ELEMENTS
+typedef enum
+{
+    SPRITE_ELEMENT,
+    BUTTON_ELEMENT
+} nsf_window_elements_t;
+    #endif
+
+    #ifndef T_NSF_WINDOW_ELEMENT
+        #define T_NSF_WINDOW_ELEMENT
+typedef struct nsf_window_element_s {
+    nsf_window_elements_t element_type;
+    void *ptr;
+} nsf_window_element_t;
+    #endif
+
     #ifndef T_NSF_TEXTURE
         #define T_NSF_TEXTURE
 typedef struct nsf_texture_s {
@@ -236,6 +253,7 @@ typedef struct nsf_texture_s {
         #define  T_NSF_BUTTON
 typedef struct nsf_button_s {
     sfRectangleShape *button;
+    nsf_texture_t *texture;
     nsf_vector size;
     nsf_vector position;
     nsf_color_t fill_color;
@@ -283,7 +301,7 @@ typedef struct nsf_window_s {
     sfRenderWindow *window;
     nsf_uint fps;
     nsf_background_t *background;
-    nsf_sprite_t **sprites;
+    nsf_window_element_t **elements;
     str title;
 } nsf_window_t;
     #endif
