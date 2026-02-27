@@ -11,6 +11,11 @@
 
     #include "newcsfml_typedef.h"
 
+    #ifndef P_NSF_GAME_DRAW
+        #define  P_NSF_GAME_DRAW
+void nsf_game_draw(nsf_game_t *game);
+    #endif
+
     #ifndef P_NSF_WINDOW_DRAW_LINE
         #define P_NSF_WINDOW_DRAW_LINE
 void nsf_window_draw_line(const nsf_window_t *window,

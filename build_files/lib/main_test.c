@@ -70,7 +70,7 @@ int main(void)
         check_button(button, nsf_game.get_window(game));
         check_event(nsf_game.get_window(game), &event);
         nsf_window.fill(nsf_game.get_window(game), nsf_clr.white);
-        nsf_window.draw(nsf_game.get_window(game));
+        nsf_game.draw(game);
         nsf_game.display(game);
     }
     nsf_game.destroy(&game);

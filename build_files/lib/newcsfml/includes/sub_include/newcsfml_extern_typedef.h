@@ -26,6 +26,7 @@ typedef struct nsf_game_functions_s {
     nsf_window_t *(*get_window)(nsf_game_t *);
     void (*add_sprite)(nsf_game_t *, nsf_sprite_t *);
     void (*add_button)(nsf_game_t *, nsf_button_t *);
+    void (*draw)(nsf_game_t *);
 } nsf_game_functions_t;
     #endif
 
