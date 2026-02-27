@@ -19,6 +19,8 @@ info_LIB_MAKER	=	Makefile
 CC	=	clang
 CFLAGS	=	 \
 	-lcsfml-graphics \
+	-lcsfml-window \
+	-lcsfml-system \
 	-Wall \
 	-Wextra
 

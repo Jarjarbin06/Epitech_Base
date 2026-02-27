@@ -211,12 +211,37 @@ typedef enum
 } nsf_key_code;
     #endif
 
+    #ifndef T_NSF_MOUSE
+        #define T_NSF_MOUSE
+typedef enum
+{
+    nsf_mouse_left,
+    nsf_mouse_right,
+    nsf_mouse_middle,
+    nsf_mouse_x_bttn_1,
+    nsf_mouse_x_bttn_2,
+    nsf_mouse_count
+} nsf_mouse;
+    #endif
+
     #ifndef T_NSF_TEXTURE
         #define T_NSF_TEXTURE
 typedef struct nsf_texture_s {
     sfTexture *texture;
     str name;
 } nsf_texture_t;
+    #endif
+
+    #ifndef T_NSF_BUTTON
+        #define  T_NSF_BUTTON
+typedef struct nsf_button_s {
+    sfRectangleShape *button;
+    nsf_vector size;
+    nsf_vector position;
+    nsf_color_t fill_color;
+    nsf_color_t outline_color;
+    str name;
+} nsf_button_t;
     #endif
 
     #ifndef T_NSF_SPRITE
@@ -278,62 +303,6 @@ typedef struct free_s {
     void *ptr;
     void_func_t free_func;
 } free_t;
-    #endif
-
-    #ifndef T_NSF_GAMES
-        #define T_NSF_GAMES
-typedef struct nsf_game_functions_s {
-    nsf_game_t *(*create)(void);
-    int (*destroy)(nsf_game_t **);
-    int (*display)(nsf_game_t *);
-    bool (*isopen)(nsf_game_t *);
-    void (*close)(nsf_game_t *);
-    bool (*get_event)(nsf_game_t *, nsf_event_t *);
-    void (*set_window)(nsf_game_t *, nsf_window_t *);
-} nsf_game_functions_t;
-    #endif
-
-    #ifndef T_NSF_WINDOWS
-        #define T_NSF_WINDOWS
-typedef struct nsf_window_functions_s {
-    nsf_window_t *(*create)(nsf_window_settings_t, char[],
-        nsf_window_style_t, nsf_game_t *);
-    int (*destroy)(nsf_window_t **, nsf_game_t *);
-    int (*display)(nsf_window_t *);
-    bool (*isopen)(nsf_window_t *);
-    void (*close)(nsf_window_t *);
-    bool (*get_event)(nsf_window_t *, nsf_event_t *);
-    void (*fill)(const nsf_window_t *, nsf_color_t);
-    void (*draw_line)(const nsf_window_t *window,
-        nsf_vector, nsf_vector, nsf_color_t);
-} nsf_window_functions_t;
-    #endif
-
-    #ifndef T_NSF_SPRITES
-        #define T_NSF_SPRITES
-typedef struct nsf_sprite_functions_s {
-    nsf_sprite_t *(*create)(const char[], nsf_game_t *);
-    int (*destroy)(nsf_sprite_t **, nsf_game_t *);
-    int (*set_texture)(nsf_sprite_t *, nsf_texture_t *);
-    int (*draw)(nsf_sprite_t *, nsf_window_t *);
-} nsf_sprite_functions_t;
-    #endif
-
-    #ifndef T_NSF_TEXTURES
-        #define T_NSF_TEXTURES
-typedef struct nsf_texture_functions_s {
-    nsf_texture_t *(*create)(const char[], const char[],
-        nsf_game_t *);
-    int (*destroy)(nsf_texture_t **, nsf_game_t *);
-} nsf_texture_functions_t;
-    #endif
-
-    #ifndef T_NSF_EVENTS
-        #define T_NSF_EVENTS
-typedef struct nsf_event_functions_s {
-    bool (*cmp)(const nsf_event_t *, nsf_event_type_t);
-    bool (*cmp_key)(const nsf_event_t *, nsf_key_code);
-} nsf_event_functions_t;
     #endif
 
 #endif

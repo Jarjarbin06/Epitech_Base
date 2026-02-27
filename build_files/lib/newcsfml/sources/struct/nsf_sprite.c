@@ -6,38 +6,38 @@
 */
 
 #include <SFML/Graphics/Sprite.h>
-#include <SFML/Graphics/Texture.h>
 
 #include "../../includes/newcsfml.h"
 
-static int check_ptr(nsf_sprite_t **nsf_new_sprite, sfSprite **sf_sprite,
+static int check_ptr(nsf_sprite_t **new_sprite, sfSprite **sf_sprite,
     str *sprite_name, nsf_game_t *game)
 {
     return nsf_auto_free(3, (free_t[]){
-        {*nsf_new_sprite && (!*sf_sprite || !*sprite_name),
-            nsf_new_sprite, (void_func_t)free_any},
-        {*sf_sprite && (!*nsf_new_sprite || !*sprite_name),
+        {*new_sprite && (!*sf_sprite || !*sprite_name),
+            new_sprite, (void_func_t)free_any},
+        {*sf_sprite && (!*new_sprite || !*sprite_name),
             sf_sprite, (void_func_t)sfSprite_destroy},
-        {*sprite_name && (!*nsf_new_sprite || !*sf_sprite),
+        {*sprite_name && (!*new_sprite || !*sf_sprite),
             sprite_name, (void_func_t)free_any}
     }, game);
 }
 
 nsf_sprite_t *nsf_sprite_create(const char name[], nsf_game_t *game)
 {
-    nsf_sprite_t *nsf_new_sprite = nsf_malloc_any(sizeof(nsf_sprite_t), game);
+    nsf_sprite_t *new_sprite = nsf_malloc_any(sizeof(nsf_sprite_t),
+        game);
     sfSprite *sf_sprite = sfSprite_create();
     str sprite_name = my_strdup(name);
 
-    if (check_ptr(&nsf_new_sprite, &sf_sprite, &sprite_name, game))
+    if (check_ptr(&new_sprite, &sf_sprite, &sprite_name, game))
         return NULL;
     if (sprite_name && game)
         game->allocations++;
-    nsf_new_sprite->sprite = sf_sprite;
-    nsf_new_sprite->name = sprite_name;
-    nsf_new_sprite->data = NULL;
-    nsf_new_sprite->texture = NULL;
-    return nsf_new_sprite;
+    new_sprite->sprite = sf_sprite;
+    new_sprite->name = sprite_name;
+    new_sprite->data = NULL;
+    new_sprite->texture = NULL;
+    return new_sprite;
 }
 
 int nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game)

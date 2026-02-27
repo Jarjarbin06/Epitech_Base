@@ -27,4 +27,9 @@ void nsf_window_fill(const nsf_window_t *window, nsf_color_t color);
 int nsf_sprite_draw(nsf_sprite_t *sprite, nsf_window_t *window);
     #endif
 
+    #ifndef P_NSF_BUTTON_DRAW
+        #define P_NSF_BUTTON_DRAW
+void nsf_button_draw(nsf_button_t *button, nsf_window_t *window);
+    #endif
+
 #endif

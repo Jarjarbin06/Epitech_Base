@@ -48,22 +48,22 @@ void nsf_game_set_window(nsf_game_t *game, nsf_window_t *window);
 
     #ifndef P_NSF_WINDOW_DISPLAY
         #define P_NSF_WINDOW_DISPLAY
-int nsf_window_display(nsf_window_t *nsf_window);
+int nsf_window_display(nsf_window_t *window);
     #endif
 
     #ifndef P_NSF_WINDOW_ISOPEN
         #define P_NSF_WINDOW_ISOPEN
-bool nsf_window_isopen(nsf_window_t *nsf_window);
+bool nsf_window_isopen(nsf_window_t *window);
     #endif
 
     #ifndef P_NSF_WINDOW_CLOSE
         #define P_NSF_WINDOW_CLOSE
-void nsf_window_close(nsf_window_t *nsf_window);
+void nsf_window_close(nsf_window_t *window);
     #endif
 
     #ifndef P_NSF_WINDOW_GET_EVENT
         #define P_NSF_WINDOW_GET_EVENT
-bool nsf_window_get_event(nsf_window_t *nsf_window, nsf_event_t *event);
+bool nsf_window_get_event(nsf_window_t *window, nsf_event_t *event);
     #endif
 
     #ifndef P_NSF_SPRITE_SET_TEXTURE
@@ -71,15 +71,26 @@ bool nsf_window_get_event(nsf_window_t *nsf_window, nsf_event_t *event);
 int nsf_sprite_set_texture(nsf_sprite_t *sprite, nsf_texture_t *texture);
     #endif
 
-    #ifndef P_NSF_TEXTURE_SET_TEXTURE
-        #define P_NSF_TEXTURE_SET_TEXTURE
-nsf_texture_t *nsf_texture_create(const char path[], const char name[],
-    nsf_game_t *game);
+    #ifndef P_NSF_BUTTON_SET_POSITION
+        #define P_NSF_BUTTON_SET_POSITION
+void nsf_button_set_position(nsf_button_t *button, nsf_vector position);
     #endif
 
-    #ifndef P_NSF_TEXTURE_DRAW
-        #define P_NSF_TEXTURE_DRAW
-int nsf_texture_destroy(nsf_texture_t **nsf_texture, nsf_game_t *game);
+    #ifndef P_NSF_BUTTON_SET_SIZE
+        #define P_NSF_BUTTON_SET_SIZE
+void nsf_button_set_size(nsf_button_t *button, nsf_vector position);
+    #endif
+
+    #ifndef P_NSF_BUTTON_SET_COLORS
+        #define P_NSF_BUTTON_SET_COLORS
+void nsf_button_set_colors(nsf_button_t *button,
+    nsf_color_t fill_color, nsf_color_t outline_color);
+    #endif
+
+    #ifndef P_NSF_BUTTON_CHECK_CLICK
+        #define P_NSF_BUTTON_CHECK_CLICK
+bool nsf_button_check_click(nsf_button_t *button, nsf_window_t *window,
+    nsf_mouse mouse_button);
     #endif
 
 #endif

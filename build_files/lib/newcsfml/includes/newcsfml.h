@@ -11,6 +11,7 @@
 
     #include "sub_include/newcsfml_define.h"
     #include "sub_include/newcsfml_typedef.h"
+    #include "sub_include/newcsfml_extern_typedef.h"
     #include "sub_include/newcsfml_prototype.h"
     #include "sub_include/newcsfml_draw.h"
     #include "sub_include/newcsfml_manage.h"
@@ -40,6 +41,11 @@ extern const nsf_sprite_functions_t nsf_sprite;
     #ifndef T_NSF_TEXTURES_STRUCT
         #define T_NSF_TEXTURES_STRUCT
 extern const nsf_texture_functions_t nsf_texture;
+    #endif
+
+    #ifndef T_NSF_BUTTONS_STRUCT
+        #define T_NSF_BUTTONS_STRUCT
+extern const nsf_button_functions_t nsf_button;
     #endif
 
     #ifndef T_NSF_EVENTS_STRUCT

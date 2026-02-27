@@ -9,31 +9,31 @@
 
 #include "../../includes/newcsfml.h"
 
-int nsf_window_display(nsf_window_t *nsf_window)
+int nsf_window_display(nsf_window_t *window)
 {
-    if (!nsf_window)
+    if (!window)
         return EXIT_ERROR;
-    sfRenderWindow_display(nsf_window->window);
+    sfRenderWindow_display(window->window);
     return EXIT_SUCCESS;
 }
 
-bool nsf_window_isopen(nsf_window_t *nsf_window)
+bool nsf_window_isopen(nsf_window_t *window)
 {
-    if (!nsf_window)
+    if (!window)
         return false;
-    return (bool)sfRenderWindow_isOpen(nsf_window->window);
+    return (bool)sfRenderWindow_isOpen(window->window);
 }
 
-void nsf_window_close(nsf_window_t *nsf_window)
+void nsf_window_close(nsf_window_t *window)
 {
-    if (!nsf_window)
+    if (!window)
         return;
-    sfRenderWindow_close(nsf_window->window);
+    sfRenderWindow_close(window->window);
 }
 
-bool nsf_window_get_event(nsf_window_t *nsf_window, nsf_event_t *event)
+bool nsf_window_get_event(nsf_window_t *window, nsf_event_t *event)
 {
-    if (!nsf_window || !event)
+    if (!window || !event)
         return false;
-    return (bool)sfRenderWindow_pollEvent(nsf_window->window, event);
+    return (bool)sfRenderWindow_pollEvent(window->window, event);
 }

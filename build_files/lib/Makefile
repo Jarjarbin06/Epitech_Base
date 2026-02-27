@@ -66,7 +66,10 @@ TEST_NAME_LLIST	=	test_llist
 TEST_NAME_STR	=	test_str
 TEST_NAME_PRINT	=	test_print
 TEST_NAME_UTILS	=	test_utils
-TEST_FLAG_NEWCSFML	=	-lcsfml-graphics
+TEST_FLAG_NEWCSFML	=	\
+	-lcsfml-graphics \
+	-lcsfml-window \
+	-lcsfml-system
 TEST_FLAG	=	\
 	$(RUN_FLAGS) \
 	--coverage \
