@@ -32,4 +32,9 @@ void *nsf_free_any(void *ptr, nsf_game_t *game);
 int nsf_auto_free(nsf_uint len, free_t free_list[], nsf_game_t *game);
     #endif
 
+    #ifndef P_NSF_NSF_INIT
+        #define P_NSF_NSF_INIT
+nsf_nsf_functions_t nsf_nsf_init(void);
+    #endif
+
 #endif

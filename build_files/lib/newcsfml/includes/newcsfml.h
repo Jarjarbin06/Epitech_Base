@@ -53,4 +53,9 @@ extern const nsf_button_functions_t nsf_button;
 extern const nsf_event_functions_t nsf_event;
     #endif
 
+    #ifndef T_NSF_NSF_STRUCT
+        #define T_NSF_NSF_STRUCT
+extern const nsf_nsf_functions_t nsf;
+    #endif
+
 #endif

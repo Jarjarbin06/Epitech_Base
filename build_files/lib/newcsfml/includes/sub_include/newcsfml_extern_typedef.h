@@ -90,4 +90,17 @@ typedef struct nsf_button_functions_s {
 } nsf_button_functions_t;
     #endif
 
+    #ifndef T_NSF_NSF
+        #define T_NSF_NSF
+typedef struct nsf_nsf_functions_s {
+    nsf_game_functions_t game;
+    nsf_window_functions_t window;
+    nsf_sprite_functions_t sprite;
+    nsf_button_functions_t button;
+    nsf_texture_functions_t texture;
+    nsf_colors_t clr;
+    nsf_event_functions_t event;
+} nsf_nsf_functions_t;
+    #endif
+
 #endif
