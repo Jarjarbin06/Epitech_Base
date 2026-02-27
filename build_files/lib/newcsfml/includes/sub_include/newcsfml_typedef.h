@@ -70,6 +70,7 @@ typedef enum {
     nsf_evt_text_entered,
     nsf_evt_key_pressed,
     nsf_evt_key_released,
+    nsf_evt_mouse_wheel_moved_deprecated,
     nsf_evt_mouse_wheel_scrolled,
     nsf_evt_mouse_button_pressed,
     nsf_evt_mouse_button_released,
