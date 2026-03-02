@@ -34,6 +34,11 @@ void free_array(void **array);
 char *my_strdup(const char *src);
     #endif
 
+    #ifndef P_MY_STRCMP
+        #define P_MY_STRCMP
+int my_strcmp(const char *str1, const char *str2);
+    #endif
+
     #ifndef P_MY_STRLEN
         #define P_MY_STRLEN
 int my_strlen(const char *str);

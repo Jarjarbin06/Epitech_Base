@@ -32,10 +32,10 @@ nsf_button_t *nsf_button_create(const char name[], nsf_game_t *game)
         return NULL;
     new_button->button = sf_button;
     new_button->texture = NULL;
-    new_button->size = (nsf_vector){0, 0};
-    new_button->position = (nsf_vector){0, 0};
-    new_button->fill_color = (nsf_color_t){0, 0, 0, 0};
-    new_button->outline_color = (nsf_color_t){0, 0, 0, 0};
+    nsf_button_set_size(new_button, (nsf_vector){0, 0});
+    nsf_button_set_position(new_button, (nsf_vector){0, 0});
+    nsf_button_set_colors(new_button, (nsf_color_t){0, 0, 0, 0},
+        (nsf_color_t){0, 0, 0, 0}, 5);
     new_button->name = name_str;
     return new_button;
 }

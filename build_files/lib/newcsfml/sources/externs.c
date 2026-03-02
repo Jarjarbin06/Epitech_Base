@@ -18,6 +18,8 @@ const nsf_game_functions_t nsf_game = {
     nsf_game_get_window,
     nsf_game_add_sprite,
     nsf_game_add_button,
+    nsf_game_get_sprite,
+    nsf_game_get_button,
     nsf_game_draw
 };
 
@@ -32,7 +34,9 @@ const nsf_window_functions_t nsf_window = {
     nsf_window_draw_line,
     nsf_window_draw,
     nsf_window_add_sprite,
-    nsf_window_add_button
+    nsf_window_add_button,
+    nsf_window_get_sprite,
+    nsf_window_get_button
 };
 
 const nsf_sprite_functions_t nsf_sprite = {
@@ -49,7 +53,7 @@ const nsf_button_functions_t nsf_button = {
     nsf_button_set_position,
     nsf_button_set_size,
     nsf_button_set_colors,
-    nsf_button_check_click,
+    nsf_button_isclicked,
     nsf_button_draw
 };
 

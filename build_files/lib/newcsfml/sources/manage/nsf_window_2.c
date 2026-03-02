@@ -70,3 +70,29 @@ void nsf_window_add_button(nsf_window_t *window, nsf_button_t *button,
     nsf_free_any(window->elements, game);
     window->elements = new_elements;
 }
+
+nsf_sprite_t *nsf_window_get_sprite(nsf_window_t *window,
+    const char sprite_name[])
+{
+    if (!window || !window->elements || !sprite_name)
+        return NULL;
+    for (int idx = 0; idx < get_elements_len(window->elements); idx++)
+        if (!(window->elements[idx]->element_type == SPRITE_ELEMENT &&
+            my_strcmp(((nsf_sprite_t *)window->elements[idx]->ptr)->name,
+                sprite_name)))
+            return (nsf_sprite_t *)window->elements[idx]->ptr;
+    return NULL;
+}
+
+nsf_button_t *nsf_window_get_button(nsf_window_t *window,
+    const char button_name[])
+{
+    if (!window || !window->elements || !button_name)
+        return NULL;
+    for (int idx = 0; idx < get_elements_len(window->elements); idx++)
+        if (!(window->elements[idx]->element_type == BUTTON_ELEMENT &&
+            my_strcmp(((nsf_button_t *)window->elements[idx]->ptr)->name,
+                button_name)))
+            return (nsf_button_t *)window->elements[idx]->ptr;
+    return NULL;
+}

@@ -19,13 +19,15 @@ typedef struct nsf_game_functions_s {
     nsf_game_t *(*create)(void);
     int (*destroy)(nsf_game_t **);
     int (*display)(nsf_game_t *);
-    bool (*isopen)(nsf_game_t *);
+    bool (*is_open)(nsf_game_t *);
     void (*close)(nsf_game_t *);
     bool (*get_event)(nsf_game_t *, nsf_event_t *);
     void (*set_window)(nsf_game_t *, nsf_window_t *);
     nsf_window_t *(*get_window)(nsf_game_t *);
     void (*add_sprite)(nsf_game_t *, nsf_sprite_t *);
     void (*add_button)(nsf_game_t *, nsf_button_t *);
+    nsf_sprite_t *(*get_sprite)(nsf_game_t *, const char[]);
+    nsf_button_t *(*get_button)(nsf_game_t *, const char[]);
     void (*draw)(nsf_game_t *);
 } nsf_game_functions_t;
     #endif
@@ -37,7 +39,7 @@ typedef struct nsf_window_functions_s {
         nsf_window_style_t, nsf_game_t *);
     int (*destroy)(nsf_window_t **, nsf_game_t *);
     int (*display)(nsf_window_t *);
-    bool (*isopen)(nsf_window_t *);
+    bool (*is_open)(nsf_window_t *);
     void (*close)(nsf_window_t *);
     bool (*get_event)(nsf_window_t *, nsf_event_t *);
     void (*fill)(const nsf_window_t *, nsf_color_t);
@@ -46,6 +48,8 @@ typedef struct nsf_window_functions_s {
     void (*draw)(nsf_window_t *);
     void (*add_sprite)(nsf_window_t *, nsf_sprite_t *, nsf_game_t *);
     void (*add_button)(nsf_window_t *, nsf_button_t *, nsf_game_t *);
+    nsf_sprite_t *(*get_sprite)(nsf_window_t *, const char[]);
+    nsf_button_t *(*get_button)(nsf_window_t *, const char[]);
 } nsf_window_functions_t;
     #endif
 
@@ -85,7 +89,7 @@ typedef struct nsf_button_functions_s {
     void (*set_position)(nsf_button_t *, nsf_vector);
     void (*set_size)(nsf_button_t *, nsf_vector);
     void (*set_colors)(nsf_button_t *, nsf_color_t, nsf_color_t, nsf_uint);
-    bool (*check_click)(nsf_button_t *, nsf_window_t *, nsf_mouse);
+    bool (*is_clicked)(nsf_button_t *, nsf_window_t *, nsf_mouse);
     void (*draw)(nsf_button_t *, nsf_window_t *);
 } nsf_button_functions_t;
     #endif

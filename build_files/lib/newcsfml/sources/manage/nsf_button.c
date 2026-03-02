@@ -16,21 +16,25 @@ void nsf_button_set_texture(nsf_button_t *button, nsf_texture_t *texture)
         return;
     button->texture = texture;
     sfRectangleShape_setTexture(button->button, button->texture->texture,
-        sfFalse);
+        sfTrue);
+    button->size = sfRectangleShape_getSize(button->button);
 }
 
 void nsf_button_set_position(nsf_button_t *button, const nsf_vector position)
 {
     if (!button)
         return;
-    sfRectangleShape_setPosition(button->button, (sfVector2f)position);
+    button->position = position;
+    sfRectangleShape_setPosition(button->button, button->position);
 }
 
-void nsf_button_set_size(nsf_button_t *button, const nsf_vector position)
+void nsf_button_set_size(nsf_button_t *button, const nsf_vector size)
 {
     if (!button)
         return;
-    sfRectangleShape_setSize(button->button, (sfVector2f)position);
+    button->size = size;
+    sfRectangleShape_setOrigin(button->button, (sfVector2f){0.0f, 0.0f});
+    sfRectangleShape_setSize(button->button, button->size);
 }
 
 void nsf_button_set_colors(nsf_button_t *button,
@@ -39,24 +43,32 @@ void nsf_button_set_colors(nsf_button_t *button,
 {
     if (!button)
         return;
-    if (fill_color.a)
-        sfRectangleShape_setFillColor(button->button, (sfColor)fill_color);
-    if (outline_color.a)
-    sfRectangleShape_setOutlineColor(button->button, (sfColor)outline_color);
+    if (fill_color.a) {
+        button->fill_color = fill_color;
+        sfRectangleShape_setFillColor(button->button, button->fill_color);
+    }
+    if (outline_color.a) {
+        button->outline_color = outline_color;
+        sfRectangleShape_setOutlineColor(button->button,
+            button->outline_color);
+    }
     sfRectangleShape_setOutlineThickness(button->button,
         (float)outline_thickness);
 }
 
-bool nsf_button_check_click(nsf_button_t *button, nsf_window_t *window,
-    nsf_mouse mouse_button)
+bool nsf_button_isclicked(nsf_button_t *button, nsf_window_t *window,
+    const nsf_mouse mouse_button)
 {
-    sfVector2i mousePos = {};
+    sfVector2i pixelPos = {};
+    nsf_vector worldPos = {};
     sfFloatRect bounds = {};
 
-    if (!button || !window)
+    if (!button || !button->button || !window)
         return false;
-    mousePos = sfMouse_getPositionRenderWindow(window->window);
+    pixelPos = sfMouse_getPositionRenderWindow(window->window);
+    worldPos = sfRenderWindow_mapPixelToCoords(window->window,
+        pixelPos, NULL);
     bounds = sfRectangleShape_getGlobalBounds(button->button);
-    return (sfFloatRect_contains(&bounds, mousePos.x, mousePos.y) &&
-        sfMouse_isButtonPressed((sfMouseButton)mouse_button));
+    return sfFloatRect_contains(&bounds, worldPos.x, worldPos.y) &&
+        sfMouse_isButtonPressed((sfMouseButton)mouse_button);
 }
