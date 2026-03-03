@@ -14,7 +14,7 @@
 
 static void check_button(nsf_window_t *window, nsf_button_t *btn)
 {
-    if (nsf.button.is_clicked(btn, window, nsf_mouse_left))
+    if (nsf.button.get_state(btn, window, nsf_mouse_left))
         nsf.window.close(window);
 }
 

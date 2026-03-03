@@ -89,7 +89,7 @@ typedef struct nsf_button_functions_s {
     void (*set_position)(nsf_button_t *, nsf_vector);
     void (*set_size)(nsf_button_t *, nsf_vector);
     void (*set_colors)(nsf_button_t *, nsf_color_t, nsf_color_t, nsf_uint);
-    bool (*is_clicked)(nsf_button_t *, nsf_window_t *, nsf_mouse);
+    int (*get_state)(nsf_button_t *, nsf_window_t *, nsf_mouse);
     void (*draw)(nsf_button_t *, nsf_window_t *);
 } nsf_button_functions_t;
     #endif

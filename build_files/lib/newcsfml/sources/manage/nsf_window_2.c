@@ -34,7 +34,7 @@ static nsf_window_element_t **append_element(const nsf_window_t *window,
         return NULL;
     new_element->element_type = element.element_type;
     new_element->ptr = element.ptr;
-    for (int idx = 0; idx < old_len; idx++)
+    for (int idx = 0; (nsf_uint)idx < old_len; idx++)
         new_elements[idx] = window->elements[idx];
     new_elements[old_len] = new_element;
     new_elements[new_len] = NULL;

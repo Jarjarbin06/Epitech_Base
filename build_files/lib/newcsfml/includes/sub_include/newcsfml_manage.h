@@ -144,7 +144,7 @@ void nsf_button_set_colors(nsf_button_t *button,
 
     #ifndef P_NSF_BUTTON_CHECK_CLICK
         #define P_NSF_BUTTON_CHECK_CLICK
-bool nsf_button_isclicked(nsf_button_t *button, nsf_window_t *window,
+int nsf_button_get_state(nsf_button_t *button, nsf_window_t *window,
     nsf_mouse mouse_button);
     #endif
 

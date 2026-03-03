@@ -53,7 +53,7 @@ const nsf_button_functions_t nsf_button = {
     nsf_button_set_position,
     nsf_button_set_size,
     nsf_button_set_colors,
-    nsf_button_isclicked,
+    nsf_button_get_state,
     nsf_button_draw
 };
 

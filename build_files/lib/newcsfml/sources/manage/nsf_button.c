@@ -56,12 +56,14 @@ void nsf_button_set_colors(nsf_button_t *button,
         (float)outline_thickness);
 }
 
-bool nsf_button_isclicked(nsf_button_t *button, nsf_window_t *window,
+int nsf_button_get_state(nsf_button_t *button, nsf_window_t *window,
     const nsf_mouse mouse_button)
 {
     sfVector2i pixelPos = {};
     nsf_vector worldPos = {};
     sfFloatRect bounds = {};
+    bool hovered = false;
+    bool pressed = false;
 
     if (!button || !button->button || !window)
         return false;
@@ -69,6 +71,12 @@ bool nsf_button_isclicked(nsf_button_t *button, nsf_window_t *window,
     worldPos = sfRenderWindow_mapPixelToCoords(window->window,
         pixelPos, NULL);
     bounds = sfRectangleShape_getGlobalBounds(button->button);
-    return sfFloatRect_contains(&bounds, worldPos.x, worldPos.y) &&
-        sfMouse_isButtonPressed((sfMouseButton)mouse_button);
+    hovered = sfFloatRect_contains(&bounds, worldPos.x, worldPos.y);
+    pressed = sfMouse_isButtonPressed((sfMouseButton)mouse_button);
+    if (hovered) {
+        if (!pressed)
+            return 1;
+        return 2;
+    }
+    return 0;
 }
