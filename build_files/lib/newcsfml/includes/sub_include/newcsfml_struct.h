@@ -23,7 +23,7 @@ int nsf_game_destroy(nsf_game_t **game);
 
     #ifndef P_NSF_WINDOW_CREATE
         #define P_NSF_WINDOW_CREATE
-nsf_window_t *nsf_window_create(nsf_window_settings_t settings,
+nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
     char title[], nsf_window_style_t window_style, nsf_game_t *game);
     #endif
 

@@ -30,7 +30,8 @@ void *nsf_free_any(void *ptr, nsf_game_t *game)
     return NULL;
 }
 
-int nsf_auto_free(const nsf_uint len, free_t free_list[], nsf_game_t *game)
+int nsf_auto_free(const nsf_uint len, const free_t free_list[],
+    nsf_game_t *game)
 {
     int freed = 0;
 

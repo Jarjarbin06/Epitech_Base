@@ -9,11 +9,11 @@
 
 #include "../../includes/newcsfml.h"
 
-static sfRenderWindow *get_new_window(const nsf_window_settings_t settings,
+static sfRenderWindow *get_new_window(const nsf_window_settings_t settings[],
     const str *title_str, const nsf_window_style_t window_style)
 {
     return sfRenderWindow_create(
-        (sfVideoMode){settings.width, settings.height, settings.bpp},
+        (sfVideoMode){settings->width, settings->height, settings->bpp},
         *title_str, (sfWindowStyle)window_style, NULL);
 }
 
@@ -41,7 +41,7 @@ static nsf_window_element_t **create_elements(nsf_game_t *game)
     return elements;
 }
 
-nsf_window_t *nsf_window_create(const nsf_window_settings_t settings,
+nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
     char title[], const nsf_window_style_t window_style, nsf_game_t *game)
 {
     nsf_window_t *new_window = nsf_malloc_any(sizeof(nsf_window_t),
@@ -53,7 +53,7 @@ nsf_window_t *nsf_window_create(const nsf_window_settings_t settings,
     if (check_ptr_1(&new_window, &sf_window, &title_str, game))
         return NULL;
     new_window->window = sf_window;
-    new_window->fps = settings.fps;
+    new_window->fps = settings->fps;
     new_window->title = title_str;
     new_window->elements = create_elements(game);
     new_window->background = NULL;

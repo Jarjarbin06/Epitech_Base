@@ -21,7 +21,7 @@ static int get_elements_len(nsf_window_element_t **element)
 }
 
 static nsf_window_element_t **append_element(const nsf_window_t *window,
-    const nsf_window_element_t element, nsf_game_t *game)
+    const nsf_window_element_t element[], nsf_game_t *game)
 {
     const nsf_uint old_len = get_elements_len(window->elements);
     const nsf_uint new_len = old_len + 1;
@@ -32,8 +32,8 @@ static nsf_window_element_t **append_element(const nsf_window_t *window,
 
     if (!window->elements || !new_elements || !new_element)
         return NULL;
-    new_element->element_type = element.element_type;
-    new_element->ptr = element.ptr;
+    new_element->element_type = element->element_type;
+    new_element->ptr = element->ptr;
     for (int idx = 0; (nsf_uint)idx < old_len; idx++)
         new_elements[idx] = window->elements[idx];
     new_elements[old_len] = new_element;
@@ -49,7 +49,7 @@ void nsf_window_add_sprite(nsf_window_t *window, nsf_sprite_t *sprite,
     if (!window || !window->elements || !sprite)
         return;
     new_elements = append_element(window,
-        (nsf_window_element_t){SPRITE_ELEMENT, (void *)sprite}, game);
+        (nsf_window_element_t[]){{SPRITE_ELEMENT, (void *)sprite}}, game);
     if (!new_elements)
         return;
     nsf_free_any(window->elements, game);
@@ -64,7 +64,7 @@ void nsf_window_add_button(nsf_window_t *window, nsf_button_t *button,
     if (!window || !window->elements || !button)
         return;
     new_elements = append_element(window,
-        (nsf_window_element_t){BUTTON_ELEMENT, (void *)button}, game);
+        (nsf_window_element_t[]){{BUTTON_ELEMENT, (void *)button}}, game);
     if (!new_elements)
         return;
     nsf_free_any(window->elements, game);

@@ -29,7 +29,7 @@ void *nsf_free_any(void *ptr, nsf_game_t *game);
 
     #ifndef P_NSF_AUTO_FREE
         #define P_NSF_AUTO_FREE
-int nsf_auto_free(nsf_uint len, free_t free_list[], nsf_game_t *game);
+int nsf_auto_free(nsf_uint len, const free_t free_list[], nsf_game_t *game);
     #endif
 
     #ifndef P_NSF_NSF_INIT

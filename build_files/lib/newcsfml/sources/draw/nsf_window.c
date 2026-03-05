@@ -10,19 +10,19 @@
 
 #include "../../includes/newcsfml.h"
 
-void nsf_window_fill(const nsf_window_t *window, const nsf_color_t color)
+void nsf_window_fill(const nsf_window_t *window, const nsf_color_t color[])
 {
     if (!window)
         return;
-    sfRenderWindow_clear(window->window, color);
+    sfRenderWindow_clear(window->window, *color);
 }
 
 void nsf_window_draw_line(const nsf_window_t *window,
-    const nsf_vector a, const nsf_vector b, nsf_color_t color)
+    const nsf_vector a[], const nsf_vector b[], const nsf_color_t color[])
 {
     sfVertexArray *line = sfVertexArray_create();
-    const sfVertex vertex1 = {(sfVector2f)a, (sfColor)color, {}};
-    const sfVertex vertex2 = {(sfVector2f)b, (sfColor)color, {}};
+    const sfVertex vertex1 = {(sfVector2f)*a, (sfColor)*color, {}};
+    const sfVertex vertex2 = {(sfVector2f)*b, (sfColor)*color, {}};
 
     if (!line || !window)
         return;

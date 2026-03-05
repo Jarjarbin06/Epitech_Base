@@ -51,6 +51,7 @@ typedef struct nsf_colors_s {
     nsf_color_t yellow;
     nsf_color_t magenta;
     nsf_color_t cyan;
+    nsf_color_t grey;
     nsf_color_t transparent;
 } nsf_colors_t;
     #endif

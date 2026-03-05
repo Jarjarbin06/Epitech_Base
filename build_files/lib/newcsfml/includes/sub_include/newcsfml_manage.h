@@ -127,18 +127,18 @@ void nsf_button_set_texture(nsf_button_t *button, nsf_texture_t *texture);
 
     #ifndef P_NSF_BUTTON_SET_POSITION
         #define P_NSF_BUTTON_SET_POSITION
-void nsf_button_set_position(nsf_button_t *button, nsf_vector position);
+void nsf_button_set_position(nsf_button_t *button, const nsf_vector position[]);
     #endif
 
     #ifndef P_NSF_BUTTON_SET_SIZE
         #define P_NSF_BUTTON_SET_SIZE
-void nsf_button_set_size(nsf_button_t *button, nsf_vector size);
+void nsf_button_set_size(nsf_button_t *button, const nsf_vector size[]);
     #endif
 
     #ifndef P_NSF_BUTTON_SET_COLORS
         #define P_NSF_BUTTON_SET_COLORS
 void nsf_button_set_colors(nsf_button_t *button,
-    nsf_color_t fill_color, nsf_color_t outline_color,
+    const nsf_color_t fill_color[], const nsf_color_t outline_color[],
     nsf_uint outline_thickness);
     #endif
 

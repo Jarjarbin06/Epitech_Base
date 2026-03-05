@@ -34,7 +34,7 @@ static void check_event(nsf_window_t *window, nsf_event_t *event)
 static nsf_window_t *create_window(nsf_game_t *game)
 {
     nsf_window_t *window = nsf.window.create(
-        (nsf_window_settings_t){500, 500, 32, 30},
+        (nsf_window_settings_t[]){{500, 500, 32, 30}},
         "my_window", nsf_wdw_default_style, game);
 
     return window;
@@ -51,9 +51,9 @@ static void create_elements(nsf_game_t *game)
     nsf.button.set_texture(button,
         nsf.texture.create("/home/jarjarbin/Pictures/Python.png",
             "button texture", game));
-    nsf.button.set_size(button, (nsf_vector){100.0f, 100.0f});
-    nsf.button.set_position(button, (nsf_vector){300.0f, 300.0f});
-    nsf.button.set_colors(button, nsf.clr.transparent, nsf.clr.blue, 2);
+    nsf.button.set_size(button, (nsf_vector[]){{100.0f, 100.0f}});
+    nsf.button.set_position(button, (nsf_vector[]){{300.0f, 300.0f}});
+    nsf.button.set_colors(button, &nsf.clr.transparent, &nsf.clr.blue, 2);
     nsf.game.add_button(game, button);
     nsf.game.add_sprite(game, sprite);
 }
@@ -67,7 +67,7 @@ int main(void)
     create_elements(game);
     while (nsf.game.is_open(game)) {
         check_event(nsf.game.get_window(game), &event);
-        nsf.window.fill(nsf.game.get_window(game), nsf.clr.white);
+        nsf.window.fill(nsf.game.get_window(game), &nsf.clr.white);
         nsf.game.draw(game);
         nsf.game.display(game);
     }

@@ -20,38 +20,34 @@ void nsf_button_set_texture(nsf_button_t *button, nsf_texture_t *texture)
     button->size = sfRectangleShape_getSize(button->button);
 }
 
-void nsf_button_set_position(nsf_button_t *button, const nsf_vector position)
+void nsf_button_set_position(nsf_button_t *button, const nsf_vector position[])
 {
     if (!button)
         return;
-    button->position = position;
+    button->position = *position;
     sfRectangleShape_setPosition(button->button, button->position);
 }
 
-void nsf_button_set_size(nsf_button_t *button, const nsf_vector size)
+void nsf_button_set_size(nsf_button_t *button, const nsf_vector size[])
 {
     if (!button)
         return;
-    button->size = size;
+    button->size = *size;
     sfRectangleShape_setOrigin(button->button, (sfVector2f){0.0f, 0.0f});
     sfRectangleShape_setSize(button->button, button->size);
 }
 
 void nsf_button_set_colors(nsf_button_t *button,
-    const nsf_color_t fill_color, const nsf_color_t outline_color,
+    const nsf_color_t fill_color[], const nsf_color_t outline_color[],
     const nsf_uint outline_thickness)
 {
     if (!button)
         return;
-    if (fill_color.a) {
-        button->fill_color = fill_color;
-        sfRectangleShape_setFillColor(button->button, button->fill_color);
-    }
-    if (outline_color.a) {
-        button->outline_color = outline_color;
-        sfRectangleShape_setOutlineColor(button->button,
-            button->outline_color);
-    }
+    button->fill_color = *fill_color;
+    sfRectangleShape_setFillColor(button->button, button->fill_color);
+    button->outline_color = *outline_color;
+    sfRectangleShape_setOutlineColor(button->button,
+        button->outline_color);
     sfRectangleShape_setOutlineThickness(button->button,
         (float)outline_thickness);
 }
