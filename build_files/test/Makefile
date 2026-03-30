@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.2.0
-info_LAST_UPDATE	=	2026/03/30 12:26
+info_VERSION	=	v0.2.1
+info_LAST_UPDATE	=	2026/03/30 13:24
 info_LIB_MAKER	=	Makefile
 
 #########
@@ -32,8 +32,8 @@ LIB_SRC = $(shell find $(LIB_SRC_PATH) -type f -path "*/sources/*.c")
 OBJ     = $(SRC:.c=.o) $(LIB_SRC:.c=.o) $(MAIN:.c=.o)
 
 # Includes #
-INCLUDE_DIRS = $(shell find $(INCLUDE_PATH) -type d)
-LIB_INCLUDE_DIRS = $(shell find $(LIB_PATH) -type d -path "*/includes")
+INCLUDE_DIRS	=	$(shell find $(INCLUDE_PATH) -type d)
+LIB_INCLUDE_DIRS	=	$(shell find $(LIB_PATH) -type d \( -name "includes" -o -path "*/includes/*" \))
 
 # Bonus #
 BONUS_PATH	=	bonus
@@ -64,7 +64,9 @@ CARG	=
 
 CFLAGS	=	\
 	-Wall \
-	-Wextra
+	-Wextra \
+	$(addprefix -I, $(INCLUDE_DIRS)) \
+	$(addprefix -I, $(LIB_INCLUDE_DIRS))
 
 CFLAGS_PLUS	= \
 	-L./$(LIB_PATH) \
@@ -72,9 +74,7 @@ CFLAGS_PLUS	= \
 	  $(if $(wildcard lib/$(lib)), \
 		$(eval CFLAGS_PLUS += -l$(lib)) \
 	  ) \
-	) \
-	$(addprefix -I, $(INCLUDE_DIRS)) \
-	$(addprefix -I, $(LIB_INCLUDE_DIRS))
+	)
 
 TESTCNAME	=	unit_tests
 TESTSEGCNAME	=	seg_tests
