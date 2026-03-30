@@ -29,6 +29,8 @@ SRC     = $(shell find $(SRC_PATH) -type f -name "*.c")
 LIB_SRC = $(shell find $(LIB_SRC_PATH) -type f -path "*/sources/*.c")
 
 # Includes #
+INCLUDES = $(shell find $(INCLUDE_PATH) -type d -printf '-I%p ')
+LIB_INCLUDES = $(shell find $(LIB_PATH) -type d \( -name "includes" -o -path "*/includes/*" \) -printf '-I%p ')
 INCLUDE_DIRS	=	$(shell find $(INCLUDE_PATH) -type d)
 LIB_INCLUDE_DIRS	=	$(shell find $(LIB_PATH) -type d \( -name "includes" -o -path "*/includes/*" \))
 
@@ -66,9 +68,7 @@ CARG	=
 CFLAGS	=	\
 	-Wall \
 	-Wextra
-CPPFLAGS	=	\
-	-I$(INCLUDE_DIRS) \
-	-I$(LIB_INCLUDE_DIRS)
+CPPFLAGS	=	$(INCLUDES) $(LIB_INCLUDES)
 
 CFLAGS_PLUS	= \
 	-L./$(LIB_PATH) \
@@ -90,7 +90,7 @@ ALLOW_UNBUILD	=	false
 #################
 all: $(CNAME)
 
-$(CNAME): $(OBJ) $(LIB_OBJ) $(MAIN_OBJ)
+$(CNAME): $(SRC_OBJ) $(LIB_OBJ) $(MAIN_OBJ)
 	-@make --no-print-directory -C lib/newcsfml re CC=$(CC) CFLAGS="$(CFLAGS)"
 	-@make --no-print-directory -C lib/str re CC=$(CC) CFLAGS="$(CFLAGS)"
 	-@make --no-print-directory -C lib/llist re CC=$(CC) CFLAGS="$(CFLAGS)"
@@ -98,7 +98,7 @@ $(CNAME): $(OBJ) $(LIB_OBJ) $(MAIN_OBJ)
 	-@make --no-print-directory -C lib/print re CC=$(CC) CFLAGS="$(CFLAGS)"
 	-@make --no-print-directory -C lib/utils re CC=$(CC) CFLAGS="$(CFLAGS)"
 	-@cp -f lib/*/*.a lib/
-	$(CC) -o $(CNAME) $(OBJ) $(LIB_OBJ) $(MAIN_OBJ) $(CFLAGS) $(CFLAGS_PLUS)
+	$(CC) -o $(CNAME) $(SRC_OBJ) $(LIB_OBJ) $(MAIN_OBJ) $(CFLAGS) $(CFLAGS_PLUS)
 
 clean:
 	@rm -f $(OBJ)
