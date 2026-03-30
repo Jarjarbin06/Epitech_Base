@@ -65,9 +65,10 @@ CARG	=
 
 CFLAGS	=	\
 	-Wall \
-	-Wextra \
-	$(addprefix -I, $(INCLUDE_DIRS)) \
-	$(addprefix -I, $(LIB_INCLUDE_DIRS))
+	-Wextra
+CPPFLAGS	=	\
+	-I$(INCLUDE_DIRS) \
+	-I$(LIB_INCLUDE_DIRS)
 
 CFLAGS_PLUS	= \
 	-L./$(LIB_PATH) \
