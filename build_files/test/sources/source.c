@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 
-#include "../includes/include.h"
+#include "include.h"
 
 int function(const int argc, const char **argv)
 {

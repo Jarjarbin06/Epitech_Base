@@ -9,10 +9,6 @@
 #ifndef INCLUDE_I
     #define INCLUDE_I
 
-    #include "include_define.h"
-    #include "include_typedef.h"
-    #include "include_prototype.h"
-
     #ifndef INCLUDE_I_LIB_C
         #define INCLUDE_I_LIB_C
 
