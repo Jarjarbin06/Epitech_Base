@@ -80,8 +80,6 @@ TESTCFLAGS	=	\
 	-lcriterion
 
 ALLOW_UNBUILD	=	false
-LIBS_A = \
-	lib/libprint.a
 #################
 ## Basic rules ##
 #################
@@ -98,8 +96,7 @@ compile_libs:
 	-@cp -f lib/*/*.a lib/
 
 $(CNAME): $(SRC_OBJ) $(MAIN_OBJ)
-	@echo "$(CFLAGS_PLUS)"
-	$(CC) -o $(CNAME) $(SRC_OBJ) $(MAIN_OBJ) $(CFLAGS) $(CPPFLAGS) $(CFLAGS_PLUS) $(LIBS_A)
+	$(CC) -o $(CNAME) $(SRC_OBJ) $(MAIN_OBJ) $(CFLAGS) $(CPPFLAGS) $(CFLAGS_PLUS)
 
 clean:
 	@rm -f $(OBJ)
@@ -192,38 +189,52 @@ unbuild:
 endif
 
 import_error:
+	@mkdir ./lib/error
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/error/* ./lib/error
-	@cp -rf lib/error/includes/* ./includes/lib_includes/error/
+	@mkdir ./includes/lib_includes/error
+	@cp -rf lib/error/includes/* ./includes/lib_includes/error
 	-@make push_setup
 
 import_llist:
+	@mkdir ./lib/llist
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
-	@cp -rf lib/llist/includes/* ./includes/lib_includes/llist/
+	@mkdir ./includes/lib_includes/llist
+	@cp -rf lib/llist/includes/* ./includes/lib_includes/llist
 	-@make push_setup
 
 import_newcsfml:
+	@mkdir ./lib/newcsfml
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
-	@cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml/
+	@mkdir ./includes/lib_includes/newcsfml
+	@cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml
 	-@make push_setup
 
 import_print:
+	@mkdir ./lib/print
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/print/* ./lib/print
-	@cp -rf lib/print/includes/* ./includes/lib_includes/print/
+	@mkdir ./includes/lib_includes/print
+	@cp -rf lib/print/includes/* ./includes/lib_includes/print
 	-@make push_setup
 
 import_str:
+	@mkdir ./lib/str
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
-	@cp -rf lib/str/includes/* ./includes/lib_includes/str/
+	@mkdir ./includes/lib_includes/str
+	@cp -rf lib/str/includes/* ./includes/lib_includes/str
 	-@make push_setup
 
 import_twodlist:
+	@mkdir ./lib/twodlist
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
-	@cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist/
+	@mkdir ./includes/lib_includes/twodlist
+	@cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist
 	-@make push_setup
 
 import_utils:
+	@mkdir ./lib/utils
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/utils/* ./lib/utils
-	@cp -rf lib/utils/includes/* ./includes/lib_includes/utils/
+	@mkdir ./includes/lib_includes/utils
+	@cp -rf lib/utils/includes/* ./includes/lib_includes/utils
 	-@make push_setup
 
 push_setup:

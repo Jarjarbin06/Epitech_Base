@@ -5,9 +5,11 @@
 ** <description>
 */
 
+#include "print.h"
 #include "include.h"
 
 int function(const int argc, const char **argv)
 {
+    print("hi\n");
     return EXIT_SUCCESS;
 }
