@@ -5,8 +5,6 @@
 ** <description>
 */
 
-#include <stdio.h>
-
 #include "include.h"
 
 int function(const int argc, const char **argv)

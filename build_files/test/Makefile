@@ -30,9 +30,7 @@ LIB_SRC = $(shell find $(LIB_SRC_PATH) -type f -path "*/sources/*.c")
 
 # Includes #
 INCLUDES = $(shell find $(INCLUDE_PATH) -type d -printf '-I%p ')
-LIB_INCLUDES = $(shell find $(LIB_PATH) -type d \( -name "includes" -o -path "*/includes/*" \) -printf '-I%p ')
 INCLUDE_DIRS	=	$(shell find $(INCLUDE_PATH) -type d)
-LIB_INCLUDE_DIRS	=	$(shell find $(LIB_PATH) -type d \( -name "includes" -o -path "*/includes/*" \))
 
 # Bonus #
 BONUS_PATH	=	bonus
@@ -40,12 +38,17 @@ BONUS	=	$(BONUS_PATH)/bonus_file.c
 
 # Lib list #
 LIBS_LIST	=	\
+	error \
 	llist \
 	newcsfml \
 	print \
 	str \
 	twodlist \
 	utils
+LIB_PATHS	=	-L./lib
+LIB_FLAGS	=	\
+	$(foreach lib,$(LIBS_LIST), \
+		$(if $(wildcard lib/$(lib).a),-l$(lib),) )
 
 # Main #
 MAIN	=	main.c
@@ -68,15 +71,8 @@ CARG	=
 CFLAGS	=	\
 	-Wall \
 	-Wextra
-CPPFLAGS	=	$(INCLUDES) $(LIB_INCLUDES)
-
-CFLAGS_PLUS	= \
-	-L./$(LIB_PATH) \
-	$(foreach lib,$(LIBS_LIST), \
-	  $(if $(wildcard lib/$(lib)), \
-		$(eval CFLAGS_PLUS += -l$(lib)) \
-	  ) \
-	)
+CPPFLAGS	=	$(INCLUDES)
+CFLAGS_PLUS	=	$(LIB_PATHS) $(LIB_FLAGS)
 
 TESTCNAME	=	unit_tests
 TESTCFLAGS	=	\
@@ -84,21 +80,26 @@ TESTCFLAGS	=	\
 	-lcriterion
 
 ALLOW_UNBUILD	=	false
-
+LIBS_A = \
+	lib/libprint.a
 #################
 ## Basic rules ##
 #################
-all: $(CNAME)
+all: compile_libs $(CNAME)
 
-$(CNAME): $(SRC_OBJ) $(LIB_OBJ) $(MAIN_OBJ)
-	-@make --no-print-directory -C lib/newcsfml re CC=$(CC) CFLAGS="$(CFLAGS)"
-	-@make --no-print-directory -C lib/str re CC=$(CC) CFLAGS="$(CFLAGS)"
-	-@make --no-print-directory -C lib/llist re CC=$(CC) CFLAGS="$(CFLAGS)"
-	-@make --no-print-directory -C lib/twodlist re CC=$(CC) CFLAGS="$(CFLAGS)"
-	-@make --no-print-directory -C lib/print re CC=$(CC) CFLAGS="$(CFLAGS)"
-	-@make --no-print-directory -C lib/utils re CC=$(CC) CFLAGS="$(CFLAGS)"
+compile_libs:
+	-@make -C lib/newcsfml CC=$(CC) CFLAGS="$(CFLAGS)"
+	-@make -C lib/str CC=$(CC) CFLAGS="$(CFLAGS)"
+	-@make -C lib/llist CC=$(CC) CFLAGS="$(CFLAGS)"
+	-@make -C lib/twodlist CC=$(CC) CFLAGS="$(CFLAGS)"
+	-@make -C lib/print CC=$(CC) CFLAGS="$(CFLAGS)"
+	-@make -C lib/utils CC=$(CC) CFLAGS="$(CFLAGS)"
+	-@make -C lib/error CC=$(CC) CFLAGS="$(CFLAGS)"
 	-@cp -f lib/*/*.a lib/
-	$(CC) -o $(CNAME) $(SRC_OBJ) $(LIB_OBJ) $(MAIN_OBJ) $(CFLAGS) $(CFLAGS_PLUS)
+
+$(CNAME): $(SRC_OBJ) $(MAIN_OBJ)
+	@echo "$(CFLAGS_PLUS)"
+	$(CC) -o $(CNAME) $(SRC_OBJ) $(MAIN_OBJ) $(CFLAGS) $(CPPFLAGS) $(CFLAGS_PLUS) $(LIBS_A)
 
 clean:
 	@rm -f $(OBJ)
@@ -107,24 +108,26 @@ clean:
 	@rm -f *.gc* */*.gc* */*/*.gc*
 	@rm -f *~* */*~* */*/*~*
 	@rm -f *# */*# */*/*#
-	-@make --no-print-directory -C lib/newcsfml clean
-	-@make --no-print-directory -C lib/str clean
-	-@make --no-print-directory -C lib/llist clean
-	-@make --no-print-directory -C lib/twodlist clean
-	-@make --no-print-directory -C lib/print clean
-	-@make --no-print-directory -C lib/utils clean
+	-@make -C lib/newcsfml clean
+	-@make -C lib/str clean
+	-@make -C lib/llist clean
+	-@make -C lib/twodlist clean
+	-@make -C lib/print clean
+	-@make -C lib/utils clean
+	-@make -C lib/error clean
 
 fclean:	clean
 	@rm -f $(CNAME)
 	@rm -f $(TESTCNAME)
 	@rm -f $(TESTSEGCNAME)
 	@rm -f lib/*.a
-	-@make --no-print-directory -C lib/newcsfml fclean
-	-@make --no-print-directory -C lib/str fclean
-	-@make --no-print-directory -C lib/llist fclean
-	-@make --no-print-directory -C lib/twodlist fclean
-	-@make --no-print-directory -C lib/print fclean
-	-@make --no-print-directory -C lib/utils fclean
+	-@make -C lib/newcsfml fclean
+	-@make -C lib/str fclean
+	-@make -C lib/llist fclean
+	-@make -C lib/twodlist fclean
+	-@make -C lib/print fclean
+	-@make -C lib/utils fclean
+	-@make -C lib/error fclean
 
 re:	fclean all
 
@@ -172,7 +175,7 @@ ifeq ($(wildcard *), Makefile)
 build:
 	cp -rf $(EPITECH_BASE_PATH)/.gitignore ./
 	cp -rf $(EPITECH_BASE_PATH)/build_files/tree/* ./
-	-@make --no-print-directory push_setup
+	-@make push_setup
 else
 build:
 	@printf '\033[91mBuild is disabled. To enable it, call the unbuild rule.\033[0m\n'
@@ -191,37 +194,37 @@ endif
 import_error:
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/error/* ./lib/error
 	@cp -rf lib/error/includes/* ./includes/lib_includes/error/
-	-@make --no-print-directory push_setup
+	-@make push_setup
 
 import_llist:
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
 	@cp -rf lib/llist/includes/* ./includes/lib_includes/llist/
-	-@make --no-print-directory push_setup
+	-@make push_setup
 
 import_newcsfml:
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
 	@cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml/
-	-@make --no-print-directory push_setup
+	-@make push_setup
 
 import_print:
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/print/* ./lib/print
 	@cp -rf lib/print/includes/* ./includes/lib_includes/print/
-	-@make --no-print-directory push_setup
+	-@make push_setup
 
 import_str:
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
 	@cp -rf lib/str/includes/* ./includes/lib_includes/str/
-	-@make --no-print-directory push_setup
+	-@make push_setup
 
 import_twodlist:
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
 	@cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist/
-	-@make --no-print-directory push_setup
+	-@make push_setup
 
 import_utils:
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/utils/* ./lib/utils
 	@cp -rf lib/utils/includes/* ./includes/lib_includes/utils/
-	-@make --no-print-directory push_setup
+	-@make push_setup
 
 push_setup:
 	-@git add bonus/* includes/* sources/* tests/* lib/* .gitignore main.c Makefile
