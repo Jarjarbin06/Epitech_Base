@@ -9,7 +9,9 @@
 #ifndef INCLUDE_T
     #define INCLUDE_T
 
+    #include "include_define.h"
     #include "include_include.h"
+    #include "include_prototype.h"
 
     #ifndef INCLUDE_T_TYPE
         #define INCLUDE_T_TYPE

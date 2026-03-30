@@ -11,9 +11,9 @@
 
     #include <stdbool.h>
 
-    #include "include_define.h"
-    #include "include_include.h"
-    #include "include_typedef.h"
-    #include "include_prototype.h"
+    #include "sub_includes/include_define.h"
+    #include "sub_includes/include_include.h"
+    #include "sub_includes/include_typedef.h"
+    #include "sub_includes/include_prototype.h"
 
 #endif

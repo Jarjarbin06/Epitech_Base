@@ -8,7 +8,7 @@
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
 
-#include "include_test.h"
+#include "../includes/include_test.h"
 
 Test(main, test, .init=redirect_all_std)
 {
