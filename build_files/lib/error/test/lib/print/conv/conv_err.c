@@ -1,0 +1,16 @@
+/*
+** EPITECH PROJECT, 2025
+** my_printf.c
+** File description:
+** None
+*/
+
+#include <stdarg.h>
+#include "../includes/print.h"
+
+void p_conv_err(va_list list, int *char_total, p_flag_t *Flag)
+{
+    (void)list;
+    (void)Flag;
+    p_put_str("[err]", char_total);
+}

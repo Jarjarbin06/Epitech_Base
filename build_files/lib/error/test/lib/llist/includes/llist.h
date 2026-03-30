@@ -1,0 +1,17 @@
+/*
+** EPITECH PROJECT, 2025
+** includes - llist.h
+** File description:
+** <description>
+*/
+
+// ALL INCLUDE //
+#ifndef LLIST
+    #define LLIST
+
+    #include "sub_include/llist_define.h"
+    #include "sub_include/llist_include.h"
+    #include "sub_include/llist_typedef.h"
+    #include "sub_include/llist_prototype.h"
+
+#endif
