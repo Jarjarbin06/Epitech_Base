@@ -5,6 +5,8 @@
 ** <description>
 */
 
+#include <unistd.h>
+
 #include "../includes/error.h"
 
 static void put_indent(void)
@@ -20,6 +22,13 @@ static void new_line(void)
 {
     str_putstr(C_RESET);
     str_putchar('\n');
+}
+
+static void put_separation(void)
+{
+    str_putstr(C_ERROR);
+    str_putstr("----------");
+    new_line();
 }
 
 static void put_error_fatal(const err_t error[])
@@ -75,6 +84,7 @@ void err_print(const err_t error[])
 {
     if (!error)
         return;
+    put_separation();
     put_error_fatal(error);
     put_error_name(error);
     put_error_message(error);

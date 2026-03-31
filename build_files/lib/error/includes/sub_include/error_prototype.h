@@ -24,22 +24,32 @@ void err_print(const err_t error[]);
 
     #ifndef ERROR_P_ERR_UPT
         #define ERROR_P_ERR_UPT
-err_t *err_data_upt(err_t *error, title_t title, message_t msg);
+err_t *err_data_upt(const err_t *error, title_t title, message_t msg);
     #endif
 
     #ifndef ERROR_P_ERR_FTL
         #define ERROR_P_ERR_FTL
-err_t *err_data_ftl(err_t *error);
+err_t *err_data_ftl(const err_t *error);
     #endif
 
     #ifndef ERROR_P_ERR_NULL
         #define ERROR_P_ERR_NULL
-void *err_null(const err_t error[]);
+void *err_pointer_null(const err_t error[]);
     #endif
 
     #ifndef ERROR_P_ERR_NULL_SIMPLE
         #define ERROR_P_ERR_NULL_SIMPLE
-void *err_null_simple(title_t title, message_t msg);
+void *err_pointer_null_simple(title_t title, message_t msg);
+    #endif
+
+    #ifndef ERROR_P_ERR_POINTER
+        #define ERROR_P_ERR_POINTER
+void *err_pointer(const err_t error[], void *ptr);
+    #endif
+
+    #ifndef ERROR_P_ERR_POINTER_SIMPLE
+        #define ERROR_P_ERR_POINTER_SIMPLE
+void *err_pointer_simple(title_t title, message_t msg, void *ptr);
     #endif
 
     #ifndef ERROR_P_ERR_ERROR

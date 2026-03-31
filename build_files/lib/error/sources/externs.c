@@ -14,8 +14,10 @@ const error_data_t err_data = {
 
 const error_list_t err = {
     err_data,
-    err_null,
-    err_null_simple,
+    err_pointer,
+    err_pointer_simple,
+    err_pointer_null,
+    err_pointer_null_simple,
     err_int,
     err_int_simple,
     err_int_error,
