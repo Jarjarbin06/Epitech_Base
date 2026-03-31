@@ -35,4 +35,25 @@ typedef struct {
 } error_list_t;
     #endif
 
+    #ifndef T_ERROR_SHORTCUT_NERROR
+        #define T_ERROR_SHORTCUT_NERROR
+typedef void *(*error_shortcut_nerror_t)(const err_t[]);
+    #endif
+
+    #ifndef T_ERROR_SHORTCUT_IERROR
+        #define T_ERROR_SHORTCUT_IERROR
+typedef int (*error_shortcut_ierror_t)(const err_t[]);
+    #endif
+
+    #ifndef T_ERROR_SHORTCUT_UPT
+        #define T_ERROR_SHORTCUT_UPT
+typedef err_t *(*error_shortcut_upt_t)(const err_t *, const title_t,
+    const message_t);
+    #endif
+
+    #ifndef T_ERROR_SHORTCUT_FTL
+        #define T_ERROR_SHORTCUT_FTL
+typedef err_t *(*error_shortcut_ftl_t)(const err_t *);
+    #endif
+
 #endif

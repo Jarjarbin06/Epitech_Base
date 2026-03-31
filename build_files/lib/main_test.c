@@ -54,7 +54,7 @@ static void create_elements(nsf_game_t *game)
             "button texture", game));
     nsf.button.set_size(button, (nsf_vector[]){{100.0f, 100.0f}});
     nsf.button.set_position(button, (nsf_vector[]){{300.0f, 300.0f}});
-    nsf.button.set_colors(button, &nsf.clr.transparent, &nsf.clr.blue, 2);
+    nsf.button.set_colors(button, &nsf.color.transparent, &nsf.color.blue, 2);
     nsf.game.add_button(game, button);
     nsf.game.add_sprite(game, sprite);
 }
@@ -68,7 +68,7 @@ int main(void)
     create_elements(game);
     while (nsf.game.is_open(game)) {
         check_event(nsf.game.get_window(game), &event);
-        nsf.window.fill(nsf.game.get_window(game), &nsf.clr.white);
+        nsf.window.fill(nsf.game.get_window(game), &nsf.color.white);
         nsf.game.draw(game);
         nsf.game.display(game);
     }
