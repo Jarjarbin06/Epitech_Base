@@ -9,10 +9,6 @@
 #ifndef INCLUDE_D
     #define INCLUDE_D
 
-    #include "include_include.h"
-    #include "include_typedef.h"
-    #include "include_prototype.h"
-
     #ifndef EXIT_D
         #define EXIT_D
 
