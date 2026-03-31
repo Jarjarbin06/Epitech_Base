@@ -26,7 +26,7 @@ nsf_button_t *nsf_button_create(const char name[], nsf_game_t *game)
 {
     nsf_button_t *new_button = nsf_malloc_any(sizeof(nsf_button_t), game);
     sfRectangleShape *sf_button = sfRectangleShape_create();
-    str name_str = my_strdup(name);
+    str name_str = str_strdup(name);
 
     if (check_ptr(&new_button, &sf_button, &name_str, game))
         return NULL;

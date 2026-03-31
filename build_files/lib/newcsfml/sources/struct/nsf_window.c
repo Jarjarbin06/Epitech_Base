@@ -46,7 +46,7 @@ nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
 {
     nsf_window_t *new_window = nsf_malloc_any(sizeof(nsf_window_t),
         game);
-    str title_str = my_strdup(title);
+    str title_str = str_strdup(title);
     sfRenderWindow *sf_window = get_new_window(settings, &title_str,
         window_style);
 

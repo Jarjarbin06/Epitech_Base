@@ -7,7 +7,6 @@
 
 #include <SFML/Graphics/RenderWindow.h>
 
-#include "../../../print/includes/print.h"
 #include "../../includes/newcsfml.h"
 
 static int get_elements_len(nsf_window_element_t **element)
@@ -78,7 +77,7 @@ nsf_sprite_t *nsf_window_get_sprite(nsf_window_t *window,
         return NULL;
     for (int idx = 0; idx < get_elements_len(window->elements); idx++)
         if (!(window->elements[idx]->element_type == SPRITE_ELEMENT &&
-            my_strcmp(((nsf_sprite_t *)window->elements[idx]->ptr)->name,
+            str_strcmp(((nsf_sprite_t *)window->elements[idx]->ptr)->name,
                 sprite_name)))
             return (nsf_sprite_t *)window->elements[idx]->ptr;
     return NULL;
@@ -91,7 +90,7 @@ nsf_button_t *nsf_window_get_button(nsf_window_t *window,
         return NULL;
     for (int idx = 0; idx < get_elements_len(window->elements); idx++)
         if (!(window->elements[idx]->element_type == BUTTON_ELEMENT &&
-            my_strcmp(((nsf_button_t *)window->elements[idx]->ptr)->name,
+            str_strcmp(((nsf_button_t *)window->elements[idx]->ptr)->name,
                 button_name)))
             return (nsf_button_t *)window->elements[idx]->ptr;
     return NULL;

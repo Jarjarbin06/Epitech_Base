@@ -15,7 +15,7 @@
 
     #ifndef T_NSF_GAMES
         #define T_NSF_GAMES
-typedef struct nsf_game_functions_s {
+typedef struct {
     nsf_game_t *(*create)(void);
     int (*destroy)(nsf_game_t **);
     int (*display)(nsf_game_t *);
@@ -34,7 +34,7 @@ typedef struct nsf_game_functions_s {
 
     #ifndef T_NSF_WINDOWS
         #define T_NSF_WINDOWS
-typedef struct nsf_window_functions_s {
+typedef struct {
     nsf_window_t *(*create)(const nsf_window_settings_t[], char[],
         nsf_window_style_t, nsf_game_t *);
     int (*destroy)(nsf_window_t **, nsf_game_t *);
@@ -55,7 +55,7 @@ typedef struct nsf_window_functions_s {
 
     #ifndef T_NSF_SPRITES
         #define T_NSF_SPRITES
-typedef struct nsf_sprite_functions_s {
+typedef struct {
     nsf_sprite_t *(*create)(const char[], nsf_game_t *);
     void (*destroy)(nsf_sprite_t **, nsf_game_t *);
     void (*set_texture)(nsf_sprite_t *, nsf_texture_t *);
@@ -65,7 +65,7 @@ typedef struct nsf_sprite_functions_s {
 
     #ifndef T_NSF_TEXTURES
         #define T_NSF_TEXTURES
-typedef struct nsf_texture_functions_s {
+typedef struct {
     nsf_texture_t *(*create)(const char[], const char[],
         nsf_game_t *);
     int (*destroy)(nsf_texture_t **, nsf_game_t *);
@@ -74,7 +74,7 @@ typedef struct nsf_texture_functions_s {
 
     #ifndef T_NSF_EVENTS
         #define T_NSF_EVENTS
-typedef struct nsf_event_functions_s {
+typedef struct {
     bool (*cmp)(const nsf_event_t *, nsf_event_type_t);
     bool (*cmp_key)(const nsf_event_t *, nsf_key_code);
 } nsf_event_functions_t;
@@ -82,7 +82,7 @@ typedef struct nsf_event_functions_s {
 
     #ifndef T_NSF_BUTTONS
         #define T_NSF_BUTTONS
-typedef struct nsf_button_functions_s {
+typedef struct {
     nsf_button_t *(*create)(const char[], nsf_game_t *);
     int (*destroy)(nsf_button_t **, nsf_game_t *);
     void (*set_texture)(nsf_button_t *, nsf_texture_t *);
@@ -97,7 +97,7 @@ typedef struct nsf_button_functions_s {
 
     #ifndef T_NSF_NSF
         #define T_NSF_NSF
-typedef struct nsf_nsf_functions_s {
+typedef struct {
     nsf_game_functions_t game;
     nsf_window_functions_t window;
     nsf_sprite_functions_t sprite;

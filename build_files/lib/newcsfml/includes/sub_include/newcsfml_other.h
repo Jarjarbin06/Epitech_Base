@@ -29,19 +29,19 @@ int auto_free(unsigned len, free_t free_list[]);
 void free_array(void **array);
     #endif
 
-    #ifndef P_MY_STRDUP
-        #define P_MY_STRDUP
-char *my_strdup(const char *src);
+    #ifndef P_STR_STRDUP
+        #define P_STR_STRDUP
+char *str_strdup(const char *src);
     #endif
 
-    #ifndef P_MY_STRCMP
-        #define P_MY_STRCMP
-int my_strcmp(const char *str1, const char *str2);
+    #ifndef P_STR_STRCMP
+        #define P_STR_STRCMP
+int str_strcmp(const char *str1, const char *str2);
     #endif
 
-    #ifndef P_MY_STRLEN
-        #define P_MY_STRLEN
-int my_strlen(const char *str);
+    #ifndef P_STR_STRLEN
+        #define P_STR_STRLEN
+int str_strlen(const char *str);
     #endif
 
 #endif

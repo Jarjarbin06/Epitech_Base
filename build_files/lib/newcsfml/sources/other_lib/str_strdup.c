@@ -1,15 +1,15 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_strdup.c
+** sources - str_strdup.c
 ** File description:
 ** <description>
 */
 
 #include "../../includes/newcsfml.h"
 
-char *my_strdup(const char *src)
+char *str_strdup(const char *src)
 {
-    const int len = my_strlen(src);
+    const int len = str_strlen(src);
     char *dest = NULL;
 
     if (!src)

@@ -42,7 +42,7 @@ typedef sfColor nsf_color_t;
 
     #ifndef T_NSF_COLORS
         #define T_NSF_COLORS
-typedef struct nsf_colors_s {
+typedef struct {
     nsf_color_t black;
     nsf_color_t white;
     nsf_color_t red;
@@ -237,7 +237,7 @@ typedef enum
 
     #ifndef T_NSF_WINDOW_ELEMENT
         #define T_NSF_WINDOW_ELEMENT
-typedef struct nsf_window_element_s {
+typedef struct {
     nsf_window_elements_t element_type;
     void *ptr;
 } nsf_window_element_t;
@@ -245,7 +245,7 @@ typedef struct nsf_window_element_s {
 
     #ifndef T_NSF_TEXTURE
         #define T_NSF_TEXTURE
-typedef struct nsf_texture_s {
+typedef struct {
     sfTexture *texture;
     str name;
 } nsf_texture_t;
@@ -253,7 +253,7 @@ typedef struct nsf_texture_s {
 
     #ifndef T_NSF_BUTTON
         #define  T_NSF_BUTTON
-typedef struct nsf_button_s {
+typedef struct {
     sfRectangleShape *button;
     nsf_texture_t *texture;
     nsf_vector size;
@@ -266,7 +266,7 @@ typedef struct nsf_button_s {
 
     #ifndef T_NSF_SPRITE
         #define T_NSF_SPRITE
-typedef struct nsf_sprite_s {
+typedef struct {
     sfSprite *sprite;
     nsf_texture_t *texture;
     nsf_vector size;
@@ -280,7 +280,7 @@ typedef struct nsf_sprite_s {
 
     #ifndef T_NSF_BACKGROUND
         #define T_NSF_BACKGROUND
-typedef struct nsf_background_s {
+typedef struct {
     sfSprite *sprite;
     sfTexture *texture;
 } nsf_background_t;
@@ -288,7 +288,7 @@ typedef struct nsf_background_s {
 
     #ifndef T_NSF_WINDOW_SETTINGS
         #define T_NSF_WINDOW_SETTINGS
-typedef struct nsf_window_settings_s {
+typedef struct {
     nsf_uint width;
     nsf_uint height;
     nsf_uint bpp;
@@ -298,7 +298,7 @@ typedef struct nsf_window_settings_s {
 
     #ifndef T_NSF_WINDOW
         #define T_NSF_WINDOW
-typedef struct nsf_window_s {
+typedef struct {
     nsf_window_settings_t *settings;
     sfRenderWindow *window;
     nsf_uint fps;
@@ -310,7 +310,7 @@ typedef struct nsf_window_s {
 
     #ifndef T_NSF_GAME
         #define T_NSF_GAME
-typedef struct nsf_game_s {
+typedef struct {
     nsf_window_t *window;
     nsf_uint allocations;
 } nsf_game_t;
@@ -318,7 +318,7 @@ typedef struct nsf_game_s {
 
     #ifndef T_FREE
         #define T_FREE
-typedef struct free_s {
+typedef struct {
     bool condition;
     void *ptr;
     void_func_t free_func;

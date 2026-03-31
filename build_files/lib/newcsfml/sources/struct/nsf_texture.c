@@ -29,7 +29,7 @@ nsf_texture_t *nsf_texture_create(const char path[], const char name[],
     nsf_texture_t *new_texture = nsf_malloc_any(sizeof(nsf_texture_t),
         game);
     sfTexture *sf_texture = sfTexture_createFromFile(path, NULL);
-    str name_str = my_strdup(name);
+    str name_str = str_strdup(name);
 
     if (check_ptr(&new_texture, &sf_texture, &name_str, game))
         return NULL;

@@ -10,34 +10,37 @@
 ##########
 info_NAME	=	newcsfml
 info_VERSION	=	v0.1.7
-info_LAST_UPDATE	=	2026/02/18 16:56
+info_LAST_UPDATE	=	2026/03/30 13:24
 info_LIB_MAKER	=	Makefile
 
-#########
-## var ##
-#########
-CC	=	clang
-CFLAGS	=	 \
-	-lcsfml-graphics \
-	-lcsfml-window \
-	-lcsfml-system \
-	-Wall \
-	-Wextra
 
-# ./sources/ #
-SRC_PATH	=	sources
-SRC	=	\
-	$(wildcard $(SRC_PATH)/*.c) \
-	$(wildcard $(SRC_PATH)/*/*.c) \
-	$(wildcard $(SRC_PATH)/*/*/*.c)
-SRC_OBJ	=	$(SRC:.c=.o)
+#########
+## VAR ##
+#########
+# Paths #
+SRC_PATH        = sources
+INCLUDE_PATH    = includes
 
-# lib #
+# Sources #
+SRC     = $(shell find $(SRC_PATH) -type f -name "*.c")
+SRC_OBJ = $(SRC:.c=.o)
+
+# Includes #
+INCLUDES = $(shell find $(INCLUDE_PATH) -type d -printf '-I%p ')
+
+# Lib #
 LIB_CREATOR	=	ar rc
 LIB_NAME	=	lib$(info_NAME)
 
+# Compilation #
+CC	=	clang
+CFLAGS	=	 \
+	-Wall \
+	-Wextra
+CPPFLAGS	=	$(INCLUDES)
+
 #################
-## Basic rules ##
+## BASIC RULES ##
 #################
 all:	$(LIB_NAME)
 

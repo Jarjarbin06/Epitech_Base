@@ -1,13 +1,11 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_strlen.c
+** sources - str_strlen.c
 ** File description:
 ** <description>
 */
 
-#include "../../includes/newcsfml.h"
-
-int my_strlen(const char *str)
+int str_strlen(const char *str)
 {
     int idx = 0;
 

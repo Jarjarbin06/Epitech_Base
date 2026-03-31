@@ -13,7 +13,6 @@
 
     #ifndef NEWCSFML_P_BASE
         #define NEWCSFML_P_BASE
-void newcsfml_show_macro(void);
 void newcsfml_exist(void);
     #endif
 
