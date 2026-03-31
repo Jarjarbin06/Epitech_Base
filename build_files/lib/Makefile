@@ -10,7 +10,7 @@
 ##########
 info_NAME	=	lib
 info_VERSION	=	v0.1.3
-info_LAST_UPDATE	=	2026/02/18 16:56
+info_LAST_UPDATE	=	2026/03/30 13:24
 info_LIB_MAKER	=	Makefile
 
 #########
@@ -18,54 +18,53 @@ info_LIB_MAKER	=	Makefile
 #########
 DO_VALGRIND	=	false
 DO_SANITIZE	=	false
-CC	=	clang
-CFLAGS	=	 \
-	-Wall \
-	-Wextra
 
 # ./test_lib #
 RUN_PATH	=	main_test.c
 TEST_PATH	=	test_lib
 TEST_BASE	=	$(TEST_PATH)/test_base.c
-TEST_PRINT	=	$(TEST_PATH)/test_print.c
-TEST_UTILS	=	$(TEST_PATH)/test_utils.c
-TEST_TWODLIST	=	$(TEST_PATH)/test_twodlist.c
+TEST_ERROR	=	$(TEST_PATH)/test_error.c
 TEST_LLIST	=	$(TEST_PATH)/test_llist.c
+TEST_PRINT	=	$(TEST_PATH)/test_print.c
 TEST_STR	=	$(TEST_PATH)/test_str.c
+TEST_TWODLIST	=	$(TEST_PATH)/test_twodlist.c
+TEST_UTILS	=	$(TEST_PATH)/test_utils.c
 
 # lib #
 NAME	=	$(info_NAME)
+LIB_INCLUDE_DIRS	=	$(shell find lib -type d -name includes)
+INCLUDE_FLAGS	=	$(addprefix -I, $(LIB_INCLUDE_DIRS))
+LIB_DIRS	=	$(shell find lib -maxdepth 1 -mindepth 1 -type d)
+LIB_FLAGS	=	$(foreach lib,$(LIB_DIRS),-l$(notdir $(lib)))
 
-# tests #
+# Compilation #
+CC	=	clang
+CFLAGS	=	 \
+	-Wall \
+	-Wextra
+CPPFLAGS	=	-I$(INCLUDE_DIRS)
+
+# Run #
 RUN_COMPILER	=	$(CC)
 RUN_NAME	=	run
 RUN_FLAGS	=	\
-	-I./lib/newcsfml/includes/ \
-	-I./lib/twodlist/includes/ \
-	-I./lib/llist/includes/ \
-	-I./lib/str/includes/ \
-	-I./lib/print/includes/ \
-	-I./lib/utils/includes/ \
-	-I./lib/test_lib/ \
-	-L./ \
-	-lnewcsfml \
-	-ltwodlist \
-	-lllist \
-	-lstr \
-	-lprint \
-	-lutils \
-	-g
+    $(INCLUDE_FLAGS) \
+    -L./lib \
+    $(LIB_FLAGS) \
+    -g
 
 ifeq ($(DO_SANITIZE), true)
 RUN_FLAGS	+=	-fsanitize=address
 endif
 
+# tests #
 TEST_COMPILER	=	$(CC)
 TEST_NAME_TWODLIST	=	test_twodlist
 TEST_NAME_LLIST	=	test_llist
 TEST_NAME_STR	=	test_str
 TEST_NAME_PRINT	=	test_print
 TEST_NAME_UTILS	=	test_utils
+TEST_NAME_ERROR	=	test_error
 TEST_FLAG_NEWCSFML	=	\
 	-lcsfml-graphics \
 	-lcsfml-window \
@@ -87,6 +86,7 @@ $(NAME):
 	-@make --no-print-directory -C str CC=$(CC) all
 	-@make --no-print-directory -C print CC=$(CC) all
 	-@make --no-print-directory -C utils CC=$(CC) all
+	-@make --no-print-directory -C error CC=$(CC) all
 	@cp */*.a ./
 
 clean:
@@ -96,11 +96,13 @@ clean:
 	@make --no-print-directory -C str clean
 	@make --no-print-directory -C print clean
 	@make --no-print-directory -C utils clean
+	@make --no-print-directory -C error clean
 	@rm -f $(TEST_NAME_TWODLIST)
 	@rm -f $(TEST_NAME_LLIST)
 	@rm -f $(TEST_NAME_STR)
 	@rm -f $(TEST_NAME_PRINT)
 	@rm -f $(TEST_NAME_UTILS)
+	@rm -f $(TEST_NAME_ERROR)
 	@rm -f *.gc*
 
 fclean: clean
@@ -110,12 +112,13 @@ fclean: clean
 	@make --no-print-directory -C str fclean
 	@make --no-print-directory -C print fclean
 	@make --no-print-directory -C utils fclean
+	@make --no-print-directory -C error fclean
 	@rm -f *.a
 	@rm -f $(RUN_NAME)
 
 re: fclean all
 
-run: re
+run: all
 	@$(RUN_COMPILER) -o $(RUN_NAME) $(RUN_PATH) $(RUN_FLAGS) $(CFLAGS) $(TEST_FLAG_NEWCSFML)
 
 ifeq ($(DO_VALGRIND), true)
@@ -142,6 +145,7 @@ show_var:
 	@printf "\033[4mTEST_NAME_STR\033[0m : "; echo $(TEST_NAME_STR)
 	@printf "\033[4mTEST_NAME_PRINT\033[0m : "; echo $(TEST_NAME_PRINT)
 	@printf "\033[4mTEST_NAME_UTILS\033[0m : "; echo $(TEST_NAME_UTILS)
+	@printf "\033[4mTEST_NAME_ERROR\033[0m : "; echo $(TEST_NAME_ERROR)
 	@printf "\033[4mTEST_FLAG\033[0m : "; echo $(TEST_FLAG)
 
 ################
@@ -153,9 +157,10 @@ test: re
 	-$(TEST_COMPILER) -o $(TEST_NAME_STR) $(TEST_BASE) $(TEST_STR) $(TEST_FLAG) $(CFLAGS)
 	-$(TEST_COMPILER) -o $(TEST_NAME_PRINT) $(TEST_BASE) $(TEST_PRINT) $(TEST_FLAG) $(CFLAGS)
 	-$(TEST_COMPILER) -o $(TEST_NAME_UTILS) $(TEST_BASE) $(TEST_UTILS) $(TEST_FLAG) $(CFLAGS)
+	-$(TEST_COMPILER) -o $(TEST_NAME_ERROR) $(TEST_BASE) $(TEST_ERROR) $(TEST_FLAG) $(CFLAGS)
 
 ifeq ($(DO_VALGRIND), true)
-test_run:	test
+test_run:	error/test
 	@printf "\033[4mTWODLIST\033[0m\n"
 	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_TWODLIST)
 	@printf "\033[4mLLIST\033[0m\n"
@@ -166,10 +171,12 @@ test_run:	test
 	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_PRINT)
 	@printf "\033[4mUTILS\033[0m\n"
 	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_UTILS)
+	@printf "\033[4mERROR\033[0m\n"
+	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_ERROR)
 	@make --no-print-directory fclean
 
 else
-test_run:	test
+test_run:	error/test
 	@printf "\033[4mTWODLIST\033[0m\n"
 	-@./$(TEST_NAME_TWODLIST)
 	@printf "\033[4mLLIST\033[0m\n"
@@ -180,6 +187,8 @@ test_run:	test
 	-@./$(TEST_NAME_PRINT)
 	@printf "\033[4mUTILS\033[0m\n"
 	-@./$(TEST_NAME_UTILS)
+	@printf "\033[4mERROR\033[0m\n"
+	-@./$(TEST_NAME_ERROR)
 	@make --no-print-directory fclean
 
 endif

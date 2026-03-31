@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.1.8
-info_LAST_UPDATE	=	2026/02/18 16:56
+info_VERSION	=	v0.2.3
+info_LAST_UPDATE	=	2026/03/30 15:37
 info_LIB_MAKER	=	Makefile
 
 #########
@@ -18,162 +18,135 @@ info_LIB_MAKER	=	Makefile
 #########
 EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/Epitech_Base
 
-# ./sources/ #
-SRC_PATH	=	sources
-LIB_SRC_PATH	=	lib
+# Paths #
+SRC_PATH        = sources
+LIB_SRC_PATH    = lib
+INCLUDE_PATH    = includes
+LIB_PATH        = lib
 
-SRC	=	\
-	$(wildcard $(SRC_PATH)/*.c) \
-	$(wildcard $(SRC_PATH)/*/*.c) \
-	$(wildcard $(SRC_PATH)/*/*/*.c)
-LIB_SRC	=	\
-	$(wildcard $(LIB_SRC_PATH)/llist/sources/*.c) \
-	$(wildcard $(LIB_SRC_PATH)/twodlist/sources/*.c) \
-	$(wildcard $(LIB_SRC_PATH)/newcsfml/sources/*.c) \
-	$(wildcard $(LIB_SRC_PATH)/print/sources/*.c) \
-	$(wildcard $(LIB_SRC_PATH)/str/sources/*.c) \
-	$(wildcard $(LIB_SRC_PATH)/utils/sources/*.c)
+# Sources #
+SRC     = $(shell find $(SRC_PATH) -type f -name "*.c" ! -name "main.c")
 
-# ./bonus/ #
+# Includes #
+INCLUDES = $(shell find $(INCLUDE_PATH) -type d -printf '-I%p ')
+
+# Bonus #
 BONUS_PATH	=	bonus
-
 BONUS	=	$(BONUS_PATH)/bonus_file.c
 
-# ./includes/ #
-INCLUDE_DIR	=	includes
-
-INCLUDE	=	\
-	$(INCLUDE_DIR)/sub_includes/include_define.h \
-	$(INCLUDE_DIR)/sub_includes/include_include.h \
-	$(INCLUDE_DIR)/sub_includes/include_prototype.h \
-	$(INCLUDE_DIR)/sub_includes/include_typedef.h \
-	$(INCLUDE_DIR)/lib_includes/str/str.h \
-	$(INCLUDE_DIR)/lib_includes/newcsfml/newcsfml.h \
-	$(INCLUDE_DIR)/lib_includes/llist/llist.h \
-	$(INCLUDE_DIR)/lib_includes/twodlist/twodlist.h \
-	$(INCLUDE_DIR)/lib_includes/twodlist/twodlist.h \
-	$(INCLUDE_DIR)/include.h \
-	$(INCLUDE_DIR)/include_test.h
-
-# ./lib/ #
-LIB_PATH	=	lib
-
+# Lib list #
 LIBS_LIST	=	\
+	error \
 	llist \
 	newcsfml \
 	print \
 	str \
 	twodlist \
 	utils
+LIB_FLAGS	=	\
+	$(foreach lib,$(LIBS_LIST), \
+		$(if $(wildcard lib/$(lib)/lib$(lib).a),-l$(lib),))
 
-# ./ #
-MAIN	=	main.c
+# Main #
+MAIN	=	$(SRC_PATH)/main.c
 
-# ./tests/ #
+# Objects #
+SRC_OBJ	=	$(SRC:.c=.o)
+MAIN_OBJ	=	$(MAIN:.c=.o)
+
+# Tests #
 TEST_PATH	=	tests
-
 TEST_REDIRECT	=	$(TEST_PATH)/test_redirect.c
-
-TEST_SEG	=	$(TEST_PATH)/test_seg.c
-
 TEST	=	$(TEST_PATH)/test_file.c
 
-# other #
-OBJ	=	$(SRC:.c=.o) $(LIB_SRC:.c=.o) $(MAIN:.c=.o)
+# Compilation #
 CC	=	clang
 CNAME	=	compiled_program
 CARG	=
-CFLAGS	=	 \
-	-I./$(INCLUDE_DIR) \
+
+CFLAGS	=	\
 	-Wall \
 	-Wextra
-CFLAGS_PLUS	=	-L./$(LIB_PATH)
-$(foreach lib,$(LIBS_LIST), \
-  $(if $(wildcard lib/$(lib)), \
-    $(eval CFLAGS_PLUS += -l$(lib)) \
-  ) \
-)
+CPPFLAGS	=	$(INCLUDES)
+CFLAGS_PLUS	=	-L./$(LIB_PATH) $(LIB_FLAGS)
+ifneq ($(filter -lnewcsfml,$(CFLAGS_PLUS)),)
+    CFLAGS	+=	-lcsfml-graphics -lcsfml-window -lcsfml-system
+endif
+
 TESTCNAME	=	unit_tests
-TESTSEGCNAME	=	seg_tests
 TESTCFLAGS	=	\
 	--coverage \
 	-lcriterion
-ALLOW_UNBUILD	=	false
 
+ALLOW_UNBUILD	=	false
 #################
 ## Basic rules ##
 #################
-all: $(CNAME)
+all:
+	@make --no-print-directory compile_libs
+	@make --no-print-directory $(CNAME)
 
-$(CNAME): $(OBJ)
-	-@make --no-print-directory -C lib/newcsfml re
-	-@make --no-print-directory -C lib/str re
-	-@make --no-print-directory -C lib/llist re
-	-@make --no-print-directory -C lib/twodlist re
-	-@make --no-print-directory -C lib/print re
-	-@make --no-print-directory -C lib/utils re
-	-@cp -f lib/*/*.a lib/
-	$(CC) -o $(CNAME) $(OBJ) $(CFLAGS) $(CFLAGS_PLUS)
+$(CNAME):	$(SRC_OBJ) $(MAIN_OBJ)
+	$(CC) -o $(CNAME) $(SRC_OBJ) $(MAIN_OBJ) $(CFLAGS) $(CPPFLAGS) $(CFLAGS_PLUS)
 
-clean:
-	@rm -f *.o */*.o */*/*.o
+clean:	clean_libs
+	@rm -f $(SRC_OBJ)
+	@rm -f $(MAIN_OBJ)
 	@rm -f *.out */*.out */*/*.out
 	@rm -f *.pch */*.pch */*/*.pch
 	@rm -f *.gc* */*.gc* */*/*.gc*
 	@rm -f *~* */*~* */*/*~*
 	@rm -f *# */*# */*/*#
-	-@make --no-print-directory -C lib/newcsfml clean
-	-@make --no-print-directory -C lib/str clean
-	-@make --no-print-directory -C lib/llist clean
-	-@make --no-print-directory -C lib/twodlist clean
-	-@make --no-print-directory -C lib/print clean
-	-@make --no-print-directory -C lib/utils clean
 
-fclean:	clean
+fclean:	fclean_libs clean
 	@rm -f $(CNAME)
 	@rm -f $(TESTCNAME)
 	@rm -f $(TESTSEGCNAME)
 	@rm -f lib/*.a
-	-@make --no-print-directory -C lib/newcsfml fclean
-	-@make --no-print-directory -C lib/str fclean
-	-@make --no-print-directory -C lib/llist fclean
-	-@make --no-print-directory -C lib/twodlist fclean
-	-@make --no-print-directory -C lib/print fclean
-	-@make --no-print-directory -C lib/utils fclean
 
 re:	fclean all
 
-run: re
+run: all
 	./$(CNAME) $(CARG)
+
+###############
+## Lib rules ##
+###############
+compile_libs:
+	-@$(foreach lib,$(LIBS_LIST), \
+		$(MAKE) --no-print-directory -C lib/$(lib) CC=$(CC) CFLAGS="$(CFLAGS)";)
+	-@cp -f lib/*/*.a lib/
+
+clean_libs:
+	-@$(foreach lib,$(LIBS_LIST), \
+		$(MAKE) --no-print-directory -C lib/$(lib) clean;)
+
+fclean_libs:
+	-@$(foreach lib,$(LIBS_LIST), \
+		$(MAKE) --no-print-directory -C lib/$(lib) fclean;)
+
 
 ###################
 ## testing rules ##
 ###################
 test_$(TESTCNAME): clean
-	@$(CC) -o $(TESTCNAME) $(SRC) $(TEST_REDIRECT) $(TEST) $(CFLAGS) $(CFLAGS_PLUS) $(TESTCFLAGS)
+	@$(CC) -o $(TESTCNAME) $(OBJ) $(LIB_OBJ) $(TEST_REDIRECT) $(TEST) $(CFLAGS) $(CFLAGS_PLUS) $(TESTCFLAGS)
 
 test_$(TESTCNAME)_run: fclean test_$(TESTCNAME)
 	@./$(TESTCNAME)
 
-test_$(TESTSEGCNAME): clean
-	@$(CC) -o $(TESTSEGCNAME) $(SRC) $(TEST_REDIRECT) $(TEST_SEG) $(CFLAGS) $(CFLAGS_PLUS) $(TESTCFLAGS)
-
-test_$(TESTSEGCNAME)_run: fclean test_$(TESTSEGCNAME)
-	@./$(TESTSEGCNAME)
-
-test_valgrind: fclean $(CNAME) test_$(TESTCNAME) test_$(TESTSEGCNAME)
+test_valgrind: fclean $(CNAME) test_$(TESTCNAME)
 	@valgrind ./$(CNAME) $(CARG)
 	@valgrind ./$(TESTCNAME)
-	@valgrind ./$(TESTSEGCNAME)
 
 test_gcovr: test_$(TESTCNAME)
 	@gcovr -e $(TEST_PATH)
 
 test_style_check:
-	@epiclang $(MAIN) $(SRC) $(BONUS) $(INCLUDE) $(CFLAGS)
+	@epiclang $(MAIN) $(SRC) $(BONUS) $(CFLAGS)
 	@printf '\033[92mepiclang done\033[0m\n'
 
-test_run: test_$(TESTCNAME)_run #TA
+test_run: test_$(TESTCNAME)_run
 
 ###############
 ## git rules ##
@@ -193,41 +166,76 @@ git_info:
 ifeq ($(wildcard *), Makefile)
 build:
 	cp -rf $(EPITECH_BASE_PATH)/.gitignore ./
-
 	cp -rf $(EPITECH_BASE_PATH)/build_files/tree/* ./
-	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
-	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
-	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
-	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
-	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/print/* ./lib/print
-	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/utils/* ./lib/utils
-	cp -rf lib/str/includes/* ./includes/lib_includes/str/
-	cp -rf lib/llist/includes/* ./includes/lib_includes/llist/
-	cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist/
-	cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml/
-	cp -rf lib/print/includes/* ./includes/lib_includes/print/
-	cp -rf lib/utils/includes/* ./includes/lib_includes/utils/
-	-@git add bonus/* includes/* sources/* tests/* lib/* .gitignore main.c Makefile
-	-@git commit -m "[INIT] Initial build files"
-	-@git push origin main
-
+	-@make push_setup
 else
 build:
 	@printf '\033[91mBuild is disabled. To enable it, call the unbuild rule.\033[0m\n'
 	@exit 84
-
 endif
 
 ifeq ($(ALLOW_UNBUILD), true)
 unbuild: fclean
-	@rm -fr bonus includes lib sources tests main.c
-
+	@rm -dfr bonus includes lib sources tests main.c
 else
 unbuild:
 	@printf '\033[91mUnbuild is disabled. To enable it, set ALLOW_UNBUILD to "true" before calling unbuild.\033[0m\n'
 	@exit 84
-
 endif
+
+import_error:
+	-@mkdir ./lib/error
+	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/error/* ./lib/error
+	-@mkdir ./includes/lib_includes/error
+	@cp -rf lib/error/includes/* ./includes/lib_includes/error
+	-@make push_setup
+
+import_llist:
+	-@mkdir ./lib/llist
+	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
+	-@mkdir ./includes/lib_includes/llist
+	@cp -rf lib/llist/includes/* ./includes/lib_includes/llist
+	-@make push_setup
+
+import_newcsfml:
+	-@mkdir ./lib/newcsfml
+	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
+	-@mkdir ./includes/lib_includes/newcsfml
+	@cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml
+	-@make push_setup
+
+import_print:
+	-@mkdir ./lib/print
+	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/print/* ./lib/print
+	-@mkdir ./includes/lib_includes/print
+	@cp -rf lib/print/includes/* ./includes/lib_includes/print
+	-@make push_setup
+
+import_str:
+	-@mkdir ./lib/str
+	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
+	-@mkdir ./includes/lib_includes/str
+	@cp -rf lib/str/includes/* ./includes/lib_includes/str
+	-@make push_setup
+
+import_twodlist:
+	-@mkdir ./lib/twodlist
+	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
+	-@mkdir ./includes/lib_includes/twodlist
+	@cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist
+	-@make push_setup
+
+import_utils:
+	-@mkdir ./lib/utils
+	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/utils/* ./lib/utils
+	-@mkdir ./includes/lib_includes/utils
+	@cp -rf lib/utils/includes/* ./includes/lib_includes/utils
+	-@make push_setup
+
+push_setup:
+	-@git add bonus/* includes/* sources/* tests/* lib/* .gitignore main.c Makefile
+	-@git commit -m "[INIT] Repo initialization or library import"
+	-@git push origin main
 
 ###########
 ## other ##
@@ -252,7 +260,6 @@ help:
 	@echo "    make show_var                Show internal variables"
 	@echo "    make build                   Initialize project (dangerous)"
 	@echo "    make unbuild                 Remove project files (dangerous)"
-
 
 ##########################
 ## built-in target name ##
