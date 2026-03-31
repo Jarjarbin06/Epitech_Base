@@ -1,17 +1,20 @@
 /*
 ** EPITECH PROJECT, 2025
-** includes - llist.h
+** includes - error.h
 ** File description:
 ** <description>
 */
 
 // ALL INCLUDE //
-#ifndef LLIST
-    #define LLIST
+#ifndef ERROR
+    #define ERROR
 
-    #include "sub_include/llist_define.h"
-    #include "sub_include/llist_include.h"
-    #include "sub_include/llist_typedef.h"
-    #include "sub_include/llist_prototype.h"
+    #include "sub_include/error_define.h"
+    #include "sub_include/error_include.h"
+    #include "sub_include/error_typedef.h"
+    #include "sub_include/error_prototype.h"
+    #include "sub_include/error_extern_typedef.h"
+
+extern const error_list_t err;
 
 #endif

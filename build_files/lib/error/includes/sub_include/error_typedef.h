@@ -1,39 +1,41 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_includes - llist_typedef.h
+** sub_includes - error_typedef.h
 ** File description:
 ** <description>
 */
 
 // Typedef //
-#ifndef LLIST_T
-    #define LLIST_T
+#ifndef ERROR_T
+    #define ERROR_T
 
     #include "error_include.h"
 
-#ifndef LLIST_T_TYPE
-        #define LLIST_T_TYPE
+    #ifndef ERROR_T_TYPE
+        #define ERROR_T_TYPE
 
-        #ifndef T_VOID_FUNC
-            #define T_VOID_FUNC
-typedef void *(*void_func_t)(void *);
-        #endif
+typedef char const *title_t;
+typedef char const *message_t;
+typedef char const *file_t;
+typedef char const *function_t;
+typedef int const line_t;
+typedef bool fatal_t;
 
 // add type typedefs here //
 
     #endif
 
-    #ifndef LLIST_T_STRUCT
-        #define LLIST_T_STRUCT
+    #ifndef ERROR_T_STRUCT
+        #define ERROR_T_STRUCT
 
-        #ifndef T_FREE
-            #define T_FREE
-typedef struct free_s {
-    bool condition;
-    void *ptr;
-    void_func_t free_func;
-} free_t;
-        #endif
+typedef struct {
+    title_t title;
+    message_t msg;
+    file_t file;
+    function_t func;
+    line_t line;
+    fatal_t fatal;
+} err_t;
 
 // add struct typedefs here //
 

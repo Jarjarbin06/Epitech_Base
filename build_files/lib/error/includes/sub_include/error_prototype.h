@@ -6,37 +6,81 @@
 */
 
 // Prototype //
-#ifndef LLIST_P
-    #define LLIST_P
+#ifndef ERROR_P
+    #define ERROR_P
 
     #include "error_include.h"
-#include "llist_typedef.h"
+    #include "error_typedef.h"
 
-    #ifndef LLIST_P_BASE
-        #define LLIST_P_BASE
-void llist_show_macro(void);
-void llist_exist(void);
+    #ifndef ERROR_P_BASE
+        #define ERROR_P_BASE
+void error_exist(void);
+    #endif
+
+    #ifndef ERROR_P_PRINT_ERROR
+        #define ERROR_P_PRINT_ERROR
+void err_print(const err_t error[]);
+    #endif
+
+    #ifndef ERROR_P_ERR_UPT
+        #define ERROR_P_ERR_UPT
+err_t *err_data_upt(err_t *error, title_t title, message_t msg);
+    #endif
+
+    #ifndef ERROR_P_ERR_FTL
+        #define ERROR_P_ERR_FTL
+err_t *err_data_ftl(err_t *error);
+    #endif
+
+    #ifndef ERROR_P_ERR_NULL
+        #define ERROR_P_ERR_NULL
+void *err_null(const err_t error[]);
+    #endif
+
+    #ifndef ERROR_P_ERR_NULL_SIMPLE
+        #define ERROR_P_ERR_NULL_SIMPLE
+void *err_null_simple(title_t title, message_t msg);
+    #endif
+
+    #ifndef ERROR_P_ERR_ERROR
+        #define ERROR_P_ERR_ERROR
+int err_int_error(const err_t error[]);
+    #endif
+
+    #ifndef ERROR_P_ERR_ERROR_SIMPLE
+        #define ERROR_P_ERR_ERROR_SIMPLE
+int err_int_error_simple(title_t title, message_t msg);
+    #endif
+
+    #ifndef ERROR_P_ERR_INT
+        #define ERROR_P_ERR_INT
+int err_int(const err_t error[], int i);
+    #endif
+
+    #ifndef ERROR_P_ERR_INT_SIMPLE
+        #define ERROR_P_ERR_INT_SIMPLE
+int err_int_simple(title_t title, message_t msg, int i);
     #endif
 
 /* OTHER LIB */
-    #ifndef P_MALLOC_ANY
-        #define P_MALLOC_ANY
-void *malloc_any(unsigned size);
+    #ifndef P_STR_PUTCHAR
+        #define P_STR_PUTCHAR
+int str_putchar(char c);
     #endif
 
-    #ifndef P_FREE_ANY
-        #define P_FREE_ANY
-void *free_any(void *ptr);
+    #ifndef P_STR_PUTSTR
+        #define P_STR_PUTSTR
+int str_putstr(const char *str);
     #endif
 
-    #ifndef P_AUTO_FREE
-        #define P_AUTO_FREE
-int auto_free(unsigned len, free_t free_list[]);
+    #ifndef P_STR_STRLEN
+        #define P_STR_STRLEN
+int str_strlen(const char *str);
     #endif
 
-    #ifndef P_FREE_ARRAY
-        #define P_FREE_ARRAY
-void free_array(void **array);
+    #ifndef P_STR_PUT_NBR
+        #define P_STR_PUT_NBR
+void str_put_nbr(int nbr);
     #endif
 
 #endif

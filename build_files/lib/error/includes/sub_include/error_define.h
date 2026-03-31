@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_includes - llist_define.h
+** sub_includes - error_define.h
 ** File description:
 ** <description>
 */
 
 // Define //
-#ifndef LLIST_D
-    #define LLIST_D
+#ifndef ERROR_D
+    #define ERROR_D
 
     #ifndef EXIT_D
         #define EXIT_D
@@ -16,8 +16,8 @@
             #define EXIT_SUCCESS 0
         #endif
 
-        #ifndef EXIT_FAILURE
-            #define EXIT_FAILURE 84
+        #ifndef EXIT_ERROR
+            #define EXIT_ERROR 84
         #endif
 
     #endif
@@ -40,6 +40,22 @@
         #define C_DIM "\033[2m"       // DIM //
         #define C_RESET "\033[0m"     // RESET //
 
+    #endif
+
+    #ifndef ERR_FILE
+        #define ERR_FILE STDERR_FILENO
+    #endif
+
+    #ifndef NL
+        #define NL (void *)0
+    #endif
+
+    #ifndef ERR
+        #define ERR() (err_t[]){{NL, NL, __FILE__, __FUNCTION__, __LINE__, 0}}
+    #endif
+
+    #ifndef INT_ERR
+        #define INT_ERR EXIT_ERROR
     #endif
 
 #endif
