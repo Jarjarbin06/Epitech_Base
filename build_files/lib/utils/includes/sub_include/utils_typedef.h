@@ -28,7 +28,7 @@ typedef void *(*void_func_t)(void *);
 
         #ifndef T_FREE
             #define T_FREE
-typedef struct free_s {
+typedef struct {
     bool condition;
     void *ptr;
     void_func_t free_func;
