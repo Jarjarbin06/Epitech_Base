@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.2.3
-info_LAST_UPDATE	=	2026/03/30 15:37
+info_VERSION	=	v0.2.4
+info_LAST_UPDATE	=	2026/03/31 11:42
 info_LIB_MAKER	=	Makefile
 
 #########
