@@ -103,7 +103,7 @@ typedef struct {
     nsf_sprite_functions_t sprite;
     nsf_button_functions_t button;
     nsf_texture_functions_t texture;
-    nsf_colors_t clr;
+    nsf_colors_t color;
     nsf_event_functions_t event;
 } nsf_nsf_functions_t;
     #endif
