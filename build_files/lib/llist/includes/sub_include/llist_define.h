@@ -16,8 +16,8 @@
             #define EXIT_SUCCESS 0
         #endif
 
-        #ifndef EXIT_FAILURE
-            #define EXIT_FAILURE 84
+        #ifndef EXIT_ERROR
+            #define EXIT_ERROR 84
         #endif
 
     #endif
