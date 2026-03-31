@@ -7,7 +7,7 @@
 
 #include "../includes/print.h"
 
-int get_hashtag(const char *format, int idx, flag_t *Flag)
+int p_get_hashtag(const char *format, int idx, p_flag_t *Flag)
 {
     if (format[idx] == '#') {
         Flag[0].is_hashtag = 1;

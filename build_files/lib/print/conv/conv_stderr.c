@@ -8,9 +8,9 @@
 #include <stdarg.h>
 #include "../includes/print.h"
 
-void conv_stderr(va_list list, int *char_total, flag_t *Flag)
+void p_conv_stderr(va_list list, int *char_total, p_flag_t *Flag)
 {
     (void)list;
     (void)Flag;
-    my_put_str("Success", char_total);
+    p_put_str("Success", char_total);
 }

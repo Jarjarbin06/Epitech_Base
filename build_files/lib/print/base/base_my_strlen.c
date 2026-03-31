@@ -7,7 +7,7 @@
 
 #include "../includes/print.h"
 
-int my_strlen(char const *str)
+int p_strlen(char const *str)
 {
     int i = 0;
 

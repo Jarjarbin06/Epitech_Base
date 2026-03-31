@@ -11,7 +11,7 @@ static int is_good_char(char const *str, int len, int last_idx)
 {
     int check = 1;
 
-    if (!(is_num(str[last_idx])))
+    if (!(p_is_num(str[last_idx])))
         check = 0;
     if (!check && (str[last_idx] == '-' || str[last_idx] == '+'))
         check = 1;
@@ -37,10 +37,10 @@ static int make_neg(int nbr, int neg_count)
     return (neg_count % 2 != 0) ? (nbr * -1) : (nbr);
 }
 
-int my_get_nbr(char const *str)
+int p_get_nbr(char const *str)
 {
     int neg_count = 0;
-    int len = my_strlen(str);
+    int len = p_strlen(str);
     int last_idx = 0;
     int nbr = 0;
 
@@ -48,7 +48,7 @@ int my_get_nbr(char const *str)
         return 0;
     neg_count = get_neg_count(str, len, &last_idx);
     for (int idx = 0; idx < last_idx; idx++)
-        if (is_num(str[idx])) {
+        if (p_is_num(str[idx])) {
             nbr = (nbr * 10) + (str[idx] - 48);
         }
     nbr = make_neg(nbr, neg_count);

@@ -10,11 +10,11 @@
     #include <stdarg.h>
     #include <stdbool.h>
 
-typedef void (*var_ptr_t)(void *);
-typedef unsigned long long int (my_lli_t);
-typedef double (my_ld_t);
+typedef void (*p_var_ptr_t)(void *);
+typedef unsigned long long int (p_lli_t);
+typedef double (p_ld_t);
 
-typedef struct flag_length_s {
+typedef struct p_flag_length_s {
     bool is_hashtag;
     bool is_zero;
     bool is_dash;
@@ -23,17 +23,17 @@ typedef struct flag_length_s {
     int *width;
     int *precision;
     char *length_mod;
-} flag_t;
+} p_flag_t;
 
-typedef struct struct_list_s {
+typedef struct p_struct_list_s {
     char conv;
-    void (*func)(va_list, int *, flag_t *Flag);
-} list_t;
+    void (*func)(va_list, int *, p_flag_t *Flag);
+} p_list_t;
 
-typedef struct struct_display_param_s {
+typedef struct p_struct_display_param_s {
     const char *format;
     int i;
     int char_total;
-} display_param_t;
+} p_display_param_t;
 
 #endif

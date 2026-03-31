@@ -9,32 +9,40 @@
 ## info ##
 ##########
 info_NAME	=	print
-info_VERSION	=	v0.1.3
-info_LAST_UPDATE	=	2026/02/18 16:56
+info_VERSION	=	v0.1.4
+info_LAST_UPDATE	=	2026/03/30 15:05
 info_LIB_MAKER	=	Makefile
 
+
 #########
-## var ##
+## VAR ##
 #########
+# Paths #
+INCLUDE_PATH    = includes
+
+# Sources #
+SRC     =	$(shell find base -type f -name "*.c")
+SRC     +=	$(shell find conv -type f -name "*.c")
+SRC     +=	$(shell find flag -type f -name "*.c")
+SRC     +=	$(shell find len_mod -type f -name "*.c")
+SRC_OBJ	=	$(SRC:.c=.o)
+
+# Includes #
+INCLUDES = $(shell find $(INCLUDE_PATH) -type d -printf '-I%p ')
+
+# Lib #
+LIB_CREATOR	=	ar rc
+LIB_NAME	=	lib$(info_NAME)
+
+# Compilation #
 CC	=	clang
 CFLAGS	=	 \
 	-Wall \
 	-Wextra
-
-# ./sources/ #
-SRC_PATH	=	.
-SRC	=	\
-	$(wildcard $(SRC_PATH)/*.c) \
-	$(wildcard $(SRC_PATH)/*/*.c) \
-	$(wildcard $(SRC_PATH)/*/*/*.c)
-SRC_OBJ	=	$(SRC:.c=.o)
-
-# lib #
-LIB_CREATOR	=	ar rc
-LIB_NAME	=	lib$(info_NAME)
+CPPFLAGS	=	$(INCLUDES)
 
 #################
-## Basic rules ##
+## BASIC RULES ##
 #################
 all:	$(LIB_NAME)
 

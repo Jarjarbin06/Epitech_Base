@@ -7,7 +7,7 @@
 
 #include "../includes/print.h"
 
-int flag_err(const char *format, int idx, flag_t *Flag)
+int p_flag_err(const char *format, int idx, p_flag_t *Flag)
 {
     (void)format;
     (void)idx;

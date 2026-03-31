@@ -5,10 +5,9 @@
 ** None
 */
 
-#include <stdarg.h>
 #include "../includes/print.h"
 
-bool is_num(char const c)
+bool p_is_num(char const c)
 {
     return (bool)('0' <= c && c <= '9');
 }

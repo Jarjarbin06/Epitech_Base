@@ -9,9 +9,9 @@
 #include <unistd.h>
 #include "../includes/print.h"
 
-void conv_put_str(va_list list, int *char_total, flag_t *Flag)
+void p_conv_put_str(va_list list, int *char_total, p_flag_t *Flag)
 {
-    const var_ptr_t pointer = va_arg(list, var_ptr_t);
+    const p_var_ptr_t pointer = va_arg(list, p_var_ptr_t);
     char *str;
 
     (void)Flag;
@@ -21,5 +21,5 @@ void conv_put_str(va_list list, int *char_total, flag_t *Flag)
         return;
     str = (char *) *pointer;
     for (int index = 0; str[index] != '\0'; index++)
-        my_put_char(str[index], char_total);
+        p_put_char(str[index], char_total);
 }

@@ -18,23 +18,22 @@
 
     #ifndef PRINT_P_BASE
         #define PRINT_P_BASE
-void print_show_macro(void);
 void print_exist(void);
     #endif
 
-int is_inf_or_nan(my_ld_t nb, int *char_total, int is_maj);
+int p_is_inf_or_nan(p_ld_t nb, int *char_total, int is_maj);
 
-bool is_num(char c);
+bool p_is_num(char c);
 
-int my_get_nbr(const char *str);
+int p_get_nbr(const char *str);
 
-int my_strlen(const char *str);
+int p_strlen(const char *str);
 
 int print(const char *format, ...);
 
-void my_put_char(char c, int *char_total);
+void p_put_char(char c, int *char_total);
 
-void my_put_str(const char *str, int *char_total);
+void p_put_str(const char *str, int *char_total);
 
 void redirect_all_std(void);
 

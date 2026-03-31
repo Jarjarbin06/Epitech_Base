@@ -10,6 +10,6 @@
     #include <stdarg.h>
     #include "print_flag.h"
 
-void len_mod_err(va_list list, int *char_total, const flag_t *Flag);
+void p_len_mod_err(va_list list, int *char_total, const p_flag_t *Flag);
 
 #endif

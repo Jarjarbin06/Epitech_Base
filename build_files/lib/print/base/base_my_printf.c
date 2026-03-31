@@ -10,7 +10,7 @@
 #include "../includes/print.h"
 #include "../includes/print_conv.h"
 
-static const list_t Valid_Conv[] = {
+static const p_list_t Valid_Conv[] = {
     {'d', NULL},
     {'i', NULL},
     {'o', NULL},
@@ -35,16 +35,16 @@ static const list_t Valid_Conv[] = {
     {'\0', NULL}
 };
 
-static int is_valid(const char *format, const int idx, flag_t *Flag)
+static int is_valid(const char *format, const int idx, p_flag_t *Flag)
 {
-    if (get_flag(format, idx, Flag)
-        || is_num(format[idx])
+    if (p_get_flag(format, idx, Flag)
+        || p_is_num(format[idx])
         || format[idx] == '\0')
         return 1;
     return 0;
 }
 
-static int count_space(const char *format, int idx, flag_t *Flag)
+static int count_space(const char *format, int idx, p_flag_t *Flag)
 {
     idx++;
     while (is_valid(format, idx, Flag)) {
@@ -76,7 +76,7 @@ static int check_format(const char *format)
     int width = 0;
     int precision = -1;
     char len_mod = '0';
-    flag_t Flag[] = {{0, 0, 0, 0, 0, &width, &precision, &len_mod}};
+    p_flag_t Flag[] = {{0, 0, 0, 0, 0, &width, &precision, &len_mod}};
     int if_done = 0;
 
     if (format == NULL)
@@ -92,23 +92,23 @@ static int check_format(const char *format)
     return !is_conv;
 }
 
-static void display(va_list list, display_param_t *Disp)
+static void display(va_list list, p_display_param_t *Disp)
 {
     int width = 0;
     int precision = -1;
     char len_mod = '0';
-    flag_t Flag[] = {{0, 0, 0, 0, 0, &width, &precision, &len_mod}};
+    p_flag_t Flag[] = {{0, 0, 0, 0, 0, &width, &precision, &len_mod}};
     const int new_i = count_space(Disp->format, Disp->i, Flag);
 
     *(Flag[0].length_mod) = Disp->format[new_i - 1];
-    display_conv(Disp->format[new_i], list, &Disp->char_total, Flag);
+    p_display_conv(Disp->format[new_i], list, &Disp->char_total, Flag);
     Disp->i = new_i;
 }
 
 int print(const char *format, ...)
 {
     va_list list;
-    display_param_t Disp;
+    p_display_param_t Disp;
 
     Disp.format = format;
     if (!check_format(Disp.format))
@@ -120,7 +120,7 @@ int print(const char *format, ...)
         if (format[Disp.i] == '%' && format[Disp.i + 1] != '\0')
             display(list, &Disp);
         else
-            my_put_char(format[Disp.i], &Disp.char_total);
+            p_put_char(format[Disp.i], &Disp.char_total);
     va_end(list);
     return Disp.char_total;
 }
