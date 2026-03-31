@@ -1,15 +1,15 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_strlowcase.c
+** sources - str_strlowcase.c
 ** File description:
 ** <description>
 */
 
-#include "str.h"
+#include "../includes/str.h"
 
 char *str_strlowcase(char *str)
 {
-    const int str_len = p_strlen(str);
+    const int str_len = str_strlen(str);
 
     if (!str)
         return NULL;

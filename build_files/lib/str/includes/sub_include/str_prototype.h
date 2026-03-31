@@ -14,158 +14,157 @@
 
     #ifndef STR_P_BASE
         #define STR_P_BASE
-void str_show_macro(void);
 void str_exist(void);
     #endif
 
-    #ifndef P_MY_GETNBR
-        #define P_MY_GETNBR
-int my_getnbr(const char *str);
+    #ifndef P_STR_GETNBR
+        #define P_STR_GETNBR
+int str_getnbr(const char *str);
     #endif
 
-    #ifndef P_MY_PUT_NBR
-        #define P_MY_PUT_NBR
-void my_put_nbr(int nbr);
+    #ifndef P_STR_PUT_NBR
+        #define P_STR_PUT_NBR
+void str_put_nbr(int nbr);
     #endif
 
-    #ifndef P_MY_PUTCHAR
-        #define P_MY_PUTCHAR
-int my_putchar(char c);
+    #ifndef P_STR_PUTCHAR
+        #define P_STR_PUTCHAR
+int str_putchar(char c);
     #endif
 
-    #ifndef P_MY_PUTSTR
-        #define P_MY_PUTSTR
-int my_putstr(const char *str);
+    #ifndef P_STR_PUTSTR
+        #define P_STR_PUTSTR
+int str_putstr(const char *str);
     #endif
 
-    #ifndef P_MY_REVSTR
-        #define P_MY_REVSTR
-char *my_revstr(char *str);
+    #ifndef P_STR_REVSTR
+        #define P_STR_REVSTR
+char *str_revstr(char *str);
     #endif
 
     #ifndef P_IS_ALPHA
         #define P_IS_ALPHA
-bool is_alpha(char c);
+bool str_is_alpha(char c);
     #endif
 
-    #ifndef P_MY_STR_ISALPHA
-        #define P_MY_STR_ISALPHA
-bool my_str_isalpha(const char *str);
+    #ifndef P_STR_STR_ISALPHA
+        #define P_STR_STR_ISALPHA
+bool str_str_isalpha(const char *str);
     #endif
 
     #ifndef P_IS_LOWER
         #define P_IS_LOWER
-bool is_lower(char c);
+bool str_is_lower(char c);
     #endif
 
-    #ifndef P_MY_STR_ISLOWER
-        #define P_MY_STR_ISLOWER
-bool my_str_islower(const char *str);
+    #ifndef P_STR_STR_ISLOWER
+        #define P_STR_STR_ISLOWER
+bool str_str_islower(const char *str);
     #endif
 
     #ifndef P_IS_NUM
         #define P_IS_NUM
-bool is_num(char c);
+bool str_is_num(char c);
     #endif
 
-    #ifndef P_MY_STR_ISNUM
-        #define P_MY_STR_ISNUM
-bool my_str_isnum(const char *str);
+    #ifndef P_STR_STR_ISNUM
+        #define P_STR_STR_ISNUM
+bool str_str_isnum(const char *str);
     #endif
 
     #ifndef P_IS_PRINTABLE
         #define P_IS_PRINTABLE
-bool is_printable(char c);
+bool str_is_printable(char c);
     #endif
 
-    #ifndef P_MY_STR_ISPRINTABLE
-        #define P_MY_STR_ISPRINTABLE
-bool my_str_isprintable(const char *str);
+    #ifndef P_STR_STR_ISPRINTABLE
+        #define P_STR_STR_ISPRINTABLE
+bool str_str_isprintable(const char *str);
     #endif
 
     #ifndef P_IS_UPPER
         #define P_IS_UPPER
-bool is_upper(char c);
+bool str_is_upper(char c);
     #endif
 
-    #ifndef P_MY_STR_ISUPPER
-        #define P_MY_STR_ISUPPER
-bool my_str_isupper(const char *str);
+    #ifndef P_STR_STR_ISUPPER
+        #define P_STR_STR_ISUPPER
+bool str_str_isupper(const char *str);
     #endif
 
-    #ifndef P_MY_STR_TO_WORD_ARRAY
-        #define P_MY_STR_TO_WORD_ARRAY
-char **my_str_to_word_array(const char *str);
+    #ifndef P_STR_STR_TO_WORD_ARRAY
+        #define P_STR_STR_TO_WORD_ARRAY
+char **str_str_to_word_array(const char *str);
     #endif
 
-    #ifndef P_MY_STRCAPITALIZE
-        #define P_MY_STRCAPITALIZE
-char *my_strcapitalize(char *str);
+    #ifndef P_STR_STRCAPITALIZE
+        #define P_STR_STRCAPITALIZE
+char *str_strcapitalize(char *str);
     #endif
 
-    #ifndef P_MY_STRCAT
-        #define P_MY_STRCAT
-char *my_strcat(char *src_1, const char *src_2);
+    #ifndef P_STR_STRCAT
+        #define P_STR_STRCAT
+char *str_strcat(char *src_1, const char *src_2);
     #endif
 
-    #ifndef P_MY_STRCMP
-        #define P_MY_STRCMP
-int my_strcmp(const char *str1, const char *str2);
+    #ifndef P_STR_STRCMP
+        #define P_STR_STRCMP
+int str_strcmp(const char *str1, const char *str2);
     #endif
 
-    #ifndef P_MY_STRCPY
-        #define P_MY_STRCPY
-char *my_strcpy(char *dest, const char *src);
+    #ifndef P_STR_STRCPY
+        #define P_STR_STRCPY
+char *str_strcpy(char *dest, const char *src);
     #endif
 
-    #ifndef P_MY_STRDUP
-        #define P_MY_STRDUP
-char *my_strdup(const char *src);
+    #ifndef P_STR_STRDUP
+        #define P_STR_STRDUP
+char *str_strdup(const char *src);
     #endif
 
-    #ifndef P_MY_STRLEN
-        #define P_MY_STRLEN
-int my_strlen(const char *str);
+    #ifndef P_STR_STRLEN
+        #define P_STR_STRLEN
+int str_strlen(const char *str);
     #endif
 
-    #ifndef P_MY_STRLOWCASE
-        #define P_MY_STRLOWCASE
-char *my_strlowcase(char *str);
+    #ifndef P_STR_STRLOWCASE
+        #define P_STR_STRLOWCASE
+char *str_strlowcase(char *str);
     #endif
 
-    #ifndef P_MY_STRNCAT
-        #define P_MY_STRNCAT
-char *my_strncat(char *dest, const char *src, int n);
+    #ifndef P_STR_STRNCAT
+        #define P_STR_STRNCAT
+char *str_strncat(char *dest, const char *src, int n);
     #endif
 
-    #ifndef P_MY_STRNCMP
-        #define P_MY_STRNCMP
-int my_strncmp(const char *str1, const char *str2, int n);
+    #ifndef P_STR_STRNCMP
+        #define P_STR_STRNCMP
+int str_strncmp(const char *str1, const char *str2, int n);
     #endif
 
-    #ifndef P_MY_STRNCPY
-        #define P_MY_STRNCPY
-char *my_strncpy(char *dest, const char *src, int n);
+    #ifndef P_STR_STRNCPY
+        #define P_STR_STRNCPY
+char *str_strncpy(char *dest, const char *src, int n);
     #endif
 
-    #ifndef P_MY_STRNDUP
-        #define P_MY_STRNDUP
-char *my_strndup(const char *src, int n);
+    #ifndef P_STR_STRNDUP
+        #define P_STR_STRNDUP
+char *str_strndup(const char *src, int n);
     #endif
 
-    #ifndef P_MY_STRSTR
-        #define P_MY_STRSTR
-char *my_strstr(char *str, const char *to_find);
+    #ifndef P_STR_STRSTR
+        #define P_STR_STRSTR
+char *str_strstr(char *str, const char *to_find);
     #endif
 
-    #ifndef P_MY_STRUPCASE
-        #define P_MY_STRUPCASE
-char *my_strupcase(char *str);
+    #ifndef P_STR_STRUPCASE
+        #define P_STR_STRUPCASE
+char *str_strupcase(char *str);
     #endif
 
-    #ifndef P_MY_SWAP_CHAR
-        #define P_MY_SWAP_CHAR
-void my_swap_char(char *ptr_a, char *ptr_b);
+    #ifndef P_STR_SWAP_CHAR
+        #define P_STR_SWAP_CHAR
+void str_swap_char(char *ptr_a, char *ptr_b);
     #endif
 
 /* OTHER LIB */

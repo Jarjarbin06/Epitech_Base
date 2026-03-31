@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_str_isprintable.c
+** sources - str_str_isprintable.c
 ** File description:
 ** <description>
 */
 
-#include "str.h"
+#include "../includes/str.h"
 
 bool str_is_printable(const char c)
 {

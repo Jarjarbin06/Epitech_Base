@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_strlen.c
+** sources - str_strlen.c
 ** File description:
 ** <description>
 */
 
-#include "str.h"
+#include "../includes/str.h"
 
-int p_strlen(const char *str)
+int str_strlen(const char *str)
 {
     int idx = 0;
 

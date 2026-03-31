@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_getnbr.c
+** sources - str_getnbr.c
 ** File description:
 ** <description>
 */
 
-#include "str.h"
+#include "../includes/str.h"
 
 static bool is_good_char(const char *str, const int len, const int last_idx)
 {
@@ -13,7 +13,7 @@ static bool is_good_char(const char *str, const int len, const int last_idx)
 
     if (!str)
         return false;
-    if (!(p_is_num(str[last_idx])))
+    if (!(str_is_num(str[last_idx])))
         check = false;
     if (!check && (str[last_idx] == '-' || str[last_idx] == '+'))
         check = true;
@@ -46,7 +46,7 @@ static int make_neg(int nbr, const int neg_count)
 int str_getnbr(const char *str)
 {
     int neg_count = 0;
-    const int len = p_strlen(str);
+    const int len = str_strlen(str);
     int last_idx = 0;
     int nbr = 0;
 
@@ -54,7 +54,7 @@ int str_getnbr(const char *str)
         return 0;
     neg_count = get_neg_count(str, len, &last_idx);
     for (int idx = 0; idx < last_idx; idx++)
-        if (p_is_num(str[idx])) {
+        if (str_is_num(str[idx])) {
             nbr *= 10;
             nbr += (str[idx] - 48);
         }

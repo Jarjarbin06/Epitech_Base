@@ -1,17 +1,17 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_strcpy.c
+** sources - str_strcpy.c
 ** File description:
 ** <description>
 */
 
 #include <stdlib.h>
 
-#include "str.h"
+#include "../includes/str.h"
 
 char *str_strcpy(char *dest, const char *src)
 {
-    const int len = p_strlen(src);
+    const int len = str_strlen(src);
 
     if (!dest || !src) {
         if (dest)

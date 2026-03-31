@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_put_nbr.c
+** sources - str_put_nbr.c
 ** File description:
 ** <description>
 */
 
 #include <unistd.h>
 
-#include "str.h"
+#include "../includes/str.h"
 
 static void do_put_nbr(const int nbr)
 {

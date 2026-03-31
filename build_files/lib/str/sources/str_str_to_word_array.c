@@ -5,13 +5,13 @@
 ** <description>
 */
 
-#include "str.h"
+#include "../includes/str.h"
 
 static unsigned int get_word_amount(const char *str)
 {
     unsigned int word_amount = 1;
 
-    if (p_strlen(str) == 0)
+    if (str_strlen(str) == 0)
         return (0);
     for (int idx = 0; str[idx] != '\0'; idx++)
         if (str[idx] == ' ')
@@ -46,7 +46,7 @@ char **str_str_to_word_array(const char *str)
     if (!ret || word_amount == 0)
         return ((auto_free(1, (free_t[]){{ret, &ret, free_any}})) ?
             (NULL) : ((void *)0));
-    for (int idx = 0; idx < p_strlen(str); idx++) {
+    for (int idx = 0; idx < str_strlen(str); idx++) {
         idx = goto_next_word(str, idx);
         ret[ret_idx] = str_strndup(&str[idx], get_len_word(str, idx));
         if (!ret[ret_idx]) {

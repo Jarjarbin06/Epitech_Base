@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_swap_char.c
+** sources - str_swap_char.c
 ** File description:
 ** <description>
 */
 
-#include "str.h"
+#include "../includes/str.h"
 
 void str_swap_char(char *ptr_a, char *ptr_b)
 {

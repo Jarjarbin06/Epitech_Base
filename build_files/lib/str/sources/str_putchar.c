@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_putchar.c
+** sources - str_putchar.c
 ** File description:
 ** <description>
 */
 
 #include <unistd.h>
 
-#include "str.h"
+#include "../includes/str.h"
 
 int str_putchar(const char c)
 {

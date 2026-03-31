@@ -1,16 +1,16 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_revstr.c
+** sources - str_revstr.c
 ** File description:
 ** <description>
 */
 
-#include "str.h"
+#include "../includes/str.h"
 
 char *str_revstr(char *str)
 {
     int n = 0;
-    const int len = p_strlen(str);
+    const int len = str_strlen(str);
 
     if (!str)
         return NULL;

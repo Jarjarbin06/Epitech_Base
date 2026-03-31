@@ -1,15 +1,15 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_strupcase.c
+** sources - str_strupcase.c
 ** File description:
 ** <description>
 */
 
-#include "str.h"
+#include "../includes/str.h"
 
 char *str_strupcase(char *str)
 {
-    const int str_len = p_strlen(str);
+    const int str_len = str_strlen(str);
 
     if (!str)
         return NULL;

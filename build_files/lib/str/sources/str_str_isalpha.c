@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_str_isalpha.c
+** sources - str_str_isalpha.c
 ** File description:
 ** <description>
 */
 
-#include "str.h"
+#include "../includes/str.h"
 
 bool str_is_alpha(const char c)
 {

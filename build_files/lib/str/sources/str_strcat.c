@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_strcat.c
+** sources - str_strcat.c
 ** File description:
 ** <description>
 */
 
 #include <stdlib.h>
 
-#include "str.h"
+#include "../includes/str.h"
 
 char *str_strcat(char *src_1, const char *src_2)
 {

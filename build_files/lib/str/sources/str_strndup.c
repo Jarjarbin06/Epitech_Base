@@ -1,17 +1,17 @@
 /*
 ** EPITECH PROJECT, 2026
-** bsminishell - my_strndup.c
+** bsminishell - str_strndup.c
 ** File description:
 ** <description>
 */
 
 #include <stdlib.h>
 
-#include "str.h"
+#include "../includes/str.h"
 
 char *str_strndup(const char *src, const int n)
 {
-    int len = p_strlen(src);
+    int len = str_strlen(src);
     char *dest = NULL;
 
     len = ((n < len) ? (n) : (len));

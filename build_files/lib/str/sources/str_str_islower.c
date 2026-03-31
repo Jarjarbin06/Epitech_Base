@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_str_islower.c
+** sources - str_str_islower.c
 ** File description:
 ** <description>
 */
 
-#include "str.h"
+#include "../includes/str.h"
 
 bool str_is_lower(const char c)
 {

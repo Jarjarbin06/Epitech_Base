@@ -1,17 +1,17 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - my_strdup.c
+** sources - str_strdup.c
 ** File description:
 ** <description>
 */
 
 #include <stdlib.h>
 
-#include "str.h"
+#include "../includes/str.h"
 
 char *str_strdup(const char *src)
 {
-    const int len = p_strlen(src);
+    const int len = str_strlen(src);
     char *dest = NULL;
 
     if (!src)
