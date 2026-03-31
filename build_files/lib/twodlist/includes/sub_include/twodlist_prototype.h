@@ -14,7 +14,6 @@
 
     #ifndef TWODLIST_P_BASE
         #define TWODLIST_P_BASE
-void twodlist_show_macro(void);
 void twodlist_exist(void);
     #endif
 
