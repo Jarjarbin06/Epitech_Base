@@ -72,6 +72,16 @@ int err_int(const err_t error[], int i);
 int err_int_simple(title_t title, message_t msg, int i);
     #endif
 
+    #ifndef ERROR_P_ERR_VOID
+        #define ERROR_P_ERR_VOID
+void err_void(const err_t error[]);
+    #endif
+
+    #ifndef ERROR_P_ERR_VOID_SIMPLE
+        #define ERROR_P_ERR_VOID_SIMPLE
+void err_void_simple(title_t title, message_t msg);
+    #endif
+
 /* OTHER LIB */
     #ifndef P_STR_PUTCHAR
         #define P_STR_PUTCHAR

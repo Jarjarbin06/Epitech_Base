@@ -33,7 +33,7 @@ RUN_NAME	=	run
 all:	$(NAME)
 
 $(NAME):
-	@make --no-print-directory -C lib CC=$(CC) all
+	@make --no-print-directory -C lib CC=$(CC)
 	@cp */*.a .
 	@cp *.a tree/lib
 	@cp -r lib/twodlist/includes/* tree/lib/twodlist

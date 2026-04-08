@@ -12,5 +12,5 @@
 int str_putchar(const char c)
 {
     return ((write(1, &c, 1) != 1) ?
-        (EXIT_FAILURE) : (EXIT_SUCCESS));
+        (EXIT_ERROR) : (EXIT_SUCCESS));
 }

@@ -15,7 +15,7 @@
     #ifndef T_ERROR_DATA
         #define T_ERROR_DATA
 typedef struct {
-    err_t *(*upt)(const err_t *, const title_t, const message_t);
+    err_t *(*upt)(const err_t *, title_t, message_t);
     err_t *(*ftl)(const err_t *);
 } error_data_t;
     #endif
@@ -24,6 +24,8 @@ typedef struct {
         #define T_ERROR_LIST
 typedef struct {
     const error_data_t data;
+    void (*v)(const err_t[]);
+    void (*v_s)(title_t, message_t);
     void *(*p)(const err_t[], void *);
     void *(*p_s)(title_t, message_t, void *);
     void *(*pn)(const err_t[]);
@@ -33,6 +35,11 @@ typedef struct {
     int (*ie)(const err_t[]);
     int (*ie_s)(title_t, message_t);
 } error_list_t;
+    #endif
+
+    #ifndef T_ERROR_SHORTCUT_VERROR
+        #define T_ERROR_SHORTCUT_VERROR
+typedef void (*error_shortcut_verror_t)(const err_t[]);
     #endif
 
     #ifndef T_ERROR_SHORTCUT_NERROR

@@ -13,6 +13,8 @@ const error_data_t err_data = {
 };
 const error_list_t err = {
     err_data,
+    err_void,
+    err_void_simple,
     err_pointer,
     err_pointer_simple,
     err_pointer_null,
@@ -22,6 +24,7 @@ const error_list_t err = {
     err_int_error,
     err_int_error_simple,
 };
+const error_shortcut_verror_t verror = err.v;
 const error_shortcut_nerror_t nerror = err.pn;
 const error_shortcut_ierror_t ierror = err.ie;
 const error_shortcut_upt_t upt = err.data.upt;

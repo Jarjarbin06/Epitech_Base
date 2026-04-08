@@ -39,6 +39,7 @@ CFLAGS	=	 \
 CPPFLAGS	=	$(INCLUDES)
 
 #################
+
 ## BASIC RULES ##
 #################
 all:	$(LIB_NAME)
