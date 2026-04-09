@@ -10,7 +10,7 @@
 #include "../../includes/newcsfml.h"
 
 static sfRenderWindow *get_new_window(const nsf_window_settings_t settings[],
-    const str *title_str, const nsf_window_style_t window_style)
+    const str_t *title_str, const nsf_window_style_t window_style)
 {
     return sfRenderWindow_create(
         (sfVideoMode){settings->width, settings->height, settings->bpp},
@@ -18,7 +18,7 @@ static sfRenderWindow *get_new_window(const nsf_window_settings_t settings[],
 }
 
 static int check_ptr_1(nsf_window_t **new_window, sfRenderWindow **sf_window,
-    str *title_str, nsf_game_t *game)
+    str_t *title_str, nsf_game_t *game)
 {
     return nsf_auto_free(3, (free_t[]){
         {*new_window && (!*sf_window || !*title_str),
@@ -46,7 +46,7 @@ nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
 {
     nsf_window_t *new_window = nsf_malloc_any(sizeof(nsf_window_t),
         game);
-    str title_str = str_strdup(title);
+    str_t title_str = str_strdup(title);
     sfRenderWindow *sf_window = get_new_window(settings, &title_str,
         window_style);
 

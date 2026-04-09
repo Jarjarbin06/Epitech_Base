@@ -10,7 +10,7 @@
 #include "../../includes/newcsfml.h"
 
 static int check_ptr(nsf_sprite_t **new_sprite, sfSprite **sf_sprite,
-    str *sprite_name, nsf_game_t *game)
+    str_t *sprite_name, nsf_game_t *game)
 {
     return nsf_auto_free(3, (free_t[]){
         {*new_sprite && (!*sf_sprite || !*sprite_name),
@@ -27,7 +27,7 @@ nsf_sprite_t *nsf_sprite_create(const char name[], nsf_game_t *game)
     nsf_sprite_t *new_sprite = nsf_malloc_any(sizeof(nsf_sprite_t),
         game);
     sfSprite *sf_sprite = sfSprite_create();
-    str sprite_name = str_strdup(name);
+    str_t sprite_name = str_strdup(name);
 
     if (check_ptr(&new_sprite, &sf_sprite, &sprite_name, game))
         return NULL;

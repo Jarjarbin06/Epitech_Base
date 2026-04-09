@@ -18,7 +18,7 @@ bool nsf_cmp_event(const nsf_event_t *event, nsf_event_type_t event_type);
 
     #ifndef P_NSF_CMP_KEY
         #define P_NSF_CMP_KEY
-bool nsf_cmp_key(const nsf_event_t *event, nsf_key_code key_code);
+bool nsf_cmp_key(const nsf_event_t *event, nsf_key_code_t key_code);
     #endif
 
     #ifndef P_NSF_GAME_DISPLAY
@@ -127,25 +127,25 @@ void nsf_button_set_texture(nsf_button_t *button, nsf_texture_t *texture);
 
     #ifndef P_NSF_BUTTON_SET_POSITION
         #define P_NSF_BUTTON_SET_POSITION
-void nsf_button_set_position(nsf_button_t *button, const nsf_vector position[]);
+void nsf_button_set_position(nsf_button_t *button, const nsf_vector_t position[]);
     #endif
 
     #ifndef P_NSF_BUTTON_SET_SIZE
         #define P_NSF_BUTTON_SET_SIZE
-void nsf_button_set_size(nsf_button_t *button, const nsf_vector size[]);
+void nsf_button_set_size(nsf_button_t *button, const nsf_vector_t size[]);
     #endif
 
     #ifndef P_NSF_BUTTON_SET_COLORS
         #define P_NSF_BUTTON_SET_COLORS
 void nsf_button_set_colors(nsf_button_t *button,
     const nsf_color_t fill_color[], const nsf_color_t outline_color[],
-    nsf_uint outline_thickness);
+    nsf_uint_t outline_thickness);
     #endif
 
     #ifndef P_NSF_BUTTON_CHECK_CLICK
         #define P_NSF_BUTTON_CHECK_CLICK
 int nsf_button_get_state(nsf_button_t *button, nsf_window_t *window,
-    nsf_mouse mouse_button);
+    nsf_mouse_t mouse_button);
     #endif
 
 #endif

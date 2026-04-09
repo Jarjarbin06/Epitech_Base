@@ -15,11 +15,11 @@
     #ifndef T_STR_TRANSFORM
         #define T_STR_TRANSFORM
 typedef struct {
-    str_t (*reverse)(str_t);
-    str_t (*capitalize)(str_t);
-    str_t (*lowcase)(str_t);
-    str_t (*upcase)(str_t);
-    void (*c_swap)(str_t, str_t);
+    char *(*reverse)(char *);
+    char *(*capitalize)(char *);
+    char *(*lowcase)(char *);
+    char *(*upcase)(char *);
+    void (*c_swap)(char *, char *);
 } str_transform_t;
     #endif
 
@@ -28,7 +28,7 @@ typedef struct {
 typedef struct {
     void (*nbr)(int);
     int (*chr)(char);
-    int (*str)(str_t);
+    int (*str)(char *);
 } str_put_t;
     #endif
 
@@ -36,35 +36,35 @@ typedef struct {
         #define T_STR_CHECK
 typedef struct {
     bool (*c_alpha)(char);
-    bool (*alpha)(str_t);
+    bool (*alpha)(char *);
     bool (*c_num)(char);
-    bool (*num)(str_t);
+    bool (*num)(char *);
     bool (*c_lower)(char);
-    bool (*lower)(str_t);
+    bool (*lower)(char *);
     bool (*c_upper)(char);
-    bool (*upper)(str_t);
+    bool (*upper)(char *);
     bool (*c_printable)(char);
-    bool (*printable)(str_t);
-    int (*cmp)(str_t, str_t);
+    bool (*printable)(char *);
+    int (*cmp)(char *, char *);
 } str_check_t;
     #endif
 
     #ifndef T_STR_GET
         #define T_STR_GET
 typedef struct {
-    int (*nbr)(str_t);
-    str_t *(*word_array)(str_t, char);
-    int (*len)(str_t);
+    int (*nbr)(char *);
+    char **(*word_array)(char *, char);
+    int (*len)(char *);
 } str_get_t;
     #endif
 
     #ifndef T_STR_MANAGE
         #define T_STR_MANAGE
 typedef struct {
-    str_t (*cat)(str_t, str_t);
-    str_t (*cpy)(str_t, str_t);
-    str_t (*dup)(str_t);
-    str_t (*ndup)(str_t, int);
+    char *(*cat)(char *, char *);
+    char *(*cpy)(char *, char *);
+    char *(*dup)(char *);
+    char *(*ndup)(char *, int);
 } str_manage_t;
     #endif
 

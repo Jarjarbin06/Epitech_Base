@@ -14,12 +14,12 @@ bool str_c_is_alpha(char c)
     return false;
 }
 
-bool str_is_alpha(str_t str)
+bool str_is_alpha(cstr_t string)
 {
-    if (!str)
+    if (!string)
         return false;
-    for (int idx = 0; str[idx] != '\0'; idx++)
-        if (!str_c_is_alpha(str[idx]))
+    for (int idx = 0; string[idx] != '\0'; idx++)
+        if (!str_c_is_alpha(string[idx]))
             return false;
     return true;
 }

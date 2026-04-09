@@ -11,7 +11,7 @@
 #include "../../includes/newcsfml.h"
 
 static int check_ptr(nsf_texture_t **new_texture, sfTexture **sf_texture,
-    str *name_str, nsf_game_t *game)
+    str_t *name_str, nsf_game_t *game)
 {
     return nsf_auto_free(3, (free_t[]){
         {*new_texture && (!*sf_texture || !*name_str),
@@ -29,7 +29,7 @@ nsf_texture_t *nsf_texture_create(const char path[], const char name[],
     nsf_texture_t *new_texture = nsf_malloc_any(sizeof(nsf_texture_t),
         game);
     sfTexture *sf_texture = sfTexture_createFromFile(path, NULL);
-    str name_str = str_strdup(name);
+    str_t name_str = str_strdup(name);
 
     if (check_ptr(&new_texture, &sf_texture, &name_str, game))
         return NULL;

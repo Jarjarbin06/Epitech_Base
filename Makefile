@@ -198,6 +198,7 @@ push_makefile:
 	-@git push origin main
 
 import_error:
+	-@rm -rdf ./lib/error ./includes/lib_includes/error
 	-@mkdir ./lib/error
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/error/* ./lib/error
 	-@mkdir ./includes/lib_includes/error
@@ -205,6 +206,7 @@ import_error:
 	-@make push_lib
 
 import_llist:
+	-@rm -rdf ./lib/llist ./includes/lib_includes/llist
 	-@mkdir ./lib/llist
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
 	-@mkdir ./includes/lib_includes/llist
@@ -212,6 +214,7 @@ import_llist:
 	-@make push_lib
 
 import_newcsfml:
+	-@rm -rdf ./lib/newcsfml ./includes/lib_includes/newcsfml
 	-@mkdir ./lib/newcsfml
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
 	-@mkdir ./includes/lib_includes/newcsfml
@@ -219,6 +222,7 @@ import_newcsfml:
 	-@make push_lib
 
 import_print:
+	-@rm -rdf ./lib/print ./includes/lib_includes/print
 	-@mkdir ./lib/print
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/print/* ./lib/print
 	-@mkdir ./includes/lib_includes/print
@@ -226,6 +230,7 @@ import_print:
 	-@make push_lib
 
 import_str:
+	-@rm -rdf ./lib/str ./includes/lib_includes/str
 	-@mkdir ./lib/str
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
 	-@mkdir ./includes/lib_includes/str
@@ -233,6 +238,7 @@ import_str:
 	-@make push_lib
 
 import_twodlist:
+	-@rm -rdf ./lib/twodlist ./includes/lib_includes/twodlist
 	-@mkdir ./lib/twodlist
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
 	-@mkdir ./includes/lib_includes/twodlist
@@ -240,6 +246,7 @@ import_twodlist:
 	-@make push_lib
 
 import_utils:
+	-@rm -rdf ./lib/utils ./includes/lib_includes/utils
 	-@mkdir ./lib/utils
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/utils/* ./lib/utils
 	-@mkdir ./includes/lib_includes/utils

@@ -5,8 +5,6 @@
 ** <description>
 */
 
-#include <stdlib.h>
-
 #include "../../includes/str.h"
 
 str_t str_cat(str_t src_1, str_t src_2)

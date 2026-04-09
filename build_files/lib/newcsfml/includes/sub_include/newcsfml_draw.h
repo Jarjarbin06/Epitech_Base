@@ -19,7 +19,7 @@ void nsf_game_draw(nsf_game_t *game);
     #ifndef P_NSF_WINDOW_DRAW_LINE
         #define P_NSF_WINDOW_DRAW_LINE
 void nsf_window_draw_line(const nsf_window_t *window,
-    const nsf_vector a[], const nsf_vector b[], const nsf_color_t color[]);
+    const nsf_vector_t a[], const nsf_vector_t b[], const nsf_color_t color[]);
     #endif
 
     #ifndef P_NSF_WINDOW_FILL

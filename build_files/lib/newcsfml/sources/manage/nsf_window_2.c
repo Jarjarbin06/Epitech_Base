@@ -22,8 +22,8 @@ static int get_elements_len(nsf_window_element_t **element)
 static nsf_window_element_t **append_element(const nsf_window_t *window,
     const nsf_window_element_t element[], nsf_game_t *game)
 {
-    const nsf_uint old_len = get_elements_len(window->elements);
-    const nsf_uint new_len = old_len + 1;
+    const nsf_uint_t old_len = get_elements_len(window->elements);
+    const nsf_uint_t new_len = old_len + 1;
     nsf_window_element_t **new_elements = nsf_malloc_any(
         sizeof(nsf_window_element_t *) * (new_len + 1), game);
     nsf_window_element_t *new_element = nsf_malloc_any(
@@ -33,7 +33,7 @@ static nsf_window_element_t **append_element(const nsf_window_t *window,
         return NULL;
     new_element->element_type = element->element_type;
     new_element->ptr = element->ptr;
-    for (int idx = 0; (nsf_uint)idx < old_len; idx++)
+    for (int idx = 0; (nsf_uint_t)idx < old_len; idx++)
         new_elements[idx] = window->elements[idx];
     new_elements[old_len] = new_element;
     new_elements[new_len] = NULL;

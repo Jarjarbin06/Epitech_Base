@@ -26,7 +26,12 @@ typedef char *str_t;
 
         #ifndef T_CSTR
             #define T_CSTR
-typedef const char * cstr_t;
+typedef const char *cstr_t;
+        #endif
+
+        #ifndef T_CC
+            #define T_CC
+typedef const char cc_t;
         #endif
 
 // add type typedefs here //

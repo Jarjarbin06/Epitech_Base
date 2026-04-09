@@ -48,7 +48,7 @@ bool str_c_is_alpha(char c);
 
     #ifndef P_STR_STR_ISALPHA
         #define P_STR_STR_ISALPHA
-bool str_is_alpha(str_t str);
+bool str_is_alpha(cstr_t string);
     #endif
 
     #ifndef P_IS_LOWER

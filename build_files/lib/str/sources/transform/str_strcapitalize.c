@@ -9,13 +9,13 @@
 
 str_t str_capitalize(str_t string)
 {
-    const int str_len = str_len(string);
+    const int string_len = str_len(string);
     int up_next = 1;
     const int diff_upper_lower = 'a' - 'A';
 
     if (!string)
         return NULL;
-    for (int idx = 0; idx < str_len; idx++) {
+    for (int idx = 0; idx < string_len; idx++) {
         if (up_next && str_c_is_lower(string[idx]))
             string[idx] = (char)((int)string[idx] - diff_upper_lower);
         if (!up_next && str_c_is_upper(string[idx]))

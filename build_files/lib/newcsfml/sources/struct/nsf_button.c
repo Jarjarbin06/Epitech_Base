@@ -10,7 +10,7 @@
 #include "../../includes/newcsfml.h"
 
 static int check_ptr(nsf_button_t **new_button, sfRectangleShape **sf_button,
-    str *name_str, nsf_game_t *game)
+    str_t *name_str, nsf_game_t *game)
 {
     return nsf_auto_free(3, (free_t[]){
         {*new_button && (!*name_str || !*sf_button),
@@ -26,14 +26,14 @@ nsf_button_t *nsf_button_create(const char name[], nsf_game_t *game)
 {
     nsf_button_t *new_button = nsf_malloc_any(sizeof(nsf_button_t), game);
     sfRectangleShape *sf_button = sfRectangleShape_create();
-    str name_str = str_strdup(name);
+    str_t name_str = str_strdup(name);
 
     if (check_ptr(&new_button, &sf_button, &name_str, game))
         return NULL;
     new_button->button = sf_button;
     new_button->texture = NULL;
-    nsf_button_set_size(new_button, (nsf_vector[]){{0, 0}});
-    nsf_button_set_position(new_button, (nsf_vector[]){{0, 0}});
+    nsf_button_set_size(new_button, (nsf_vector_t[]){{0, 0}});
+    nsf_button_set_position(new_button, (nsf_vector_t[]){{0, 0}});
     nsf_button_set_colors(new_button,
         (nsf_color_t[]){{0, 0, 0, 100}},
         (nsf_color_t[]){{0, 0, 0, 100}}, 5);

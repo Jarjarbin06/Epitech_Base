@@ -44,7 +44,7 @@ typedef struct {
     bool (*get_event)(nsf_window_t *, nsf_event_t *);
     void (*fill)(const nsf_window_t *, const nsf_color_t[]);
     void (*draw_line)(const nsf_window_t *window,
-        const nsf_vector[], const nsf_vector[], const nsf_color_t[]);
+        const nsf_vector_t[], const nsf_vector_t[], const nsf_color_t[]);
     void (*draw)(nsf_window_t *);
     void (*add_sprite)(nsf_window_t *, nsf_sprite_t *, nsf_game_t *);
     void (*add_button)(nsf_window_t *, nsf_button_t *, nsf_game_t *);
@@ -76,7 +76,7 @@ typedef struct {
         #define T_NSF_EVENTS
 typedef struct {
     bool (*cmp)(const nsf_event_t *, nsf_event_type_t);
-    bool (*cmp_key)(const nsf_event_t *, nsf_key_code);
+    bool (*cmp_key)(const nsf_event_t *, nsf_key_code_t);
 } nsf_event_functions_t;
     #endif
 
@@ -86,11 +86,11 @@ typedef struct {
     nsf_button_t *(*create)(const char[], nsf_game_t *);
     int (*destroy)(nsf_button_t **, nsf_game_t *);
     void (*set_texture)(nsf_button_t *, nsf_texture_t *);
-    void (*set_position)(nsf_button_t *, const nsf_vector[]);
-    void (*set_size)(nsf_button_t *, const nsf_vector[]);
+    void (*set_position)(nsf_button_t *, const nsf_vector_t[]);
+    void (*set_size)(nsf_button_t *, const nsf_vector_t[]);
     void (*set_colors)(nsf_button_t *, const nsf_color_t[],
-        const nsf_color_t[], nsf_uint);
-    int (*get_state)(nsf_button_t *, nsf_window_t *, nsf_mouse);
+        const nsf_color_t[], nsf_uint_t);
+    int (*get_state)(nsf_button_t *, nsf_window_t *, nsf_mouse_t);
     void (*draw)(nsf_button_t *, nsf_window_t *);
 } nsf_button_functions_t;
     #endif

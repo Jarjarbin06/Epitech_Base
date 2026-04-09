@@ -5,8 +5,6 @@
 ** <description>
 */
 
-#include <stdlib.h>
-
 #include "../../includes/str.h"
 
 str_t str_ndup(str_t src, int n)
