@@ -109,6 +109,9 @@ re:	fclean all
 run: all
 	./$(CNAME) $(CARG)
 
+asan:
+	@make CFLAGS="$(CFLAGS) -fsanitize=address" re
+
 ###############
 ## Lib rules ##
 ###############

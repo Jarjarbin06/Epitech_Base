@@ -40,15 +40,10 @@ int auto_free(const unsigned len, free_t free_list[])
     return freed;
 }
 
-void free_array(void **array)
+void *free_array(void **array)
 {
-    if (!array)
-        return;
-    for (int idx = 0; array[idx]; idx++)
-        auto_free(1, (free_t[]){
-                {array[idx], &array[idx], free_any}
-        });
-    auto_free(1, (free_t[]){
-            {array, &array, free_any}
-    });
+    if (array)
+        for (int idx = 0; array[idx]; idx++)
+            free_any(array[idx]);
+    return free_any(array);
 }

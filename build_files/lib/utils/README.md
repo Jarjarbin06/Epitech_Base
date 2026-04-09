@@ -82,8 +82,8 @@ typedef struct {
 
 ```c
 free_t to_free[] = {
-    {true, &ptr1, free_any},
-    {false, &ptr2, free_any}
+    {true, &ptr1, (void_func_t)free_any},
+    {false, &ptr2, (void_func_t)free_any}
 };
 
 int freed_count = auto_free(2, to_free); // Only ptr1 will be freed

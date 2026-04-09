@@ -74,7 +74,7 @@ typedef struct {
 typedef struct {
     sfSprite *sprite;
     nsf_texture_t *texture;
-    nsf_vector position;
+    nsf_vector_t position;
     float rotation;
     char *name;
 } nsf_sprite_t;
@@ -88,8 +88,8 @@ typedef struct {
 typedef struct {
     sfRectangleShape *button;
     nsf_texture_t *texture;
-    nsf_vector size;
-    nsf_vector position;
+    nsf_vector_t size;
+    nsf_vector_t position;
     nsf_color_t fill_color;
     nsf_color_t outline_color;
     char *name;
@@ -119,7 +119,7 @@ nsf_game_t *game = nsf.game.create();
 nsf_window_t *window = nsf.window.create(
     (nsf_window_settings_t[]){800, 600, 32, 60},
     "My Window",
-    nsf_wdw_default_style,
+    NSF_WDW_DEFAULT_STYLE,
     game
 );
 
@@ -225,7 +225,7 @@ nsf.button.draw()
 ### Button State
 
 ```c
-int state = nsf.button.get_state(button, window, nsf_mouse_left);
+int state = nsf.button.get_state(button, window, NSF_MOUSE_LEFT);
 ```
 
 Typical values:
@@ -248,8 +248,8 @@ nsf.texture.destroy()
 # Event API
 
 ```c
-nsf.event.cmp(event, nsf_evt_key_pressed);
-nsf.event.cmp_key(event, nsf_key_escape);
+nsf.event.cmp(event, NSF_EVT_KEY_PRESSED);
+nsf.event.cmp_key(event, NSF_KEY_ESCAPE);
 ```
 
 ### Supported Types
@@ -304,8 +304,8 @@ nsf_auto_free(len, free_list, game);
 typedef struct {
     bool condition;
     void *ptr;
-    void *(*free_func)(void *);
-} free_t;
+    void *(*nsf_free_func)(void *);
+} nsf_free_t;
 ```
 
 ### Features
@@ -383,8 +383,8 @@ nsf.window.draw_line(window, &a, &b, &color);
 ```c
 nsf_button_t *btn = nsf.button.create("my_button", game);
 
-nsf.button.set_position(btn, &(nsf_vector){100, 100});
-nsf.button.set_size(btn, &(nsf_vector){200, 50});
+nsf.button.set_position(btn, &(nsf_vector_t){100, 100});
+nsf.button.set_size(btn, &(nsf_vector_t){200, 50});
 nsf.button.set_colors(btn, &nsf.color.white, &nsf.color.black, 2);
 
 nsf.game.add_button(game, btn);

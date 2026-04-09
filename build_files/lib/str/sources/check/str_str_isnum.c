@@ -7,7 +7,7 @@
 
 #include "../../includes/str.h"
 
-bool p_is_num(cc_t c)
+bool str_c_is_num(cc_t c)
 {
     if (('0' <= c && c <= '9'))
         return true;
