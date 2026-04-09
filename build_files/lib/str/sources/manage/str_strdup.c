@@ -7,7 +7,7 @@
 
 #include "../../includes/str.h"
 
-str_t str_dup(str_t src)
+str_t str_dup(const cstr_t src)
 {
     const int len = str_len(src);
     str_t dest = NULL;

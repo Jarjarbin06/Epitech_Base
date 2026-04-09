@@ -28,7 +28,7 @@ typedef struct {
 typedef struct {
     void (*nbr)(int);
     int (*chr)(char);
-    int (*str)(char *);
+    int (*str)(const char *);
 } str_put_t;
     #endif
 
@@ -36,35 +36,35 @@ typedef struct {
         #define T_STR_CHECK
 typedef struct {
     bool (*c_alpha)(char);
-    bool (*alpha)(char *);
+    bool (*alpha)(const char *);
     bool (*c_num)(char);
-    bool (*num)(char *);
+    bool (*num)(const char *);
     bool (*c_lower)(char);
-    bool (*lower)(char *);
+    bool (*lower)(const char *);
     bool (*c_upper)(char);
-    bool (*upper)(char *);
+    bool (*upper)(const char *);
     bool (*c_printable)(char);
-    bool (*printable)(char *);
-    int (*cmp)(char *, char *);
+    bool (*printable)(const char *);
+    int (*cmp)(const char *, const char *);
 } str_check_t;
     #endif
 
     #ifndef T_STR_GET
         #define T_STR_GET
 typedef struct {
-    int (*nbr)(char *);
-    char **(*word_array)(char *, char);
-    int (*len)(char *);
+    int (*nbr)(const char *);
+    char **(*word_array)(const char *, char);
+    int (*len)(const char *);
 } str_get_t;
     #endif
 
     #ifndef T_STR_MANAGE
         #define T_STR_MANAGE
 typedef struct {
-    char *(*cat)(char *, char *);
-    char *(*cpy)(char *, char *);
-    char *(*dup)(char *);
-    char *(*ndup)(char *, int);
+    char *(*cat)(const char *, const char *);
+    char *(*cpy)(char *, const char *);
+    char *(*dup)(const char *);
+    char *(*ndup)(const char *, int);
 } str_manage_t;
     #endif
 

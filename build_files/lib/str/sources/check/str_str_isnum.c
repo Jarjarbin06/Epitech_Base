@@ -7,14 +7,14 @@
 
 #include "../../includes/str.h"
 
-bool p_is_num(char c)
+bool p_is_num(cc_t c)
 {
     if (('0' <= c && c <= '9'))
         return true;
     return false;
 }
 
-bool str_is_num(str_t str)
+bool str_is_num(const cstr_t str)
 {
     if (!str)
         return false;

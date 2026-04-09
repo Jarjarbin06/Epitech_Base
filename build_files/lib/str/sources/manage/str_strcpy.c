@@ -9,7 +9,7 @@
 
 #include "../../includes/str.h"
 
-str_t str_cpy(str_t dest, str_t src)
+str_t str_cpy(str_t dest, const cstr_t src)
 {
     const int len = str_len(src);
 

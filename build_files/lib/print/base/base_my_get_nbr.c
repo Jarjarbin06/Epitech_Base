@@ -22,12 +22,12 @@ static int is_good_char(char const *str, int len, int last_idx)
     return check;
 }
 
-static int get_neg_count(char const *str, int len, int *last_idx)
+static int get_neg_count(char const *string, int len, int *last_idx)
 {
     int neg_count = 0;
 
-    for (; is_good_char(str, len, last_idx[0]); last_idx[0]++)
-        if (str[*last_idx] == '-')
+    for (; is_good_char(string, len, last_idx[0]); last_idx[0]++)
+        if (string[*last_idx] == '-')
             neg_count++;
     return neg_count;
 }

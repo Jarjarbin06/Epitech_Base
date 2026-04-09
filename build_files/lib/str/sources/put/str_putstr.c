@@ -9,7 +9,7 @@
 
 #include "../../includes/str.h"
 
-int str_put_str(str_t string)
+int str_put_str(const cstr_t string)
 {
     if (!string)
         return EXIT_ERROR;

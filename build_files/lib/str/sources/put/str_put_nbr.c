@@ -9,7 +9,7 @@
 
 #include "../../includes/str.h"
 
-static void do_put_nbr(int nbr)
+static void do_put_nbr(const int nbr)
 {
     int c1 = nbr;
     int c2 = 0;
@@ -26,7 +26,7 @@ static void do_put_nbr(int nbr)
     }
 }
 
-void str_put_nbr(int nbr)
+void str_put_nbr(const int nbr)
 {
     if (nbr == 0)
         write(1, "0", 1);

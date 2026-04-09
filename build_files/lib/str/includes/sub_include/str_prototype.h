@@ -18,7 +18,7 @@ void str_exist(void);
 
     #ifndef P_STR_GETNBR
         #define P_STR_GETNBR
-int str_get_nbr(str_t str);
+int str_get_nbr(cstr_t string);
     #endif
 
     #ifndef P_STR_PUT_NBR
@@ -28,12 +28,12 @@ void str_put_nbr(int nbr);
 
     #ifndef P_STR_PUTCHAR
         #define P_STR_PUTCHAR
-int str_put_char(char c);
+int str_put_char(cc_t c);
     #endif
 
     #ifndef P_STR_PUTSTR
         #define P_STR_PUTSTR
-int str_put_str(str_t string);
+int str_put_str(cstr_t string);
     #endif
 
     #ifndef P_STR_REVSTR
@@ -43,7 +43,7 @@ str_t str_reverse(str_t string);
 
     #ifndef P_IS_ALPHA
         #define P_IS_ALPHA
-bool str_c_is_alpha(char c);
+bool str_c_is_alpha(cc_t c);
     #endif
 
     #ifndef P_STR_STR_ISALPHA
@@ -53,47 +53,47 @@ bool str_is_alpha(cstr_t string);
 
     #ifndef P_IS_LOWER
         #define P_IS_LOWER
-bool str_c_is_lower(char c);
+bool str_c_is_lower(cc_t c);
     #endif
 
     #ifndef P_STR_STR_ISLOWER
         #define P_STR_STR_ISLOWER
-bool str_is_lower(str_t str);
+bool str_is_lower(cstr_t string);
     #endif
 
     #ifndef P_IS_NUM
         #define P_IS_NUM
-bool str_c_is_num(char c);
+bool str_c_is_num(cc_t c);
     #endif
 
     #ifndef P_STR_STR_ISNUM
         #define P_STR_STR_ISNUM
-bool str_is_num(str_t str);
+bool str_is_num(cstr_t str);
     #endif
 
     #ifndef P_IS_PRINTABLE
         #define P_IS_PRINTABLE
-bool str_c_is_printable(char c);
+bool str_c_is_printable(cc_t c);
     #endif
 
     #ifndef P_STR_STR_ISPRINTABLE
         #define P_STR_STR_ISPRINTABLE
-bool str_is_printable(str_t str);
+bool str_is_printable(cstr_t str);
     #endif
 
     #ifndef P_IS_UPPER
         #define P_IS_UPPER
-bool str_c_is_upper(char c);
+bool str_c_is_upper(cc_t c);
     #endif
 
     #ifndef P_STR_STR_ISUPPER
         #define P_STR_STR_ISUPPER
-bool str_is_upper(str_t str);
+bool str_is_upper(cstr_t str);
     #endif
 
     #ifndef P_STR_STR_TO_WORD_ARRAY
         #define P_STR_STR_TO_WORD_ARRAY
-str_t *str_to_word_array(str_t str, char separator);
+str_t *str_to_word_array(cstr_t string, cc_t separator);
     #endif
 
     #ifndef P_STR_STRCAPITALIZE
@@ -103,27 +103,27 @@ str_t str_capitalize(str_t string);
 
     #ifndef P_STR_STRCAT
         #define P_STR_STRCAT
-str_t str_cat(str_t src_1, str_t src_2);
+str_t str_cat(cstr_t src_1, cstr_t src_2);
     #endif
 
     #ifndef P_STR_STRCMP
         #define P_STR_STRCMP
-int str_cmp(str_t str1, str_t str2);
+int str_cmp(cstr_t str1, cstr_t str2);
     #endif
 
     #ifndef P_STR_STRCPY
         #define P_STR_STRCPY
-str_t str_cpy(str_t dest, str_t src);
+str_t str_cpy(str_t dest, cstr_t src);
     #endif
 
     #ifndef P_STR_STRDUP
         #define P_STR_STRDUP
-str_t str_dup(str_t src);
+str_t str_dup(cstr_t src);
     #endif
 
     #ifndef P_STR_STRLEN
         #define P_STR_STRLEN
-int str_len(str_t str);
+int str_len(cstr_t string);
     #endif
 
     #ifndef P_STR_STRLOWCASE
@@ -133,22 +133,22 @@ str_t str_lowcase(str_t string);
 
     #ifndef P_STR_STRNCAT
         #define P_STR_STRNCAT
-str_t str_ncat(str_t dest, str_t src, int n);
+str_t str_ncat(cstr_t dest, cstr_t src, int n);
     #endif
 
     #ifndef P_STR_STRNCMP
         #define P_STR_STRNCMP
-int str_ncmp(str_t str1, str_t str2, int n);
+int str_ncmp(cstr_t str1, cstr_t str2, int n);
     #endif
 
     #ifndef P_STR_STRNCPY
         #define P_STR_STRNCPY
-str_t str_ncpy(str_t dest, str_t src, int n);
+str_t str_ncpy(str_t dest, cstr_t src, int n);
     #endif
 
     #ifndef P_STR_STRNDUP
         #define P_STR_STRNDUP
-str_t str_ndup(str_t src, int n);
+str_t str_ndup(cstr_t src, int n);
     #endif
 
     #ifndef P_STR_STRSTR

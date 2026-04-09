@@ -7,7 +7,7 @@
 
 #include "../../includes/str.h"
 
-int str_cmp(str_t str1, str_t str2)
+int str_cmp(const cstr_t str1, const cstr_t str2)
 {
     const int str1_len = str_len(str1);
     const int str2_len = str_len(str2);

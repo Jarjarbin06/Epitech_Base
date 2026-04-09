@@ -7,14 +7,14 @@
 
 #include "../../includes/str.h"
 
-bool str_c_is_alpha(char c)
+bool str_c_is_alpha(cc_t c)
 {
     if (str_c_is_lower(c) || str_c_is_upper(c))
         return true;
     return false;
 }
 
-bool str_is_alpha(cstr_t string)
+bool str_is_alpha(const cstr_t string)
 {
     if (!string)
         return false;

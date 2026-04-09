@@ -5,7 +5,7 @@
 #Inactive
 *.off
 *.out
-old_lib
+old_lib*
 
 #Compiled - Build - Object
 *.o

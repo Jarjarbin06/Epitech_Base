@@ -7,19 +7,19 @@
 
 #include "../../includes/str.h"
 
-bool str_c_is_lower(char c)
+bool str_c_is_lower(cc_t c)
 {
     if (('a' <= c && c <= 'z'))
         return true;
     return false;
 }
 
-bool str_is_lower(str_t str)
+bool str_is_lower(const cstr_t string)
 {
-    if (!str)
+    if (!string)
         return false;
-    for (int idx = 0; str[idx] != '\0'; idx++)
-        if (!str_c_is_lower(str[idx]))
+    for (int idx = 0; string[idx] != '\0'; idx++)
+        if (!str_c_is_lower(string[idx]))
             return false;
     return true;
 }

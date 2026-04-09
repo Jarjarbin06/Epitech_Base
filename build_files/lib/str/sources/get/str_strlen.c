@@ -7,12 +7,12 @@
 
 #include "../../includes/str.h"
 
-int str_len(str_t str)
+int str_len(const cstr_t string)
 {
     int idx = 0;
 
-    if (!str)
+    if (!string)
         return idx;
-    for (; str[idx] != '\0'; idx++);
+    for (; string[idx] != '\0'; idx++);
     return idx;
 }

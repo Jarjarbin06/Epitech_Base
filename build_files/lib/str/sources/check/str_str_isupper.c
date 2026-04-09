@@ -7,14 +7,14 @@
 
 #include "../../includes/str.h"
 
-bool str_c_is_upper(char c)
+bool str_c_is_upper(cc_t c)
 {
     if (('A' <= c && c <= 'Z'))
         return true;
     return false;
 }
 
-bool str_is_upper(str_t str)
+bool str_is_upper(const cstr_t str)
 {
     if (!str)
         return false;

@@ -7,7 +7,7 @@
 
 #include "../../includes/str.h"
 
-str_t str_cat(str_t src_1, str_t src_2)
+str_t str_cat(const cstr_t src_1, const cstr_t src_2)
 {
     const int src_1_len = str_len(src_1);
     const int src_2_len = str_len(src_2);
