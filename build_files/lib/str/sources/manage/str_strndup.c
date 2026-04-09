@@ -7,17 +7,17 @@
 
 #include <stdlib.h>
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-char *str_strndup(const char *src, const int n)
+str_t str_ndup(str_t src, int n)
 {
-    int len = str_strlen(src);
-    char *dest = NULL;
+    int len = str_len(src);
+    str_t dest = NULL;
 
     len = ((n < len) ? (n) : (len));
     if (!src)
         return NULL;
-    dest = (char *)malloc_any(sizeof(char) * (len + 1));
+    dest = malloc_any(sizeof(char) * (len + 1));
     for (int idx = 0; idx < len; idx++)
         dest[idx] = src[idx];
     dest[len] = '\0';

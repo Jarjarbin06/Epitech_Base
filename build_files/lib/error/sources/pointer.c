@@ -7,7 +7,6 @@
 
 #include "../includes/error.h"
 
-
 static void set_pointer_error(err_t error[])
 {
     if (error && !error->title)
@@ -46,7 +45,7 @@ void *err_pointer_simple(const title_t title, const message_t msg, void *ptr)
         str_putstr(": ");
         str_putstr(msg);
     }
-    str_putchar('\n');
+    str_put_char('\n');
     return ptr;
 }
 
@@ -60,6 +59,6 @@ void *err_pointer_null_simple(const title_t title, const message_t msg)
         str_putstr(": ");
         str_putstr(msg);
     }
-    str_putchar('\n');
+    str_put_char('\n');
     return NL;
 }

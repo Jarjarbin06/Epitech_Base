@@ -7,11 +7,11 @@
 
 #include <stdlib.h>
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-char *str_strcpy(char *dest, const char *src)
+str_t str_cpy(str_t dest, str_t src)
 {
-    const int len = str_strlen(src);
+    const int len = str_len(src);
 
     if (!dest || !src) {
         if (dest)

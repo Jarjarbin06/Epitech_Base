@@ -5,9 +5,9 @@
 ** <description>
 */
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-void str_swap_char(char *ptr_a, char *ptr_b)
+void str_c_swap(str_t ptr_a, str_t ptr_b)
 {
     char c = 0;
 

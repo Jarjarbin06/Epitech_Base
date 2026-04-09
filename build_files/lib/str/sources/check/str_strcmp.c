@@ -5,12 +5,12 @@
 ** <description>
 */
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-int str_strcmp(const char *str1, const char *str2)
+int str_cmp(str_t str1, str_t str2)
 {
-    const int str1_len = str_strlen(str1);
-    const int str2_len = str_strlen(str2);
+    const int str1_len = str_len(str1);
+    const int str2_len = str_len(str2);
 
     if (!str1 || !str2)
         return 1;

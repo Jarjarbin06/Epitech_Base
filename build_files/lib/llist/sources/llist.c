@@ -5,6 +5,6 @@
 ** <description>
 */
 
-void error_exist(void)
+void llist_exist(void)
 {
 }

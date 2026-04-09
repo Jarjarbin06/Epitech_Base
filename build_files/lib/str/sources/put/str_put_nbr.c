@@ -7,27 +7,26 @@
 
 #include <unistd.h>
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-static void do_put_nbr(const int nbr)
+static void do_put_nbr(int nbr)
 {
     int c1 = nbr;
     int c2 = 0;
-    const char neg = '-';
 
     if (c1 < 0) {
         c1 *= -1;
-        write(1, &neg, 1);
+        str_put_char('-');
     }
     if (c1 > 0) {
-        c2 = (c1 % 10) + 48;
+        c2 = (c1 % 10) + '0';
         c1 = c1 / 10;
         do_put_nbr(c1);
-        write(1, &c2, 1);
+        str_put_char((char)c2);
     }
 }
 
-void str_put_nbr(const int nbr)
+void str_put_nbr(int nbr)
 {
     if (nbr == 0)
         write(1, "0", 1);

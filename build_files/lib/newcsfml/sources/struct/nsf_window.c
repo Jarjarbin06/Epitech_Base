@@ -22,11 +22,11 @@ static int check_ptr_1(nsf_window_t **new_window, sfRenderWindow **sf_window,
 {
     return nsf_auto_free(3, (free_t[]){
         {*new_window && (!*sf_window || !*title_str),
-            new_window, (void_func_t)free_any},
+            new_window, free_any},
         {*sf_window && (!*new_window || !*title_str),
             sf_window, (void_func_t)sfRenderWindow_destroy},
         {*title_str && (!*new_window || !*sf_window),
-            title_str, (void_func_t)free_any}
+            title_str, free_any}
     }, game);
 }
 

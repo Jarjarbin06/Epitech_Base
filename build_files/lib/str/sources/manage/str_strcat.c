@@ -7,17 +7,17 @@
 
 #include <stdlib.h>
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-char *str_strcat(char *src_1, const char *src_2)
+str_t str_cat(str_t src_1, str_t src_2)
 {
-    const int src_1_len = str_strlen(src_1);
-    const int src_2_len = str_strlen(src_2);
-    char *dest = NULL;
+    const int src_1_len = str_len(src_1);
+    const int src_2_len = str_len(src_2);
+    str_t dest = NULL;
 
     if (!src_1 || !src_2)
         return NULL;
-    dest = (char *)malloc_any(src_1_len + src_2_len + 1);
+    dest = malloc_any(src_1_len + src_2_len + 1);
     if (!dest)
         return NULL;
     for (int idx = 0; idx < src_1_len; idx++)

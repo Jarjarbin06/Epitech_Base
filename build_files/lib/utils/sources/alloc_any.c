@@ -28,25 +28,22 @@ void *free_any(void *ptr)
 int auto_free(const unsigned len, free_t free_list[])
 {
     int freed = 0;
+    void **ptr = NULL;
 
     for (int idx = 0; idx < (int)len; idx++)
         if (free_list[idx].condition) {
-            free_list[idx].free_func(*(void **)free_list[idx].ptr);
-            *(void **)free_list[idx].ptr = NULL;
+            ptr = (void **)free_list[idx].ptr;
+            free_list[idx].free_func(*ptr);
+            *ptr = NULL;
             freed++;
         }
     return freed;
 }
 
-void free_array(void **array)
+void *free_array(void **array)
 {
-    if (!array)
-        return;
-    for (int idx = 0; array[idx]; idx++)
-        auto_free(1, (free_t[]){
-                {array[idx], &array[idx], (void_func_t)free_any}
-        });
-    auto_free(1, (free_t[]){
-            {array, &array, (void_func_t)free_any}
-    });
+    if (array)
+        for (int idx = 0; array[idx]; idx++)
+            free_any(array[idx]);
+    return free_any(array);
 }

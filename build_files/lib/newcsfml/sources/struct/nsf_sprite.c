@@ -14,11 +14,11 @@ static int check_ptr(nsf_sprite_t **new_sprite, sfSprite **sf_sprite,
 {
     return nsf_auto_free(3, (free_t[]){
         {*new_sprite && (!*sf_sprite || !*sprite_name),
-            new_sprite, (void_func_t)free_any},
+            new_sprite, free_any},
         {*sf_sprite && (!*new_sprite || !*sprite_name),
             sf_sprite, (void_func_t)sfSprite_destroy},
         {*sprite_name && (!*new_sprite || !*sf_sprite),
-            sprite_name, (void_func_t)free_any}
+            sprite_name, free_any}
     }, game);
 }
 

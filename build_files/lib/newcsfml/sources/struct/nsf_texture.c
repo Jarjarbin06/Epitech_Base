@@ -15,11 +15,11 @@ static int check_ptr(nsf_texture_t **new_texture, sfTexture **sf_texture,
 {
     return nsf_auto_free(3, (free_t[]){
         {*new_texture && (!*sf_texture || !*name_str),
-            new_texture, (void_func_t)free_any},
+            new_texture, free_any},
         {*sf_texture && (!*new_texture || !*name_str),
             sf_texture, (void_func_t)sfTexture_destroy},
         {*name_str && (!*new_texture || !*sf_texture),
-            name_str, (void_func_t)free_any}
+            name_str, free_any}
     }, game);
 }
 

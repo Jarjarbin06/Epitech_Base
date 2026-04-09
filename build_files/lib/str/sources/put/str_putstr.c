@@ -7,12 +7,12 @@
 
 #include <unistd.h>
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-int str_putstr(const char *str)
+int str_put_str(str_t string)
 {
-    if (!str)
+    if (!string)
         return EXIT_ERROR;
-    return ((write(1, str, str_strlen(str)) != str_strlen(str)) ?
+    return ((write(1, string, str_len(string)) != str_len(string)) ?
         (EXIT_ERROR) : (EXIT_SUCCESS));
 }

@@ -19,6 +19,16 @@
 typedef void *(*void_func_t)(void *);
         #endif
 
+        #ifndef T_STR
+            #define T_STR
+typedef char *str_t;
+        #endif
+
+        #ifndef T_CSTR
+            #define T_CSTR
+typedef const char * cstr_t;
+        #endif
+
 // add type typedefs here //
 
     #endif

@@ -5,21 +5,21 @@
 ** <description>
 */
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-bool str_is_printable(const char c)
+bool str_c_is_printable(char c)
 {
     if ((' ' <= c && c <= '~'))
         return true;
     return false;
 }
 
-bool str_str_isprintable(const char *str)
+bool str_is_printable(str_t str)
 {
     if (!str)
         return false;
     for (int idx = 0; str[idx] != '\0'; idx++)
-        if (!str_is_printable(str[idx]))
+        if (!str_c_is_printable(str[idx]))
             return false;
     return true;
 }

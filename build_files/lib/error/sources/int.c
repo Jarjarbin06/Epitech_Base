@@ -45,7 +45,7 @@ int err_int_simple(const title_t title, const message_t msg, const int i)
         str_putstr(": ");
         str_putstr(msg);
     }
-    str_putchar('\n');
+    str_put_char('\n');
     return i;
 }
 
@@ -59,6 +59,6 @@ int err_int_error_simple(const title_t title, const message_t msg)
         str_putstr(": ");
         str_putstr(msg);
     }
-    str_putchar('\n');
+    str_put_char('\n');
     return INT_ERR;
 }

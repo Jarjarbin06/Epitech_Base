@@ -5,23 +5,21 @@
 ** <description>
 */
 
-#include <unistd.h>
-
 #include "../includes/error.h"
 
 static void put_indent(void)
 {
     str_putstr(C_ERROR_TITLE);
-    str_putchar(' ');
+    str_put_char(' ');
     str_putstr(C_RESET);
-    str_putchar(' ');
+    str_put_char(' ');
     str_putstr(C_ERROR);
 }
 
 static void new_line(void)
 {
     str_putstr(C_RESET);
-    str_putchar('\n');
+    str_put_char('\n');
 }
 
 static void put_separation(void)
@@ -47,7 +45,7 @@ static void put_error_name(const err_t error[])
     put_indent();
     if (error->title && str_strlen(error->title)) {
         str_putstr(error->title);
-        str_putchar(':');
+        str_put_char(':');
     } else
         str_putstr("Error:");
     new_line();

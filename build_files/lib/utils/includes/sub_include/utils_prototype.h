@@ -34,7 +34,7 @@ int auto_free(unsigned len, free_t free_list[]);
 
     #ifndef P_FREE_ARRAY
         #define P_FREE_ARRAY
-void free_array(void **array);
+void *free_array(void **array);
     #endif
 
 #endif

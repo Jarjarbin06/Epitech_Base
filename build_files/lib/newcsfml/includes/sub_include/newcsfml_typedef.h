@@ -17,7 +17,7 @@
 
     #ifndef T_VOID_FUNC
         #define T_VOID_FUNC
-typedef void (*void_func_t)(void *);
+typedef void *(*void_func_t)(void *);
     #endif
 
     #ifndef T_STR

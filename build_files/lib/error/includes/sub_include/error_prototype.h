@@ -85,7 +85,7 @@ void err_void_simple(title_t title, message_t msg);
 /* OTHER LIB */
     #ifndef P_STR_PUTCHAR
         #define P_STR_PUTCHAR
-int str_putchar(char c);
+int str_put_char(char c);
     #endif
 
     #ifndef P_STR_PUTSTR

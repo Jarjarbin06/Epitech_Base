@@ -14,11 +14,11 @@ static int check_ptr(nsf_button_t **new_button, sfRectangleShape **sf_button,
 {
     return nsf_auto_free(3, (free_t[]){
         {*new_button && (!*name_str || !*sf_button),
-            new_button, (void_func_t)free_any},
+            new_button, free_any},
         {*sf_button && (!*new_button || !*name_str),
             sf_button, (void_func_t)sfRectangleShape_destroy},
         {*name_str && (!*new_button || !*sf_button),
-            name_str, (void_func_t)free_any}
+            name_str, free_any}
     }, game);
 }
 

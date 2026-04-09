@@ -5,18 +5,18 @@
 ** <description>
 */
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-char *str_revstr(char *str)
+str_t str_reverse(str_t string)
 {
     int n = 0;
-    const int len = str_strlen(str);
+    const int len = str_len(string);
 
-    if (!str)
+    if (!string)
         return NULL;
     for (int i = (len - 1); i > n; i--) {
-        str_swap_char(&str[i], &str[n]);
+        str_c_swap(&string[i], &string[n]);
         n = n + 1;
     }
-    return (str);
+    return (string);
 }

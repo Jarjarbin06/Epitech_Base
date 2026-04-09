@@ -14,7 +14,7 @@
 
     #ifndef LLIST_P_BASE
         #define LLIST_P_BASE
-void error_exist(void);
+void llist_exist(void);
     #endif
 
 /* OTHER LIB */

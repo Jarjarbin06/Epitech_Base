@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.2.4
-info_LAST_UPDATE	=	2026/03/31 11:42
+info_VERSION	=	v0.2.6
+info_LAST_UPDATE	=	2026/04/09 10:09
 info_LIB_MAKER	=	Makefile
 
 #########
@@ -70,7 +70,7 @@ CFLAGS	=	\
 CPPFLAGS	=	$(INCLUDES)
 CFLAGS_PLUS	=	-L./$(LIB_PATH) $(LIB_FLAGS)
 ifneq ($(filter -lnewcsfml,$(CFLAGS_PLUS)),)
-    CFLAGS	+=	-lcsfml-graphics -lcsfml-window -lcsfml-system
+    CFLAGS_PLUS	+=	-lcsfml-graphics -lcsfml-window -lcsfml-system
 endif
 
 TESTCNAME	=	unit_tests
@@ -114,7 +114,7 @@ run: all
 ###############
 compile_libs:
 	-@$(foreach lib,$(LIBS_LIST), \
-		$(MAKE) --no-print-directory -C lib/$(lib) CC=$(CC) CFLAGS="$(CFLAGS)";)
+		$(MAKE) --no-print-directory -C lib/$(lib) CC=$(CC);)
 	-@cp -f lib/*/*.a lib/
 
 clean_libs:
@@ -183,58 +183,75 @@ unbuild:
 	@exit 84
 endif
 
+push_setup:
+	-@git add -A
+	-@git commit -m "[INIT] Repo initialization"
+	-@git push origin main
+
+update:
+	@cp $(EPITECH_BASE_PATH)/Makefile ./
+	-@make push_makefile
+
+push_makefile:
+	-@git add Makefile
+	-@git commit -m "[INIT] Makefile update"
+	-@git push origin main
+
 import_error:
 	-@mkdir ./lib/error
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/error/* ./lib/error
 	-@mkdir ./includes/lib_includes/error
 	@cp -rf lib/error/includes/* ./includes/lib_includes/error
-	-@make push_setup
+	-@make push_lib
 
 import_llist:
 	-@mkdir ./lib/llist
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
 	-@mkdir ./includes/lib_includes/llist
 	@cp -rf lib/llist/includes/* ./includes/lib_includes/llist
-	-@make push_setup
+	-@make push_lib
 
 import_newcsfml:
 	-@mkdir ./lib/newcsfml
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
 	-@mkdir ./includes/lib_includes/newcsfml
 	@cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml
-	-@make push_setup
+	-@make push_lib
 
 import_print:
 	-@mkdir ./lib/print
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/print/* ./lib/print
 	-@mkdir ./includes/lib_includes/print
 	@cp -rf lib/print/includes/* ./includes/lib_includes/print
-	-@make push_setup
+	-@make push_lib
 
 import_str:
 	-@mkdir ./lib/str
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
 	-@mkdir ./includes/lib_includes/str
 	@cp -rf lib/str/includes/* ./includes/lib_includes/str
-	-@make push_setup
+	-@make push_lib
 
 import_twodlist:
 	-@mkdir ./lib/twodlist
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
 	-@mkdir ./includes/lib_includes/twodlist
 	@cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist
-	-@make push_setup
+	-@make push_lib
 
 import_utils:
 	-@mkdir ./lib/utils
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/utils/* ./lib/utils
 	-@mkdir ./includes/lib_includes/utils
 	@cp -rf lib/utils/includes/* ./includes/lib_includes/utils
-	-@make push_setup
+	-@make push_lib
 
-push_setup:
-	-@git add bonus/* includes/* sources/* tests/* lib/* .gitignore main.c Makefile
-	-@git commit -m "[INIT] Repo initialization or library import"
+import_all:
+	-@make import_error import_llist import_newcsfml import_print import_str import_twodlist import_utils
+
+push_lib:
+	-@git add lib includes/lib_includes
+	-@git commit -m "[INIT] Library import"
 	-@git push origin main
 
 ###########

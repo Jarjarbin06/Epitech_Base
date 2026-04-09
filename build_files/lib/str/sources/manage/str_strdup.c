@@ -7,16 +7,16 @@
 
 #include <stdlib.h>
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-char *str_strdup(const char *src)
+str_t str_dup(str_t src)
 {
-    const int len = str_strlen(src);
-    char *dest = NULL;
+    const int len = str_len(src);
+    str_t dest = NULL;
 
     if (!src)
         return NULL;
-    dest = (char *)malloc_any(sizeof(char) * (len + 1));
+    dest = malloc_any(sizeof(char) * (len + 1));
     for (int idx = 0; idx < len; idx++)
         dest[idx] = src[idx];
     dest[len] = '\0';

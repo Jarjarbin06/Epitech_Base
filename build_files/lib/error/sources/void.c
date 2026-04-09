@@ -30,5 +30,5 @@ void err_void_simple(const title_t title, const message_t msg)
         str_putstr(": ");
         str_putstr(msg);
     }
-    str_putchar('\n');
+    str_put_char('\n');
 }

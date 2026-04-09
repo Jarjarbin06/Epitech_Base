@@ -5,14 +5,14 @@
 ** <description>
 */
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-int str_strlen(const char *str)
+int str_len(str_t str)
 {
     int idx = 0;
 
     if (!str)
         return idx;
     for (; str[idx] != '\0'; idx++);
-    return (idx);
+    return idx;
 }

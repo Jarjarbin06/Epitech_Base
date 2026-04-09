@@ -1,25 +1,25 @@
 /*
 ** EPITECH PROJECT, 2025
-** sources - str_str_islower.c
+** sources - str_str_isupper.c
 ** File description:
 ** <description>
 */
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
-bool str_is_lower(const char c)
+bool str_c_is_upper(char c)
 {
-    if (('a' <= c && c <= 'z'))
+    if (('A' <= c && c <= 'Z'))
         return true;
     return false;
 }
 
-bool str_str_islower(const char *str)
+bool str_is_upper(str_t str)
 {
     if (!str)
         return false;
     for (int idx = 0; str[idx] != '\0'; idx++)
-        if (!str_is_lower(str[idx]))
+        if (!str_c_is_upper(str[idx]))
             return false;
     return true;
 }
