@@ -16,7 +16,6 @@
 .idea
 .vscode
 .obsidian
-old_lib*
 perso
 
 #CMake
