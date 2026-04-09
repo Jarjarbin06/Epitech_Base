@@ -5,7 +5,6 @@
 #Inactive
 *.off
 *.out
-old_lib*
 
 #Compiled - Build - Object
 *.o
@@ -17,6 +16,8 @@ old_lib*
 .idea
 .vscode
 .obsidian
+old_lib*
+perso
 
 #CMake
 cmake-build-debug
