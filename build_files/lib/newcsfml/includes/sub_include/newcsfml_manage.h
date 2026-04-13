@@ -86,6 +86,11 @@ nsf_sound_t *nsf_game_get_sound(nsf_game_t *game, const char sound_name[]);
 void nsf_game_set_music(nsf_game_t *game, nsf_music_t *music);
     #endif
 
+    #ifndef P_NSF_GAME_GET_MUSIC
+        #define  P_NSF_GAME_GET_MUSIC
+nsf_music_t *nsf_game_get_music(nsf_game_t *game);
+    #endif
+
     #ifndef P_NSF_GAME_PLAY_MUSIC
         #define  P_NSF_GAME_PLAY_MUSIC
 void nsf_game_play_music(nsf_game_t *game);

@@ -24,6 +24,7 @@ const nsf_game_functions_t nsf_game = {
     nsf_game_get_sound,
     nsf_game_draw,
     nsf_game_set_music,
+    nsf_game_get_music,
     nsf_game_play_music,
     nsf_game_stop_music,
     nsf_game_set_music_volume

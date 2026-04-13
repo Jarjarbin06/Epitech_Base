@@ -14,6 +14,13 @@ void nsf_game_set_music(nsf_game_t *game, nsf_music_t *music)
     game->music = music;
 }
 
+nsf_music_t *nsf_game_get_music(nsf_game_t *game)
+{
+    if (!game || !game->music)
+        return NULL;
+    return game->music;
+}
+
 void nsf_game_play_music(nsf_game_t *game)
 {
     if (!game || !game->music)

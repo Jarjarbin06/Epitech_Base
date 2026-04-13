@@ -32,6 +32,7 @@ typedef struct {
     nsf_sound_t *(*get_sound)(nsf_game_t *, const char[]);
     void (*draw)(nsf_game_t *);
     void (*set_music)(nsf_game_t *, nsf_music_t *);
+    nsf_music_t *(*get_music)(nsf_game_t *);
     void (*play_music)(nsf_game_t *);
     void (*stop_music)(nsf_game_t *);
     void (*volume_music)(nsf_game_t *, float);
