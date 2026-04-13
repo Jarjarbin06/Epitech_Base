@@ -175,12 +175,17 @@ nsf.game.add_sound(<game>, <sound>)
 nsf.game.get_sprite(<game>, <name>)
 nsf.game.get_button(<game>, <name>)
 nsf.game.get_sound(<game>, <name>)
-nsf.game.draw(<game>)
+nsf.game.play_sound(<game>, <name>)
+nsf.game.pause_sound(<game>, <name>)
+nsf.game.stop_sound(<game>, <name>)
+nsf.game.volume_all_sound(<game>, <volume>)
+nsf.game.stop_all_sound(<game>)
 nsf.game.set_music(<game>, <music>)
 nsf.game.get_music(<game>)
 nsf.game.play_music(<game>)
 nsf.game.stop_music(<game>)
 nsf.game.volume_music(<game>, <volume>)
+nsf.game.draw(<game>)
 ```
 
 ### Notes
@@ -209,6 +214,11 @@ nsf.window.add_sound(<window>, <sound>, <game>)
 nsf.window.get_sprite(<window>, <name>)
 nsf.window.get_button(<window>, <name>)
 nsf.window.get_sound(<window>, <name>)
+nsf.window.play_sound(<window>, <name>)
+nsf.window.pause_sound(<window>, <name>)
+nsf.window.stop_sound(<window>, <name>)
+nsf.window.volume_all_sound(<window>, <volume>)
+nsf.window.stop_all_sound(<window>)
 ```
 
 ### Features

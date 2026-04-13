@@ -106,6 +106,31 @@ void nsf_game_stop_music(nsf_game_t *game);
 void nsf_game_set_music_volume(nsf_game_t *game, float volume);
     #endif
 
+    #ifndef P_NSF_GAME_PLAY_SOUND
+        #define P_NSF_GAME_PLAY_SOUND
+int nsf_game_play_sound(nsf_game_t *game, const char sound_name[]);
+    #endif
+
+    #ifndef P_NSF_GAME_PAUSE_SOUND
+        #define P_NSF_GAME_PAUSE_SOUND
+int nsf_game_pause_sound(nsf_game_t *game, const char sound_name[]);
+    #endif
+
+    #ifndef P_NSF_GAME_STOP_SOUND
+        #define P_NSF_GAME_STOP_SOUND
+int nsf_game_stop_sound(nsf_game_t *game, const char sound_name[]);
+    #endif
+
+    #ifndef P_NSF_GAME_ALL_SOUND_VOLUME
+        #define P_NSF_GAME_ALL_SOUND_VOLUME
+int nsf_game_all_sound_volume(nsf_game_t *game, float volume);
+    #endif
+
+    #ifndef P_NSF_GAME_STOP_ALL_SOUND
+        #define P_NSF_GAME_STOP_ALL_SOUND
+int nsf_game_stop_all_sound(nsf_game_t *game);
+    #endif
+
     #ifndef P_NSF_WINDOW_DISPLAY
         #define P_NSF_WINDOW_DISPLAY
 int nsf_window_display(nsf_window_t *window);
@@ -162,6 +187,31 @@ nsf_sound_t *nsf_window_get_sound(nsf_window_t *window,
     const char sound_name[]);
     #endif
 
+    #ifndef P_NSF_WINDOW_PLAY_SOUND
+        #define P_NSF_WINDOW_PLAY_SOUND
+int nsf_window_play_sound(nsf_window_t *window, const char sound_name[]);
+    #endif
+
+    #ifndef P_NSF_WINDOW_PAUSE_SOUND
+        #define P_NSF_WINDOW_PAUSE_SOUND
+int nsf_window_pause_sound(nsf_window_t *window, const char sound_name[]);
+    #endif
+
+    #ifndef P_NSF_WINDOW_STOP_SOUND
+        #define P_NSF_WINDOW_STOP_SOUND
+int nsf_window_stop_sound(nsf_window_t *window, const char sound_name[]);
+    #endif
+
+    #ifndef P_NSF_WINDOW_ALL_SOUND_VOLUME
+        #define P_NSF_WINDOW_ALL_SOUND_VOLUME
+int nsf_window_all_sound_volume(nsf_window_t *window, float volume);
+    #endif
+
+    #ifndef P_NSF_WINDOW_STOP_ALL_SOUND
+        #define P_NSF_WINDOW_STOP_ALL_SOUND
+int nsf_window_stop_all_sound(nsf_window_t *window);
+    #endif
+
     #ifndef P_NSF_SPRITE_SET_TEXTURE
         #define P_NSF_SPRITE_SET_TEXTURE
 void nsf_sprite_set_texture(nsf_sprite_t *sprite, nsf_texture_t *texture);
@@ -174,7 +224,8 @@ void nsf_button_set_texture(nsf_button_t *button, nsf_texture_t *texture);
 
     #ifndef P_NSF_BUTTON_SET_POSITION
         #define P_NSF_BUTTON_SET_POSITION
-void nsf_button_set_position(nsf_button_t *button, const nsf_vector_t position[]);
+void nsf_button_set_position(nsf_button_t *button,
+    const nsf_vector_t position[]);
     #endif
 
     #ifndef P_NSF_BUTTON_SET_SIZE
@@ -191,8 +242,8 @@ void nsf_button_set_colors(nsf_button_t *button,
 
     #ifndef P_NSF_BUTTON_CHECK_CLICK
         #define P_NSF_BUTTON_CHECK_CLICK
-nsf_button_status_t nsf_button_get_state(nsf_button_t *button, nsf_window_t *window,
-    nsf_mouse_t mouse_button);
+nsf_button_status_t nsf_button_get_state(nsf_button_t *button,
+    nsf_window_t *window, nsf_mouse_t mouse_button);
     #endif
 
     #ifndef P_NSF_MUSIC_PLAY

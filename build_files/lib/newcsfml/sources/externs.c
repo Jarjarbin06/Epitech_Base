@@ -22,12 +22,17 @@ const nsf_game_functions_t nsf_game = {
     nsf_game_get_sprite,
     nsf_game_get_button,
     nsf_game_get_sound,
-    nsf_game_draw,
+    nsf_game_play_sound,
+    nsf_game_pause_sound,
+    nsf_game_stop_sound,
+    nsf_game_all_sound_volume,
+    nsf_game_stop_all_sound,
     nsf_game_set_music,
     nsf_game_get_music,
     nsf_game_play_music,
     nsf_game_stop_music,
-    nsf_game_set_music_volume
+    nsf_game_set_music_volume,
+    nsf_game_draw
 };
 
 const nsf_window_functions_t nsf_window = {
@@ -45,7 +50,12 @@ const nsf_window_functions_t nsf_window = {
     nsf_window_add_sound,
     nsf_window_get_sprite,
     nsf_window_get_button,
-    nsf_window_get_sound
+    nsf_window_get_sound,
+    nsf_window_play_sound,
+    nsf_window_pause_sound,
+    nsf_window_stop_sound,
+    nsf_window_all_sound_volume,
+    nsf_window_stop_all_sound,
 };
 
 const nsf_sprite_functions_t nsf_sprite = {

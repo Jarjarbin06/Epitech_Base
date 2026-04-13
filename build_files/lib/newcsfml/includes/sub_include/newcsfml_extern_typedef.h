@@ -30,12 +30,17 @@ typedef struct {
     nsf_sprite_t *(*get_sprite)(nsf_game_t *, const char[]);
     nsf_button_t *(*get_button)(nsf_game_t *, const char[]);
     nsf_sound_t *(*get_sound)(nsf_game_t *, const char[]);
-    void (*draw)(nsf_game_t *);
+    int (*play_sound)(nsf_game_t *, const char[]);
+    int (*pause_sound)(nsf_game_t *, const char[]);
+    int (*stop_sound)(nsf_game_t *, const char[]);
+    int (*volume_all_sound)(nsf_game_t *, float);
+    int (*stop_all_sound)(nsf_game_t *);
     void (*set_music)(nsf_game_t *, nsf_music_t *);
     nsf_music_t *(*get_music)(nsf_game_t *);
     void (*play_music)(nsf_game_t *);
     void (*stop_music)(nsf_game_t *);
     void (*volume_music)(nsf_game_t *, float);
+    void (*draw)(nsf_game_t *);
 } nsf_game_functions_t;
     #endif
 
@@ -59,6 +64,11 @@ typedef struct {
     nsf_sprite_t *(*get_sprite)(nsf_window_t *, const char[]);
     nsf_button_t *(*get_button)(nsf_window_t *, const char[]);
     nsf_sound_t *(*get_sound)(nsf_window_t *, const char[]);
+    int (*play_sound)(nsf_window_t *, const char[]);
+    int (*pause_sound)(nsf_window_t *, const char[]);
+    int (*stop_sound)(nsf_window_t *, const char[]);
+    int (*volume_all_sound)(nsf_window_t *, float);
+    int (*stop_all_sound)(nsf_window_t *);
 } nsf_window_functions_t;
     #endif
 
