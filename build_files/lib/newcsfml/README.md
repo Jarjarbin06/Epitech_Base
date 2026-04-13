@@ -162,22 +162,24 @@ while (nsf.game.is_open(game)) {
 
 ```c
 nsf.game.create()
-nsf.game.destroy()
-nsf.game.display()
-nsf.game.is_open()
-nsf.game.close()
-nsf.game.get_event()
-nsf.game.set_window()
-nsf.game.get_window()
-nsf.game.add_sprite()
-nsf.game.add_button()
-nsf.game.get_sprite()
-nsf.game.get_button()
-nsf.game.draw()
-nsf.game.set_music()
-nsf.game.play_music()
-nsf.game.stop_music()
-nsf.game.volume_music()
+nsf.game.destroy(<*game>)
+nsf.game.display(<game>)
+nsf.game.is_open(<game>)
+nsf.game.close(<game>)
+nsf.game.get_event(<game>, <event>)
+nsf.game.set_window(<game>, <window>)
+nsf.game.get_window(<game>)
+nsf.game.add_sprite(<game>, <sprite>)
+nsf.game.add_button(<game>, <button>)
+nsf.game.add_sound(<game>, <sound>)
+nsf.game.get_sprite(<game>, <name>)
+nsf.game.get_button(<game>, <name>)
+nsf.game.get_sound(<game>, <name>)
+nsf.game.draw(<game>)
+nsf.game.set_music(<game>, <music>)
+nsf.game.play_music(<game>)
+nsf.game.stop_music(<game>)
+nsf.game.volume_music(<game>, <volume>)
 ```
 
 ### Notes
@@ -191,19 +193,21 @@ nsf.game.volume_music()
 # Window API
 
 ```c
-nsf.window.create()
-nsf.window.destroy()
-nsf.window.display()
-nsf.window.is_open()
-nsf.window.close()
-nsf.window.get_event()
-nsf.window.fill()
-nsf.window.draw_line()
-nsf.window.draw()
-nsf.window.add_sprite()
-nsf.window.add_button()
-nsf.window.get_sprite()
-nsf.window.get_button()
+nsf.window.create(<setting>, <name>, <style>, <game>)
+nsf.window.destroy(<*window>, <game>)
+nsf.window.display(<window>)
+nsf.window.is_open(<window>)
+nsf.window.close(<window>)
+nsf.window.get_event(<window>, <event>)
+nsf.window.fill(<window>, <color>)
+nsf.window.draw_line(<window>, <pos1>, <pos2>, <color>)
+nsf.window.draw(<window>)
+nsf.window.add_sprite(<window>, <sprite>, <game>)
+nsf.window.add_button(<window>, <button>, <game>)
+nsf.window.add_sound(<window>, <sound>, <game>)
+nsf.window.get_sprite(<window>, <name>)
+nsf.window.get_button(<window>, <name>)
+nsf.window.get_sound(<window>, <name>)
 ```
 
 ### Features
@@ -217,10 +221,10 @@ nsf.window.get_button()
 # Sprite API
 
 ```c
-nsf.sprite.create()
-nsf.sprite.destroy()
-nsf.sprite.set_texture()
-nsf.sprite.draw()
+nsf.sprite.create(<name>, <game>)
+nsf.sprite.destroy(<*sprite>, <game>)
+nsf.sprite.set_texture(<sprite>, <texture>)
+nsf.sprite.draw(<sprite>, <window>)
 ```
 
 ---
@@ -228,35 +232,35 @@ nsf.sprite.draw()
 # Button API
 
 ```c
-nsf.button.create()
-nsf.button.destroy()
-nsf.button.set_texture()
-nsf.button.set_position()
-nsf.button.set_size()
-nsf.button.set_colors()
-nsf.button.get_state()
-nsf.button.draw()
+nsf.button.create(<name>, <game>)
+nsf.button.destroy(<*button>, <game>)
+nsf.button.set_texture(<button>, <texture>)
+nsf.button.set_position(<button>, <pos>)
+nsf.button.set_size(<button>, <size>)
+nsf.button.set_colors(<button>, <color>)
+nsf.button.get_state(<button>, <window>, <wanted mouse key>)
+nsf.button.draw(<button>, <window>)
 ```
 
 ### Button State
 
 ```c
-int state = nsf.button.get_state(button, window, NSF_MOUSE_LEFT);
+nsf_button_status_t state = nsf.button.get_state(button, window, NSF_MOUSE_LEFT);
 ```
 
 Typical values:
 
-* `0` → idle
-* `1` → hover
-* `2` → clicked
+* `NSF_STT_BTN_NONE`
+* `NSF_STT_BTN_HOVERED`
+* `NSF_STT_BTN_PRESSED`
 
 ---
 
 # Texture API
 
 ```c
-nsf.texture.create()
-nsf.texture.destroy()
+nsf.texture.create(<path>, <name>, <game>)
+nsf.texture.destroy(<*texture>, <game>)
 ```
 
 ---
@@ -264,14 +268,29 @@ nsf.texture.destroy()
 # Music API
 
 ```c
-nsf.music.create()
-nsf.music.destroy()
-nsf.music.play()
-nsf.music.pause()
-nsf.music.stop()
-nsf.music.looping()
-nsf.music.volume()
-nsf.music.get_status()
+nsf.music.create(<path>, <name>, <game>)
+nsf.music.destroy(<*music>, <game>)
+nsf.music.play(<music>)
+nsf.music.pause(<music>)
+nsf.music.stop(<music>)
+nsf.music.looping(<music>, <loop>)
+nsf.music.volume(<music>, <volume>)
+nsf.music.get_status(<music>)
+```
+
+---
+
+# Sound API
+
+```c
+nsf.sound.create(<path>, <name>, <game>)
+nsf.sound.destroy(<*sound>, <game>)
+nsf.sound.play(<sound>)
+nsf.sound.pause(<sound>)
+nsf.sound.stop(<sound>)
+nsf.sound.looping(<sound>, <loop>)
+nsf.sound.volume(<sound>, <volume>)
+nsf.sound.get_status(<sound>)
 ```
 
 ---
@@ -279,8 +298,8 @@ nsf.music.get_status()
 # Event API
 
 ```c
-nsf.event.cmp(event, NSF_EVT_KEY_PRESSED);
-nsf.event.cmp_key(event, NSF_KEY_ESCAPE);
+nsf.event.cmp(<event>, <wanted event>);
+nsf.event.cmp_key(<event>, <wanted key>);
 ```
 
 ### Supported Types
