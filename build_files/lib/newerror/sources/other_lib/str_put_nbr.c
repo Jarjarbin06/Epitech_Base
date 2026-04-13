@@ -7,7 +7,7 @@
 
 #include <unistd.h>
 
-#include "../../includes/error.h"
+#include "../../includes/newerror.h"
 
 static void do_put_nbr(const int nbr)
 {

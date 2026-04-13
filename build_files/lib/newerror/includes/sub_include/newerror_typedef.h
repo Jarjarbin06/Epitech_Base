@@ -1,18 +1,18 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_includes - error_typedef.h
+** sub_includes - newerror_typedef.h
 ** File description:
 ** <description>
 */
 
 // Typedef //
-#ifndef ERROR_T
-    #define ERROR_T
+#ifndef NEWERROR_T
+    #define NEWERROR_T
 
-    #include "error_include.h"
+    #include "newerror_include.h"
 
-    #ifndef ERROR_T_TYPE
-        #define ERROR_T_TYPE
+#ifndef NEWERROR_T_TYPE
+        #define NEWERROR_T_TYPE
 
 typedef char const *title_t;
 typedef char const *message_t;
@@ -25,8 +25,8 @@ typedef bool fatal_t;
 
     #endif
 
-    #ifndef ERROR_T_STRUCT
-        #define ERROR_T_STRUCT
+    #ifndef NEWERROR_T_STRUCT
+        #define NEWERROR_T_STRUCT
 
 typedef struct {
     title_t title;

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** llist - error.c
+** llist - newerror.c
 ** File description:
 ** <description>
 */

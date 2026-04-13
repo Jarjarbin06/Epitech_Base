@@ -27,9 +27,12 @@ int nsf_game_destroy(nsf_game_t **game)
 {
     if (!game || !*game)
         return EXIT_ERROR;
-    nsf_auto_free(2, (nsf_free_t[]){
-        {(*game)->window, &(*game)->window, sfMusic_destroy},
-        {(*game)->music, &(*game)->music, free_any}
+    if ((*game)->window)
+        nsf_window_destroy(&(*game)->window, *game);
+    if ((*game)->music)
+        nsf_music_destroy(&(*game)->music, *game);
+    nsf_auto_free(1, (nsf_free_t[]){
+        {*game, game, free_any}
     }, *game);
     return EXIT_SUCCESS;
 }

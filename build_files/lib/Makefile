@@ -160,7 +160,7 @@ test: re
 	-$(TEST_COMPILER) -o $(TEST_NAME_ERROR) $(TEST_BASE) $(TEST_ERROR) $(TEST_FLAG) $(CFLAGS)
 
 ifeq ($(DO_VALGRIND), true)
-test_run:	error/test
+test_run:	newerror
 	@printf "\033[4mTWODLIST\033[0m\n"
 	-@valgrind --leak-check=full --show-leak-kinds=all -s ./$(TEST_NAME_TWODLIST)
 	@printf "\033[4mLLIST\033[0m\n"
@@ -176,7 +176,7 @@ test_run:	error/test
 	@make --no-print-directory fclean
 
 else
-test_run:	error/test
+test_run:	newerror
 	@printf "\033[4mTWODLIST\033[0m\n"
 	-@./$(TEST_NAME_TWODLIST)
 	@printf "\033[4mLLIST\033[0m\n"

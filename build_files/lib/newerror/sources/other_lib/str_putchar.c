@@ -7,7 +7,7 @@
 
 #include <unistd.h>
 
-#include "../../includes/error.h"
+#include "../../includes/newerror.h"
 
 int str_put_char(const char c)
 {

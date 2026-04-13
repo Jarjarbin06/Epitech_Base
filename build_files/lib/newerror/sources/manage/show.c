@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "../includes/error.h"
+#include "../../includes/newerror.h"
 
 static void put_indent(void)
 {

@@ -8,7 +8,7 @@
 ##########
 ## INFO ##
 ##########
-info_NAME	=	error
+info_NAME	=	newerror
 info_VERSION	=	v0.1.0
 info_LAST_UPDATE	=	2026/03/30 13:24
 info_LIB_MAKER	=	Makefile

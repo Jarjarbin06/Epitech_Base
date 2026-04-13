@@ -146,6 +146,28 @@ int err_int_error_simple(const char *title, const char *msg);
 
 ---
 
+## Boolean
+
+```c
+bool err_bool(const err_t error[], bool value);
+bool err_bool_false(const err_t error[]);
+```
+
+* Prints error
+* Returns:
+
+  * Custom value
+  * `false` (0)
+
+### Simple Version
+
+```c
+bool err_bool_simple(const char *title, const char *msg, bool value);
+bool err_bool_error_simple(const char *title, const char *msg);
+```
+
+---
+
 ## Pointer
 
 ```c
@@ -212,6 +234,7 @@ Direct function aliases:
 verror(ERR());     // void
 nerror(ERR());     // NULL pointer
 ierror(ERR());     // int error (84)
+ferror(ERR());     // bool false (0)
 
 upt(ERR(), "title", "msg");
 ftl(ERR());

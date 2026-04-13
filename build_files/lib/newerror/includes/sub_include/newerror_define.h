@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2025
-** sub_includes - error_define.h
+** sub_includes - newerror_define.h
 ** File description:
 ** <description>
 */
 
 // Define //
-#ifndef ERROR_D
-    #define ERROR_D
+#ifndef NEWERROR_D
+    #define NEWERROR_D
 
     #ifndef EXIT_D
         #define EXIT_D

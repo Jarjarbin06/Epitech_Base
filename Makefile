@@ -36,7 +36,7 @@ BONUS	=	$(BONUS_PATH)/bonus_file.c
 
 # Lib list #
 LIBS_LIST	=	\
-	error \
+	newerror \
 	llist \
 	newcsfml \
 	print \
@@ -201,11 +201,11 @@ push_makefile:
 	-@git push origin main
 
 import_error:
-	-@rm -rdf ./lib/error ./includes/lib_includes/error
-	-@mkdir ./lib/error
-	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/error/* ./lib/error
-	-@mkdir ./includes/lib_includes/error
-	@cp -rf lib/error/includes/* ./includes/lib_includes/error
+	-@rm -rdf ./lib/newerror ./includes/lib_includes/newerror
+	-@mkdir ./lib/newerror
+	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newerror/* ./lib/newerror
+	-@mkdir ./includes/lib_includes/newerror
+	@cp -rf lib/newerror/includes/* ./includes/lib_includes/newerror
 	-@make push_lib
 
 import_llist:
