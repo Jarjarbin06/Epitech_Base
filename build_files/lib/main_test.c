@@ -15,19 +15,19 @@
 
 static void check_button(nsf_window_t *window, nsf_button_t *btn)
 {
-    if (nsf.button.get_state(btn, window, nsf_mouse_left))
+    if (nsf.button.get_state(btn, window, NSF_MSE_LEFT))
         nsf.window.close(window);
 }
 
 static void check_event(nsf_window_t *window, nsf_event_t *event)
 {
     while (nsf.window.get_event(window, event)) {
-        if (nsf.event.cmp(event, nsf_evt_closed))
+        if (nsf.event.cmp(event, NSF_EVT_CLOSED))
             nsf.window.close(window);
-        if (nsf.event.cmp(event, nsf_evt_key_pressed) &&
-            nsf.event.cmp_key(event, nsf_key_escape))
+        if (nsf.event.cmp(event, NSF_EVT_KEY_PRESSED) &&
+            nsf.event.cmp_key(event, NSF_KEY_ESCAPE))
             nsf.window.close(window);
-        if (nsf.event.cmp(event, nsf_evt_mouse_button_pressed))
+        if (nsf.event.cmp(event, NSF_EVT_MOUSE_BUTTON_PRESSED))
             check_button(window, nsf.window.get_button(window, "a button"));
     }
 }
@@ -36,7 +36,7 @@ static nsf_window_t *create_window(nsf_game_t *game)
 {
     nsf_window_t *window = nsf.window.create(
         (nsf_window_settings_t[]){{500, 500, 32, 30}},
-        "my_window", nsf_wdw_default_style, game);
+        "my_window", NSF_WDW_DEFAULT_STYLE, game);
 
     return window;
 }

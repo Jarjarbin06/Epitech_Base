@@ -9,6 +9,9 @@
 #ifndef NEWCSFML_T
     #define NEWCSFML_T
 
+    #include <SFML/Audio/Sound.h>
+    #include <SFML/Audio/SoundBuffer.h>
+    #include <SFML/Audio/Music.h>
     #include <SFML/Graphics/Sprite.h>
     #include <SFML/Window/Event.h>
     #include <SFML/Window/WindowBase.h>
@@ -64,6 +67,7 @@ typedef sfEvent nsf_event_t;
     #ifndef T_NSF_EVENT_TYPE
         #define T_NSF_EVENT_TYPE
 typedef enum {
+    NSF_EVT_UNKNOWN = -1,
     NSF_EVT_CLOSED,
     NSF_EVT_RESIZED,
     NSF_EVT_LOST_FOCUS,
@@ -94,6 +98,7 @@ typedef enum {
     #ifndef T_NSF_WINDOW_STYLE
         #define T_NSF_WINDOW_STYLE
 typedef enum {
+    NSF_WDW_UNKNOWN = -1,
     NSF_WDW_NONE = (sfWindowStyle)sfNone,
     NSF_WDW_TITLEBAR = (sfWindowStyle)sfFullscreen,
     NSF_WDW_RESIZE = (sfWindowStyle)sfFullscreen,
@@ -217,21 +222,44 @@ typedef enum
         #define T_NSF_MOUSE
 typedef enum
 {
-    NSF_MOUSE_LEFT,
-    NSF_MOUSE_RIGHT,
-    NSF_MOUSE_MIDDLE,
-    NSF_MOUSE_X_BTTN_1,
-    NSF_MOUSE_X_BTTN_2,
-    NSF_MOUSE_COUNT
+    NSF_MSE_UNKNOWN = -1,
+    NSF_MSE_LEFT,
+    NSF_MSE_RIGHT,
+    NSF_MSE_MIDDLE,
+    NSF_MSE_X_BTTN_1,
+    NSF_MSE_X_BTTN_2,
+    NSF_MSE_COUNT
 } nsf_mouse_t;
+    #endif
+
+    #ifndef T_NSF_MUSIC_STATUS
+        #define T_NSF_MUSIC_STATUS
+typedef enum {
+    NSF_STT_SND_UNKNOWN = -1,
+    NSF_STT_SND_STOPPED = (sfSoundStatus)sfStopped,
+    NSF_STT_SND_PAUSED = (sfSoundStatus)sfPaused,
+    NSF_STT_SND_PLAYING = (sfSoundStatus)sfPlaying
+} nsf_sound_status_t;
+    #endif
+
+    #ifndef T_NSF_BUTTON_STATUS
+        #define T_NSF_MUSIC_STATUS
+typedef enum {
+    NSF_STT_BTN_UNKNOWN = -1,
+    NSF_STT_BTN_NONE,
+    NSF_STT_BTN_HOVERED,
+    NSF_STT_BTN_PRESSED
+} nsf_button_status_t;
     #endif
 
     #ifndef T_NSF_WINDOW_ELEMENTS
         #define T_NSF_WINDOW_ELEMENTS
 typedef enum
 {
-    SPRITE_ELEMENT,
-    BUTTON_ELEMENT
+    NSF_UNKNOWN_ELEMENT = -1,
+    NSF_SPRITE_ELEMENT,
+    NSF_BUTTON_ELEMENT,
+    NSF_SOUND_ELEMENT
 } nsf_window_elements_t;
     #endif
 
@@ -249,6 +277,23 @@ typedef struct {
     sfTexture *texture;
     str_t name;
 } nsf_texture_t;
+    #endif
+
+    #ifndef T_NSF_MUSIC
+        #define T_NSF_MUSIC
+typedef struct {
+    sfMusic *music;
+    str_t name;
+} nsf_music_t;
+    #endif
+
+    #ifndef T_NSF_SOUND
+        #define T_NSF_SOUND
+typedef struct {
+    sfSound *sound;
+    sfSoundBuffer *buffer;
+    str_t name;
+} nsf_sound_t;
     #endif
 
     #ifndef T_NSF_BUTTON
@@ -312,6 +357,7 @@ typedef struct {
         #define T_NSF_GAME
 typedef struct {
     nsf_window_t *window;
+    nsf_music_t *music;
     nsf_uint_t allocations;
 } nsf_game_t;
     #endif

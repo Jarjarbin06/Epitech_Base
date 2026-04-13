@@ -61,21 +61,30 @@ nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
     return new_window;
 }
 
+static void destroy_element(nsf_window_element_t *element, nsf_game_t *game)
+{
+    switch (element->element_type) {
+        case NSF_SPRITE_ELEMENT:
+            nsf_sprite_destroy(
+                (nsf_sprite_t **)&(element->ptr), game);
+            return;
+        case NSF_BUTTON_ELEMENT:
+            nsf_button_destroy(
+                (nsf_button_t **)&(element->ptr), game);
+            return;
+        case NSF_SOUND_ELEMENT:
+            nsf_sound_destroy(
+                (nsf_sound_t **)&(element->ptr), game);
+            return;
+        default:
+            return;
+    }
+}
+
 static void destroy_elements(const nsf_window_t *window, nsf_game_t *game)
 {
     for (int idx = 0; window->elements[idx]; idx++) {
-        switch (window->elements[idx]->element_type) {
-            case SPRITE_ELEMENT:
-                nsf_sprite_destroy(
-                    (nsf_sprite_t **)&(window->elements[idx]->ptr), game);
-                break;
-            case BUTTON_ELEMENT:
-                nsf_button_destroy(
-                    (nsf_button_t **)&(window->elements[idx]->ptr), game);
-                break;
-            default:
-                return;
-        }
+        destroy_element(window->elements[idx], game);
         nsf_free_any(window->elements[idx], game);
     }
     nsf_free_any(window->elements, game);

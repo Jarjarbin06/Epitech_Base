@@ -38,11 +38,11 @@ void nsf_window_draw(nsf_window_t *window)
     if (!window || !window->elements)
         return;
     for (int idx = 0; window->elements[idx]; idx++)
-        if (window->elements[idx]->element_type == BUTTON_ELEMENT)
+        if (window->elements[idx]->element_type == NSF_BUTTON_ELEMENT)
             nsf_button_draw((nsf_button_t *)(window->elements[idx]->ptr),
                 window);
     for (int idx = 0; window->elements[idx]; idx++)
-        if (window->elements[idx]->element_type == SPRITE_ELEMENT)
+        if (window->elements[idx]->element_type == NSF_SPRITE_ELEMENT)
             nsf_sprite_draw((nsf_sprite_t *)(window->elements[idx]->ptr),
                 window);
 }

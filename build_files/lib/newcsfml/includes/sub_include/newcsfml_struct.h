@@ -63,4 +63,26 @@ nsf_button_t *nsf_button_create(const char name[], nsf_game_t *game);
 int nsf_button_destroy(nsf_button_t **button, nsf_game_t *game);
     #endif
 
+    #ifndef P_NSF_MUSIC_CREATE
+        #define P_NSF_MUSIC_CREATE
+nsf_music_t *nsf_music_create(const char path[], const char name[],
+    nsf_game_t *game);
+    #endif
+
+    #ifndef P_NSF_MUSIC_DESTROY
+        #define P_NSF_MUSIC_DESTROY
+int nsf_music_destroy(nsf_music_t **music, nsf_game_t *game);
+    #endif
+
+    #ifndef P_NSF_SOUND_CREATE
+        #define P_NSF_SOUND_CREATE
+nsf_sound_t *nsf_sound_create(const char path[], const char name[],
+    nsf_game_t *game);
+    #endif
+
+    #ifndef P_NSF_SOUND_DESTROY
+        #define P_NSF_SOUND_DESTROY
+int nsf_sound_destroy(nsf_sound_t **sound, nsf_game_t *game);
+    #endif
+
 #endif

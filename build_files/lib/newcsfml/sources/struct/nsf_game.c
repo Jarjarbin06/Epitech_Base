@@ -19,6 +19,7 @@ nsf_game_t *nsf_game_create(void)
     }
     new_game->allocations = 0;
     new_game->window = NULL;
+    new_game->music = NULL;
     return new_game;
 }
 
@@ -28,6 +29,8 @@ int nsf_game_destroy(nsf_game_t **game)
         return EXIT_ERROR;
     if ((*game)->window)
         nsf_window_destroy(&(*game)->window, *game);
+    if ((*game)->music)
+        nsf_music_destroy(&(*game)->music, *game);
     *game = free_any(*game);
     return EXIT_SUCCESS;
 }

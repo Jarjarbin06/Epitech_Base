@@ -18,9 +18,15 @@ const nsf_game_functions_t nsf_game = {
     nsf_game_get_window,
     nsf_game_add_sprite,
     nsf_game_add_button,
+    nsf_game_add_sound,
     nsf_game_get_sprite,
     nsf_game_get_button,
-    nsf_game_draw
+    nsf_game_get_sound,
+    nsf_game_draw,
+    nsf_game_set_music,
+    nsf_game_play_music,
+    nsf_game_stop_music,
+    nsf_game_set_music_volume
 };
 
 const nsf_window_functions_t nsf_window = {
@@ -35,8 +41,10 @@ const nsf_window_functions_t nsf_window = {
     nsf_window_draw,
     nsf_window_add_sprite,
     nsf_window_add_button,
+    nsf_window_add_sound,
     nsf_window_get_sprite,
-    nsf_window_get_button
+    nsf_window_get_button,
+    nsf_window_get_sound
 };
 
 const nsf_sprite_functions_t nsf_sprite = {
@@ -60,6 +68,28 @@ const nsf_button_functions_t nsf_button = {
 const nsf_texture_functions_t nsf_texture = {
     nsf_texture_create,
     nsf_texture_destroy
+};
+
+const nsf_music_functions_t nsf_music = {
+    nsf_music_create,
+    nsf_music_destroy,
+    nsf_music_play,
+    nsf_music_pause,
+    nsf_music_stop,
+    nsf_music_looping,
+    nsf_music_volume,
+    nsf_music_get_status,
+};
+
+const nsf_sound_functions_t nsf_sound = {
+    nsf_sound_create,
+    nsf_sound_destroy,
+    nsf_sound_play,
+    nsf_sound_pause,
+    nsf_sound_stop,
+    nsf_sound_looping,
+    nsf_sound_volume,
+    nsf_sound_get_status,
 };
 
 const nsf_colors_t nsf_clr = {
@@ -86,6 +116,7 @@ const nsf_nsf_functions_t nsf = {
     nsf_sprite,
     nsf_button,
     nsf_texture,
+    nsf_music,
     nsf_clr,
     nsf_event,
 };

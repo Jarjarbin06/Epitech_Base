@@ -61,6 +61,11 @@ void nsf_game_add_sprite(nsf_game_t *game, nsf_sprite_t *sprite);
 void nsf_game_add_button(nsf_game_t *game, nsf_button_t *button);
     #endif
 
+    #ifndef P_NSF_GAME_ADD_SOUND
+        #define  P_NSF_GAME_ADD_SOUND
+void nsf_game_add_sound(nsf_game_t *game, nsf_sound_t *sound);
+    #endif
+
     #ifndef P_NSF_GAME_GET_SPRITE
         #define  P_NSF_GAME_GET_SPRITE
 nsf_sprite_t *nsf_game_get_sprite(nsf_game_t *game, const char sprite_name[]);
@@ -68,7 +73,32 @@ nsf_sprite_t *nsf_game_get_sprite(nsf_game_t *game, const char sprite_name[]);
 
     #ifndef P_NSF_GAME_GET_BUTTON
         #define  P_NSF_GAME_GET_BUTTON
-nsf_button_t *nsf_game_get_button(nsf_game_t *game, const char sprite_name[]);
+nsf_button_t *nsf_game_get_button(nsf_game_t *game, const char button_name[]);
+    #endif
+
+    #ifndef P_NSF_GAME_GET_SOUND
+        #define  P_NSF_GAME_GET_SOUND
+nsf_sound_t *nsf_game_get_sound(nsf_game_t *game, const char sound_name[]);
+    #endif
+
+    #ifndef P_NSF_GAME_SET_MUSIC
+        #define  P_NSF_GAME_SET_MUSIC
+void nsf_game_set_music(nsf_game_t *game, nsf_music_t *music);
+    #endif
+
+    #ifndef P_NSF_GAME_PLAY_MUSIC
+        #define  P_NSF_GAME_PLAY_MUSIC
+void nsf_game_play_music(nsf_game_t *game);
+    #endif
+
+    #ifndef P_NSF_GAME_STOP_MUSIC
+        #define  P_NSF_GAME_PLAY_MUSIC
+void nsf_game_stop_music(nsf_game_t *game);
+    #endif
+
+    #ifndef P_NSF_GAME_SET_MUSIC_VOLUME
+        #define  P_NSF_GAME_SET_MUSIC_VOLUME
+void nsf_game_set_music_volume(nsf_game_t *game, float volume);
     #endif
 
     #ifndef P_NSF_WINDOW_DISPLAY
@@ -103,6 +133,12 @@ void nsf_window_add_button(nsf_window_t *window, nsf_button_t *button,
     nsf_game_t *game);
     #endif
 
+    #ifndef P_NSF_WINDOW_ADD_SOUND
+        #define P_NSF_WINDOW_ADD_SOUND
+void nsf_window_add_sound(nsf_window_t *window, nsf_sound_t *sound,
+    nsf_game_t *game);
+    #endif
+
     #ifndef P_NSF_WINDOW_GET_SPRITE
         #define P_NSF_WINDOW_GET_SPRITE
 nsf_sprite_t *nsf_window_get_sprite(nsf_window_t *window,
@@ -113,6 +149,12 @@ nsf_sprite_t *nsf_window_get_sprite(nsf_window_t *window,
         #define P_NSF_WINDOW_GET_BUTTON
 nsf_button_t *nsf_window_get_button(nsf_window_t *window,
     const char button_name[]);
+    #endif
+
+    #ifndef P_NSF_WINDOW_GET_SOUND
+        #define P_NSF_WINDOW_GET_SOUND
+nsf_sound_t *nsf_window_get_sound(nsf_window_t *window,
+    const char sound_name[]);
     #endif
 
     #ifndef P_NSF_SPRITE_SET_TEXTURE
@@ -144,8 +186,68 @@ void nsf_button_set_colors(nsf_button_t *button,
 
     #ifndef P_NSF_BUTTON_CHECK_CLICK
         #define P_NSF_BUTTON_CHECK_CLICK
-int nsf_button_get_state(nsf_button_t *button, nsf_window_t *window,
+nsf_button_status_t nsf_button_get_state(nsf_button_t *button, nsf_window_t *window,
     nsf_mouse_t mouse_button);
+    #endif
+
+    #ifndef P_NSF_MUSIC_PLAY
+        #define P_NSF_MUSIC_PLAY
+void nsf_music_play(nsf_music_t *music);
+    #endif
+
+    #ifndef P_NSF_MUSIC_PAUSE
+        #define P_NSF_MUSIC_PAUSE
+void nsf_music_pause(nsf_music_t *music);
+    #endif
+
+    #ifndef P_NSF_MUSIC_STOP
+        #define P_NSF_MUSIC_STOP
+void nsf_music_stop(nsf_music_t *music);
+    #endif
+
+    #ifndef P_NSF_MUSIC_LOOPING
+        #define P_NSF_MUSIC_LOOPING
+void nsf_music_looping(nsf_music_t *music, bool looping);
+    #endif
+
+    #ifndef P_NSF_MUSIC_VOLUME
+        #define P_NSF_MUSIC_VOLUME
+void nsf_music_volume(nsf_music_t *music, float volume);
+    #endif
+
+    #ifndef P_NSF_MUSIC_GET_STATUS
+        #define P_NSF_MUSIC_GET_STATUS
+nsf_sound_status_t nsf_music_get_status(nsf_music_t *music);
+    #endif
+
+    #ifndef P_NSF_SOUND_PLAY
+        #define P_NSF_SOUND_PLAY
+void nsf_sound_play(nsf_sound_t *sound);
+    #endif
+
+    #ifndef P_NSF_SOUND_PAUSE
+        #define P_NSF_SOUND_PAUSE
+void nsf_sound_pause(nsf_sound_t *sound);
+    #endif
+
+    #ifndef P_NSF_SOUND_STOP
+        #define P_NSF_SOUND_STOP
+void nsf_sound_stop(nsf_sound_t *sound);
+    #endif
+
+    #ifndef P_NSF_SOUND_LOOPING
+        #define P_NSF_SOUND_LOOPING
+void nsf_sound_looping(nsf_sound_t *sound, bool looping);
+    #endif
+
+    #ifndef P_NSF_SOUND_VOLUME
+        #define P_NSF_SOUND_VOLUME
+void nsf_sound_volume(nsf_sound_t *sound, float volume);
+    #endif
+
+    #ifndef P_NSF_SOUND_GET_STATUS
+        #define P_NSF_SOUND_GET_STATUS
+nsf_sound_status_t nsf_sound_get_status(nsf_sound_t *sound);
     #endif
 
 #endif

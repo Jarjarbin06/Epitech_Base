@@ -23,6 +23,7 @@ nsf.game
 nsf.window
 nsf.sprite
 nsf.button
+nsf.music
 nsf.texture
 nsf.color
 nsf.event
@@ -109,6 +110,17 @@ typedef struct {
 
 ---
 
+### Music
+
+```c
+typedef struct {
+    sfMusic *music;
+    str_t name;
+} nsf_music_t;
+```
+
+---
+
 # Basic Usage
 
 ## Initialization
@@ -162,6 +174,10 @@ nsf.game.add_button()
 nsf.game.get_sprite()
 nsf.game.get_button()
 nsf.game.draw()
+nsf.game.set_music()
+nsf.game.play_music()
+nsf.game.stop_music()
+nsf.game.volume_music()
 ```
 
 ### Notes
@@ -241,6 +257,21 @@ Typical values:
 ```c
 nsf.texture.create()
 nsf.texture.destroy()
+```
+
+---
+
+# Music API
+
+```c
+nsf.music.create()
+nsf.music.destroy()
+nsf.music.play()
+nsf.music.pause()
+nsf.music.stop()
+nsf.music.looping()
+nsf.music.volume()
+nsf.music.get_status()
 ```
 
 ---
