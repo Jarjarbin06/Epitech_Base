@@ -30,14 +30,16 @@ void *nsf_free_any(void *ptr, nsf_game_t *game)
     return NULL;
 }
 
-int nsf_auto_free(const nsf_uint_t len, const free_t free_list[],
+int nsf_auto_free(const nsf_uint_t len, const nsf_free_t free_list[],
     nsf_game_t *game)
 {
     int freed = 0;
 
     for (int idx = 0; idx < (int)len; idx++) {
         if (free_list[idx].condition) {
-            free_list[idx].free_func(*(void **)free_list[idx].ptr);
+            ((void_func_t)free_list[idx].free_func)(
+                *(void **)free_list[idx].ptr
+            );
             *(void **)free_list[idx].ptr = NULL;
             freed++;
         }

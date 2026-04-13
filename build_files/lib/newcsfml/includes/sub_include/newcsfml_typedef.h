@@ -362,6 +362,15 @@ typedef struct {
 } nsf_game_t;
     #endif
 
+    #ifndef T_NSF_FREE
+        #define T_NSF_FREE
+typedef struct {
+    bool condition;
+    void *ptr;
+    void *free_func;
+} nsf_free_t;
+    #endif
+
     #ifndef T_FREE
         #define T_FREE
 typedef struct {

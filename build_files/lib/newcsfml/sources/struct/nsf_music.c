@@ -12,11 +12,11 @@
 static int check_ptr(nsf_music_t **new_music, sfMusic **sf_music,
     str_t *name_str, nsf_game_t *game)
 {
-    return nsf_auto_free(3, (free_t[]){
+    return nsf_auto_free(3, (nsf_free_t[]){
         {*new_music && (!*sf_music || !*name_str),
             new_music, free_any},
         {*sf_music && (!*new_music || !*name_str),
-            sf_music, (void_func_t)sfMusic_destroy},
+            sf_music, sfMusic_destroy},
         {*name_str && (!*new_music || !*sf_music),
             name_str, free_any}
     }, game);
@@ -41,10 +41,10 @@ int nsf_music_destroy(nsf_music_t **music, nsf_game_t *game)
 {
     if (!music || !*music)
         return EXIT_ERROR;
-    if ((*music)->music)
-        sfMusic_destroy((*music)->music);
-    if ((*music)->name)
-        nsf_free_any((*music)->name, game);
-    *music = nsf_free_any(*music, game);
+    nsf_auto_free(3, (nsf_free_t[]){
+        {(*music)->music, &(*music)->music, sfMusic_destroy},
+        {(*music)->name, &(*music)->name, free_any},
+        {*music, &music, free_any}
+    }, game);
     return EXIT_SUCCESS;
 }

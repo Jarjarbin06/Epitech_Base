@@ -12,11 +12,11 @@
 static int check_ptr(nsf_button_t **new_button, sfRectangleShape **sf_button,
     str_t *name_str, nsf_game_t *game)
 {
-    return nsf_auto_free(3, (free_t[]){
+    return nsf_auto_free(3, (nsf_free_t[]){
         {*new_button && (!*name_str || !*sf_button),
             new_button, free_any},
         {*sf_button && (!*new_button || !*name_str),
-            sf_button, (void_func_t)sfRectangleShape_destroy},
+            sf_button, sfRectangleShape_destroy},
         {*name_str && (!*new_button || !*sf_button),
             name_str, free_any}
     }, game);
@@ -45,12 +45,12 @@ int nsf_button_destroy(nsf_button_t **button, nsf_game_t *game)
 {
     if (!button || !*button)
         return EXIT_ERROR;
-    if ((*button)->button)
-        sfRectangleShape_destroy((*button)->button);
     if ((*button)->texture)
         nsf_texture_destroy(&(*button)->texture, game);
-    if ((*button)->name)
-        nsf_free_any((*button)->name, game);
-    *button = nsf_free_any(*button, game);
+    nsf_auto_free(3, (nsf_free_t[]){
+        {(*button)->button, &(*button)->button, sfRectangleShape_destroy},
+        {(*button)->name, &(*button)->name, free_any},
+        {button, &button, free_any}
+    }, game);
     return EXIT_SUCCESS;
 }

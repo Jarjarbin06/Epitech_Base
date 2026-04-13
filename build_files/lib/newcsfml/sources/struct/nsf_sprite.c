@@ -12,11 +12,11 @@
 static int check_ptr(nsf_sprite_t **new_sprite, sfSprite **sf_sprite,
     str_t *sprite_name, nsf_game_t *game)
 {
-    return nsf_auto_free(3, (free_t[]){
+    return nsf_auto_free(3, (nsf_free_t[]){
         {*new_sprite && (!*sf_sprite || !*sprite_name),
             new_sprite, free_any},
         {*sf_sprite && (!*new_sprite || !*sprite_name),
-            sf_sprite, (void_func_t)sfSprite_destroy},
+            sf_sprite, sfSprite_destroy},
         {*sprite_name && (!*new_sprite || !*sf_sprite),
             sprite_name, free_any}
     }, game);
@@ -40,15 +40,16 @@ nsf_sprite_t *nsf_sprite_create(const char name[], nsf_game_t *game)
     return new_sprite;
 }
 
-void nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game)
+int nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game)
 {
     if (!sprite || !*sprite)
-        return;
-    if ((*sprite)->sprite)
-        sfSprite_destroy((*sprite)->sprite);
+        return EXIT_ERROR;
     if ((*sprite)->texture)
         nsf_texture_destroy(&(*sprite)->texture, game);
-    if ((*sprite)->name)
-        nsf_free_any((*sprite)->name, game);
-    *sprite = nsf_free_any(*sprite, game);
+    nsf_auto_free(3, (nsf_free_t[]){
+        {(*sprite)->sprite, &(*sprite)->sprite, sfSprite_destroy},
+        {(*sprite)->name, &(*sprite)->name, free_any},
+        {*sprite, &sprite, free_any}
+    }, game);
+    return EXIT_SUCCESS;
 }

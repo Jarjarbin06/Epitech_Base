@@ -66,7 +66,7 @@ typedef struct {
         #define T_NSF_SPRITES
 typedef struct {
     nsf_sprite_t *(*create)(const char[], nsf_game_t *);
-    void (*destroy)(nsf_sprite_t **, nsf_game_t *);
+    int (*destroy)(nsf_sprite_t **, nsf_game_t *);
     void (*set_texture)(nsf_sprite_t *, nsf_texture_t *);
     void (*draw)(nsf_sprite_t *, nsf_window_t *);
 } nsf_sprite_functions_t;
