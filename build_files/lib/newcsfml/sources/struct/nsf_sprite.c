@@ -51,5 +51,6 @@ int nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game)
         {(*sprite)->name, &(*sprite)->name, free_any},
         {*sprite, &sprite, free_any}
     }, game);
+    *sprite = NULL;
     return EXIT_SUCCESS;
 }

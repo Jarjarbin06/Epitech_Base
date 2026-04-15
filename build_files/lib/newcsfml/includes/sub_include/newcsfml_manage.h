@@ -131,6 +131,11 @@ int nsf_game_all_sound_volume(nsf_game_t *game, float volume);
 int nsf_game_stop_all_sound(nsf_game_t *game);
     #endif
 
+    #ifndef P_NSF_GAME_UPDATE
+        #define P_NSF_GAME_UPDATE
+int nsf_game_update(nsf_game_t *game);
+    #endif
+
     #ifndef P_NSF_WINDOW_DISPLAY
         #define P_NSF_WINDOW_DISPLAY
 int nsf_window_display(nsf_window_t *window);
@@ -210,6 +215,11 @@ int nsf_window_all_sound_volume(nsf_window_t *window, float volume);
     #ifndef P_NSF_WINDOW_STOP_ALL_SOUND
         #define P_NSF_WINDOW_STOP_ALL_SOUND
 int nsf_window_stop_all_sound(nsf_window_t *window);
+    #endif
+
+    #ifndef P_NSF_WINDOW_UPDATE_SETTINGS
+        #define P_NSF_WINDOW_UPDATE_SETTINGS
+int nsf_window_update_settings(nsf_window_t *window);
     #endif
 
     #ifndef P_NSF_SPRITE_SET_TEXTURE

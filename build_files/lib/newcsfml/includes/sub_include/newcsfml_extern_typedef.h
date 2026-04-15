@@ -41,6 +41,7 @@ typedef struct {
     void (*stop_music)(nsf_game_t *);
     void (*volume_music)(nsf_game_t *, float);
     void (*draw)(nsf_game_t *);
+    int (*update)(nsf_game_t *);
 } nsf_game_functions_t;
     #endif
 
@@ -69,6 +70,10 @@ typedef struct {
     int (*stop_sound)(nsf_window_t *, const char[]);
     int (*volume_all_sound)(nsf_window_t *, float);
     int (*stop_all_sound)(nsf_window_t *);
+    int (*update_settings)(nsf_window_t *);
+    nsf_window_settings_t *(*setting_create)(const nsf_window_settings_t[],
+        nsf_game_t *);
+    int (*setting_destroy)(nsf_window_settings_t **, nsf_game_t *);
 } nsf_window_functions_t;
     #endif
 

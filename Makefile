@@ -79,6 +79,7 @@ TESTCFLAGS	=	\
 	-lcriterion
 
 ALLOW_UNBUILD	=	false
+ALLOW_AUTO_PUSH	=	true
 #################
 ## Basic rules ##
 #################
@@ -155,7 +156,7 @@ test_run: test_$(TESTCNAME)_run
 ## git rules ##
 ###############
 git_get_commit:
-	@python3 bonus/perso/commit_name.py
+	@python3 /home/jarjarbin/Desktop/python/commit_name.py
 
 git_pull:
 	@git pull origin main
@@ -259,10 +260,16 @@ import_utils:
 import_all:
 	-@make import_error import_llist import_newcsfml import_print import_str import_twodlist import_utils
 
+ifeq ($(ALLOW_AUTO_PUSH), true)
 push_lib:
 	-@git add lib includes/lib_includes
 	-@git commit -m "[INIT] Library import"
 	-@git push origin main
+else
+push_lib:
+	@printf '\033[91mPushLib is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling push_lib.\033[0m\n'
+	@exit 84
+endif
 
 ###########
 ## other ##

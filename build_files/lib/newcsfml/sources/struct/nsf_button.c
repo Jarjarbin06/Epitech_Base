@@ -52,5 +52,6 @@ int nsf_button_destroy(nsf_button_t **button, nsf_game_t *game)
         {(*button)->name, &(*button)->name, free_any},
         {button, &button, free_any}
     }, game);
+    *button = NULL;
     return EXIT_SUCCESS;
 }

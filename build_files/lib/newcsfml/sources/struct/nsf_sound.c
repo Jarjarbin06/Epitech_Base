@@ -59,5 +59,6 @@ int nsf_sound_destroy(nsf_sound_t **sound, nsf_game_t *game)
         {(*sound)->name, &(*sound)->name, free_any},
         {*sound, &sound, free_any}
     }, game);
+    *sound = NULL;
     return EXIT_SUCCESS;
 }

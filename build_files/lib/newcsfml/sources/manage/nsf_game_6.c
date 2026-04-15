@@ -23,3 +23,11 @@ int nsf_game_stop_all_sound(nsf_game_t *game)
     nsf_window_stop_all_sound(nsf_game_get_window(game));
     return EXIT_SUCCESS;
 }
+
+int nsf_game_update(nsf_game_t *game)
+{
+    if (!game)
+        return EXIT_ERROR;
+    nsf_window_update_settings(nsf_game_get_window(game));
+    return EXIT_SUCCESS;
+}

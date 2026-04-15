@@ -47,5 +47,6 @@ int nsf_texture_destroy(nsf_texture_t **texture, nsf_game_t *game)
         {(*texture)->name, &(*texture)->name, free_any},
         {*texture, &texture, free_any}
     }, game);
+    *texture = NULL;
     return EXIT_SUCCESS;
 }

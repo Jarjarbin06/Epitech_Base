@@ -32,7 +32,8 @@ const nsf_game_functions_t nsf_game = {
     nsf_game_play_music,
     nsf_game_stop_music,
     nsf_game_set_music_volume,
-    nsf_game_draw
+    nsf_game_draw,
+    nsf_game_update
 };
 
 const nsf_window_functions_t nsf_window = {
@@ -56,6 +57,9 @@ const nsf_window_functions_t nsf_window = {
     nsf_window_stop_sound,
     nsf_window_all_sound_volume,
     nsf_window_stop_all_sound,
+    nsf_window_update_settings,
+    nsf_window_setting_create,
+    nsf_window_setting_destroy
 };
 
 const nsf_sprite_functions_t nsf_sprite = {

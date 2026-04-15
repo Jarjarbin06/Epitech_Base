@@ -46,5 +46,6 @@ int nsf_music_destroy(nsf_music_t **music, nsf_game_t *game)
         {(*music)->name, &(*music)->name, free_any},
         {*music, &music, free_any}
     }, game);
+    *music = NULL;
     return EXIT_SUCCESS;
 }

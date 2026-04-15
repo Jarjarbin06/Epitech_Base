@@ -32,6 +32,18 @@ nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
 int nsf_window_destroy(nsf_window_t **window, nsf_game_t *game);
     #endif
 
+    #ifndef P_NSF_WINDOW_SETTINGS_CREATE
+        #define P_NSF_WINDOW_SETTINGS_CREATE
+nsf_window_settings_t *nsf_window_setting_create(
+    const nsf_window_settings_t settings[], nsf_game_t *game);
+    #endif
+
+    #ifndef P_NSF_WINDOW_SETTINGS_DESTROY
+        #define P_NSF_WINDOW_SETTINGS_DESTROY
+int nsf_window_setting_destroy(nsf_window_settings_t **settings,
+    nsf_game_t *game);
+    #endif
+
     #ifndef P_NSF_SPRITE_CREATE
         #define P_NSF_SPRITE_CREATE
 nsf_sprite_t *nsf_sprite_create(const char name[], nsf_game_t *game);
