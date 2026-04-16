@@ -31,9 +31,6 @@ int nsf_game_destroy(nsf_game_t **game)
         nsf_window_destroy(&(*game)->window, *game);
     if ((*game)->music)
         nsf_music_destroy(&(*game)->music, *game);
-    nsf_auto_free(1, (nsf_free_t[]){
-        {*game, game, free_any}
-    }, *game);
-    *game = NULL;
+    *game = free_any(game);
     return EXIT_SUCCESS;
 }

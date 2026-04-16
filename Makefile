@@ -201,7 +201,7 @@ push_makefile:
 	-@git commit -m "[INIT] Makefile update"
 	-@git push origin main
 
-import_error:
+import_newerror:
 	-@rm -rdf ./lib/newerror ./includes/lib_includes/newerror
 	-@mkdir ./lib/newerror
 	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newerror/* ./lib/newerror

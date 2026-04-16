@@ -28,9 +28,9 @@ const error_list_t nerr = {
     err_bool_false,
     err_bool_false_simple
 };
-const error_shortcut_verror_t verror = err_void;
-const error_shortcut_nerror_t nerror = err_pointer_null;
-const error_shortcut_ierror_t ierror = err_int_error;
-const error_shortcut_ferror_t ferror = err_bool_false;
+const error_shortcut_verror_t v_err = err_void;
+const error_shortcut_nerror_t n_err = err_pointer_null;
+const error_shortcut_ierror_t i_err = err_int_error;
+const error_shortcut_ferror_t f_err = err_bool_false;
 const error_shortcut_upt_t upt = err_data_upt;
 const error_shortcut_ftl_t ftl = err_data_ftl;

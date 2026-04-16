@@ -56,9 +56,8 @@ int nsf_sound_destroy(nsf_sound_t **sound, nsf_game_t *game)
     nsf_auto_free(4, (nsf_free_t[]){
         {(*sound)->buffer, &(*sound)->buffer, sfSoundBuffer_destroy},
         {(*sound)->sound, &(*sound)->sound, sfSound_destroy},
-        {(*sound)->name, &(*sound)->name, free_any},
-        {*sound, &sound, free_any}
+        {(*sound)->name, &(*sound)->name, free_any}
     }, game);
-    *sound = NULL;
+    *sound = nsf_free_any(sound, game);
     return EXIT_SUCCESS;
 }

@@ -47,11 +47,10 @@ int nsf_button_destroy(nsf_button_t **button, nsf_game_t *game)
         return EXIT_ERROR;
     if ((*button)->texture)
         nsf_texture_destroy(&(*button)->texture, game);
-    nsf_auto_free(3, (nsf_free_t[]){
+    nsf_auto_free(2, (nsf_free_t[]){
         {(*button)->button, &(*button)->button, sfRectangleShape_destroy},
-        {(*button)->name, &(*button)->name, free_any},
-        {button, &button, free_any}
+        {(*button)->name, &(*button)->name, free_any}
     }, game);
-    *button = NULL;
+    *button = nsf_free_any(button, game);
     return EXIT_SUCCESS;
 }

@@ -110,11 +110,10 @@ int nsf_window_destroy(nsf_window_t **window, nsf_game_t *game)
         destroy_elements(*window, game);
     if ((*window)->settings)
         nsf_window_setting_destroy(&(*window)->settings, game);
-    nsf_auto_free(3, (nsf_free_t[]){
+    nsf_auto_free(2, (nsf_free_t[]){
         {(*window)->window, &(*window)->window, sfRenderWindow_destroy},
-        {(*window)->title, &(*window)->title, free_any},
-        {*window, &window, free_any}
+        {(*window)->title, &(*window)->title, free_any}
     }, game);
-    *window = NULL;
+    *window = nsf_free_any(window, game);
     return EXIT_SUCCESS;
 }

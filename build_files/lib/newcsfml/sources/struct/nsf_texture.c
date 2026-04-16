@@ -42,11 +42,10 @@ int nsf_texture_destroy(nsf_texture_t **texture, nsf_game_t *game)
 {
     if (!texture || !*texture)
         return EXIT_ERROR;
-    nsf_auto_free(3, (nsf_free_t[]){
+    nsf_auto_free(2, (nsf_free_t[]){
         {(*texture)->texture, &(*texture)->texture, sfTexture_destroy},
-        {(*texture)->name, &(*texture)->name, free_any},
-        {*texture, &texture, free_any}
+        {(*texture)->name, &(*texture)->name, free_any}
     }, game);
-    *texture = NULL;
+    *texture = nsf_free_any(texture, game);
     return EXIT_SUCCESS;
 }

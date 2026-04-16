@@ -46,11 +46,10 @@ int nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game)
         return EXIT_ERROR;
     if ((*sprite)->texture)
         nsf_texture_destroy(&(*sprite)->texture, game);
-    nsf_auto_free(3, (nsf_free_t[]){
+    nsf_auto_free(2, (nsf_free_t[]){
         {(*sprite)->sprite, &(*sprite)->sprite, sfSprite_destroy},
-        {(*sprite)->name, &(*sprite)->name, free_any},
-        {*sprite, &sprite, free_any}
+        {(*sprite)->name, &(*sprite)->name, free_any}
     }, game);
-    *sprite = NULL;
+    *sprite = nsf_free_any(sprite, game);
     return EXIT_SUCCESS;
 }

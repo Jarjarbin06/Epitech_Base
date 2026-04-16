@@ -38,9 +38,6 @@ int nsf_window_setting_destroy(nsf_window_settings_t **settings,
 {
     if (!settings || !*settings)
         return EXIT_ERROR;
-    nsf_auto_free(1, (nsf_free_t[]){
-        {*settings, &settings, free_any}
-    }, game);
-    *settings = NULL;
+    *settings = nsf_free_any(settings, game);
     return EXIT_SUCCESS;
 }

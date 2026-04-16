@@ -43,9 +43,8 @@ int nsf_music_destroy(nsf_music_t **music, nsf_game_t *game)
         return EXIT_ERROR;
     nsf_auto_free(3, (nsf_free_t[]){
         {(*music)->music, &(*music)->music, sfMusic_destroy},
-        {(*music)->name, &(*music)->name, free_any},
-        {*music, &music, free_any}
+        {(*music)->name, &(*music)->name, free_any}
     }, game);
-    *music = NULL;
+    *music = nsf_free_any(music, game);
     return EXIT_SUCCESS;
 }
