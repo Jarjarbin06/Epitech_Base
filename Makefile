@@ -65,8 +65,8 @@ CNAME	=	compiled_program
 CARG	=
 
 CFLAGS	=	\
-	-Wall \
-	-Wextra
+	-g3 -O0 \
+	-Wall -Wextra
 CPPFLAGS	=	$(INCLUDES)
 CFLAGS_PLUS	=	-L./$(LIB_PATH) $(LIB_FLAGS)
 ifneq ($(filter -lnewcsfml,$(CFLAGS_PLUS)),)
@@ -133,15 +133,14 @@ fclean_libs:
 ###################
 ## testing rules ##
 ###################
+test_valgrind: re
+	@valgrind --leak-check=full --track-origins=yes ./$(CNAME) $(CARG)
+
 test_$(TESTCNAME): clean
 	@$(CC) -o $(TESTCNAME) $(OBJ) $(LIB_OBJ) $(TEST_REDIRECT) $(TEST) $(CFLAGS) $(CFLAGS_PLUS) $(TESTCFLAGS)
 
 test_$(TESTCNAME)_run: fclean test_$(TESTCNAME)
 	@./$(TESTCNAME)
-
-test_valgrind: fclean $(CNAME) test_$(TESTCNAME)
-	@valgrind ./$(CNAME) $(CARG)
-	@valgrind ./$(TESTCNAME)
 
 test_gcovr: test_$(TESTCNAME)
 	@gcovr -e $(TEST_PATH)
@@ -258,7 +257,8 @@ import_utils:
 	-@make push_lib
 
 import_all:
-	-@make import_error import_llist import_newcsfml import_print import_str import_twodlist import_utils
+	-@make import_newerror import_llist import_newcsfml import_print import_str
+	 import_twodlist import_utils
 
 ifeq ($(ALLOW_AUTO_PUSH), true)
 push_lib:

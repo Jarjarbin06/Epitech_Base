@@ -17,59 +17,40 @@ static sfRenderWindow *get_new_window(const nsf_window_settings_t settings[],
         *title_str, (sfWindowStyle)window_style, NULL);
 }
 
-static int check_ptr_1(nsf_window_t **new_window, sfRenderWindow **sf_window,
-    str_t *title_str, nsf_game_t *game)
-{
-    return nsf_auto_free(3, (nsf_free_t[]){
-        {*new_window && (!*sf_window || !*title_str),
-            new_window, free_any},
-        {*sf_window && (!*new_window || !*title_str),
-            sf_window, sfRenderWindow_destroy},
-        {*title_str && (!*new_window || !*sf_window),
-            title_str, free_any}
-    }, game);
-}
-
-static int check_ptr_2(nsf_window_settings_t **settings, nsf_game_t *game)
-{
-    if (!settings || !*settings) {
-        nsf_window_setting_destroy(settings, game);
-        return 1;
-    }
-    return 0;
-}
-
 static nsf_window_element_t **create_elements(nsf_game_t *game)
 {
-    nsf_window_element_t **elements = nsf_malloc_any(
-        sizeof(nsf_window_element_t *), game);
+    nsf_window_element_t **elements = malloc_any(
+        sizeof(nsf_window_element_t *));
 
     if (!elements)
         return NULL;
     elements[0] = NULL;
+    if (game)
+        game->allocations++;
     return elements;
 }
 
 nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
     char title[], const nsf_window_style_t window_style, nsf_game_t *game)
 {
-    nsf_window_t *new_window = nsf_malloc_any(sizeof(nsf_window_t),
-        game);
+    nsf_window_t *new_window = malloc_any(sizeof(nsf_window_t));
     str_t title_str = str_strdup(title);
-    nsf_window_settings_t *new_settings = nsf_window_setting_create(settings,
+    nsf_window_settings_t *new_settings = nsf_window_settings_create(settings,
         game);
     sfRenderWindow *sf_window = get_new_window(settings, &title_str,
         window_style);
+    nsf_window_element_t **elements = create_elements(game);
 
-    if (check_ptr_1(&new_window, &sf_window, &title_str, game) ||
-        check_ptr_2(&new_settings, game))
+    if (!new_window || !new_settings || !sf_window || !title_str || !elements)
         return NULL;
     new_window->window = sf_window;
     new_window->fps = settings->fps;
     new_window->title = title_str;
-    new_window->elements = create_elements(game);
+    new_window->elements = elements;
     new_window->background = NULL;
     new_window->settings = new_settings;
+    if (game)
+        game->allocations += 3;
     return new_window;
 }
 
@@ -79,41 +60,45 @@ static void destroy_element(nsf_window_element_t *element, nsf_game_t *game)
         case NSF_SPRITE_ELEMENT:
             nsf_sprite_destroy(
                 (nsf_sprite_t **)&(element->ptr), game);
-            return;
+            break;
         case NSF_BUTTON_ELEMENT:
             nsf_button_destroy(
                 (nsf_button_t **)&(element->ptr), game);
-            return;
+            break;
         case NSF_SOUND_ELEMENT:
             nsf_sound_destroy(
                 (nsf_sound_t **)&(element->ptr), game);
-            return;
+            break;
         default:
-            return;
+            break;
     }
 }
 
-static void destroy_elements(const nsf_window_t *window, nsf_game_t *game)
+static void destroy_elements(nsf_window_element_t **elements, nsf_game_t *game)
 {
-    for (int idx = 0; window->elements[idx]; idx++) {
-        destroy_element(window->elements[idx], game);
-        nsf_free_any(window->elements[idx], game);
+    for (int idx = 0; elements[idx]; idx++) {
+        destroy_element(elements[idx], game);
+        free_any(elements[idx]);
+        game->allocations--;
     }
-    nsf_free_any(window->elements, game);
+    free_any(elements);
+    game->allocations--;
 }
 
 int nsf_window_destroy(nsf_window_t **window, nsf_game_t *game)
 {
     if (!window || !*window)
         return EXIT_ERROR;
-    if ((*window)->elements)
-        destroy_elements(*window, game);
     if ((*window)->settings)
-        nsf_window_setting_destroy(&(*window)->settings, game);
-    nsf_auto_free(2, (nsf_free_t[]){
-        {(*window)->window, &(*window)->window, sfRenderWindow_destroy},
-        {(*window)->title, &(*window)->title, free_any}
-    }, game);
-    *window = nsf_free_any(window, game);
+        nsf_window_settings_destroy(&(*window)->settings, game);
+    if ((*window)->elements)
+        destroy_elements((*window)->elements, game);
+    if ((*window)->window)
+        sfRenderWindow_destroy((*window)->window);
+    if ((*window)->title)
+        free_any((*window)->title);
+    *window = free_any(*window);
+    if (game)
+        game->allocations -= 3;
     return EXIT_SUCCESS;
 }

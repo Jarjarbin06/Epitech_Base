@@ -20,7 +20,7 @@ void nsf_button_set_texture(nsf_button_t *button, nsf_texture_t *texture)
     button->size = sfRectangleShape_getSize(button->button);
 }
 
-void nsf_button_set_position(nsf_button_t *button, const nsf_vector_t position[])
+void nsf_button_set_position(nsf_button_t *button, const nsf_fvector_t position[])
 {
     if (!button)
         return;
@@ -28,7 +28,7 @@ void nsf_button_set_position(nsf_button_t *button, const nsf_vector_t position[]
     sfRectangleShape_setPosition(button->button, button->position);
 }
 
-void nsf_button_set_size(nsf_button_t *button, const nsf_vector_t size[])
+void nsf_button_set_size(nsf_button_t *button, const nsf_fvector_t size[])
 {
     if (!button)
         return;
@@ -56,7 +56,7 @@ nsf_button_status_t nsf_button_get_state(nsf_button_t *button, nsf_window_t *win
     const nsf_mouse_t mouse_button)
 {
     sfVector2i pixelPos = {};
-    nsf_vector_t worldPos = {};
+    nsf_fvector_t worldPos = {};
     sfFloatRect bounds = {};
     bool hovered = false;
     bool pressed = false;

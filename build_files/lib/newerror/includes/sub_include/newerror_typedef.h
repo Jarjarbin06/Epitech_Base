@@ -11,7 +11,7 @@
 
     #include "newerror_include.h"
 
-#ifndef NEWERROR_T_TYPE
+    #ifndef NEWERROR_T_TYPE
         #define NEWERROR_T_TYPE
 
 typedef char const *title_t;

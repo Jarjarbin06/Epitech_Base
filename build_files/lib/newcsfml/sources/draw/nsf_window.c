@@ -17,20 +17,33 @@ void nsf_window_fill(const nsf_window_t *window, const nsf_color_t color[])
     sfRenderWindow_clear(window->window, *color);
 }
 
-void nsf_window_draw_line(const nsf_window_t *window,
-    const nsf_vector_t a[], const nsf_vector_t b[], const nsf_color_t color[])
+static void set_values(sfVertexArray *triangle, const size_t len,
+    const nsf_fvector_t vect[], const nsf_color_t *color)
 {
-    sfVertexArray *line = sfVertexArray_create();
-    const sfVertex vertex1 = {(sfVector2f)*a, (sfColor)*color, {}};
-    const sfVertex vertex2 = {(sfVector2f)*b, (sfColor)*color, {}};
+    sfVertex *tmp_vect = NULL;
 
-    if (!line || !window)
-        return;
-    sfVertexArray_setPrimitiveType(line, sfLines);
-    sfVertexArray_append(line, vertex1);
-    sfVertexArray_append(line, vertex2);
-    sfRenderWindow_drawVertexArray(window->window, line, NULL);
-    sfVertexArray_destroy(line);
+    for (size_t idx = 0; idx < len; idx++) {
+        tmp_vect = sfVertexArray_getVertex(triangle, idx);
+        if (!tmp_vect)
+            return;
+        tmp_vect->position = vect[idx];
+        tmp_vect->color = *color;
+    }
+}
+
+int nsf_window_draw_lines(const nsf_window_t *window, const size_t len,
+    const nsf_fvector_t points[], const nsf_color_t color[])
+{
+    sfVertexArray *triangle = sfVertexArray_create();
+
+    if (!triangle)
+        return EXIT_ERROR;
+    sfVertexArray_setPrimitiveType(triangle, sfLineStrip);
+    sfVertexArray_resize(triangle, len);
+    set_values(triangle, len, points, color);
+    sfRenderWindow_drawVertexArray(window->window, triangle, NULL);
+    sfVertexArray_destroy(triangle);
+    return EXIT_SUCCESS;
 }
 
 void nsf_window_draw(nsf_window_t *window)

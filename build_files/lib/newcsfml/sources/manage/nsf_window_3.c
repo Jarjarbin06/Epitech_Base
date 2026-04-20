@@ -24,10 +24,10 @@ static nsf_window_element_t **append_element(const nsf_window_t *window,
 {
     const nsf_uint_t old_len = get_elements_len(window->elements);
     const nsf_uint_t new_len = old_len + 1;
-    nsf_window_element_t **new_elements = nsf_malloc_any(
-        sizeof(nsf_window_element_t *) * (new_len + 1), game);
-    nsf_window_element_t *new_element = nsf_malloc_any(
-        sizeof(nsf_window_element_t), game);
+    nsf_window_element_t **new_elements = malloc_any(
+        sizeof(nsf_window_element_t *) * (new_len + 1));
+    nsf_window_element_t *new_element = malloc_any(
+        sizeof(nsf_window_element_t));
 
     if (!window->elements || !new_elements || !new_element)
         return NULL;
@@ -37,6 +37,8 @@ static nsf_window_element_t **append_element(const nsf_window_t *window,
         new_elements[idx] = window->elements[idx];
     new_elements[old_len] = new_element;
     new_elements[new_len] = NULL;
+    if (game)
+        game->allocations += 2;
     return new_elements;
 }
 
@@ -51,8 +53,10 @@ void nsf_window_add_sprite(nsf_window_t *window, nsf_sprite_t *sprite,
         (nsf_window_element_t[]){{NSF_SPRITE_ELEMENT, (void *)sprite}}, game);
     if (!new_elements)
         return;
-    nsf_free_any(window->elements, game);
+    free_any(window->elements);
     window->elements = new_elements;
+    if (game)
+        game->allocations--;
 }
 
 void nsf_window_add_button(nsf_window_t *window, nsf_button_t *button,
@@ -66,8 +70,10 @@ void nsf_window_add_button(nsf_window_t *window, nsf_button_t *button,
         (nsf_window_element_t[]){{NSF_BUTTON_ELEMENT, (void *)button}}, game);
     if (!new_elements)
         return;
-    nsf_free_any(window->elements, game);
+    free_any(window->elements);
     window->elements = new_elements;
+    if (game)
+        game->allocations--;
 }
 
 void nsf_window_add_sound(nsf_window_t *window, nsf_sound_t *sound,
@@ -81,6 +87,8 @@ void nsf_window_add_sound(nsf_window_t *window, nsf_sound_t *sound,
         (nsf_window_element_t[]){{NSF_SOUND_ELEMENT, (void *)sound}}, game);
     if (!new_elements)
         return;
-    nsf_free_any(window->elements, game);
+    free_any(window->elements);
     window->elements = new_elements;
+    if (game)
+        game->allocations--;
 }

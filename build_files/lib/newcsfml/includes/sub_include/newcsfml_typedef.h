@@ -33,9 +33,19 @@ typedef char *str_t;
 typedef unsigned int nsf_uint_t;
     #endif
 
-    #ifndef T_NSF_VECTOR
-        #define T_NSF_VECTOR
-typedef sfVector2f nsf_vector_t;
+    #ifndef T_NSF_VECTOR_FLOAT
+        #define T_NSF_VECTOR_FLOAT
+typedef sfVector2f nsf_fvector_t;
+    #endif
+
+    #ifndef T_NSF_VECTOR_INT
+        #define T_NSF_VECTOR_INT
+typedef sfVector2i nsf_ivector_t;
+    #endif
+
+    #ifndef T_NSF_VECTOR_UINT
+        #define T_NSF_VECTOR_UINT
+typedef sfVector2u nsf_uvector_t;
     #endif
 
     #ifndef T_NSF_COLOR
@@ -297,12 +307,12 @@ typedef struct {
     #endif
 
     #ifndef T_NSF_BUTTON
-        #define  T_NSF_BUTTON
+        #define T_NSF_BUTTON
 typedef struct {
     sfRectangleShape *button;
     nsf_texture_t *texture;
-    nsf_vector_t size;
-    nsf_vector_t position;
+    nsf_fvector_t size;
+    nsf_fvector_t position;
     nsf_color_t fill_color;
     nsf_color_t outline_color;
     str_t name;
@@ -314,9 +324,9 @@ typedef struct {
 typedef struct {
     sfSprite *sprite;
     nsf_texture_t *texture;
-    nsf_vector_t size;
-    nsf_vector_t origin;
-    nsf_vector_t position;
+    nsf_fvector_t scale;
+    nsf_fvector_t origin;
+    nsf_fvector_t position;
     float rotation;
     str_t name;
     void *data;
@@ -326,8 +336,8 @@ typedef struct {
     #ifndef T_NSF_BACKGROUND
         #define T_NSF_BACKGROUND
 typedef struct {
-    sfSprite *sprite;
-    sfTexture *texture;
+    nsf_sprite_t *sprite;
+    nsf_texture_t *texture;
 } nsf_background_t;
     #endif
 

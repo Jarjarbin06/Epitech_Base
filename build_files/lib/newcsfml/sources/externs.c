@@ -44,7 +44,7 @@ const nsf_window_functions_t nsf_window = {
     nsf_window_close,
     nsf_window_get_event,
     nsf_window_fill,
-    nsf_window_draw_line,
+    nsf_window_draw_lines,
     nsf_window_draw,
     nsf_window_add_sprite,
     nsf_window_add_button,
@@ -58,14 +58,34 @@ const nsf_window_functions_t nsf_window = {
     nsf_window_all_sound_volume,
     nsf_window_stop_all_sound,
     nsf_window_update_settings,
-    nsf_window_setting_create,
-    nsf_window_setting_destroy
+    nsf_window_get_mouse
+};
+
+const nsf_window_settings_functions_t nsf_window_settings = {
+    nsf_window_settings_create,
+    nsf_window_settings_destroy
+};
+
+const nsf_background_functions_t nsf_background = {
+    nsf_background_create,
+    nsf_background_destroy,
+    nsf_background_draw
 };
 
 const nsf_sprite_functions_t nsf_sprite = {
     nsf_sprite_create,
     nsf_sprite_destroy,
     nsf_sprite_set_texture,
+    nsf_sprite_set_scale,
+    nsf_sprite_set_size,
+    nsf_sprite_set_position,
+    nsf_sprite_set_origin,
+    nsf_sprite_get_texture,
+    nsf_sprite_get_scale,
+    nsf_sprite_get_size,
+    nsf_sprite_get_position,
+    nsf_sprite_get_origin,
+    nsf_sprite_update,
     nsf_sprite_draw
 };
 
@@ -121,13 +141,16 @@ const nsf_colors_t nsf_clr = {
 };
 
 const nsf_event_functions_t nsf_event = {
-    nsf_cmp_event,
-    nsf_cmp_key
+    nsf_event_cmp,
+    nsf_event_cmp_key,
+    nsf_event_get_mouse_move,
+    nsf_event_get_mouse_wheel
 };
 
 const nsf_nsf_functions_t nsf = {
     nsf_game,
     nsf_window,
+    nsf_window_settings,
     nsf_sprite,
     nsf_button,
     nsf_texture,

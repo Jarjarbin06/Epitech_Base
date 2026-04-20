@@ -12,9 +12,9 @@
     #include "newerror_include.h"
     #include "newerror_typedef.h"
 
-#ifndef NEWERROR_P_BASE
+    #ifndef NEWERROR_P_BASE
         #define NEWERROR_P_BASE
-void error_exist(void);
+void newerror_exist(void);
     #endif
 
     #ifndef NEWERROR_P_PRINT_ERROR

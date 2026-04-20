@@ -9,35 +9,24 @@
 
 #include "../../includes/newcsfml.h"
 
-static int check_ptr(nsf_button_t **new_button, sfRectangleShape **sf_button,
-    str_t *name_str, nsf_game_t *game)
-{
-    return nsf_auto_free(3, (nsf_free_t[]){
-        {*new_button && (!*name_str || !*sf_button),
-            new_button, free_any},
-        {*sf_button && (!*new_button || !*name_str),
-            sf_button, sfRectangleShape_destroy},
-        {*name_str && (!*new_button || !*sf_button),
-            name_str, free_any}
-    }, game);
-}
-
 nsf_button_t *nsf_button_create(const char name[], nsf_game_t *game)
 {
-    nsf_button_t *new_button = nsf_malloc_any(sizeof(nsf_button_t), game);
+    nsf_button_t *new_button = malloc_any(sizeof(nsf_button_t));
     sfRectangleShape *sf_button = sfRectangleShape_create();
     str_t name_str = str_strdup(name);
 
-    if (check_ptr(&new_button, &sf_button, &name_str, game))
+    if (!new_button || !sf_button || !name_str)
         return NULL;
     new_button->button = sf_button;
     new_button->texture = NULL;
-    nsf_button_set_size(new_button, (nsf_vector_t[]){{0, 0}});
-    nsf_button_set_position(new_button, (nsf_vector_t[]){{0, 0}});
+    nsf_button_set_size(new_button, (nsf_fvector_t[]){{0, 0}});
+    nsf_button_set_position(new_button, (nsf_fvector_t[]){{0, 0}});
     nsf_button_set_colors(new_button,
         (nsf_color_t[]){{0, 0, 0, 100}},
         (nsf_color_t[]){{0, 0, 0, 100}}, 5);
     new_button->name = name_str;
+    if (game)
+        game->allocations += 3;
     return new_button;
 }
 
@@ -47,10 +36,11 @@ int nsf_button_destroy(nsf_button_t **button, nsf_game_t *game)
         return EXIT_ERROR;
     if ((*button)->texture)
         nsf_texture_destroy(&(*button)->texture, game);
-    nsf_auto_free(2, (nsf_free_t[]){
-        {(*button)->button, &(*button)->button, sfRectangleShape_destroy},
-        {(*button)->name, &(*button)->name, free_any}
-    }, game);
-    *button = nsf_free_any(button, game);
+    if ((*button)->button)
+        sfRectangleShape_destroy((*button)->button);
+    if ((*button)->name)
+        free_any((*button)->name);
+    *button = free_any(*button);
+    game->allocations -= 3;
     return EXIT_SUCCESS;
 }

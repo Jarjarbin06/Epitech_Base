@@ -38,9 +38,8 @@ int nsf_auto_free(const nsf_uint_t len, const nsf_free_t free_list[],
     for (int idx = 0; idx < (int)len; idx++) {
         if (free_list[idx].condition) {
             ((void_func_t)free_list[idx].free_func)(
-                *(void **)free_list[idx].ptr
+                free_list[idx].ptr
             );
-            *(void **)free_list[idx].ptr = NULL;
             freed++;
         }
     }

@@ -52,8 +52,8 @@ static void create_elements(nsf_game_t *game)
     nsf.button.set_texture(button,
         nsf.texture.create("/home/jarjarbin/Pictures/Python.png",
             "button texture", game));
-    nsf.button.set_size(button, (nsf_vector_t[]){{100.0f, 100.0f}});
-    nsf.button.set_position(button, (nsf_vector_t[]){{300.0f, 300.0f}});
+    nsf.button.set_size(button, (nsf_fvector_t[]){{100.0f, 100.0f}});
+    nsf.button.set_position(button, (nsf_fvector_t[]){{300.0f, 300.0f}});
     nsf.button.set_colors(button, &nsf.color.transparent, &nsf.color.blue, 2);
     nsf.game.add_button(game, button);
     nsf.game.add_sprite(game, sprite);

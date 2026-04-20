@@ -5,35 +5,24 @@
 ** <description>
 */
 
+#include <SFML/Graphics/RenderWindow.h>
+
 #include "../../includes/newcsfml.h"
 
-static int get_elements_len(nsf_window_element_t **element)
+int nsf_window_update_settings(nsf_window_t *window)
 {
-    int idx = 0;
-
-    if (!element)
-        return idx;
-    for (; element[idx]; idx++);
-    return idx;
-}
-
-int nsf_window_all_sound_volume(nsf_window_t *window,
-    const float volume)
-{
-    if (!window || !window->elements)
+    sfVector2u size = {};
+    if (!window || !window->window || !window->settings)
         return EXIT_ERROR;
-    for (int idx = 0; idx < get_elements_len(window->elements); idx++)
-        if (window->elements[idx]->element_type == NSF_SPRITE_ELEMENT)
-            nsf_sound_volume((nsf_sound_t *)window->elements[idx]->ptr, volume);
+    size = sfRenderWindow_getSize(window->window);
+    window->settings->width = size.x;
+    window->settings->height = size.y;
     return EXIT_SUCCESS;
 }
 
-int nsf_window_stop_all_sound(nsf_window_t *window)
+void nsf_window_get_mouse(nsf_window_t *window, nsf_ivector_t vect[])
 {
-    if (!window || !window->elements)
-        return EXIT_ERROR;
-    for (int idx = 0; idx < get_elements_len(window->elements); idx++)
-        if (window->elements[idx]->element_type == NSF_SPRITE_ELEMENT)
-            nsf_sound_stop((nsf_sound_t *)window->elements[idx]->ptr);
-    return EXIT_SUCCESS;
+    if (!window || !vect)
+        return;
+    *vect = sfMouse_getPositionRenderWindow(window->window);
 }

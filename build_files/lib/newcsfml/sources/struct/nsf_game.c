@@ -13,11 +13,9 @@ nsf_game_t *nsf_game_create(void)
 {
     nsf_game_t *new_game = malloc(sizeof(nsf_game_t));
 
-    if (!new_game) {
-        free(new_game);
+    if (!new_game)
         return NULL;
-    }
-    new_game->allocations = 0;
+    new_game->allocations = 1;
     new_game->window = NULL;
     new_game->music = NULL;
     return new_game;
@@ -25,12 +23,15 @@ nsf_game_t *nsf_game_create(void)
 
 int nsf_game_destroy(nsf_game_t **game)
 {
+    nsf_uint_t allocations = (*game)->allocations;
+
     if (!game || !*game)
-        return EXIT_ERROR;
+        return -1;
     if ((*game)->window)
         nsf_window_destroy(&(*game)->window, *game);
     if ((*game)->music)
         nsf_music_destroy(&(*game)->music, *game);
-    *game = free_any(game);
-    return EXIT_SUCCESS;
+    *game = free_any(*game);
+    allocations--;
+    return (int)allocations;
 }

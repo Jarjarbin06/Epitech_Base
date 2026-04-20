@@ -1,116 +1,161 @@
 # libnewcsfml
 
 A structured and modular wrapper around CSFML providing:
-- Unified API (`nsf`)
-- Simplified resource management
-- Built-in game / window / UI architecture
-- Automatic memory tracking
+
+* Unified global API (`nsf`)
+* Game / window / entity architecture
+* Sprite / button / texture / audio systems
+* Event abstraction layer
+* Centralized memory management
+* Minimal direct CSFML exposure
 
 ---
 
 # Core Concept
 
-The entire library is accessed through a single global:
+All features are accessed through a single global interface:
 
 ```c
-const nsf_nsf_functions_t nsf;
-````
+extern const nsf_nsf_functions_t nsf;
+```
 
-This provides grouped access to all subsystems:
+This object exposes all subsystems:
 
 ```c
 nsf.game
 nsf.window
+nsf.window_settings
 nsf.sprite
 nsf.button
-nsf.music
 nsf.texture
+nsf.music
+nsf.sound
 nsf.color
 nsf.event
 ```
+
+No direct CSFML calls are required.
 
 ---
 
 # Architecture Overview
 
-## Main Objects
+## Design Principles
 
-### Game
+The library is built around:
+
+* A **Game** owns everything
+* A **Window** handles rendering + events
+* Every object is registered and retrieved via the system
+* Memory is tracked centrally by the game
+
+---
+
+# Core Structures
+
+## Game
 
 ```c
 typedef struct {
     nsf_window_t *window;
-    unsigned int allocations;
+    nsf_music_t *music;
+    nsf_uint_t allocations;
 } nsf_game_t;
 ```
 
-* Central manager
+### Role
+
+* Central application manager
+* Owns global state
 * Tracks allocations
-* Owns window and resources
+* Controls update and render flow
 
 ---
 
-### Window
+## Window
 
 ```c
 typedef struct {
     nsf_window_settings_t *settings;
     sfRenderWindow *window;
-    unsigned int fps;
+    nsf_uint_t fps;
     nsf_background_t *background;
     nsf_window_element_t **elements;
-    char *title;
+    str_t title;
 } nsf_window_t;
 ```
 
-* Handles rendering
-* Stores drawable elements (sprites, buttons)
-* Manages events
+### Role
+
+* Rendering surface
+* Event polling
+* Stores drawable entities:
+
+  * sprites
+  * buttons
+  * sounds
+* Controls display cycle
 
 ---
 
-### Sprite
+## Background
+
+```c
+typedef struct {
+    nsf_sprite_t *sprite;
+    nsf_texture_t *texture;
+} nsf_background_t;
+```
+
+---
+
+## Sprite
 
 ```c
 typedef struct {
     sfSprite *sprite;
     nsf_texture_t *texture;
-    nsf_vector_t position;
+    nsf_fvector_t scale;
+    nsf_fvector_t origin;
+    nsf_fvector_t position;
     float rotation;
-    char *name;
+    str_t name;
+    void *data;
 } nsf_sprite_t;
 ```
 
 ---
 
-### Button
+## Button
 
 ```c
 typedef struct {
     sfRectangleShape *button;
     nsf_texture_t *texture;
-    nsf_vector_t size;
-    nsf_vector_t position;
+    nsf_fvector_t size;
+    nsf_fvector_t position;
     nsf_color_t fill_color;
     nsf_color_t outline_color;
-    char *name;
+    str_t name;
 } nsf_button_t;
 ```
 
 ---
 
-### Texture
+## Texture
 
 ```c
 typedef struct {
     sfTexture *texture;
-    char *name;
+    str_t name;
 } nsf_texture_t;
 ```
 
 ---
 
-### Music
+## Audio System
+
+### Music (streamed)
 
 ```c
 typedef struct {
@@ -119,123 +164,155 @@ typedef struct {
 } nsf_music_t;
 ```
 
----
-
-# Basic Usage
-
-## Initialization
+### Sound (buffered)
 
 ```c
-nsf_game_t *game = nsf.game.create();
-
-nsf_window_t *window = nsf.window.create(
-    (nsf_window_settings_t[]){800, 600, 32, 60},
-    "My Window",
-    NSF_WDW_DEFAULT_STYLE,
-    game
-);
-
-nsf.game.set_window(game, window);
+typedef struct {
+    sfSound *sound;
+    sfSoundBuffer *buffer;
+    str_t name;
+} nsf_sound_t;
 ```
 
 ---
 
-## Main Loop
+# Global API Usage
 
 ```c
-nsf_event_t event;
-
-while (nsf.game.is_open(game)) {
-    while (nsf.game.get_event(game, &event)) {
-        // handle events
-    }
-
-    nsf.window.fill(window, &nsf.color.black);
-    nsf.game.draw(game);
-    nsf.window.display(window);
-}
+nsf.game.create();
+nsf.window.create(...);
+nsf.sprite.create(...);
 ```
+
+All modules are grouped under `nsf`.
 
 ---
 
 # Game API
 
 ```c
+// BASE //
 nsf.game.create()
-nsf.game.destroy(<*game>)
-nsf.game.display(<game>)
-nsf.game.is_open(<game>)
-nsf.game.close(<game>)
-nsf.game.get_event(<game>, <event>)
-nsf.game.set_window(<game>, <window>)
-nsf.game.get_window(<game>)
-nsf.game.add_sprite(<game>, <sprite>)
-nsf.game.add_button(<game>, <button>)
-nsf.game.add_sound(<game>, <sound>)
-nsf.game.get_sprite(<game>, <name>)
-nsf.game.get_button(<game>, <name>)
-nsf.game.get_sound(<game>, <name>)
-nsf.game.play_sound(<game>, <name>)
-nsf.game.pause_sound(<game>, <name>)
-nsf.game.stop_sound(<game>, <name>)
-nsf.game.volume_all_sound(<game>, <volume>)
-nsf.game.stop_all_sound(<game>)
-nsf.game.set_music(<game>, <music>)
-nsf.game.get_music(<game>)
-nsf.game.play_music(<game>)
-nsf.game.stop_music(<game>)
-nsf.game.volume_music(<game>, <volume>)
-nsf.game.draw(<game>)
+nsf.game.destroy()
+nsf.game.display()
+nsf.game.is_open()
+nsf.game.close()
+
+// EVENT //
+nsf.game.get_event()
+
+// WINDOW //
+nsf.game.set_window()
+nsf.game.get_window()
+
+// ELEMENT //
+nsf.game.add_sprite()
+nsf.game.get_sprite()
+nsf.game.add_button()
+nsf.game.get_button()
+nsf.game.add_sound()
+nsf.game.get_sound()
+
+// SOUND //
+nsf.game.play_sound()
+nsf.game.pause_sound()
+nsf.game.stop_sound()
+nsf.game.volume_all_sound()
+nsf.game.stop_all_sound()
+
+// MUSIC //
+nsf.game.set_music()
+nsf.game.get_music()
+nsf.game.play_music()
+nsf.game.stop_music()
+nsf.game.volume_music()
+
+// DRAW //
+nsf.game.draw()
+
+// SPECIAL //
+nsf.game.update()
 ```
-
-### Notes
-
-* Acts as a global manager
-* Stores all elements
-* Handles drawing delegation
 
 ---
 
 # Window API
 
 ```c
-nsf.window.create(<setting>, <name>, <style>, <game>)
-nsf.window.destroy(<*window>, <game>)
-nsf.window.display(<window>)
-nsf.window.is_open(<window>)
-nsf.window.close(<window>)
-nsf.window.get_event(<window>, <event>)
-nsf.window.fill(<window>, <color>)
-nsf.window.draw_line(<window>, <pos1>, <pos2>, <color>)
-nsf.window.draw(<window>)
-nsf.window.add_sprite(<window>, <sprite>, <game>)
-nsf.window.add_button(<window>, <button>, <game>)
-nsf.window.add_sound(<window>, <sound>, <game>)
-nsf.window.get_sprite(<window>, <name>)
-nsf.window.get_button(<window>, <name>)
-nsf.window.get_sound(<window>, <name>)
-nsf.window.play_sound(<window>, <name>)
-nsf.window.pause_sound(<window>, <name>)
-nsf.window.stop_sound(<window>, <name>)
-nsf.window.volume_all_sound(<window>, <volume>)
-nsf.window.stop_all_sound(<window>)
+// BASE //
+nsf.window.create()
+nsf.window.destroy()
+nsf.window.display()
+nsf.window.is_open()
+nsf.window.close()
+
+// EVENT //
+nsf.window.get_event()
+
+// DRAW //
+nsf.window.fill()
+nsf.window.draw_lines()
+nsf.window.draw()
+
+// ELEMENT //
+nsf.window.add_sprite()
+nsf.window.get_sprite()
+nsf.window.add_button()
+nsf.window.get_button()
+nsf.window.add_sound()
+nsf.window.get_sound()
+
+// SOUND //
+nsf.window.play_sound()
+nsf.window.pause_sound()
+nsf.window.stop_sound()
+nsf.window.volume_all_sound()
+nsf.window.stop_all_sound()
+
+// SPECIAL //
+nsf.window.update_settings()
+nsf.window.get_mouse()
 ```
 
-### Features
+---
 
-* Rendering control
-* Element storage
-* Drawing primitives (lines)
+# Background API
+
+```c
+// BASE //
+nsf.background.create()
+nsf.background.destroy()
+
+// DRAW //
+nsf.background.draw()
+```
 
 ---
 
 # Sprite API
 
 ```c
-nsf.sprite.create(<name>, <game>)
-nsf.sprite.destroy(<*sprite>, <game>)
-nsf.sprite.set_texture(<sprite>, <texture>)
-nsf.sprite.draw(<sprite>, <window>)
+// BASE //
+nsf.sprite.create()
+nsf.sprite.destroy()
+
+// MANAGE //
+nsf.sprite.set_texture()
+nsf.sprite.get_texture()
+nsf.sprite.set_scale()
+nsf.sprite.get_scale()
+nsf.sprite.set_size()
+nsf.sprite.get_size()
+nsf.sprite.set_position()
+nsf.sprite.get_position()
+nsf.sprite.set_origin()
+nsf.sprite.get_origin()
+
+// DRAW //
+nsf.sprite.draw()
+
+// SPECIAL //
+nsf.sprite.update()
 ```
 
 ---
@@ -243,23 +320,22 @@ nsf.sprite.draw(<sprite>, <window>)
 # Button API
 
 ```c
-nsf.button.create(<name>, <game>)
-nsf.button.destroy(<*button>, <game>)
-nsf.button.set_texture(<button>, <texture>)
-nsf.button.set_position(<button>, <pos>)
-nsf.button.set_size(<button>, <size>)
-nsf.button.set_colors(<button>, <color>)
-nsf.button.get_state(<button>, <window>, <wanted mouse key>)
-nsf.button.draw(<button>, <window>)
+// BASE //
+nsf.button.create()
+nsf.button.destroy()
+
+// MANAGE //
+nsf.button.set_texture()
+nsf.button.set_position()
+nsf.button.set_size()
+nsf.button.set_colors()
+nsf.button.get_state()
+
+// DRAW //
+nsf.button.draw()
 ```
 
-### Button State
-
-```c
-nsf_button_status_t state = nsf.button.get_state(button, window, NSF_MOUSE_LEFT);
-```
-
-Typical values:
+### States
 
 * `NSF_STT_BTN_NONE`
 * `NSF_STT_BTN_HOVERED`
@@ -270,8 +346,9 @@ Typical values:
 # Texture API
 
 ```c
-nsf.texture.create(<path>, <name>, <game>)
-nsf.texture.destroy(<*texture>, <game>)
+// BASE //
+nsf.texture.create()
+nsf.texture.destroy()
 ```
 
 ---
@@ -279,14 +356,17 @@ nsf.texture.destroy(<*texture>, <game>)
 # Music API
 
 ```c
-nsf.music.create(<path>, <name>, <game>)
-nsf.music.destroy(<*music>, <game>)
-nsf.music.play(<music>)
-nsf.music.pause(<music>)
-nsf.music.stop(<music>)
-nsf.music.looping(<music>, <loop>)
-nsf.music.volume(<music>, <volume>)
-nsf.music.get_status(<music>)
+// BASE //
+nsf.music.create()
+nsf.music.destroy()
+
+// MANAGE //
+nsf.music.play()
+nsf.music.pause()
+nsf.music.stop()
+nsf.music.looping()
+nsf.music.volume()
+nsf.music.get_status()
 ```
 
 ---
@@ -294,14 +374,17 @@ nsf.music.get_status(<music>)
 # Sound API
 
 ```c
-nsf.sound.create(<path>, <name>, <game>)
-nsf.sound.destroy(<*sound>, <game>)
-nsf.sound.play(<sound>)
-nsf.sound.pause(<sound>)
-nsf.sound.stop(<sound>)
-nsf.sound.looping(<sound>, <loop>)
-nsf.sound.volume(<sound>, <volume>)
-nsf.sound.get_status(<sound>)
+// BASE //
+nsf.sound.create()
+nsf.sound.destroy()
+
+// MANAGE //
+nsf.sound.play()
+nsf.sound.pause()
+nsf.sound.stop()
+nsf.sound.looping()
+nsf.sound.volume()
+nsf.sound.get_status()
 ```
 
 ---
@@ -309,22 +392,33 @@ nsf.sound.get_status(<sound>)
 # Event API
 
 ```c
-nsf.event.cmp(<event>, <wanted event>);
-nsf.event.cmp_key(<event>, <wanted key>);
+// MANAGE //
+nsf.event.cmp()
+nsf.event.cmp_key()
+nsf.event.get_mouse()
+nsf.event.get_mouse_wheel()
 ```
 
-### Supported Types
+### Supported Inputs
 
+* Keyboard
+* Mouse
 * Window events
-* Keyboard input
-* Mouse input
-* Joystick / touch
+* Joystick / touch (depending CSFML backend)
+
+---
+
+# Window Settings API
+
+```c
+// BASE //
+nsf.window_settings.setting_create()
+nsf.window_settings.setting_destroy()
+```
 
 ---
 
 # Colors
-
-Predefined colors:
 
 ```c
 nsf.color.black
@@ -346,34 +440,20 @@ nsf.color.transparent
 ## Allocation
 
 ```c
-void *nsf_malloc_any(size, game);
+void *nsf_malloc_any(nsf_uint_t size, nsf_game_t *game);
 ```
 
 ## Free
 
 ```c
-nsf_free_any(ptr, game);
+void *nsf_free_any(void *ptr, nsf_game_t *game);
 ```
 
 ## Batch Free
 
 ```c
-nsf_auto_free(len, free_list, game);
+int nsf_auto_free(nsf_uint_t len, const nsf_free_t free_list[], nsf_game_t *game);
 ```
-
-```c
-typedef struct {
-    bool condition;
-    void *ptr;
-    void *(*nsf_free_func)(void *);
-} nsf_free_t;
-```
-
-### Features
-
-* Tracks allocations inside `game`
-* Simplifies cleanup
-* Reduces leaks
 
 ---
 
@@ -385,68 +465,81 @@ typedef struct {
 nsf.game.draw(game);
 ```
 
-Draws:
+Draws all registered elements:
 
-* All sprites
-* All buttons
+* sprites
+* buttons
+* UI objects
 
 ## Manual Draw
 
 ```c
-nsf.sprite.draw(sprite, window);
-nsf.button.draw(button, window);
+nsf.sprite.draw()
+nsf.button.draw()
 ```
 
 ---
 
 # Utilities
 
-## Window Fill
+## Fill Window
 
 ```c
-nsf.window.fill(window, &nsf.color.black);
+nsf.window.fill(window, color);
 ```
 
-## Draw Line
+## Draw Lines
 
 ```c
-nsf.window.draw_line(window, &a, &b, &color);
+nsf.window.draw_lines(window, count, positions, colors);
+```
+
+## Mouse Helper
+
+```c
+nsf.window.get_mouse(window, coords);
 ```
 
 ---
 
 # Design Principles
 
-* **Single entry point (`nsf`)**
-* **Modular subsystems**
-* **Consistent function naming**
-* **Minimal boilerplate**
-* **Centralized memory tracking**
-* **Extensible architecture**
+* Single entry point (`nsf`)
+* Modular subsystems
+* Consistent naming: `nsf_<module>_<action>`
+* Centralized memory tracking
+* Game-owned lifecycle
+* Minimal CSFML exposure
 
 ---
 
 # Best Practices
 
-* Always create a `game` first
+* Always initialize `game` first
 * Use `nsf` API instead of raw CSFML
-* Let the game manage allocations
-* Use names to retrieve elements
+* Register all objects through `game` or `window`
 * Keep rendering inside the main loop
-* Use `nsf.event` helpers for cleaner input handling
+* Use `event.cmp()` helpers for input handling
+* Avoid manual memory management when possible
 
 ---
 
 # Example Pattern
 
-## Create and Use a Button
+## Button Creation
 
 ```c
-nsf_button_t *btn = nsf.button.create("my_button", game);
+nsf_button_t *btn = nsf.button.create("play", game);
 
-nsf.button.set_position(btn, &(nsf_vector_t){100, 100});
-nsf.button.set_size(btn, &(nsf_vector_t){200, 50});
-nsf.button.set_colors(btn, &nsf.color.white, &nsf.color.black, 2);
+nsf.button.set_position(btn, (nsf_fvector_t[]){100, 100});
+nsf.button.set_size(btn, (nsf_fvector_t[]){200, 50});
+
+nsf.button.set_colors(
+    btn,
+    (nsf_color_t[]){nsf.color.white},
+    (nsf_color_t[]){nsf.color.black},
+    2
+);
 
 nsf.game.add_button(game, btn);
 ```
@@ -455,10 +548,10 @@ nsf.game.add_button(game, btn);
 
 # Maintainability Notes
 
-* All features are grouped inside `nsf`
-* Add new modules by extending `nsf_nsf_functions_t`
-* Keep naming consistent: `nsf_<module>_<action>`
-* Avoid direct CSFML usage outside the library
-* Centralize memory handling through `game`
+* Extend `nsf_nsf_functions_t` to add modules
+* Keep all APIs prefixed with `nsf`
+* Avoid exposing CSFML directly
+* Keep ownership inside `game`
+* Maintain strict module separation
 
 ---

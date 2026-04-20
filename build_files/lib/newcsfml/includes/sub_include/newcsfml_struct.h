@@ -34,14 +34,25 @@ int nsf_window_destroy(nsf_window_t **window, nsf_game_t *game);
 
     #ifndef P_NSF_WINDOW_SETTINGS_CREATE
         #define P_NSF_WINDOW_SETTINGS_CREATE
-nsf_window_settings_t *nsf_window_setting_create(
+nsf_window_settings_t *nsf_window_settings_create(
     const nsf_window_settings_t settings[], nsf_game_t *game);
     #endif
 
     #ifndef P_NSF_WINDOW_SETTINGS_DESTROY
         #define P_NSF_WINDOW_SETTINGS_DESTROY
-int nsf_window_setting_destroy(nsf_window_settings_t **settings,
+int nsf_window_settings_destroy(nsf_window_settings_t **settings,
     nsf_game_t *game);
+    #endif
+
+    #ifndef P_NSF_BACKGROUND_CREATE
+        #define P_NSF_BACKGROUND_CREATE
+nsf_background_t *nsf_background_create(const char path[],
+    nsf_window_t *window, nsf_game_t *game);
+    #endif
+
+    #ifndef P_NSF_BACKGROUND_DESTROY
+        #define P_NSF_BACKGROUND_DESTROY
+int nsf_background_destroy(nsf_background_t **background, nsf_game_t *game);
     #endif
 
     #ifndef P_NSF_SPRITE_CREATE
