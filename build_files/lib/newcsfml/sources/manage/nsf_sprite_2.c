@@ -17,30 +17,31 @@ nsf_texture_t *nsf_sprite_get_texture(nsf_sprite_t *sprite)
     return sprite->texture;
 }
 
-nsf_fvector_t *nsf_sprite_get_scale(nsf_sprite_t *sprite)
+void nsf_sprite_get_scale(nsf_sprite_t *sprite, nsf_fvector_t *out)
 {
     if (!sprite)
-        return NULL;
-    return (nsf_fvector_t[]){sprite->scale};
+        return nsf_fvector_empty(out);
+    nsf_fvector_copy(&sprite->scale, out);
 }
 
-nsf_uvector_t *nsf_sprite_get_size(nsf_sprite_t *sprite)
+void nsf_sprite_get_size(nsf_sprite_t *sprite, nsf_uvector_t *out)
 {
     if (!sprite || !sprite->texture)
-        return NULL;
-    return (nsf_uvector_t[]){sfTexture_getSize(sprite->texture->texture)};
+        return nsf_uvector_empty(out);
+    nsf_uvector_copy((nsf_uvector_t[]){sfTexture_getSize
+            (sprite->texture->texture)}, out);
 }
 
-nsf_fvector_t *nsf_sprite_get_position(nsf_sprite_t *sprite)
+void nsf_sprite_get_position(nsf_sprite_t *sprite, nsf_fvector_t *out)
 {
     if (!sprite)
-        return NULL;
-    return (nsf_fvector_t[]){sprite->position};
+        return nsf_fvector_empty(out);
+    nsf_fvector_copy(&sprite->position, out);
 }
 
-nsf_fvector_t *nsf_sprite_get_origin(nsf_sprite_t *sprite)
+void nsf_sprite_get_origin(nsf_sprite_t *sprite, nsf_fvector_t *out)
 {
     if (!sprite)
-        return NULL;
-    return (nsf_fvector_t[]){sprite->origin};
+        return nsf_fvector_empty(out);
+    nsf_fvector_copy(&sprite->origin, out);
 }

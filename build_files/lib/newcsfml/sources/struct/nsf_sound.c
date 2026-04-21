@@ -14,7 +14,7 @@ nsf_sound_t *nsf_sound_create(const char path[], const char name[],
     nsf_game_t *game)
 {
     nsf_sound_t *new_sound = malloc_any(sizeof(nsf_sound_t));
-    sfSoundBuffer* sf_sound_buffer = sfSoundBuffer_createFromFile(path);
+    sfSoundBuffer *sf_sound_buffer = sfSoundBuffer_createFromFile(path);
     sfSound *sf_sound = sfSound_create();
     str_t name_str = str_strdup(name);
 

@@ -20,7 +20,8 @@ void nsf_button_set_texture(nsf_button_t *button, nsf_texture_t *texture)
     button->size = sfRectangleShape_getSize(button->button);
 }
 
-void nsf_button_set_position(nsf_button_t *button, const nsf_fvector_t position[])
+void nsf_button_set_position(nsf_button_t *button,
+    const nsf_fvector_t position[])
 {
     if (!button)
         return;
@@ -52,8 +53,8 @@ void nsf_button_set_colors(nsf_button_t *button,
         (float)outline_thickness);
 }
 
-nsf_button_status_t nsf_button_get_state(nsf_button_t *button, nsf_window_t *window,
-    const nsf_mouse_t mouse_button)
+nsf_button_status_t nsf_button_get_state(nsf_button_t *button,
+    nsf_window_t *window, const nsf_mouse_t mouse_button)
 {
     sfVector2i pixelPos = {};
     nsf_fvector_t worldPos = {};

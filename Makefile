@@ -70,7 +70,12 @@ CFLAGS	=	\
 CPPFLAGS	=	$(INCLUDES)
 CFLAGS_PLUS	=	-L./$(LIB_PATH) $(LIB_FLAGS)
 ifneq ($(filter -lnewcsfml,$(CFLAGS_PLUS)),)
-    CFLAGS_PLUS	+=	-lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
+    CFLAGS_PLUS	+=	\
+		-lcsfml-graphics \
+		-lcsfml-window \
+		-lcsfml-system \
+		-lcsfml-audio \
+		-lm
 endif
 
 TESTCNAME	=	unit_tests

@@ -12,7 +12,7 @@
     #include <stdbool.h>
     #include "newerror_typedef.h"
 
-#ifndef T_NEWERROR_DATA
+    #ifndef T_NEWERROR_DATA
         #define T_NEWERROR_DATA
 typedef struct {
     err_t *(*upt)(const err_t *, title_t, message_t);

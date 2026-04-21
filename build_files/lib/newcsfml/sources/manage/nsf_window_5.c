@@ -12,6 +12,7 @@
 int nsf_window_update_settings(nsf_window_t *window)
 {
     sfVector2u size = {};
+
     if (!window || !window->window || !window->settings)
         return EXIT_ERROR;
     size = sfRenderWindow_getSize(window->window);

@@ -18,9 +18,6 @@
     #include "sub_include/newcsfml_other.h"
     #include "sub_include/newcsfml_struct.h"
 
-    #ifndef T_NSF_NSF_STRUCT
-        #define T_NSF_NSF_STRUCT
 extern const nsf_nsf_functions_t nsf;
-    #endif
 
 #endif

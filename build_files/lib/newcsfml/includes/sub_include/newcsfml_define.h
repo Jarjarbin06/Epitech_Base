@@ -10,6 +10,7 @@
     #define NEWCSFML_D
 
     #include <SFML/Window/Event.h>
+    #include <math.h>
 
     #ifndef EXIT_D
         #define EXIT_D
@@ -43,5 +44,9 @@
         #define C_RESET "\033[0m"           // RESET //
 
     #endif
+
+    #define NSF_PI M_PI
+    #define NSF_RADIAN(x) ((x) * (NSF_PI / 180.0))
+    #define NSF_DEGREE(x) ((x) * (180.0 / NSF_PI))
 
 #endif

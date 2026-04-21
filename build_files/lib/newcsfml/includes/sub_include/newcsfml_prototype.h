@@ -11,25 +11,10 @@
 
     #include "newcsfml_typedef.h"
 
-    #ifndef NEWCSFML_P_BASE
-        #define NEWCSFML_P_BASE
 void newcsfml_exist(void);
-    #endif
-
-    #ifndef P_NSF_MALLOC_ANY
-        #define P_NSF_MALLOC_ANY
 void *nsf_malloc_any(nsf_uint_t size, nsf_game_t *game);
-    #endif
-
-    #ifndef P_NSF_FREE_ANY
-        #define P_NSF_FREE_ANY
 void *nsf_free_any(void *ptr, nsf_game_t *game);
-    #endif
-
-    #ifndef P_NSF_AUTO_FREE
-        #define P_NSF_AUTO_FREE
 int nsf_auto_free(nsf_uint_t len, const nsf_free_t free_list[],
     nsf_game_t *game);
-    #endif
 
 #endif

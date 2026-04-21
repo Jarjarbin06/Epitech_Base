@@ -13,8 +13,6 @@
 
     #include <stdbool.h>
 
-    #ifndef  T_NSF_EXT_GAMES
-        #define  T_NSF_EXT_GAMES
 typedef struct {
     // BASE //
     nsf_game_t *(*create)(void);
@@ -51,10 +49,7 @@ typedef struct {
     // SPECIAL //
     int (*update)(nsf_game_t *);
 } nsf_game_functions_t;
-    #endif
 
-    #ifndef  T_NSF_EXT_WINDOWS
-        #define  T_NSF_EXT_WINDOWS
 typedef struct {
     // BASE //
     nsf_window_t *(*create)(const nsf_window_settings_t[], char[],
@@ -87,29 +82,20 @@ typedef struct {
     int (*update_settings)(nsf_window_t *);
     void (*get_mouse)(nsf_window_t *, nsf_ivector_t[]);
 } nsf_window_functions_t;
-    #endif
 
-    #ifndef  T_NSF_EXT_WINDOWS_SETTINGS
-        #define  T_NSF_EXT_WINDOWS_SETTINGS
 typedef struct {
     // BASE //
     nsf_window_settings_t *(*setting_create)(const nsf_window_settings_t[],
         nsf_game_t *);
     int (*setting_destroy)(nsf_window_settings_t **, nsf_game_t *);
 } nsf_window_settings_functions_t;
-    #endif
 
-    #ifndef  T_NSF_EXT_BACKGROUNDS
-        #define  T_NSF_EXT_BACKGROUNDS
 typedef struct {
     nsf_background_t *(*create)(const char[], nsf_window_t *, nsf_game_t *);
     int (*destroy)(nsf_background_t **, nsf_game_t *);
     void (*draw)(nsf_background_t *, nsf_window_t *);
 } nsf_background_functions_t;
-    #endif
 
-    #ifndef  T_NSF_EXT_SPRITES
-        #define  T_NSF_EXT_SPRITES
 typedef struct {
     // BASE //
     nsf_sprite_t *(*create)(const char[], nsf_game_t *);
@@ -121,29 +107,23 @@ typedef struct {
     void (*set_position)(nsf_sprite_t *, nsf_fvector_t[]);
     void (*set_origin)(nsf_sprite_t *, nsf_fvector_t[]);
     nsf_texture_t *(*get_texture)(nsf_sprite_t *);
-    nsf_fvector_t *(*get_scale)(nsf_sprite_t *);
-    nsf_uvector_t *(*get_size)(nsf_sprite_t *);
-    nsf_fvector_t *(*get_position)(nsf_sprite_t *);
-    nsf_fvector_t *(*get_origin)(nsf_sprite_t *);
+    void (*get_scale)(nsf_sprite_t *, nsf_fvector_t *out);
+    void (*get_size)(nsf_sprite_t *, nsf_uvector_t *out);
+    void (*get_position)(nsf_sprite_t *, nsf_fvector_t *out);
+    void (*get_origin)(nsf_sprite_t *, nsf_fvector_t *out);
     // SPECIAL //
     void (*update)(nsf_sprite_t *);
     // DRAW //
     void (*draw)(nsf_sprite_t *, nsf_window_t *);
 } nsf_sprite_functions_t;
-    #endif
 
-    #ifndef  T_NSF_EXT_TEXTURES
-        #define  T_NSF_EXT_TEXTURES
 typedef struct {
     // BASE //
     nsf_texture_t *(*create)(const char[], const char[],
         nsf_game_t *);
     int (*destroy)(nsf_texture_t **, nsf_game_t *);
 } nsf_texture_functions_t;
-    #endif
 
-    #ifndef  T_NSF_EXT_MUSICS
-        #define  T_NSF_EXT_MUSICS
 typedef struct {
     // BASE //
     nsf_music_t *(*create)(const char[], const char[], nsf_game_t *);
@@ -156,10 +136,7 @@ typedef struct {
     void (*volume)(nsf_music_t *, float);
     nsf_sound_status_t (*get_status)(nsf_music_t *);
 } nsf_music_functions_t;
-    #endif
 
-    #ifndef  T_NSF_EXT_SOUNDS
-        #define  T_NSF_EXT_SOUNDS
 typedef struct {
     // BASE //
     nsf_sound_t *(*create)(const char[], const char[], nsf_game_t *);
@@ -172,10 +149,7 @@ typedef struct {
     void (*volume)(nsf_sound_t *, float);
     nsf_sound_status_t (*get_status)(nsf_sound_t *);
 } nsf_sound_functions_t;
-    #endif
 
-    #ifndef  T_NSF_EXT_EVENTS
-        #define  T_NSF_EXT_EVENTS
 typedef struct {
     // MANAGE //
     bool (*cmp)(const nsf_event_t *, nsf_event_type_t);
@@ -183,10 +157,7 @@ typedef struct {
     void (*get_mouse)(const nsf_event_t *, nsf_ivector_t[]);
     float (*get_mouse_wheel)(const nsf_event_t *);
 } nsf_event_functions_t;
-    #endif
 
-    #ifndef  T_NSF_EXT_BUTTONS
-        #define  T_NSF_EXT_BUTTONS
 typedef struct {
     // BASE //
     nsf_button_t *(*create)(const char[], nsf_game_t *);
@@ -202,10 +173,51 @@ typedef struct {
     // DRAW //
     void (*draw)(nsf_button_t *, nsf_window_t *);
 } nsf_button_functions_t;
-    #endif
 
-    #ifndef  T_NSF_EXT_NSF
-        #define  T_NSF_EXT_NSF
+typedef struct {
+    // MANAGE //
+    void (*fempty)(nsf_fvector_t *);
+    void (*i2f)(const nsf_ivector_t vector[], nsf_fvector_t *);
+    void (*u2f)(const nsf_uvector_t vector[], nsf_fvector_t *);
+    void (*fcopy)(const nsf_fvector_t vector[], nsf_fvector_t *);
+    void (*iempty)(nsf_ivector_t *);
+    void (*f2i)(const nsf_fvector_t vector[], nsf_ivector_t *);
+    void (*u2i)(const nsf_uvector_t vector[], nsf_ivector_t *);
+    void (*icopy)(const nsf_ivector_t vector[], nsf_ivector_t *);
+    void (*uempty)(nsf_uvector_t *);
+    void (*f2u)(const nsf_fvector_t vector[], nsf_uvector_t *);
+    void (*i2u)(const nsf_ivector_t vector[], nsf_uvector_t *);
+    void (*ucopy)(const nsf_uvector_t vector[], nsf_uvector_t *);
+    void (*add)(const nsf_fvector_t[], const nsf_fvector_t[], nsf_fvector_t *);
+    void (*sub)(const nsf_fvector_t[], const nsf_fvector_t[], nsf_fvector_t *);
+    void (*mul)(const nsf_fvector_t[], float, nsf_fvector_t *);
+    void (*div)(const nsf_fvector_t[], float, nsf_fvector_t *);
+    void (*neg)(const nsf_fvector_t[], nsf_fvector_t *);
+    float (*len)(const nsf_fvector_t[]);
+    void (*norm)(const nsf_fvector_t[], nsf_fvector_t *);
+    float (*dist_to)(const nsf_fvector_t[], const nsf_fvector_t[]);
+    void (*dir_to)(const nsf_fvector_t[], const nsf_fvector_t[],
+        nsf_fvector_t *);
+    float (*dot)(const nsf_fvector_t[], const nsf_fvector_t[]);
+    float (*cross)(const nsf_fvector_t[], const nsf_fvector_t[]);
+    float (*get_angle)(const nsf_fvector_t[]);
+    void (*rotate)(const nsf_fvector_t[], float, nsf_fvector_t *);
+    void (*print)(const nsf_fvector_t[]);
+} nsf_vector_functions_t;
+
+typedef struct {
+    nsf_color_t black;
+    nsf_color_t white;
+    nsf_color_t red;
+    nsf_color_t green;
+    nsf_color_t blue;
+    nsf_color_t yellow;
+    nsf_color_t magenta;
+    nsf_color_t cyan;
+    nsf_color_t grey;
+    nsf_color_t transparent;
+} nsf_colors_shortcut_t;
+
 typedef struct {
     nsf_game_functions_t game;
     nsf_window_functions_t window;
@@ -214,9 +226,9 @@ typedef struct {
     nsf_button_functions_t button;
     nsf_texture_functions_t texture;
     nsf_music_functions_t music;
-    nsf_colors_t color;
+    nsf_colors_shortcut_t color;
+    nsf_vector_functions_t vector;
     nsf_event_functions_t event;
 } nsf_nsf_functions_t;
-    #endif
 
 #endif

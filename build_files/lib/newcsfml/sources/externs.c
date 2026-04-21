@@ -127,7 +127,7 @@ const nsf_sound_functions_t nsf_sound = {
     nsf_sound_get_status,
 };
 
-const nsf_colors_t nsf_clr = {
+const nsf_colors_shortcut_t nsf_color = {
     {0, 0, 0, 255},
     {255, 255, 255, 255},
     {255, 0, 0, 255},
@@ -137,7 +137,36 @@ const nsf_colors_t nsf_clr = {
     {255, 0, 255, 255},
     {0, 255, 255, 255},
     {100, 100, 100, 255},
-{0, 0, 0, 0}
+    {0, 0, 0, 0}
+};
+
+const nsf_vector_functions_t nsf_vector = {
+    nsf_fvector_empty,
+    nsf_fvector_from_i,
+    nsf_fvector_from_u,
+    nsf_fvector_copy,
+    nsf_ivector_empty,
+    nsf_ivector_from_f,
+    nsf_ivector_from_u,
+    nsf_ivector_copy,
+    nsf_uvector_empty,
+    nsf_uvector_from_f,
+    nsf_uvector_from_i,
+    nsf_uvector_copy,
+    nsf_vector_add,
+    nsf_vector_sub,
+    nsf_vector_mul,
+    nsf_vector_div,
+    nsf_vector_neg,
+    nsf_vector_len,
+    nsf_vector_norm,
+    nsf_vector_dist_to,
+    nsf_vector_dir_to,
+    nsf_vector_dot,
+    nsf_vector_cross,
+    nsf_vector_get_angle,
+    nsf_vector_rotate,
+    nsf_vector_print
 };
 
 const nsf_event_functions_t nsf_event = {
@@ -155,6 +184,7 @@ const nsf_nsf_functions_t nsf = {
     nsf_button,
     nsf_texture,
     nsf_music,
-    nsf_clr,
+    nsf_color,
+    nsf_vector,
     nsf_event,
 };
