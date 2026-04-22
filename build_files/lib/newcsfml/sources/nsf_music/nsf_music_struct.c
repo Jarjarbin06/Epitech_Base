@@ -10,7 +10,7 @@
 #include "../../includes/newcsfml.h"
 
 nsf_music_t *nsf_music_create(const char path[], const char name[],
-    nsf_game_t *game)
+                              nsf_game_t *game)
 {
     nsf_music_t *new_music = malloc_any(sizeof(nsf_music_t));
     sfMusic *sf_music = sfMusic_createFromFile(path);

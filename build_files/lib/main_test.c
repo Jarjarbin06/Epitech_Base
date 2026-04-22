@@ -43,12 +43,12 @@ static nsf_window_t *create_window(nsf_game_t *game)
 
 static void create_elements(nsf_game_t *game)
 {
-    nsf_sprite_t *sprite = nsf.sprite.create("a sprite", game);
+    nsf_sprite_t *sprite = nsf.sprite.create("a nsf_sprite", game);
     nsf_button_t *button = nsf.button.create("a button", game);
 
     nsf.sprite.set_texture(sprite,
         nsf.texture.create("/home/jarjarbin/Pictures/C.png",
-        "sprite texture", game));
+        "nsf_sprite texture", game));
     nsf.button.set_texture(button,
         nsf.texture.create("/home/jarjarbin/Pictures/Python.png",
             "button texture", game));

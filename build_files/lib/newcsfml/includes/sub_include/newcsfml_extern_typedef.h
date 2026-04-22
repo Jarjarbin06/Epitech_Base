@@ -226,6 +226,7 @@ typedef struct {
     nsf_button_functions_t button;
     nsf_texture_functions_t texture;
     nsf_music_functions_t music;
+    nsf_sound_functions_t sound;
     nsf_colors_shortcut_t color;
     nsf_vector_functions_t vector;
     nsf_event_functions_t event;

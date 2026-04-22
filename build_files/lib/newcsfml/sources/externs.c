@@ -184,6 +184,7 @@ const nsf_nsf_functions_t nsf = {
     nsf_button,
     nsf_texture,
     nsf_music,
+    nsf_sound,
     nsf_color,
     nsf_vector,
     nsf_event,

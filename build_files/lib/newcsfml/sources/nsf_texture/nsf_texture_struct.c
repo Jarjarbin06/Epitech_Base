@@ -11,7 +11,7 @@
 #include "../../includes/newcsfml.h"
 
 nsf_texture_t *nsf_texture_create(const char path[], const char name[],
-    nsf_game_t *game)
+                                  nsf_game_t *game)
 {
     nsf_texture_t *new_texture = malloc_any(sizeof(nsf_texture_t));
     sfTexture *sf_texture = sfTexture_createFromFile(path, NULL);

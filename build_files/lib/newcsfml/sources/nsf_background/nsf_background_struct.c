@@ -8,7 +8,7 @@
 #include "../../includes/newcsfml.h"
 
 nsf_background_t *nsf_background_create(const char path[],
-    nsf_window_t *window, nsf_game_t *game)
+                                        nsf_window_t *window, nsf_game_t *game)
 {
     nsf_background_t *new_background = malloc_any(sizeof(nsf_background_t));
     nsf_sprite_t *new_sprite = nsf_sprite_create("background", game);

@@ -281,6 +281,7 @@ typedef struct {
     nsf_window_t *window;
     nsf_music_t *music;
     nsf_uint_t allocations;
+    void *data;
 } nsf_game_t;
 
 typedef struct {

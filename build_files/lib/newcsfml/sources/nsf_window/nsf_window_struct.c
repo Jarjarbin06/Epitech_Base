@@ -10,7 +10,7 @@
 #include "../../includes/newcsfml.h"
 
 static sfRenderWindow *get_new_window(const nsf_window_settings_t settings[],
-    const str_t *title_str, const nsf_window_style_t window_style)
+                                      const str_t *title_str, const nsf_window_style_t window_style)
 {
     return sfRenderWindow_create(
         (sfVideoMode){settings->width, settings->height, settings->bpp},

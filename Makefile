@@ -193,17 +193,23 @@ endif
 
 push_setup:
 	-@git add -A
-	-@git commit -m "[INIT] Repo initialization"
+	-@git commit -m "[REPO] Repo initialization"
 	-@git push origin main
 
 update:
 	@cp $(EPITECH_BASE_PATH)/Makefile ./
 	-@make push_makefile
 
+ifeq ($(ALLOW_AUTO_PUSH), true)
 push_makefile:
 	-@git add Makefile
-	-@git commit -m "[INIT] Makefile update"
+	-@git commit -m "[REPO] Makefile update"
 	-@git push origin main
+else
+push_makefile:
+	@printf '\033[91mPushMakefile is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling push_lib.\033[0m\n'
+	@exit 84
+endif
 
 import_newerror:
 	-@rm -rdf ./lib/newerror ./includes/lib_includes/newerror
@@ -268,7 +274,7 @@ import_all:
 ifeq ($(ALLOW_AUTO_PUSH), true)
 push_lib:
 	-@git add lib includes/lib_includes
-	-@git commit -m "[INIT] Library import"
+	-@git commit -m "[REPO] Library import"
 	-@git push origin main
 else
 push_lib:

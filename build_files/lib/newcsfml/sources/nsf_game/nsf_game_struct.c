@@ -18,6 +18,7 @@ nsf_game_t *nsf_game_create(void)
     new_game->allocations = 1;
     new_game->window = NULL;
     new_game->music = NULL;
+    new_game->data = NULL;
     return new_game;
 }
 
