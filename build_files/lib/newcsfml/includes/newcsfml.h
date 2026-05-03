@@ -1,23 +1,32 @@
 /*
 ** EPITECH PROJECT, 2025
-** includes - newcsfml.h
+** NCSFML - New C Simple Fast Multimedia Library
 ** File description:
-** <description>
+** •
+** NSFML is a lightweight wrapper over CSFML that simplifies usage
+** while reducing low-level flexibility for easier game development.
+** •
+** Version: ncsfml-v0.2.1
+** Author: Jarjarbin06
+** License: GPL v3
+** •
+** This library is inspired by SFML/CSFML and is designed for
+** educational and game-development purposes.
+** •
+** It provides higher-level abstractions over CSFML to reduce
+** boilerplate code and enforce safer usage patterns.
+** •
+** WARNING:
+** This is NOT the original SFML/CSFML library.
+** It is a custom implementation layer built on top of CSFML.
 */
 
-// ALL INCLUDE //
 #ifndef NEWCSFML
     #define NEWCSFML
 
-    #include "sub_include/newcsfml_define.h"
-    #include "sub_include/newcsfml_typedef.h"
-    #include "sub_include/newcsfml_extern_typedef.h"
-    #include "sub_include/newcsfml_prototype.h"
-    #include "sub_include/newcsfml_draw.h"
-    #include "sub_include/newcsfml_manage.h"
-    #include "sub_include/newcsfml_other.h"
-    #include "sub_include/newcsfml_struct.h"
-
-extern const nsf_nsf_functions_t nsf;
+    #include "newcsfml/audios.h"
+    #include "newcsfml/games.h"
+    #include "newcsfml/graphics.h"
+    #include "newcsfml/systems.h"
 
 #endif

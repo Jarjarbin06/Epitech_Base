@@ -1,0 +1,186 @@
+# 📦 `Button System`
+
+Interactive UI component built on top of SFML rectangles.
+It provides clickable elements with texture support, visual states, and mouse interaction handling.
+
+> Example:
+> Handles UI buttons with hover/press state detection and rendering.
+
+---
+
+## 🔹 Header
+
+```c
+#include <newcsfml/graphics/button.h>
+```
+
+---
+
+## 🔹 Structure
+
+```c
+typedef struct {
+    sfRectangleShape *button;
+    const nsf_texture_t *texture;
+    nsf_fvector_t size;
+    nsf_fvector_t position;
+    nsf_color_t fill_color;
+    nsf_color_t outline_color;
+    nsf_cstr_t name;
+} nsf_button_t;
+```
+
+### Description
+
+| Field           | Type                    | Description                             |
+|-----------------|-------------------------|-----------------------------------------|
+| `button`        | `sfRectangleShape *`    | SFML rectangle shape used for rendering |
+| `texture`       | `const nsf_texture_t *` | Optional texture applied to the button  |
+| `size`          | `nsf_fvector_t`         | Button size in pixels                   |
+| `position`      | `nsf_fvector_t`         | Button position in world space          |
+| `fill_color`    | `nsf_color_t`           | Background color                        |
+| `outline_color` | `nsf_color_t`           | Border color                            |
+| `name`          | `nsf_cstr_t`            | Identifier used for lookup              |
+
+---
+
+## 🔹 Purpose
+
+Represents an interactive UI element that reacts to mouse input.
+
+* Encapsulates SFML rectangle shape into a higher-level UI component
+* Supports texture rendering and color styling
+* Provides runtime state detection (hovered, pressed, idle)
+* Integrates with window element system for centralized management
+
+---
+
+## 🔹 Dependencies
+
+| Module        | Usage                                  |
+|---------------|----------------------------------------|
+| `nsf_texture` | Optional texture binding               |
+| `nsf_window`  | Mouse position and rendering context   |
+| `nsf_game`    | Memory tracking and allocation control |
+
+---
+
+## 🔹 API
+
+### Creation / Destruction
+
+| Function                  | Description                  |
+|---------------------------|------------------------------|
+| `nsf_button_create(...)`  | Create a new button instance |
+| `nsf_button_destroy(...)` | Destroy and free button      |
+
+---
+
+### Core Functions
+
+| Function                       | Description                            |
+|--------------------------------|----------------------------------------|
+| `nsf_button_set_texture(...)`  | Assign texture to button               |
+| `nsf_button_set_position(...)` | Set button position                    |
+| `nsf_button_set_size(...)`     | Set button size                        |
+| `nsf_button_set_colors(...)`   | Configure fill, outline, and thickness |
+| `nsf_button_get_state(...)`    | Return current interaction state       |
+
+---
+
+### Advanced / Optional
+
+| Function                   | Description                                   |
+|----------------------------|-----------------------------------------------|
+| *(none currently defined)* | State system already covers interaction logic |
+
+---
+
+## 🔹 Parameters Reference
+
+| Name                | Type                 | Description                       |
+|---------------------|----------------------|-----------------------------------|
+| `button`            | `nsf_button_t *`     | Button instance                   |
+| `texture`           | `nsf_texture_t *`    | Texture resource                  |
+| `position`          | `nsf_fvector_t *`    | Position vector                   |
+| `size`              | `nsf_fvector_t *`    | Size vector                       |
+| `window`            | `nsf_window_t *`     | Render window context             |
+| `mouse_button`      | `nsf_mouse_button_t` | Mouse button used for interaction |
+| `fill_color`        | `nsf_color_t`        | Background color                  |
+| `outline_color`     | `nsf_color_t`        | Border color                      |
+| `outline_thickness` | `nsf_uint_t`         | Border thickness                  |
+
+---
+
+## 🔹 Return Values
+
+| Type                  | Meaning                                    |
+|-----------------------|--------------------------------------------|
+| `pointer`             | Valid button object                        |
+| `NULL`                | Allocation or initialization failure       |
+| `int`                 | Status code (`EXIT_SUCCESS`, `EXIT_ERROR`) |
+| `nsf_button_status_t` | Interaction state result                   |
+
+---
+
+## 🔹 Notes
+
+* Button state is computed dynamically using mouse position and input state
+* Texture is optional; button works without it
+* Must be drawn via `nsf_button_draw`
+* Memory ownership is tracked through `nsf_game_t`
+* State system is purely query-based (no internal event storage)
+
+---
+
+## 🔹 Internal Files
+
+| File                  | Role                           |
+|-----------------------|--------------------------------|
+| `nsf_button_struct.c` | Creation and destruction logic |
+| `nsf_button_manage.c` | Setters and state logic        |
+| `nsf_button_draw.c`   | Rendering                      |
+
+---
+
+## 🔹 Related Modules
+
+* `nsf_window`
+* `nsf_texture`
+* `nsf_game`
+
+---
+
+## 🔹 CSFML Mapping (Optional)
+
+| NSF                    | CSFML                                          |
+|------------------------|------------------------------------------------|
+| `nsf_button_t`         | `sfRectangleShape`                             |
+| `nsf_button_draw`      | `sfRenderWindow_drawRectangleShape`            |
+| `nsf_button_get_state` | `sfMouse_* + sfRectangleShape_getGlobalBounds` |
+
+---
+
+## 🔹 Implementation Notes (for contributors)
+
+* Always validate pointers before SFML calls
+* Keep state computation stateless and deterministic
+* Do not store transient input state inside the structure
+* Texture assignment must not break shape size consistency
+* Follow strict separation between:
+
+    * creation/destruction
+    * state logic
+    * rendering
+
+---
+
+## 🔹 Extension Points
+
+* Add click callback system (event binding)
+* Add animation states (hover transition, click feedback)
+* Support text labels on buttons
+* Extend with UI theme system
+* Add input abstraction layer for controller support
+
+---

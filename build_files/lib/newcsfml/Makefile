@@ -1,15 +1,31 @@
 ##
 ## EPITECH PROJECT, 2025
-## newcsfml - Makefile
+## NCSFML - New C Simple Fast Multimedia Library
 ## File description:
-## make the llist lib
+## •
+## NSFML is a lightweight wrapper over CSFML that simplifies usage
+## while reducing low-level flexibility for easier game development.
+## •
+## Version: ncsfml-v0.2.1
+## Author: Jarjarbin06
+## License: GPL v3
+## •
+## This library is inspired by SFML/CSFML and is designed for
+## educational and game-development purposes.
+## •
+## It provides higher-level abstractions over CSFML to reduce
+## boilerplate code and enforce safer usage patterns.
+## •
+## WARNING:
+## This is NOT the original SFML/CSFML library.
+## It is a custom implementation layer built on top of CSFML.
 ##
 
 ##########
 ## info ##
 ##########
 info_NAME	=	newcsfml
-info_VERSION	=	v0.1.7
+info_VERSION	=	v0.2.1
 info_LAST_UPDATE	=	2026/03/30 13:24
 info_LIB_MAKER	=	Makefile
 

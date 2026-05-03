@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** includes - other_lib.h
+** includes - other.h
 ** File description:
 ** <description>
 */
@@ -9,9 +9,9 @@
 #ifndef UTILS
     #define UTILS
 
-    #include "sub_include/utils_define.h"
-    #include "sub_include/utils_include.h"
-    #include "sub_include/utils_typedef.h"
-    #include "sub_include/utils_prototype.h"
+    #include "../../newcsfml/includes/newcsfml/utils_define.h"
+#include "../../newcsfml/includes/newcsfml/utils_include.h"
+#include "../../newcsfml/includes/newcsfml/utils_typedef.h"
+#include "../../newcsfml/includes/newcsfml/utils_prototype.h"
 
 #endif

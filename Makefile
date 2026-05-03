@@ -45,7 +45,7 @@ LIBS_LIST	=	\
 	utils
 LIB_FLAGS	=	\
 	$(foreach lib,$(LIBS_LIST), \
-		$(if $(wildcard lib/$(lib)/lib$(lib).a),-l$(lib),))
+    $(if $(shell find . -type f -name "lib$(lib).a" 2>/dev/null),-l$(lib),))
 
 # Main #
 MAIN	=	$(SRC_PATH)/main.c
@@ -142,7 +142,7 @@ test_valgrind: re
 	@valgrind --leak-check=full --track-origins=yes ./$(CNAME) $(CARG)
 
 test_$(TESTCNAME): clean
-	@$(CC) -o $(TESTCNAME) $(OBJ) $(LIB_OBJ) $(TEST_REDIRECT) $(TEST) $(CFLAGS) $(CFLAGS_PLUS) $(TESTCFLAGS)
+	$(CC) -o $(TESTCNAME) $(SRC_OBJ) $(CFLAGS) $(CPPFLAGS) $(CFLAGS_PLUS)
 
 test_$(TESTCNAME)_run: fclean test_$(TESTCNAME)
 	@./$(TESTCNAME)
@@ -151,7 +151,7 @@ test_gcovr: test_$(TESTCNAME)
 	@gcovr -e $(TEST_PATH)
 
 test_style_check:
-	@epiclang $(MAIN) $(SRC) $(BONUS) $(CFLAGS)
+	epiclang $(MAIN) $(SRC) $(BONUS) $(CFLAGS) $(CPPFLAGS) $(CFLAGS_PLUS)
 	@printf '\033[92mepiclang done\033[0m\n'
 
 test_run: test_$(TESTCNAME)_run
