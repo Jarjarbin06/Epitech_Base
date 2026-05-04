@@ -84,7 +84,7 @@ Makefile    → Compilation and cleanup
 * Simplified rendering and event handling
 
 📖 Documentation:  
-→ `build_files/lib/newcsfml/docs/README.md`
+→ [NewCSFML Documentation](build_files/lib/newcsfml/docs/README.md)
 
 ---
 
@@ -95,7 +95,7 @@ Makefile    → Compilation and cleanup
 > General-purpose helper functions
 
 📖 Entry point:  
-→ `build_files/lib/utils/`
+→ [Utils README](build_files/lib/utils/README.md)
 
 ---
 
@@ -108,7 +108,7 @@ Makefile    → Compilation and cleanup
 * String operations
 
 📖 Entry point:  
-→ `build_files/lib/str/`
+→ [Str README](build_files/lib/str/README.md)
 
 ---
 
@@ -121,7 +121,7 @@ Makefile    → Compilation and cleanup
 * Modular formatting
 
 📖 Entry point:  
-→ `build_files/lib/print/`
+→ [Print README](build_files/lib/print/README.md)
 
 ---
 
@@ -134,7 +134,7 @@ Makefile    → Compilation and cleanup
 * Safer error propagation
 
 📖 Entry point:  
-→ `build_files/lib/newerror/`
+→ [NewError README](build_files/lib/newerror/README.md)
 
 ---
 
@@ -145,7 +145,7 @@ Makefile    → Compilation and cleanup
 > Generic linked list implementation
 
 📖 Entry point:  
-→ `build_files/lib/llist/`
+→ [LList README](build_files/lib/llist/README.md)
 
 ---
 
@@ -154,7 +154,7 @@ Makefile    → Compilation and cleanup
 > Advanced list structure for complex data layouts
 
 📖 Entry point:  
-→ `build_files/lib/twodlist/`
+→ [TwoDList README](build_files/lib/twodlist/README.md)
 
 ---
 
@@ -162,10 +162,7 @@ Makefile    → Compilation and cleanup
 
 #### test_lib
 
-> Internal testing utilities and experimentation library
-
-📖 Entry point:  
-→ `build_files/lib/test_lib/`
+> Internal testing and experimentation folder
 
 ---
 ### 🧩 Project Template
