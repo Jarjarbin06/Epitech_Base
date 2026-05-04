@@ -1,4 +1,5 @@
-# 📦 `Game System (nsf_game)`
+# 📦 Game Module (`nsf_game`)
+#### part of [Games](overview.md)
 
 Central runtime controller of the framework. It manages the window, audio, global state, and acts as the main entry point for all subsystems.
 
@@ -203,14 +204,14 @@ It abstracts the concept of a "game instance" over CSFML by adding:
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_window`
-* `nsf_music`
-* `nsf_clock`
-* `nsf_sprite`
-* `nsf_button`
-* `nsf_sound`
+* [`nsf_window` 🔗](window.md)
+* [`nsf_music` 🔗](../audios/music.md)
+* [`nsf_clock` 🔗](../systems/clock.md)
+* [`nsf_sprite` 🔗](../graphics/sprite.md)
+* [`nsf_button` 🔗](../graphics/button.md)
+* [`nsf_sound` 🔗](../audios/sound.md)
 
 ---
 

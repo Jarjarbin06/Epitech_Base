@@ -1,4 +1,5 @@
-# 📦 `Color`
+# 📦 Color Module (`nsf_color`)
+#### part of [Systems](overview.md)
 
 Provides a unified color type and a predefined global palette of commonly used colors for UI and rendering.
 
@@ -134,12 +135,12 @@ Not applicable.
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_sprite`
-* `nsf_button`
-* `nsf_window`
-* `nsf_background`
+* [`nsf_sprite` 🔗](../graphics/sprite.md)
+* [`nsf_button` 🔗](../graphics/button.md)
+* [`nsf_window` 🔗](../games/window.md)
+* [`nsf_background` 🔗](../graphics/background.md)
 
 ---
 

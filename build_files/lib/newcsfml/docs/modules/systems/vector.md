@@ -1,4 +1,5 @@
-# 📦 `nsf_vector`
+# 📦 Vector Module (`nsf_vector`)
+#### part of [Systems](overview.md)
 
 Mathematical vector utility module for 2D operations and conversions.
 
@@ -152,10 +153,10 @@ This module provides all fundamental operations related to 2D vectors.
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_sprite`
-* `nsf_button`
+* [`nsf_sprite` 🔗](../graphics/sprite.md) 
+* [`nsf_button` 🔗](../graphics/button.md)
 
 ---
 

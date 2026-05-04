@@ -1,4 +1,5 @@
-# 📦 `Window Settings`
+# 📦 Window Settings Module (`nsf_window_settings`)
+#### part of [Games](overview.md)
 
 Lightweight configuration structure used to define and manage window properties such as resolution, frame rate, and color depth.
 
@@ -122,10 +123,10 @@ Defines the configuration parameters used to create and update a window.
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_window`
-* `nsf_game`
+* [`nsf_window` 🔗](window.md)
+* [`nsf_game` 🔗](game.md)
 
 ---
 

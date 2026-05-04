@@ -1,6 +1,7 @@
-# 📦 `nsf_utils`
+# 📦 Utils Module (`nsf_utils`)
+#### part of [Systems](overview.md)
 
-Utility and low-level helper module for memory management, optimization hints, and internal tooling.
+Utility helper module for memory management, optimization hints, and internal tooling.
 
 > Provides allocation helpers, branch prediction macros, and utility abstractions for safe and tracked memory usage.
 
@@ -125,10 +126,10 @@ This module provides core utility features used across the NCSFML ecosystem, mai
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_game`
-* `nsf_other`
+* [`nsf_game` 🔗](../games/game.md)
+* [`nsf_other` 🔗](other.md)
 
 ---
 

@@ -1,4 +1,5 @@
-# 📦 `Sprite`
+# 📦 Sprite Module (`nsf_sprite`)
+#### part of [Graphics](overview.md)
 
 The sprite module is responsible for handling 2D drawable objects, including texture binding, transformations (position, scale, origin, rotation), and rendering through CSFML.
 
@@ -148,11 +149,11 @@ The sprite module provides a complete abstraction over CSFML sprites, managing b
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_texture`
-* `nsf_window`
-* `nsf_background`
+* [`nsf_texture` 🔗](texture.md)
+* [`nsf_window` 🔗](../games/window.md)
+* [`nsf_background` 🔗](background.md)
 
 ---
 

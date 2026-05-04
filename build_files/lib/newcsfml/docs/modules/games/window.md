@@ -1,4 +1,5 @@
-# 📦 `Window System`
+# 📦 Window Module (`nsf_window`)
+#### part of [Games](overview.md)
 
 Core rendering and event management module built on top of SFML.
 It handles window lifecycle, drawable elements, input events, and audio/sprite integration.
@@ -182,14 +183,14 @@ Central abstraction for rendering and input handling.
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_game`
-* `nsf_sprite`
-* `nsf_button`
-* `nsf_sound`
-* `nsf_background`
-* `nsf_window_settings`
+* [`nsf_game` 🔗](game.md)
+* [`nsf_sprite` 🔗](../graphics/sprite.md)
+* [`nsf_button` 🔗](../graphics/button.md)
+* [`nsf_sound` 🔗](../audios/sound.md)
+* [`nsf_background` 🔗](../graphics/background.md)
+* [`nsf_window_settings` 🔗](window_settings.md)
 
 ---
 

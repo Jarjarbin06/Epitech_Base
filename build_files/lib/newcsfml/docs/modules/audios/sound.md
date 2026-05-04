@@ -1,4 +1,5 @@
-# 📦 Sound Module (`nsf_sound_t`)
+# 📦 Sound Module (`nsf_sound`)
+#### part of [Audios](overview.md)
 
 The Sound module provides a lightweight audio system for short sound effects using SFML.  
 It handles buffer management, playback control, and sound state abstraction.
@@ -126,11 +127,11 @@ It corresponds to SFML `sfSound` and `sfSoundBuffer`.
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_game`
-* `nsf_music`
-* `systems/utils`
+* [`nsf_game` 🔗](../games/game.md)
+* [`nsf_music` 🔗](music.md)
+* [`nsf_utils` 🔗](../systems/utils.md)
 
 ---
 

@@ -12,7 +12,7 @@
 
 ## 🔹 Authors
 
-* Nathan (Jarjarbin / Jarjarbin06 / JarjarbinSTUDIO)
+* Nathan (Jarjarbin06)
 * EPITECH Project
 
 ---
@@ -272,21 +272,28 @@ Makefile    → Build system
 
 ---
 
-## 🔹 Naming Convention
+## 🔹 Documentation Index
 
-All APIs follow:
+This section provides quick access to the main documentation files.
+Detailed module-specific documentation is available within each module’s overview.
 
-```
-nsf_<module>_<action>
-```
+### Core Documentation
 
-Example:
+* [File Structure](file_structure.md) — Project organization details
+* [Naming Conventions](naming_conventions.md) — Standardized naming rules
+* [Quick Reference](quick_reference.md) — Fast access to commonly used elements
+* [Best Practices](best_practices.md) — Recommended coding and usage guidelines
 
-```
-nsf_sprite_create()
-nsf_window_get_event()
-nsf_vector_add()
-```
+---
+
+### Modules Overview
+
+Each module contains its own detailed documentation and subcomponents.
+
+* [Graphics Module](modules/graphics/overview.md)
+* [Audio Module](modules/audios/overview.md)
+* [Game Module](modules/games/overview.md)
+* [Systems Module](modules/systems/overview.md)
 
 ---
 

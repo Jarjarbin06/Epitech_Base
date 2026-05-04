@@ -1,4 +1,5 @@
-# 📦 `Event System (nsf_event)`
+# 📦 Event Module (`nsf_event`)
+#### part of [Games](overview.md)
 
 Provides a lightweight abstraction over CSFML events, including input handling, event comparison, and mouse utilities.
 
@@ -114,11 +115,11 @@ It sits at the **input layer of the framework**, used mainly by the game and win
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_game`
-* `nsf_window`
-* `nsf_systems/vector`
+* [`nsf_game` 🔗](game.md)
+* [`nsf_window` 🔗](window.md)
+* [`nsf_vector` 🔗](../systems/vector.md)
 
 ---
 

@@ -1,4 +1,5 @@
 # 📦 `Systems`
+#### part of [NewCSFML](../../README.md)
 
 Core utility and foundational modules providing low-level services such as timing, memory management, math operations, and shared data structures.
 
@@ -176,11 +177,26 @@ float dt = nsf.clock.get_delta(clock);
 
 ---
 
+## 🔹 Documentation Index
+
+This section provides quick access to the audio module documentation.
+Detailed behavior and API are described within each submodule.
+
+### Submodules
+
+* [Clock](clock.md) — Time manager
+* [Color](color.md) — Color palette
+* [Other](other.md) — Low-level internal utility (coming from other custom libraries)
+* [Utils](utils.md) — Utility helper
+* [Vector](vector.md) — Mathematical vector utility
+
+---
+
 ## 🔹 Related Modules
 
-* `nsf_graphics`
-* `nsf_window`
-* `nsf_game`
+* [Audios](../audios/overview.md)
+* [Games](../games/overview.md)
+* [Graphics](../graphics/overview.md)
 
 ---
 

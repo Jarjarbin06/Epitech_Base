@@ -1,4 +1,5 @@
-# 📦 `Background`
+# 📦 Background Module (`nsf_background`)
+#### part of [Graphics](overview.md)
 
 The background module manages a full-screen visual layer composed of a sprite and its associated texture. It is designed to be used as the base rendering layer inside a window.
 
@@ -119,11 +120,11 @@ The background module is responsible for displaying a full-window visual layer.
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_sprite`
-* `nsf_texture`
-* `nsf_window`
+* [`nsf_sprite` 🔗](sprite.md)
+* [`nsf_texture` 🔗](texture.md)
+* [`nsf_window` 🔗](../games/window.md)
 
 ---
 

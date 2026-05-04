@@ -1,4 +1,5 @@
-# 📦 `Button System`
+# 📦 Button Module (`nsf_button`)
+#### part of [Graphics](overview.md)
 
 Interactive UI component built on top of SFML rectangles.
 It provides clickable elements with texture support, visual states, and mouse interaction handling.
@@ -143,11 +144,11 @@ Represents an interactive UI element that reacts to mouse input.
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_window`
-* `nsf_texture`
-* `nsf_game`
+* [`nsf_window` 🔗](../games/window.md)
+* [`nsf_texture` 🔗](texture.md)
+* [`nsf_game` 🔗](../games/game.md)
 
 ---
 

@@ -25,7 +25,6 @@ docs/
 ├── modules/
 ├── template/
 ├── best_practices.md
-├── build_integration.md
 ├── file_structure.md
 ├── naming_conventions.md
 ├── quick_reference.md

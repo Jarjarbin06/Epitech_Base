@@ -1,4 +1,5 @@
-# 📦 `Other (Core Utilities)`
+# 📦 Other Module (Core Utilities)
+#### part of [Systems](overview.md)
 
 Low-level internal utility module providing memory management and string helpers for the NCSFML core.
 
@@ -142,12 +143,12 @@ It is strictly part of the **core system layer** and is not intended for public 
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_game`
-* `nsf_window`
-* `nsf_sprite`
-* `nsf_texture`
+* [`nsf_game` 🔗](../games/game.md)
+* [`nsf_window` 🔗](../games/window.md)
+* [`nsf_sprite` 🔗](../graphics/sprite.md)
+* [`nsf_texture` 🔗](../graphics/texture.md)
 
 ---
 

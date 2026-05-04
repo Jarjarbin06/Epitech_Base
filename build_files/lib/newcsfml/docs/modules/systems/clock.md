@@ -1,4 +1,5 @@
-# 📦 `nsf_clock`
+# 📦 Clock Module (`nsf_clock`)
+#### part of [Systems](overview.md)
 
 Time management module built on top of CSFML clocks.
 
@@ -131,11 +132,11 @@ Provides a high-level abstraction over CSFML timing utilities.
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_game`
-* `nsf_utils`
-* `nsf_vector` (commonly used with delta time)
+* [`nsf_game` 🔗](../games/game.md)
+* [`nsf_utils` 🔗](utils.md)
+* [`nsf_vector` 🔗](vector.md)
 
 ---
 

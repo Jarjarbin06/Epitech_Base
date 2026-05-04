@@ -1,4 +1,5 @@
-# 📦 Graphics Module
+# 📦 `Graphics`
+#### part of [NewCSFML](../../README.md)
 
 Rendering and visual system built on top of CSFML, providing abstraction for textures, sprites, UI elements, and background rendering.
 
@@ -179,12 +180,24 @@ nsf.sprite.draw(sprite, window);
 
 ---
 
+## 🔹 Documentation Index
+
+This section provides quick access to the audio module documentation.
+Detailed behavior and API are described within each submodule.
+
+### Submodules
+
+* [Background](background.md) — Background image
+* [Button](button.md) — Interactive element
+* [Sprite](sprite.md) — Drawable entity
+* [Texture](texture.md) — Texture structure
+
+---
+
 ## 🔹 Related Modules
 
-* `nsf_window`
-* `nsf_game`
-* `nsf_texture`
-* `nsf_sprite`
+* [Games](../games/overview.md)
+* [Systems](../systems/overview.md)
 
 ---
 

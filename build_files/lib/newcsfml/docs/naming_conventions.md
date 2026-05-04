@@ -43,7 +43,7 @@ nsf_game_struct.c
 | Prefix    | `nsf_` mandatory                                    |
 | Submodule | corresponds to folder                               |
 | Splitting | large modules split into `manage1`, `manage2`, etc. |
-| Unique    | file name must unique across all source files       |
+| Unique    | file name must be unique across all source files    |
 
 ---
 
@@ -57,13 +57,13 @@ typedef struct <optional> {
 
 ### Rules
 
-| Rule       | Description                                                                     |
-|------------|---------------------------------------------------------------------------------|
-| Prefix     | Always `nsf_`                                                                   |
-| Suffix     | Always `_t`                                                                     |
-| Style      | snake_case                                                                      |
-| Name       | singular form (`sprite`, not `sprites`)                                         |
-| Dependency | optional nsf_<name>_s to allow partial structure include for dependency ability |
+| Rule       | Description                                                                       |
+|------------|-----------------------------------------------------------------------------------|
+| Prefix     | Always `nsf_`                                                                     |
+| Suffix     | Always `_t`                                                                       |
+| Style      | snake_case                                                                        |
+| Name       | singular form (`sprite`, not `sprites`)                                           |
+| Dependency | optional `nsf_<name>_s` to allow partial structure include for dependency ability |
 
 ### Examples
 

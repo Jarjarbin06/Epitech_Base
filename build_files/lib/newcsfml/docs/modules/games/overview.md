@@ -1,4 +1,5 @@
-# 📦 `Games Module`
+# 📦 `Games`
+#### part of [NewCSFML](../../README.md)
 
 Provides core systems for **application lifecycle, window management, and input handling** within the framework.
 
@@ -186,12 +187,25 @@ nsf.game.destroy(game);
 
 ---
 
+## 🔹 Documentation Index
+
+This section provides quick access to the audio module documentation.
+Detailed behavior and API are described within each submodule.
+
+### Submodules
+
+* [Event](event.md) — Event managing
+* [Game](game.md) — Main ownership structure
+* [Window](window.md) — Core rendering system
+* [Window Settings](window_settings.md) — Rendering settings
+
+---
+
 ## 🔹 Related Modules
 
-* `nsf_graphics`
-* `nsf_audio`
-* `nsf_systems`
-* `nsf_ui`
+* [Audios](../audios/overview.md)
+* [Graphics](../graphics/overview.md)
+* [Systems](../systems/overview.md)
 
 ---
 

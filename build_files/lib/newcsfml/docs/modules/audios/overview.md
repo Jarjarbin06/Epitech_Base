@@ -1,4 +1,5 @@
-# 📦 `nsf_audios`
+# 📦 `Audios`
+#### part of [NewCSFML](../../README.md)
 
 Audio module providing high-level abstractions for sound effects and streamed music playback.
 
@@ -160,11 +161,22 @@ nsf_sound_play(click);
 
 ---
 
+## 🔹 Documentation Index
+
+This section provides quick access to the audio module documentation.
+Detailed behavior and API are described within each submodule.
+
+### Submodules
+
+* [Music](music.md) — Streamed audio playback (background tracks)
+* [Sound](sound.md) — Buffered sound effects (short audio)
+
+---
+
 ## 🔹 Related Modules
 
-* `nsf_game`
-* `nsf_systems`
-* `nsf_window` (indirect usage context)
+* [Games](../games/overview.md)
+* [Systems](../systems/overview.md)
 
 ---
 

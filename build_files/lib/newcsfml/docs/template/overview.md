@@ -154,6 +154,19 @@ nsf.<module>.draw(module);
 
 ---
 
+## 🔹 Documentation Index
+
+This section provides quick access to the module documentation.
+Detailed behavior and API are described within each submodule.
+
+### Submodules
+
+* [`<submodule_1>`](<submodule_1>.md) — Short description of the submodule
+* [`<submodule_2>`](<submodule_2>.md) — Short description of the submodule
+* [`<submodule_3>`](<submodule_3>.md) — Short description of the submodule
+
+---
+
 ## 🔹 Related Modules
 
 * `nsf_<related_module_1>`

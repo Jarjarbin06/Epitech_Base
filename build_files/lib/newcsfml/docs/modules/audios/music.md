@@ -1,4 +1,5 @@
-# 📦 Music
+# 📦 Music Module (`nsf_music`)
+#### part of [Audios](overview.md)
 
 Audio streaming module based on SFML `sfMusic`, providing controlled playback of long audio tracks (background music, ambience, etc.).
 
@@ -132,11 +133,11 @@ It abstracts SFML `sfMusic` into a safer and more consistent framework API.
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_sound`
-* `nsf_game`
-* `nsf_utils`
+* [`nsf_sound` 🔗](sound.md)
+* [`nsf_game` 🔗](../games/game.md)
+* [`nsf_utils` 🔗](../systems/utils.md)
 
 ---
 

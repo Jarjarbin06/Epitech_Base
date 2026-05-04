@@ -1,4 +1,5 @@
-# 📦 `Texture`
+# 📦 Texture Module (`nsf_texture`)
+#### part of [Graphics](overview.md)
 
 Handles loading, storing, and managing SFML textures used by sprites and UI elements.
 
@@ -123,11 +124,11 @@ This module is intentionally minimal.
 
 ---
 
-## 🔹 Related Modules
+## 🔹 Related Submodules
 
-* `nsf_sprite`
-* `nsf_background`
-* `nsf_button`
+* [`nsf_sprite` 🔗](sprite.md)
+* [`nsf_background` 🔗](background.md)
+* [`nsf_button` 🔗](button.md)
 
 ---
 
