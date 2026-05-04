@@ -1,19 +1,102 @@
-# libstr
+# 📦 libstr
 
-A lightweight, flexible, and extensible string manipulation library for C.
-
-This library provides a unified way to:
-
-* Handle strings safely
-* Perform common string operations
-* Transform, check, print, and manage strings
-* Split strings into arrays and concatenate dynamically
+> Lightweight and modular string manipulation library for C.
 
 ---
 
-# Core Concept
+## 🔹 Short Description
 
-The system is built around a central structure:
+**libstr is a structured C string utility library providing safe manipulation, transformation, checking, printing, and memory-aware management of strings.**
+
+It centralizes common string operations into grouped APIs for clarity, consistency, and extensibility.
+
+---
+
+## 🔹 Authors
+
+* Nathan (Jarjarbin06)
+* EPITECH Project
+
+---
+
+## 🔹 License
+
+GPL v3
+
+---
+
+## 🔹 Target Audience
+
+This library is designed for:
+
+* C developers needing safer string utilities
+* EPITECH students working on low-level projects
+* Developers replacing fragmented string helpers
+* Projects requiring structured string APIs
+
+---
+
+## 🔹 Platform Support
+
+* Linux compatible
+* Standard C only
+* No external dependencies
+
+---
+
+## 🔹 Purpose
+
+libstr is designed to replace scattered string handling functions by providing:
+
+* Grouped string operations (transform, check, get, manage, print)
+* Consistent type usage (`str_t`, `cstr_t`, `cc_t`)
+* Unified API structure via `str`
+* Safer string manipulation patterns
+* Extendable architecture for additional utilities
+
+It is **not a replacement for libc strings**, but a structured enhancement layer.
+
+---
+
+## 🔹 Key Features
+
+* Structured string API (`str_str_t`)
+* Transformations (case, reverse, swap)
+* String validation and checks
+* Safe memory-aware string management
+* Word splitting utilities
+* Consistent type system (`str_t`, `cstr_t`)
+* Shortcut global dispatcher (`str`)
+* Modular function grouping
+
+---
+
+## 🔹 Architecture Overview
+
+```
+            ┌──────────────────────┐
+            │     str_str_t        │
+            │  (API dispatcher)    │
+            └─────────┬────────────┘
+                      │
+ ┌────────────────────┼────────────────────┐
+ │                    │                    │
+┌────────────┐   ┌──────────────┐   ┌──────────────┐
+│ transform  │   │   check      │   │    get       │
+│ (t)        │   │ (c)          │   │ (g)          │
+└────────────┘   └──────────────┘   └──────────────┘
+ │
+┌──────────────────┐
+│ manage + print   │
+│ (m + p layers)   │
+└──────────────────┘
+```
+
+---
+
+## 🔹 Core Concept
+
+The system is built around:
 
 ```c
 typedef struct {
@@ -23,151 +106,190 @@ typedef struct {
     str_get_t g;
     str_manage_t m;
 } str_str_t;
-```
+````
 
-Strings operations are grouped into:
-
-* **Transformations**: reverse, capitalize, lower/upper case, swap characters
-* **Print**: print strings, characters, and integers
-* **Checks**: test for alpha, numeric, printable, lower/upper case, comparisons
-* **Getters**: retrieve numbers, length, or split into word arrays
-* **Management**: copy, duplicate, concatenate, or partially duplicate strings
-
-All functions use `str_t`, `cstr_t` and `cc_t` (`char *`, `const char *` and `const char`) for consistency and safety.
+This provides a **namespaced and grouped API system** for all string operations.
 
 ---
 
-# Quick Usage
+## 🔹 Modules Overview
 
-## Basic Example
+### 🔁 Transformations (`t`)
 
-```c
-str_put_str("Hello World!\n");       // Prints string
-str_put_nbr(42);                     // Prints integer
+Handles string modifications.
+
+* `str_reverse`
+* `str_capitalize`
+* `str_upcase`
+* `str_lowcase`
+* `str_c_swap`
+
+---
+
+### 🧪 Checks (`c`)
+
+Handles validation and comparisons.
+
+* Alpha / numeric checks
+* Upper / lower checks
+* Printable checks
+* String comparison
+
+---
+
+### 📥 Getters (`g`)
+
+Handles extraction and parsing.
+
+* String length
+* Integer parsing
+* Word array splitting
+
+---
+
+### 🧱 Management (`m`)
+
+Handles memory-safe string operations.
+
+* Copy / duplicate
+* Concatenation
+* Partial duplication
+
+---
+
+### 🖨️ Printing (`p`)
+
+Handles output utilities.
+
+* String printing
+* Character printing
+* Integer printing
+
+---
+
+## 🔹 Build System
+
+### Makefile
+
+```bash
+make
+make clean
+make fclean
+make re
 ```
 
-## Transform Example
+---
+
+## 🔹 Installation Requirements
+
+* GCC / Clang compatible compiler
+* Standard C library
+* Linux environment recommended
+
+---
+
+## 🔹 Quickstart Example
+
+### Basic Usage
+
+```c
+str_put_str("Hello World!\n");
+str_put_nbr(42);
+```
+
+---
+
+### Transformations
 
 ```c
 str_t s = str_dup("hello");
-s = str_capitalize(s);               // "Hello"
-s = str_upcase(s);                    // "HELLO"
-s = str_reverse(s);                   // "OLLEH"
+s = str_capitalize(s);   // Hello
+s = str_upcase(s);       // HELLO
+s = str_reverse(s);      // OLLEH
 ```
 
-## Check Example
+---
+
+### Checks
 
 ```c
 if (str_is_alpha("Hello"))
-    str_put_str("All letters!\n");
-
-if (str_c_is_num('5'))
-    str_put_str("Digit!\n");
+    str_put_str("Alphabetic string\n");
 ```
 
-## Split Example
+---
+
+### Word Split
 
 ```c
-str_t *words = str_to_word_array("one,two,three", ',');
-str_put_str(words[1]);                // Prints "two"
+str_t *words = str_to_word_array("a,b,c", ',');
+str_put_str(words[1]);
 free_array((void **)words);
 ```
 
 ---
 
-# Function Groups
+## 🔹 Memory Model
 
-## Transformations (`str_transform_t`)
-
-* `str_reverse(str_t)`
-* `str_capitalize(str_t)`
-* `str_lowcase(str_t)`
-* `str_upcase(str_t)`
-* `str_c_swap(str_t, str_t)`
+* String duplication uses heap allocation
+* Must be freed manually using provided utilities
+* Safe array cleanup via `free_array`
+* Consistent ownership rules across API
 
 ---
 
-## Printing (`str_put_t`)
+## 🔹 Design Philosophy
 
-* `str_put_nbr(int)`
-* `str_put_char(char)`
-* `str_put_str(str_t)`
-
----
-
-## Checks (`str_check_t`)
-
-* `str_c_is_alpha(char)`, `str_is_alpha(str_t)`
-* `str_c_is_num(char)`, `str_is_num(str_t)`
-* `str_c_is_lower(char)`, `str_is_lower(str_t)`
-* `str_c_is_upper(char)`, `str_is_upper(str_t)`
-* `str_c_is_printable(char)`, `str_is_printable(str_t)`
-* `str_cmp(str_t, str_t)`
+* Grouped string operations by responsibility
+* Clear separation between transform / check / manage
+* Consistent type abstraction (`str_t`)
+* Minimal surprises in memory behavior
+* Fully extensible function grouping system
 
 ---
 
-## Getters (`str_get_t`)
+## 🔹 Current State
 
-* `str_get_nbr(str_t)` → int
-* `str_len(str_t)` → int
-* `str_to_word_array(str_t, char)` → `str_t *` array
+⚠️ The library is **stable but partially evolving**
 
----
+Status:
 
-## Management (`str_manage_t`)
+* Core string operations implemented
+* Transformation system functional
+* Word splitting available
+* Memory helpers integrated
+* Some functions marked `.off` still in progress
 
-* `str_cat(str_t, str_t)`
-* `str_cpy(str_t, str_t)`
-* `str_dup(str_t)`
-* `str_ndup(str_t, int)`
+Future improvements:
 
----
-
-# Memory Utilities
-
-Included utilities for safer memory management:
-
-* `malloc_any(size_t)` → allocate memory
-* `free_any(void *)` → free memory
-* `auto_free(len, free_t list[])` → conditional batch free
-* `free_array(void **)` → free array of pointers
+* Extended parsing utilities
+* Performance optimizations
+* Additional string algorithms
 
 ---
 
-# Shortcut API
+## 🔹 File Structure
 
-All functions are grouped into a single global structure:
-
-```c
-const str_str_t str;
 ```
-
-## Usage
-
-```c
-str.t.reverse("Hello");      // Transform
-str.p.str("Hello World");    // Print
-str.c.alpha("Test");         // Check
-str.g.word_array("a,b,c", ','); // Split
-str.m.dup("Hello");          // Manage
+includes/   → Public headers
+sources/    → Implementation
+Makefile    → Build system
 ```
 
 ---
 
-# Best Practices
+## 🔹 Documentation Index
 
-* Always free dynamic strings (`str_dup`, `str_ndup`) using `free_any` or `free_array`
-* Use `str_str_t` shortcuts to avoid calling individual functions directly
-* Prefer `str_to_word_array` over manual splitting for consistency
-* Keep all transformations immutable unless explicitly swapped with `str_c_swap`
+This library does not use a separate docs/ system.
 
 ---
 
-# Notes
+## 🔹 Notes
 
-* Functions marked `.off` in the source tree are still in development
-* Library is designed to be **extensible**—new string tools can be added without breaking the API
-* Works with `str_t` (`char *`) throughout for uniformity
-* Integrates memory helpers for safe allocation/deallocation
+* Designed for structured string manipulation in C
+* Avoids scattered libc-style functions
+* Encourages grouped API usage
+* Built for extensibility and clarity
+* Uses unified `str_t` type system across all modules
 
 ---

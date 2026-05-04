@@ -1,18 +1,101 @@
-# liberror
+# 📦 liberror
 
-A lightweight, flexible, and extensible error handling system for C.
-
-This library provides a unified way to:
-- Create structured errors
-- Attach context (file, function, line)
-- Print formatted debug information
-- Return values (int, pointer, void) while handling errors
+> Lightweight, structured and extensible error handling system for C.
 
 ---
 
-# Core Concept
+## 🔹 Short Description
 
-The system is built around a central structure:
+**liberror is a minimal C error handling library that provides structured error objects, contextual debugging information, and unified return-based error utilities.**
+
+It replaces traditional string-based error handling with a consistent, composable and context-aware system.
+
+---
+
+## 🔹 Authors
+
+* Nathan (Jarjarbin06)
+* EPITECH Project
+
+---
+
+## 🔹 License
+
+GPL v3
+
+---
+
+## 🔹 Target Audience
+
+This library is designed for:
+
+* C developers needing structured error handling
+* EPITECH students working on system-level projects
+* Projects requiring consistent debugging output
+* Developers replacing ad-hoc error strings with typed errors
+
+---
+
+## 🔹 Platform Support
+
+* Linux compatible
+* No external dependencies
+* Pure standard C implementation
+
+---
+
+## 🔹 Purpose
+
+liberror is designed to replace fragile and inconsistent error handling patterns in C by providing:
+
+* Structured error objects (`err_t`)
+* Automatic context capture (file / function / line)
+* Unified printing system
+* Consistent return-value error helpers
+* Zero dynamic allocation design
+
+It is **not a logging framework**, but a strict error handling abstraction layer.
+
+---
+
+## 🔹 Key Features
+
+* Structured error representation (`err_t`)
+* Automatic context injection via macros
+* Fatal / non-fatal error distinction
+* Unified printing system with formatted output
+* Return-aware helpers (int / bool / pointer / void)
+* Centralized API via `nerr` dispatcher
+* Zero heap allocation design
+
+---
+
+## 🔹 Architecture Overview
+
+```
+            ┌────────────────────┐
+            │      ERR()         │
+            │ (entry macro)      │
+            └─────────┬──────────┘
+                      │
+      ┌───────────────┼────────────────┐
+      │               │                │
+┌────────────┐  ┌──────────────┐  ┌──────────────┐
+│ err_t data │  │ update layer │  │ print layer  │
+│ structure  │  │ (upt / ftl)  │  │ err_print    │
+└────────────┘  └──────────────┘  └──────────────┘
+│
+┌──────────────────┐
+│ return helpers   │
+│ nerr.i / nerr.p  │
+└──────────────────┘
+```
+
+---
+
+## 🔹 Core Concept
+
+The system is built around a single structured type:
 
 ```c
 typedef struct {
@@ -25,302 +108,145 @@ typedef struct {
 } err_t;
 ````
 
-Errors are:
+---
 
-* **Structured** (not just strings)
-* **Context-aware** (auto-filled with macros)
-* **Composable** (can be updated dynamically)
+## 🔹 Modules Overview
+
+### 🧠 Core System
+
+Handles creation, update, and lifecycle of error objects.
+
+* `ERR()` macro (entry point)
+* `upt()` context updates
+* `ftl()` fatal marking
 
 ---
 
-# Quick Usage
+### 🖨️ Output System
 
-## Basic Example
+Responsible for formatted error display.
 
-```c
-return err.i(ERR(), 0);
-```
-
-## With Message
-
-```c
-return err.i(upt(ERR(), "Error", "Something failed"), 0);
-```
-
-## Fatal Error
-
-```c
-return err.ie(ftl(upt(ERR(), "Critical", "Fatal issue")));
-```
+* `err_print()`
+* ANSI-colored output
+* Context-aware formatting
 
 ---
 
-# ERR Macro (Core)
+### 🔁 Return Helpers
 
-```c
-#define ERR() (err_t[]){{NULL, NULL, __FILE__, __FUNCTION__, __LINE__, 0}}
-```
+Standardized return-based error propagation.
 
-Creates an error with:
-
-* File name
-* Function name
-* Line number
-* Empty title/message
-* Non-fatal by default
-
-This is the **entry point of the system**.
+* Integer handling (`nerr.i`, `nerr.ie`)
+* Pointer handling (`nerr.p`, `nerr.pn`)
+* Boolean handling (`nerr.b`, `nerr.bf`)
+* Void handling (`nerr.v`)
 
 ---
 
-# Data Management
+## 🔹 Build System
 
-## Update Error
+### Makefile
 
-```c
-err_t *err_data_upt(const err_t *error, title_t title, message_t msg);
-```
-
-* Updates title and/or message
-* Keeps existing data if NULL
-
-## Set Fatal
-
-```c
-err_t *err_data_ftl(const err_t *error);
-```
-
-* Marks error as fatal
-* Adds visual emphasis during printing
-
----
-
-# Error Output
-
-## Main Printer
-
-```c
-void err_print(const err_t error[]);
-```
-
-### Output Format
-
-```
-----------
- /!\ FATAL /!\        (if fatal)
- Error:
- message
-
- "file.c" in func() at line X
-```
-
-### Features
-
-* Colored output (ANSI)
-* Structured formatting
-* Automatic context display
-
----
-
-# Return-Based Error Helpers
-
-## Integer
-
-```c
-int err_int(const err_t error[], int value);
-int err_int_error(const err_t error[]);
-```
-
-* Prints error
-* Returns:
-
-    * Custom value
-    * `EXIT_ERROR` (84)
-
-### Simple Version
-
-```c
-int err_int_simple(const char *title, const char *msg, int value);
-int err_int_error_simple(const char *title, const char *msg);
+```bash
+make
+make clean
+make fclean
+make re
 ```
 
 ---
 
-## Boolean
+## 🔹 Installation Requirements
+
+* GCC / Clang compatible compiler
+* Standard C library
+* Linux environment recommended
+
+---
+
+## 🔹 Quickstart Example
+
+### Basic Usage
 
 ```c
-bool err_bool(const err_t error[], bool value);
-bool err_bool_false(const err_t error[]);
-```
-
-* Prints error
-* Returns:
-
-  * Custom value
-  * `false` (0)
-
-### Simple Version
-
-```c
-bool err_bool_simple(const char *title, const char *msg, bool value);
-bool err_bool_error_simple(const char *title, const char *msg);
+return nerr.i(ERR(), 0);
 ```
 
 ---
 
-## Pointer
+### With Context
 
 ```c
-void *err_pointer(const err_t error[], void *ptr);
-void *err_pointer_null(const err_t error[]);
-```
-
-* Prints error
-* Returns:
-
-    * Provided pointer
-    * `NULL` (via `NL`)
-
-### Simple Version
-
-```c
-void *err_pointer_simple(const char *title, const char *msg, void *ptr);
-void *err_pointer_null_simple(const char *title, const char *msg);
+return nerr.i(upt(ERR(), "Error", "Something failed"), 0);
 ```
 
 ---
 
-## Void
+### Fatal Error
 
 ```c
-void err_void(const err_t error[]);
-```
-
-* Prints error only
-
-### Simple Version
-
-```c
-void err_void_simple(const char *title, const char *msg);
+return nerr.ie(ftl(upt(ERR(), "Critical", "Fatal issue")));
 ```
 
 ---
 
-# Shortcut API
+## 🔹 Memory Model
 
-All functions are grouped into a single structure:
+* No dynamic allocation
+* Stack-based error objects
+* Fully deterministic lifecycle
+* Zero ownership complexity
 
-```c
-const error_list_t err;
+---
+
+## 🔹 Design Philosophy
+
+* Errors are **data**, not strings
+* Context must be automatic, not manual
+* API must remain consistent and minimal
+* No hidden allocations or side effects
+* Explicit return-based control flow
+
+---
+
+## 🔹 Current State
+
+⚠️ The library is **stable but extensible**
+
+Status:
+
+* Core error structure implemented
+* Print system functional
+* Return helpers implemented
+* Shortcut API available
+* Future improvements planned:
+  * Extended formatting modes
+  * Optional logging backend
+  * Error chaining system
+
+---
+
+## 🔹 File Structure
+
 ```
-
-## Usage
-
-```c
-err.v(ERR());                  // void
-err.p(ERR(), ptr);             // pointer
-err.pn(ERR());                 // NULL pointer
-err.i(ERR(), value);           // int
-err.ie(ERR());                 // int error (84)
+includes/   → Public API headers
+sources/    → Implementation
+Makefile    → Build system
 ```
 
 ---
 
-# Shortcuts
+## 🔹 Documentation Index
 
-Direct function aliases:
-
-```c
-verror(ERR());     // void
-nerror(ERR());     // NULL pointer
-ierror(ERR());     // int error (84)
-ferror(ERR());     // bool false (0)
-
-upt(ERR(), "title", "msg");
-ftl(ERR());
-```
+This library does not use a separate docs/ system.
 
 ---
 
-# Configuration
+## 🔹 Notes
 
-## Exit Codes
-
-```c
-#define EXIT_SUCCESS 0
-#define EXIT_ERROR 84
-```
-
-## Special Values
-
-```c
-#define NL (void *)0
-#define INT_ERR EXIT_ERROR
-#define ERR_FILE STDERR_FILENO
-```
-
-## Colors (ANSI)
-
-* Error (red)
-* Warning (yellow)
-* Valid (green)
-* Debug (blue)
-* Formatting (bold, italic, underline, etc.)
-
----
-
-# Design Principles
-
-* **Minimal overhead**: stack-based error creation
-* **No heap allocation**
-* **Consistent API**
-* **Composable errors**
-* **Clear separation**:
-
-    * Data (`err_t`)
-    * Processing (`upt`, `ftl`)
-    * Output (`err_print`)
-    * Return helpers (`err.i`, `err.p`, ...)
-
----
-
-# Best Practices
-
-* Always start with `ERR()`
-* Use `upt()` to add context
-* Use `ftl()` for critical failures
-* Prefer `err.*` API over simple versions
-* Keep messages short and explicit
-
----
-
-# Example Patterns
-
-## Return NULL on failure
-
-```c
-return err.pn(upt(ERR(), "Malloc failed", "buffer allocation"));
-```
-
-## Return error code
-
-```c
-return err.ie(upt(ERR(), "Invalid input", "argc < 2"));
-```
-
-## Log only
-
-```c
-err.v(upt(ERR(), "Warning", "unexpected value"));
-```
-
----
-
-# Maintainability Notes
-
-* Add new return types by extending `error_list_t`
-* Keep `ERR()` as the single creation entry point
-* Avoid duplicating logic outside helper functions
-* Keep formatting centralized in `err_print`
+* Designed for low-level C projects
+* Focus on clarity and predictability
+* No runtime overhead or heap allocation
+* Intended as a drop-in utility library
 
 ---

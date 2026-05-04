@@ -1,149 +1,296 @@
-# libutils
+# 📦 libutils
 
-A minimal utility library focused on memory management and helper functions. Currently, it provides basic allocation, deallocation, and automated freeing mechanisms.
-
----
-
-# Core Concept
-
-This library centralizes dynamic memory handling with added safety and automation features.
-
-Main functions:
-
-- `malloc_any` – Allocate memory safely.
-- `free_any` – Free memory safely.
-- `auto_free` – Conditional freeing for arrays of pointers.
-- `free_array` – Free a NULL-terminated array of pointers and the array itself.
+> Minimal and safe utility library focused on memory management helpers and controlled deallocation patterns.
 
 ---
 
-# Function API
+## 🔹 Short Description
 
-## `malloc_any`
+**libutils is a lightweight C utility library providing standardized memory allocation, safe deallocation, and automated batch-free mechanisms.**
+
+It is designed to centralize memory handling patterns and reduce manual error-prone `malloc/free` usage.
+
+---
+
+## 🔹 Authors
+
+* Nathan (Jarjarbin06)
+* EPITECH Project
+
+---
+
+## 🔹 License
+
+GPL v3
+
+---
+
+## 🔹 Target Audience
+
+This library is designed for:
+
+* C developers needing safer memory utilities
+* EPITECH students managing complex allocations
+* Projects requiring structured deallocation logic
+* Developers building modular memory systems
+
+---
+
+## 🔹 Platform Support
+
+* Linux compatible
+* Standard C only
+* No external dependencies
+
+---
+
+## 🔹 Purpose
+
+libutils is designed to simplify memory handling by providing:
+
+* Unified allocation (`malloc_any`)
+* Safe deallocation (`free_any`)
+* Conditional batch freeing (`auto_free`)
+* Safe array cleanup (`free_array`)
+* Consistent pointer reset behavior
+
+It is **not a full memory allocator**, but a structured helper layer over standard `malloc/free`.
+
+---
+
+## 🔹 Key Features
+
+* Safe allocation wrapper (`malloc_any`)
+* Null-safe deallocation (`free_any`)
+* Conditional batch free system (`auto_free`)
+* NULL-terminated array cleanup (`free_array`)
+* Pointer reset after free operations
+* Structured `free_t` management system
+* Lightweight and dependency-free design
+
+---
+
+## 🔹 Architecture Overview
+
+```
+            ┌──────────────────────┐
+            │    malloc_any()      │
+            │  (allocation layer)  │
+            └─────────┬────────────┘
+                      │
+ ┌────────────────────┼────────────────────┐
+ │                    │                    │
+┌────────────┐   ┌──────────────┐   ┌──────────────┐
+│ free_any   │   │ auto_free    │   │ free_array   │
+│ (single)   │   │ (batch/cond) │   │ (array free) │
+└────────────┘   └──────────────┘   └──────────────┘
+```
+
+---
+
+## 🔹 Core Concept
+
+Memory handling is standardized through:
+
+* Allocation wrapper → `malloc_any`
+* Safe single free → `free_any`
+* Conditional structured free → `auto_free`
+* Full array cleanup → `free_array`
+
+This ensures **consistent lifecycle management for all dynamic allocations**.
+
+---
+
+## 🔹 Function Overview
+
+### 🧠 Allocation
+
+#### `malloc_any`
 
 ```c
 void *malloc_any(unsigned size);
 ````
 
-* Allocates memory of `size` bytes.
-* Returns `NULL` if allocation fails.
-* Simple wrapper around `malloc`.
-
-**Example:**
-
-```c
-int *arr = malloc_any(sizeof(int) * 10);
-if (!arr) {
-    // handle allocation failure
-}
-```
+* Safe wrapper over `malloc`
+* Returns `NULL` on failure
+* Centralized allocation entry point
 
 ---
 
-## `free_any`
+### 🧹 Deallocation
+
+#### `free_any`
 
 ```c
 void *free_any(void *ptr);
 ```
 
-* Frees the memory pointed to by `ptr`.
-* Returns `NULL` (useful for immediate reassignment).
-* Prevents double frees if used consistently.
-
-**Example:**
-
-```c
-arr = free_any(arr);  // arr is now NULL
-```
+* Frees memory safely
+* Returns `NULL` for immediate reassignment
+* Prevents dangling pointers
 
 ---
 
-## `auto_free`
+### 🔁 Batch Conditional Freeing
+
+#### `auto_free`
 
 ```c
 int auto_free(unsigned len, free_t free_list[]);
 ```
 
-* Frees memory conditionally based on the `condition` field in a `free_t` array.
-* Updates the pointers to `NULL` after freeing.
-* Returns the number of elements successfully freed.
+* Frees elements based on condition flag
+* Uses function pointer for flexible freeing logic
+* Sets pointers to `NULL` after freeing
+* Returns number of freed elements
 
-**Structure:**
+---
+
+### 📦 Array Cleanup
+
+#### `free_array`
+
+```c
+void *free_array(void **array);
+```
+
+* Frees NULL-terminated pointer arrays
+* Frees each element individually
+* Frees the array container itself
+* Returns `NULL` for safe reassignment
+
+---
+
+## 🔹 Core Structure
 
 ```c
 typedef struct {
-    bool condition;       // Should this element be freed?
-    void *ptr;            // Pointer to memory
-    void_func_t free_func;// Function to call for freeing
+    bool condition;
+    void *ptr;
+    void_func_t free_func;
 } free_t;
 ```
 
-**Example:**
+Used by `auto_free` to manage controlled memory cleanup.
+
+---
+
+## 🔹 Build System
+
+### Makefile
+
+```bash
+make
+make clean
+make fclean
+make re
+```
+
+---
+
+## 🔹 Installation Requirements
+
+* GCC / Clang compatible compiler
+* Standard C library
+* Linux environment recommended
+
+---
+
+## 🔹 Quickstart Example
+
+### Allocation + Free
 
 ```c
-free_t to_free[] = {
+int *arr = malloc_any(sizeof(int) * 10);
+arr = free_any(arr);
+```
+
+---
+
+### Conditional Free
+
+```c
+free_t list[] = {
     {true, &ptr1, (void_func_t)free_any},
     {false, &ptr2, (void_func_t)free_any}
 };
 
-int freed_count = auto_free(2, to_free); // Only ptr1 will be freed
+auto_free(2, list);
 ```
 
 ---
 
-## `free_array`
+### Array Free
 
 ```c
-void *free_array(void **array);
-````
+char **tab = malloc_any(sizeof(char *) * 5);
+/* allocate strings */
 
-* Frees a NULL-terminated array of pointers.
-* Each element is freed individually using `free_any`.
-* Finally, the array itself is freed.
-* Returns `NULL` for convenient pointer reassignment.
-
-**Example:**
-
-```c
-char **lines = malloc_any(sizeof(char *) * 5);
-// allocate individual lines
-lines = free_array((void **)lines); // frees lines and the array itself, lines is now NULL
+tab = free_array((void **)tab);
 ```
 
+---
+
+## 🔹 Memory Model
+
+* All allocations go through `malloc_any`
+* All frees normalize pointer to `NULL`
+* Batch freeing supported via structured descriptors
+* No hidden allocations
 
 ---
 
-# Internal Flow
+## 🔹 Design Philosophy
 
-1. Allocate memory using `malloc_any`.
-2. Track pointers and conditions in `free_t` structures.
-3. Use `auto_free` for conditional and safe freeing.
-4. Use `free_array` to clean up arrays of dynamically allocated pointers.
-
----
-
-# Design Principles
-
-* **Safety:** Prevents memory leaks by centralizing free operations.
-* **Automation:** Supports batch freeing via `auto_free`.
-* **Modularity:** Custom free function can be applied per pointer.
-* **Consistency:** Always sets freed pointers to `NULL`.
+* Centralize memory handling logic
+* Reduce direct `malloc/free` usage
+* Enforce pointer safety after free
+* Provide reusable batch cleanup system
+* Keep abstraction minimal and predictable
 
 ---
 
-# Limitations
+## 🔹 Current State
 
-* Only a subset of utility functions is implemented (focus on memory).
-* Does not track memory allocations automatically beyond `free_t` arrays.
-* No built-in error reporting for `malloc_any` beyond returning `NULL`.
+⚠️ The library is **stable and minimal by design**
+
+Status:
+
+* Allocation wrapper implemented
+* Safe free utilities implemented
+* Batch freeing system available
+* Array cleanup functional
+* No extended memory tracking system (by design)
+
+Future improvements:
+
+* Optional allocation tracking layer
+* Debug mode for leaks detection
+* Extended safety assertions
 
 ---
 
-# Best Practices
+## 🔹 File Structure
 
-* Always wrap allocations with `malloc_any` for uniformity.
-* Use `auto_free` or `free_array` to prevent leaks in complex data structures.
-* Ensure NULL-termination for arrays passed to `free_array`.
-* Maintain a consistent `free_t` list for conditionally allocated resources.
+```
+includes/   → Public headers
+sources/    → Implementation
+Makefile    → Build system
+```
+
+---
+
+## 🔹 Documentation Index
+
+This library does not use a separate docs/ system.
+
+---
+
+## 🔹 Notes
+
+* Designed for predictable memory handling in C
+* Avoids direct repetitive `malloc/free` patterns
+* Encourages structured memory lifecycle design
+* Focused on simplicity over feature bloat
 
 ---

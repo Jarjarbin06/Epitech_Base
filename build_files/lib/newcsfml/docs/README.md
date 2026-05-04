@@ -19,7 +19,7 @@
 
 ## 🔹 License
 
-GPL (version to be defined)
+GPL v3
 
 ---
 

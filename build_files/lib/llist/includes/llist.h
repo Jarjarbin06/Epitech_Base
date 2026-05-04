@@ -9,9 +9,9 @@
 #ifndef LLIST
     #define LLIST
 
-    #include "../../newcsfml/includes/newcsfml/llist_define.h"
-#include "../../newcsfml/includes/newcsfml/llist_include.h"
-#include "../../newcsfml/includes/newcsfml/llist_typedef.h"
-#include "../../newcsfml/includes/newcsfml/llist_prototype.h"
+    #include "sub_include/llist_define.h"
+    #include "sub_include/llist_include.h"
+    #include "sub_include/llist_typedef.h"
+    #include "sub_include/llist_prototype.h"
 
 #endif
