@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.1
+** Version: ncsfml-v0.2.2
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -42,8 +42,7 @@ const nsf_background_t *nsf_game_get_background(const nsf_game_t *game)
     return nsf_window_get_background(nsf_game_get_window(game));
 }
 
-void nsf_game_set_clock(nsf_game_t *game,
-    nsf_clock_t *clock)
+void nsf_game_set_clock(nsf_game_t *game, nsf_clock_t *clock)
 {
     if (NSF_UNLIKELY(!game || !clock))
         return;

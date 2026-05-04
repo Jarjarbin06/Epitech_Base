@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.1
+** Version: ncsfml-v0.2.2
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -53,6 +53,7 @@ typedef struct nsf_texture_s {
 } nsf_texture_t;
 
 /// PROTOTYPES ///
+// STRUCT //
 nsf_texture_t *nsf_texture_create(const char path[], const char name[],
     nsf_game_t *game);
 int nsf_texture_destroy(nsf_texture_t **texture, nsf_game_t *game);

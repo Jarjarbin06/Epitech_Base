@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.1
+** Version: ncsfml-v0.2.2
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -27,6 +27,7 @@
 #include "newcsfml/games/window.h"
 #include "newcsfml/graphics/background.h"
 #include "newcsfml/graphics/button.h"
+#include "newcsfml/graphics/text.h"
 #include "newcsfml/graphics/sprite.h"
 #include "newcsfml/systems/utils.h"
 
@@ -79,4 +80,7 @@ void nsf_window_draw(const nsf_window_t *window)
         if (window->elements[idx]->element_type == NSF_BUTTON_ELEMENT)
             nsf_button_draw((nsf_button_t *)(window->elements[idx]->ptr),
                 window);
+    for (int idx = 0; window->elements[idx]; idx++)
+        if (window->elements[idx]->element_type == NSF_TEXT_ELEMENT)
+            nsf_text_draw((nsf_text_t *)(window->elements[idx]->ptr), window);
 }

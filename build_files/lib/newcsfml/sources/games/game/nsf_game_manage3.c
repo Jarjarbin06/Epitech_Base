@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.1
+** Version: ncsfml-v0.2.2
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -24,6 +24,9 @@
 #include "newcsfml/audios/sound.h"
 #include "newcsfml/games/window.h"
 #include "newcsfml/games/game.h"
+#include "newcsfml/graphics/button.h"
+#include "newcsfml/graphics/sprite.h"
+#include "newcsfml/graphics/text.h"
 #include "newcsfml/systems/utils.h"
 
 nsf_window_t *nsf_game_get_window(const nsf_game_t *game)
@@ -52,4 +55,11 @@ void nsf_game_add_sound(nsf_game_t *game, nsf_sound_t *sound)
     if (NSF_UNLIKELY(!game || !sound))
         return;
     nsf_window_add_sound(nsf_game_get_window(game), sound, game);
+}
+
+void nsf_game_add_text(nsf_game_t *game, nsf_text_t *text)
+{
+    if (NSF_UNLIKELY(!game || !text))
+        return;
+    nsf_window_add_text(nsf_game_get_window(game), text, game);
 }

@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.1
+** Version: ncsfml-v0.2.2
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -103,6 +103,23 @@ void nsf_window_add_sound(nsf_window_t *window, const nsf_sound_t *sound,
         return;
     new_elements = append_element(window,
         (nsf_window_elements_t[]){{NSF_SOUND_ELEMENT, (void *)sound}}, game);
+    if (NSF_UNLIKELY(!new_elements))
+        return;
+    free_any(window->elements);
+    window->elements = new_elements;
+    if (game)
+        game->allocations--;
+}
+
+void nsf_window_add_text(nsf_window_t *window, const nsf_text_t *text,
+    nsf_game_t *game)
+{
+    nsf_window_elements_t **new_elements = NULL;
+
+    if (NSF_UNLIKELY(!window || !window->elements || !text))
+        return;
+    new_elements = append_element(window,
+        (nsf_window_elements_t[]){{NSF_TEXT_ELEMENT, (void *)text}}, game);
     if (NSF_UNLIKELY(!new_elements))
         return;
     free_any(window->elements);

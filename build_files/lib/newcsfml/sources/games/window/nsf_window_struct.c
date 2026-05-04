@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.1
+** Version: ncsfml-v0.2.2
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -32,6 +32,7 @@
 #include "newcsfml/systems/other.h"
 #include "newcsfml/systems/utils.h"
 #include "newcsfml/games/window.h"
+#include "newcsfml/graphics/text.h"
 
 static sfRenderWindow *get_new_window(const nsf_window_settings_t settings[],
     const cstr_t *title_str, const nsf_window_style_t window_style)
@@ -83,22 +84,14 @@ static void destroy_element(nsf_window_elements_t *element, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!element))
         return;
-    switch (element->element_type) {
-        case NSF_SPRITE_ELEMENT:
-            nsf_sprite_destroy(
-                (nsf_sprite_t **)&(element->ptr), game);
-            break;
-        case NSF_BUTTON_ELEMENT:
-            nsf_button_destroy(
-                (nsf_button_t **)&(element->ptr), game);
-            break;
-        case NSF_SOUND_ELEMENT:
-            nsf_sound_destroy(
-                (nsf_sound_t **)&(element->ptr), game);
-            break;
-        default:
-            break;
-    }
+    if (element->element_type == NSF_SPRITE_ELEMENT)
+        nsf_sprite_destroy((nsf_sprite_t **)&(element->ptr), game);
+    if (element->element_type == NSF_BUTTON_ELEMENT)
+        nsf_button_destroy((nsf_button_t **)&(element->ptr), game);
+    if (element->element_type == NSF_SOUND_ELEMENT)
+        nsf_sound_destroy((nsf_sound_t **)&(element->ptr), game);
+    if (element->element_type == NSF_TEXT_ELEMENT)
+        nsf_text_destroy((nsf_text_t **)&(element->ptr), game);
 }
 
 static void destroy_elements(nsf_window_elements_t **elements, nsf_game_t *game)

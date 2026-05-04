@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.1
+** Version: ncsfml-v0.2.2
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -57,6 +57,7 @@ typedef struct nsf_game_s nsf_game_t;
 typedef struct nsf_sprite_s nsf_sprite_t;
 typedef struct nsf_button_s nsf_button_t;
 typedef struct nsf_sound_s nsf_sound_t;
+typedef struct nsf_text_s nsf_text_t;
 
 /// TYPEDEFS ///
 typedef enum
@@ -64,7 +65,8 @@ typedef enum
     NSF_UNKNOWN_ELEMENT = -1,
     NSF_SPRITE_ELEMENT,
     NSF_BUTTON_ELEMENT,
-    NSF_SOUND_ELEMENT
+    NSF_SOUND_ELEMENT,
+    NSF_TEXT_ELEMENT
 } nsf_window_element_t;
 
 typedef struct {
@@ -107,12 +109,16 @@ void nsf_window_add_button(nsf_window_t *window, const nsf_button_t *button,
     nsf_game_t *game);
 void nsf_window_add_sound(nsf_window_t *window, const nsf_sound_t *sound,
     nsf_game_t *game);
+void nsf_window_add_text(nsf_window_t *window, const nsf_text_t *text,
+    nsf_game_t *game);
 nsf_sprite_t *nsf_window_get_sprite(const nsf_window_t *window,
     const char sprite_name[]);
 nsf_button_t *nsf_window_get_button(const nsf_window_t *window,
     const char button_name[]);
 nsf_sound_t *nsf_window_get_sound(const nsf_window_t *window,
     const char sound_name[]);
+nsf_text_t *nsf_window_get_text(const nsf_window_t *window,
+    const char text_name[]);
 void nsf_window_set_background(nsf_window_t *window,
     nsf_background_t *background);
 const nsf_background_t *nsf_window_get_background(const nsf_window_t *window);

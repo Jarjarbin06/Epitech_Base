@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.1
+** Version: ncsfml-v0.2.2
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -21,8 +21,12 @@
 ** It is a custom implementation layer built on top of CSFML.
 */
 
+#include <SFML/Window/Event.h>
+#include <SFML/Window/Keyboard.h>
+
 #include "newcsfml/systems/vector.h"
 #include "newcsfml/games/event.h"
+#include "newcsfml/games/keyboard.h"
 #include "newcsfml/systems/utils.h"
 
 bool nsf_event_cmp(const nsf_event_t *event, const nsf_event_type_t event_type)

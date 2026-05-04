@@ -21,6 +21,7 @@ Provides core systems for **application lifecycle, window management, and input 
 | Submodule         | Role                                               |
 |-------------------|----------------------------------------------------|
 | `event`           | Handles input abstraction and event utilities      |
+| `keyboard`        | Handles keyboard input utilities                   |
 | `game`            | Central runtime controller and system orchestrator |
 | `window`          | Rendering, event polling, and element management   |
 | `window_settings` | Window configuration container                     |
@@ -47,6 +48,7 @@ It exists to **bridge low-level CSFML systems with high-level engine architectur
 ```
 games
 ├── event
+├── keyboard
 ├── game
 ├── window
 └── window_settings
@@ -55,7 +57,7 @@ games
 ### Flow
 
 ```
-User → nsf_game → nsf_window → nsf_event → CSFML
+User → nsf_game → nsf_window → nsf_event → nsf_keyboard → CSFML
                      ↓
                Rendering / Audio / Input
 ```
@@ -95,6 +97,7 @@ User → nsf_game → nsf_window → nsf_event → CSFML
 | Submodule                      | Description                          |
 |--------------------------------|--------------------------------------|
 | `nsf_event_manage.c`           | Event comparison and input utilities |
+| `nsf_keyboard_manage.c`        | Keyboard input utilities             |
 | `nsf_game_manage*.c`           | Core orchestration and lifecycle     |
 | `nsf_game_draw.c`              | Frame rendering logic                |
 | `nsf_window_manage*`           | Window logic and element registry    |
@@ -122,6 +125,7 @@ User → nsf_game → nsf_window → nsf_event → CSFML
 | Subsystem         | Example Function               |
 |-------------------|--------------------------------|
 | `event`           | `nsf_event_cmp()`              |
+| `keyboard`        | `nsf_keyboard_is_pressed()`    |
 | `window`          | `nsf_window_create()`          |
 | `window_settings` | `nsf_window_settings_create()` |
 | `game`            | `nsf_game_get_window()`        |
@@ -153,7 +157,8 @@ nsf.game.destroy(game);
 | 3    | Create window and attach to game            |
 | 4    | Enter main loop (`update → draw → display`) |
 | 5    | Poll and process events via `nsf_event`     |
-| 6    | Cleanup all resources via `destroy()`       |
+| 6    | Process keyboard input `nsf_keyboard`       |
+| 7    | Cleanup all resources via `destroy()`       |
 
 ---
 
@@ -195,6 +200,7 @@ Detailed behavior and API are described within each submodule.
 ### Submodules
 
 * [Event](event.md) — Event managing
+* [Keyboard](keyboard.md) — Keyboard managing
 * [Game](game.md) — Main ownership structure
 * [Window](window.md) — Core rendering system
 * [Window Settings](window_settings.md) — Rendering settings

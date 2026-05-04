@@ -16,7 +16,7 @@ Provides a lightweight abstraction over CSFML events, including input handling, 
 
 ---
 
-## 🔹 Union
+## 🔹 Structure
 
 ```c
 typedef sfEvent nsf_event_t;
@@ -27,7 +27,6 @@ typedef sfEvent nsf_event_t;
 | Field              | Type                      | Description                                             |
 |--------------------|---------------------------|---------------------------------------------------------|
 | `type`             | `sfEventType`             | Event category (closed, key pressed, mouse moved, etc.) |
-| `key`              | `sfKeyEvent`              | Keyboard event data                                     |
 | `mouseMove`        | `sfMouseMoveEvent`        | Mouse position data                                     |
 | `mouseWheelScroll` | `sfMouseWheelScrollEvent` | Mouse wheel delta                                       |
 | `...`              | `...`                     | Other SFML event variants                               |
@@ -48,12 +47,11 @@ It sits at the **input layer of the framework**, used mainly by the game and win
 
 ## 🔹 Dependencies
 
-| Module                  | Usage                          |
-|-------------------------|--------------------------------|
-| `SFML/Window/Event.h`   | Base event system              |
-| `SFML/System/Vector2.h` | Mouse position vectors         |
-| `nsf_systems/vector`    | Vector copying utilities       |
-| `nsf_systems/utils`     | Safety macros (`NSF_UNLIKELY`) |
+| Module                | Usage                          |
+|-----------------------|--------------------------------|
+| `SFML/Window/Event.h` | Base event system              |
+| `nsf_keyboard`        | Key press match                |
+| `nsf_utils`           | Safety macros (`NSF_UNLIKELY`) |
 
 ---
 
@@ -83,7 +81,6 @@ It sits at the **input layer of the framework**, used mainly by the game and win
 |--------------|-----------------------|--------------------------------|
 | `event`      | `const nsf_event_t *` | Input event reference          |
 | `event_type` | `nsf_event_type_t`    | Event category to compare      |
-| `key_code`   | `nsf_key_code_t`      | Key identifier                 |
 | `out`        | `nsf_ivector_t[]`     | Output vector (mouse position) |
 
 ---
@@ -120,6 +117,7 @@ It sits at the **input layer of the framework**, used mainly by the game and win
 * [`nsf_game` 🔗](game.md)
 * [`nsf_window` 🔗](window.md)
 * [`nsf_vector` 🔗](../systems/vector.md)
+* [`nsf_keyboard` 🔗](keyboard.md)
 
 ---
 
@@ -128,7 +126,6 @@ It sits at the **input layer of the framework**, used mainly by the game and win
 | NSF                | CSFML         |
 |--------------------|---------------|
 | `nsf_event_t`      | `sfEvent`     |
-| `nsf_key_code_t`   | `sfKeyCode`   |
 | `nsf_event_type_t` | `sfEventType` |
 
 ---
@@ -146,7 +143,7 @@ It sits at the **input layer of the framework**, used mainly by the game and win
 ## 🔹 Extension Points
 
 * Add joystick helpers in a future manage file
-* Extend key/mouse utilities without modifying structure
+* Extend mouse utilities without modifying structure
 * Wrap additional SFML event types if needed (touch, sensors)
 
 ---

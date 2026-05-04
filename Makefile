@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.2.6
-info_LAST_UPDATE	=	2026/04/09 10:09
+info_VERSION	=	v0.3.0
+info_LAST_UPDATE	=	2026/04/09 18:57
 info_LIB_MAKER	=	Makefile
 
 #########
@@ -42,6 +42,7 @@ LIBS_LIST	=	\
 	print \
 	str \
 	twodlist \
+	file \
 	utils
 LIB_FLAGS	=	\
 	$(foreach lib,$(LIBS_LIST), \
@@ -203,7 +204,7 @@ update:
 ifeq ($(ALLOW_AUTO_PUSH), true)
 push_makefile:
 	-@git add Makefile
-	-@git commit -m "[REPO] Makefile update"
+	-@git commit -m "[REPO] Makefile auto-update"
 	-@git push origin main
 else
 push_makefile:
@@ -259,6 +260,14 @@ import_twodlist:
 	@cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist
 	-@make push_lib
 
+import_file:
+	-@rm -rdf ./lib/file ./includes/lib_includes/file
+	-@mkdir ./lib/file
+	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/file/* ./lib/file
+	-@mkdir ./includes/lib_includes/file
+	@cp -rf lib/file/includes/* ./includes/lib_includes/file
+	-@make push_lib
+
 import_utils:
 	-@rm -rdf ./lib/utils ./includes/lib_includes/utils
 	-@mkdir ./lib/utils
@@ -268,13 +277,13 @@ import_utils:
 	-@make push_lib
 
 import_all:
-	-@make import_newerror import_llist import_newcsfml import_print import_str
+	-@make import_newerror import_llist import_newcsfml import_print import_str import_file
 	 import_twodlist import_utils
 
 ifeq ($(ALLOW_AUTO_PUSH), true)
 push_lib:
 	-@git add lib includes/lib_includes
-	-@git commit -m "[REPO] Library import"
+	-@git commit -m "[REPO] Library auto-import / auto-update"
 	-@git push origin main
 else
 push_lib:

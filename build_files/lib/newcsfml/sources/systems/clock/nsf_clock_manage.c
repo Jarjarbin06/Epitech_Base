@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.1
+** Version: ncsfml-v0.2.2
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -32,7 +32,7 @@ float nsf_clock_restart(const nsf_clock_t *clock)
     sfTime time = {};
 
     if (NSF_UNLIKELY(!clock))
-        return 0.0;
+        return 0.0f;
     time = sfClock_restart(clock->clock);
     return sfTime_asSeconds(time);
 }
@@ -40,25 +40,26 @@ float nsf_clock_restart(const nsf_clock_t *clock)
 float nsf_clock_get_elapsed(const nsf_clock_t *clock)
 {
     if (NSF_UNLIKELY(!clock))
-        return 0.0;
+        return 0.0f;
     return sfTime_asSeconds(sfClock_getElapsedTime(clock->clock));
 }
 
 float nsf_clock_get_delta(const nsf_clock_t *clock)
 {
     if (NSF_UNLIKELY(!clock))
-        return 0.0;
+        return 0.0f;
     return clock->delta;
 }
 
 void nsf_clock_update(nsf_clock_t *clock)
 {
     sfTime current = {};
-    const sfTime last = {clock->last};
+    float last = 0.0f;
 
     if (NSF_UNLIKELY(!clock))
         return;
+    last = clock->last;
     current = sfClock_getElapsedTime(clock->clock);
-    clock->delta = sfTime_asSeconds(current) - sfTime_asSeconds(last);
+    clock->delta = sfTime_asSeconds(current) - last;
     clock->last = sfTime_asSeconds(current);
 }

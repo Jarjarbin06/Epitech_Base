@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.1
+** Version: ncsfml-v0.2.2
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -51,6 +51,7 @@ typedef struct nsf_window_s nsf_window_t;
 typedef struct nsf_sprite_s nsf_sprite_t;
 typedef struct nsf_button_s nsf_button_t;
 typedef struct nsf_clock_s nsf_clock_t;
+typedef struct nsf_text_s nsf_text_t;
 typedef sfEvent nsf_event_t;
 
 /// TYPEDEFS ///
@@ -77,15 +78,19 @@ nsf_window_t *nsf_game_get_window(const nsf_game_t *game);
 void nsf_game_add_sprite(nsf_game_t *game, nsf_sprite_t *sprite);
 void nsf_game_add_button(nsf_game_t *game, nsf_button_t *button);
 void nsf_game_add_sound(nsf_game_t *game, nsf_sound_t *sound);
+void nsf_game_add_text(nsf_game_t *game, nsf_text_t *text);
 nsf_sprite_t *nsf_game_get_sprite(const nsf_game_t *game,
     const char sprite_name[]);
 nsf_button_t *nsf_game_get_button(const nsf_game_t *game,
     const char button_name[]);
 nsf_sound_t *nsf_game_get_sound(const nsf_game_t *game,
     const char sound_name[]);
+nsf_text_t *nsf_game_get_text(const nsf_game_t *game, const char text_name[]);
 void nsf_game_set_background(const nsf_game_t *game,
     nsf_background_t *background);
 const nsf_background_t *nsf_game_get_background(const nsf_game_t *game);
+void nsf_game_set_clock(nsf_game_t *game, nsf_clock_t *clock);
+const nsf_clock_t *nsf_game_get_clock(const nsf_game_t *game);
 void nsf_game_set_music(nsf_game_t *game, nsf_music_t *music);
 nsf_music_t *nsf_game_get_music(const nsf_game_t *game);
 void nsf_game_play_music(const nsf_game_t *game);
