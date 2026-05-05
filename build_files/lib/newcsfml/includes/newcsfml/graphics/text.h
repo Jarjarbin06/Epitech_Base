@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.2
+** Version: ncsfml-v0.2.3
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -44,6 +44,9 @@
 
     #endif
 
+// MACRO //
+    #define NSF_TEXT_MAX_SIZE 4096
+
 // TMP //
 typedef unsigned int nsf_uint_t;
 typedef const char *nsf_cstr_t;
@@ -52,6 +55,7 @@ typedef sfVector2f nsf_fvector_t;
 typedef sfColor nsf_color_t;
 typedef struct nsf_game_s nsf_game_t;
 typedef struct nsf_window_s nsf_window_t;
+typedef struct nsf_watcher_s nsf_watcher_t;
 
 /// TYPEDEFS ///
 typedef struct nsf_text_s {
@@ -61,21 +65,26 @@ typedef struct nsf_text_s {
     nsf_fvector_t origin;
     nsf_uint_t size;
     float rotation;
-    nsf_str_t string;
+    nsf_watcher_t *watcher;
+    nsf_color_t color;
     nsf_cstr_t name;
+    char buffer[NSF_TEXT_MAX_SIZE];
 } nsf_text_t;
 
 /// PROTOTYPES ///
 // STRUCT //
 nsf_text_t *nsf_text_create(const char name[], const char font_path[],
     nsf_game_t *game);
-int nsf_text_destroy(nsf_text_t **texture, nsf_game_t *game);
+int nsf_text_destroy(nsf_text_t **text, nsf_game_t *game);
 
 // MANAGE //
-void nsf_text_set_string(nsf_text_t *text, char string[]);
+void nsf_text_set_string(nsf_text_t *text, const char string[]);
 void nsf_text_set_size(nsf_text_t *text, nsf_uint_t size);
-void nsf_text_set_position(nsf_text_t *text, nsf_uint_t position);
+void nsf_text_set_position(nsf_text_t *text,const nsf_fvector_t position[]);
 void nsf_text_set_color(nsf_text_t *text, const nsf_color_t color[]);
+void nsf_text_set_watcher(nsf_text_t *text, nsf_watcher_t *watcher);
+nsf_watcher_t *nsf_text_get_watcher(nsf_text_t *text);
+void nsf_text_update_from_watcher(nsf_text_t *text);
 
 // DRAW //
 void nsf_text_draw(const nsf_text_t *text, const nsf_window_t *window);

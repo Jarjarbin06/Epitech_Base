@@ -24,6 +24,7 @@ Core utility and foundational modules providing low-level services such as timin
 | `vector`  | Offers math and geometric operations      |
 | `utils`   | Memory helpers and optimization macros    |
 | `other`   | Internal core utilities (low-level tools) |
+| `watcher` | Pointer linking/retrieval                 |
 
 ---
 
@@ -50,7 +51,8 @@ systems
 ├── color
 ├── vector
 ├── utils
-└── other
+├── other
+└── watcher
 ```
 
 ### Flow
@@ -84,6 +86,7 @@ CSFML / Standard C
 * Provide **math utilities** (`vector`)
 * Provide **color standardization** (`color`)
 * Provide **memory helpers** (`utils`, `other`)
+* Provide **pointer linking** (`watcher`)
 * Ensure **low-level consistency and safety**
 
 Must NOT:
@@ -103,6 +106,7 @@ Must NOT:
 | `vector`  | 2D math operations and conversions            |
 | `utils`   | Memory helpers and performance macros         |
 | `other`   | Internal core utilities (allocation, strings) |
+| `watcher` | Pointer linking/retrieval (text)              |
 
 ---
 
@@ -166,6 +170,7 @@ float dt = nsf.clock.get_delta(clock);
 * Manual update loop (`clock`)
 * Safe allocation wrappers (`utils`)
 * Output-parameter design for performance (`vector`)
+* Rendered text changing at runtime (`watcher`)
 
 ---
 
@@ -189,6 +194,7 @@ Detailed behavior and API are described within each submodule.
 * [Other](other.md) — Low-level internal utility (coming from other custom libraries)
 * [Utils](utils.md) — Utility helper
 * [Vector](vector.md) — Mathematical vector utility
+* [Watcher](watcher.md) — Pointer linking
 
 ---
 
@@ -218,6 +224,7 @@ Detailed behavior and API are described within each submodule.
 | `nsf_color_extern.c`   | Color definitions |
 | `nsf_alloc_any.c`      | Memory helpers    |
 | `str_*.c`              | String utilities  |
+| `nsf_watcher_*.c`      | Watcher linking   |
 
 ---
 

@@ -68,7 +68,7 @@ bool str_c_is_num(cc_t c);
 
     #ifndef P_STR_IS_NUM
         #define P_STR_IS_NUM
-bool str_is_num(cstr_t str);
+bool str_is_num(cstr_t string);
     #endif
 
     #ifndef P_STR_C_IS_PRINTABLE

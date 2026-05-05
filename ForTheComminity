@@ -2,12 +2,13 @@ Hi everyone!
 I’m working on a custom C library and I’m looking for ideas to make it better.
 I’d love suggestions on things I could: add, update, upgrade, optimize, fix, or refactor.
 
+
 Areas I’m particularly interested in:
 
 New features – Useful functions, modules, or utilities.
 Performance improvements – Faster or more memory-efficient approaches.
 Bug prevention / reliability – Things to watch out for or handle better.
-Code quality & maintainability – Cleaner design, easier to use, or more modular.
+Code quality & maintainability – Cleaner design, easier to use, or more modular (I still have to follow Epitech C Coding Style).
 Compatibility & portability – Making it work smoothly across platforms or with other libraries.
 Documentation & usability – Tips for tutorials, examples, or clearer APIs.
 

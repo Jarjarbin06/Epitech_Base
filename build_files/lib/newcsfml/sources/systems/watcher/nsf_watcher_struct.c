@@ -21,22 +21,31 @@
 ** It is a custom implementation layer built on top of CSFML.
 */
 
-#include "newcsfml/graphics/background.h"
-#include "newcsfml/games/window.h"
 #include "newcsfml/games/game.h"
+#include "newcsfml/systems/watcher.h"
+#include "newcsfml/systems/other.h"
 #include "newcsfml/systems/utils.h"
 
-void nsf_game_set_background(const nsf_game_t *game,
-    nsf_background_t *background)
+nsf_watcher_t *nsf_watcher_create(void *ptr, const nsf_watcher_type_t type,
+    nsf_game_t *game)
 {
-    if (NSF_UNLIKELY(!game || !game->window || !background))
-        return;
-    nsf_window_set_background(game->window, background);
+    nsf_watcher_t *new_watcher = malloc_any(sizeof(nsf_watcher_t));
+
+    if (NSF_UNLIKELY(!new_watcher))
+        return NULL;
+    new_watcher->ptr = ptr;
+    new_watcher->type = type;
+    if (game)
+        game->allocations++;
+    return new_watcher;
 }
 
-const nsf_background_t *nsf_game_get_background(const nsf_game_t *game)
+int nsf_watcher_destroy(nsf_watcher_t **watcher, nsf_game_t *game)
 {
-    if (NSF_UNLIKELY(!game || !game->window))
-        return NULL;
-    return nsf_window_get_background(game->window);
+    if (NSF_UNLIKELY(!watcher || !*watcher))
+        return EXIT_ERROR;
+    *watcher = free_any(*watcher);
+    if (game)
+        game->allocations--;
+    return EXIT_SUCCESS;
 }

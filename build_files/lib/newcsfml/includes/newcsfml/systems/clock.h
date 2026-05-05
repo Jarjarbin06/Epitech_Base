@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.2
+** Version: ncsfml-v0.2.3
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -51,6 +51,7 @@ typedef struct nsf_clock_s {
     sfClock *clock;
     float last;
     float delta;
+    float accumulator;
     nsf_cstr_t name;
 } nsf_clock_t;
 
@@ -64,5 +65,8 @@ float nsf_clock_restart(const nsf_clock_t *clock);
 float nsf_clock_get_elapsed(const nsf_clock_t *clock);
 float nsf_clock_get_delta(const nsf_clock_t *clock);
 void nsf_clock_update(nsf_clock_t *clock);
+void nsf_clock_reset(nsf_clock_t *clock);
+bool nsf_clock_is_new_loop(nsf_clock_t *clock, float seconds);
+void nsf_clock_set_new_loop(nsf_clock_t *clock, float seconds);
 
 #endif

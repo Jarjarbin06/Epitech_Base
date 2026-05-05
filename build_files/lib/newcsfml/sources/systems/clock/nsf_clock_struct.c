@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.2
+** Version: ncsfml-v0.2.3
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -40,6 +40,7 @@ nsf_clock_t *nsf_clock_create(const char name[], nsf_game_t *game)
     new_clock->name = name_str;
     new_clock->last = 0.0f;
     new_clock->delta = 0.0f;
+    new_clock->accumulator = 0.0f;
     if (game)
         game->allocations += 3;
     return new_clock;

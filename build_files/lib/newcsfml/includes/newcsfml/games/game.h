@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.2
+** Version: ncsfml-v0.2.3
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -55,10 +55,17 @@ typedef struct nsf_text_s nsf_text_t;
 typedef sfEvent nsf_event_t;
 
 /// TYPEDEFS ///
+typedef struct {
+    nsf_uint_t fps;
+    nsf_uint_t draw_count;
+    nsf_clock_t *clock;
+} nsf_game_fps;
+
 typedef struct nsf_game_s {
     nsf_window_t *window;
     nsf_music_t *music;
     nsf_clock_t *clock;
+    nsf_game_fps real_fps;
     int allocations;
     void *data;
 } nsf_game_t;
@@ -91,6 +98,8 @@ void nsf_game_set_background(const nsf_game_t *game,
 const nsf_background_t *nsf_game_get_background(const nsf_game_t *game);
 void nsf_game_set_clock(nsf_game_t *game, nsf_clock_t *clock);
 const nsf_clock_t *nsf_game_get_clock(const nsf_game_t *game);
+bool nsf_game_update_clock(nsf_game_t *game);
+void nsf_game_wait_new_loop(nsf_game_t *game);
 void nsf_game_set_music(nsf_game_t *game, nsf_music_t *music);
 nsf_music_t *nsf_game_get_music(const nsf_game_t *game);
 void nsf_game_play_music(const nsf_game_t *game);
@@ -104,6 +113,6 @@ int nsf_game_stop_all_sound(const nsf_game_t *game);
 int nsf_game_update(const nsf_game_t *game);
 
 // DRAW //
-void nsf_game_draw(const nsf_game_t *game);
+void nsf_game_draw(nsf_game_t *game);
 
 #endif

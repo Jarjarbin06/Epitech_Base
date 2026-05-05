@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.2
+** Version: ncsfml-v0.2.3
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -25,6 +25,7 @@
 #include "newcsfml/games/window.h"
 #include "newcsfml/systems/other.h"
 #include "newcsfml/games/game.h"
+#include "newcsfml/systems/clock.h"
 #include "newcsfml/systems/utils.h"
 
 nsf_game_t *nsf_game_create(void)
@@ -38,6 +39,9 @@ nsf_game_t *nsf_game_create(void)
     new_game->music = NULL;
     new_game->data = NULL;
     new_game->clock = NULL;
+    new_game->real_fps.fps = 0;
+    new_game->real_fps.draw_count = 0;
+    new_game->real_fps.clock = nsf_clock_create("fps_clock", new_game);
     return new_game;
 }
 
@@ -51,6 +55,8 @@ int nsf_game_destroy(nsf_game_t **game)
         nsf_window_destroy(&(*game)->window, *game);
     if (NSF_LIKELY((*game)->music))
         nsf_music_destroy(&(*game)->music, *game);
+    if (NSF_LIKELY((*game)->real_fps.clock))
+        nsf_clock_destroy(&(*game)->real_fps.clock, *game);
     *game = free_any(*game);
     allocations--;
     return allocations;

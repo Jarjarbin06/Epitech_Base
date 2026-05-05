@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.2
+** Version: ncsfml-v0.2.3
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -22,12 +22,23 @@
 */
 
 #include "newcsfml/games/window.h"
+#include "newcsfml/games/window_settings.h"
 #include "newcsfml/games/game.h"
+#include "newcsfml/systems/clock.h"
 #include "newcsfml/systems/utils.h"
 
-void nsf_game_draw(const nsf_game_t *game)
+void nsf_game_draw(nsf_game_t *game)
 {
-    if (NSF_UNLIKELY(!game))
+    if (NSF_UNLIKELY(!game || !game->window))
         return;
-    nsf_window_draw(nsf_game_get_window(game));
+    if (NSF_LIKELY(game->real_fps.clock)) {
+        game->real_fps.draw_count++;
+        if (nsf_clock_is_new_loop(game->real_fps.clock, 1.0f)) {
+            game->real_fps.fps = (nsf_uint_t)((float)game->real_fps.draw_count /
+                game->real_fps.clock->accumulator);
+            game->real_fps.draw_count = 0;
+            nsf_clock_set_new_loop(game->real_fps.clock, 1.0f);
+        }
+    }
+    nsf_window_draw(game->window);
 }

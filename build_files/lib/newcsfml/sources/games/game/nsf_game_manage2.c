@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.2
+** Version: ncsfml-v0.2.3
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -32,29 +32,29 @@
 nsf_sprite_t *nsf_game_get_sprite(const nsf_game_t *game,
     const char sprite_name[])
 {
-    if (NSF_UNLIKELY(!game || !sprite_name))
+    if (NSF_UNLIKELY(!game || !game->window || !sprite_name))
         return NULL;
-    return nsf_window_get_sprite(nsf_game_get_window(game), sprite_name);
+    return nsf_window_get_sprite(game->window, sprite_name);
 }
 
 nsf_button_t *nsf_game_get_button(const nsf_game_t *game, const char
     button_name[])
 {
-    if (NSF_UNLIKELY(!game || !button_name))
+    if (NSF_UNLIKELY(!game || !game->window || !button_name))
         return NULL;
-    return nsf_window_get_button(nsf_game_get_window(game), button_name);
+    return nsf_window_get_button(game->window, button_name);
 }
 
 nsf_sound_t *nsf_game_get_sound(const nsf_game_t *game, const char sound_name[])
 {
-    if (NSF_UNLIKELY(!game || !sound_name))
+    if (NSF_UNLIKELY(!game || !game->window || !sound_name))
         return NULL;
-    return nsf_window_get_sound(nsf_game_get_window(game), sound_name);
+    return nsf_window_get_sound(game->window, sound_name);
 }
 
 nsf_text_t *nsf_game_get_text(const nsf_game_t *game, const char text_name[])
 {
-    if (NSF_UNLIKELY(!game || !text_name))
+    if (NSF_UNLIKELY(!game || !game->window || !text_name))
         return NULL;
-    return nsf_window_get_text(nsf_game_get_window(game), text_name);
+    return nsf_window_get_text(game->window, text_name);
 }

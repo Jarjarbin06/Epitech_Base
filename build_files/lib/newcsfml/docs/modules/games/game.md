@@ -75,86 +75,91 @@ It abstracts the concept of a "game instance" over CSFML by adding:
 
 ### Creation / Destruction
 
-| Function                 | Description                        |
-|--------------------------|------------------------------------|
-| `nsf_game_create()`      | Create a new game context          |
-| `nsf_game_destroy(game)` | Destroy and free entire game state |
+| Function                | Description                        |
+|-------------------------|------------------------------------|
+| `nsf_game_create()`     | Create a new game context          |
+| `nsf_game_destroy(...)` | Destroy and free entire game state |
 
 ---
 
 ### Core Lifecycle
 
-| Function                 | Description                       |
-|--------------------------|-----------------------------------|
-| `nsf_game_update(game)`  | Update window settings and timing |
-| `nsf_game_display(game)` | Render current frame              |
-| `nsf_game_draw(game)`    | Draw all registered elements      |
+| Function                | Description                       |
+|-------------------------|-----------------------------------|
+| `nsf_game_update(...)`  | Update window settings and timing |
+| `nsf_game_display(...)` | Render current frame              |
+| `nsf_game_draw(...)`    | Draw all registered elements      |
 
 ---
 
 ### Window Control
 
-| Function                            | Description              |
-|-------------------------------------|--------------------------|
-| `nsf_game_set_window(game, window)` | Assign main window       |
-| `nsf_game_get_window(game)`         | Retrieve current window  |
-| `nsf_game_isopen(game)`             | Check if window is open  |
-| `nsf_game_close(game)`              | Close application window |
-| `nsf_game_get_event(game, event)`   | Poll events              |
+| Function                   | Description              |
+|----------------------------|--------------------------|
+| `nsf_game_set_window(...)` | Assign main window       |
+| `nsf_game_get_window(...)` | Retrieve current window  |
+| `nsf_game_isopen(...)`     | Check if window is open  |
+| `nsf_game_close(...)`      | Close application window |
+| `nsf_game_get_event(...)`  | Poll events              |
 
 ---
 
 ### Graphics Management
 
-| Function                            | Description     |
-|-------------------------------------|-----------------|
-| `nsf_game_add_sprite(game, sprite)` | Register sprite |
-| `nsf_game_add_button(game, button)` | Register button |
+| Function                   | Description     |
+|----------------------------|-----------------|
+| `nsf_game_add_sprite(...)` | Register sprite |
+| `nsf_game_add_button(...)` | Register button |
+| `nsf_game_add_text(...)`   | Register text   |
+| `nsf_game_add_sound(...)`  | Register sound  |
 
 ---
 
 ### Audio Management
 
-| Function                                  | Description       |
-|-------------------------------------------|-------------------|
-| `nsf_game_set_music(game, music)`         | Set global music  |
-| `nsf_game_get_music(game)`                | Get current music |
-| `nsf_game_play_music(game)`               | Play music        |
-| `nsf_game_stop_music(game)`               | Stop music        |
-| `nsf_game_set_music_volume(game, volume)` | Adjust volume     |
+| Function                         | Description       |
+|----------------------------------|-------------------|
+| `nsf_game_set_music(...)`        | Set global music  |
+| `nsf_game_get_music(...)`        | Get current music |
+| `nsf_game_play_music(...)`       | Play music        |
+| `nsf_game_stop_music(...)`       | Stop music        |
+| `nsf_game_set_music_volume(...)` | Adjust volume     |
 
 ---
 
 ### Sound Control
 
-| Function                                  | Description           |
-|-------------------------------------------|-----------------------|
-| `nsf_game_play_sound(game, name)`         | Play sound by name    |
-| `nsf_game_pause_sound(game, name)`        | Pause sound           |
-| `nsf_game_stop_sound(game, name)`         | Stop sound            |
-| `nsf_game_all_sound_volume(game, volume)` | Set all sounds volume |
-| `nsf_game_stop_all_sound(game)`           | Stop all sounds       |
+| Function                         | Description           |
+|----------------------------------|-----------------------|
+| `nsf_game_play_sound(...)`       | Play sound by name    |
+| `nsf_game_pause_sound(...)`      | Pause sound           |
+| `nsf_game_stop_sound(...)`       | Stop sound            |
+| `nsf_game_all_sound_volume(...)` | Set all sounds volume |
+| `nsf_game_stop_all_sound(...)`   | Stop all sounds       |
 
 ---
 
 ### Resource Access
 
-| Function                          | Description     |
-|-----------------------------------|-----------------|
-| `nsf_game_get_sprite(game, name)` | Retrieve sprite |
-| `nsf_game_get_button(game, name)` | Retrieve button |
-| `nsf_game_get_sound(game, name)`  | Retrieve sound  |
+| Function                   | Description     |
+|----------------------------|-----------------|
+| `nsf_game_get_sprite(...)` | Retrieve sprite |
+| `nsf_game_get_button(...)` | Retrieve button |
+| `nsf_game_get_sound(...)`  | Retrieve sound  |
+| `nsf_game_get_text(...)`   | Retrieve text   |
 
 ---
 
 ### Environment / State
 
-| Function                                    | Description      |
-|---------------------------------------------|------------------|
-| `nsf_game_set_background(game, background)` | Set background   |
-| `nsf_game_get_background(game)`             | Get background   |
-| `nsf_game_set_clock(game, clock)`           | Set global clock |
-| `nsf_game_get_clock(game)`                  | Get clock        |
+| Function                       | Description                                   |
+|--------------------------------|-----------------------------------------------|
+| `nsf_game_set_background(...)` | Set background                                |
+| `nsf_game_get_background(...)` | Get background                                |
+| `nsf_game_set_clock(...)`      | Set global clock                              |
+| `nsf_game_get_clock(...)`      | Get clock                                     |
+| `nsf_game_update_clock(...)`   | Update game clock<br/>Return true if new loop |
+| `nsf_game_wait_new_loop(...)`  | Automatically wait for a new loop             |
 
 ---
 

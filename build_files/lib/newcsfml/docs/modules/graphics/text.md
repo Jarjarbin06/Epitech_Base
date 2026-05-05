@@ -92,24 +92,27 @@ Represents an UI text element.
 
 ### Advanced / Optional
 
-| Function                   | Description                                   |
-|----------------------------|-----------------------------------------------|
-| *(none currently defined)* | State system already covers interaction logic |
+| Function                            | Description                             |
+|-------------------------------------|-----------------------------------------|
+| `nsf_text_set_watcher(...)`         | Set a watcher linked to a pointer       |
+| `nsf_text_get_watcher(...)`         | Get the linked watcher                  |
+| `nsf_text_update_from_watcher(...)` | Update the text string from the watcher |
 
 ---
 
 ## 🔹 Parameters Reference
 
-| Name                | Type                 | Description                       |
-|---------------------|----------------------|-----------------------------------|
-| `name`              | `const char *`       | Text identifier                   |
-| `font_path`         | `const char *`       | Path to font                      |
-| `game`              | `nsf_game_t *`       | Allocation context                |
-| `text`              | `nsf_text_t *`       | Text instance                     |
-| `position`          | `nsf_fvector_t *`    | Position vector                   |
-| `size`              | `nsf_uint_t`         | Size                              |
-| `window`            | `nsf_window_t *`     | Render window context             |
-| `color`             | `nsf_color_t *`      | Text color                        |
+| Name        | Type              | Description           |
+|-------------|-------------------|-----------------------|
+| `name`      | `const char *`    | Text identifier       |
+| `font_path` | `const char *`    | Path to font          |
+| `game`      | `nsf_game_t *`    | Allocation context    |
+| `text`      | `nsf_text_t *`    | Text instance         |
+| `watcher`   | `nsf_watcher_t *` | Watcher instance      |
+| `position`  | `nsf_fvector_t *` | Position vector       |
+| `size`      | `nsf_uint_t`      | Size                  |
+| `window`    | `nsf_window_t *`  | Render window context |
+| `color`     | `nsf_color_t *`   | Text color            |
 
 ---
 
@@ -146,6 +149,7 @@ Represents an UI text element.
 * [`nsf_window` 🔗](../games/window.md)
 * [`nsf_game` 🔗](../games/game.md)
 * [`nsf_button` 🔗](button.md)
+* [`nsf_watcher` 🔗](../systems/watcher.md)
 
 ---
 

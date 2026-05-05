@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.2
+** Version: ncsfml-v0.2.3
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -27,7 +27,6 @@
     #include <SFML/System/Vector2.h>
 
     #include <math.h>
-    #include <stdlib.h>
     #include <stdbool.h>
     #include <stddef.h>
 

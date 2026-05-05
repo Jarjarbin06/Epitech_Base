@@ -75,12 +75,15 @@ Provides a high-level abstraction over CSFML timing utilities.
 
 ### Core Functions
 
-| Function                     | Description                           |
-|------------------------------|---------------------------------------|
-| `nsf_clock_restart(...)`     | Restart clock and return elapsed time |
-| `nsf_clock_get_elapsed(...)` | Get total elapsed time (seconds)      |
-| `nsf_clock_get_delta(...)`   | Get last computed delta time          |
-| `nsf_clock_update(...)`      | Update internal delta time            |
+| Function                      | Description                               |
+|-------------------------------|-------------------------------------------|
+| `nsf_clock_restart(...)`      | Restart clock and return elapsed time     |
+| `nsf_clock_get_elapsed(...)`  | Get total elapsed time (seconds)          |
+| `nsf_clock_get_delta(...)`    | Get last computed delta time              |
+| `nsf_clock_update(...)`       | Update internal delta time                |
+| `nsf_clock_reset(...)`        | Reset the accumulator                     |
+| `nsf_clock_is_new_loop(...)`  | Check if the clock reached the threashold |
+| `nsf_clock_set_new_loop(...)` | Set the new loop based on the threashold  |
 
 ---
 
@@ -125,10 +128,10 @@ Provides a high-level abstraction over CSFML timing utilities.
 
 ## 🔹 Internal Files
 
-| File                 | Role                      |
-|----------------------|---------------------------|
-| `nsf_clock_struct.c` | Creation / destruction    |
-| `nsf_clock_manage.c` | Timing logic / operations |
+| File                  | Role                      |
+|-----------------------|---------------------------|
+| `nsf_clock_struct.c`  | Creation / destruction    |
+| `nsf_clock_manage*.c` | Timing logic / operations |
 
 ---
 
