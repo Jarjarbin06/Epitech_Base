@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	Epitech Base
-info_VERSION	=	v0.3.0
-info_LAST_UPDATE	=	2026/04/09 18:57
+info_VERSION	=	v0.3.1
+info_LAST_UPDATE	=	2026/05/05 14:09
 info_LIB_MAKER	=	Makefile
 
 #########
@@ -62,13 +62,15 @@ TEST	=	$(TEST_PATH)/test_file.c
 
 # Compilation #
 CC	=	clang
-CNAME	=	compiled_program
+CNAME	=	binary
 CARG	=
 
-CFLAGS	=	\
-	-g3 -O0 \
-	-Wall -Wextra
+CFLAGS	=	-g3 -O0 # Enhance Valgrind
+CFLAGS	+=	-O3 -Ofast -Os # Compilation optimization
+CFLAGS	+=	-Wall -Wextra # Compilation warning & error
+
 CPPFLAGS	=	$(INCLUDES)
+
 CFLAGS_PLUS	=	-L./$(LIB_PATH) $(LIB_FLAGS)
 ifneq ($(filter -lnewcsfml,$(CFLAGS_PLUS)),)
     CFLAGS_PLUS	+=	\
@@ -124,7 +126,7 @@ asan:
 ###############
 compile_libs:
 	-@$(foreach lib,$(LIBS_LIST), \
-		$(MAKE) --no-print-directory -C lib/$(lib) CC=$(CC);)
+		$(MAKE) --no-print-directory -C lib/$(lib) CC=$(CC) CFLAGS="$(CFLAGS)";)
 	-@cp -f lib/*/*.a lib/
 
 clean_libs:
@@ -318,13 +320,8 @@ help:
 ##########################
 ## built-in target name ##
 ##########################
-.PHONY: \
-	all \
-	clean \
-	fclean \
-	re \
-	test_$(TESTCNAME)_run \
-	test_$(TESTSEGCNAME)_run \
+.SILENT: \
+	test_run \
 	test_valgrind \
 	test_gcovr \
 	test_style_check \
@@ -333,4 +330,24 @@ help:
 	git_info \
 	build \
 	unbuild \
-	help
+	help \
+	update \
+	import_all \
+	import_llist \
+	import_newcsfml \
+	import_newerror \
+	import_print \
+	import_str \
+	import_twodlist \
+	import_utils \
+	import_file \
+	push_setup \
+	push_lib
+
+.PHONY: \
+	all \
+	clean \
+	fclean \
+	re \
+	run \
+	asan \
