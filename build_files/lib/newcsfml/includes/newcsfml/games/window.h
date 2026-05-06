@@ -140,6 +140,8 @@ void nsf_window_get_mouse(const nsf_window_t *window, nsf_ivector_t out[]);
 // DRAW //
 int nsf_window_draw_lines(const nsf_window_t *window, size_t len,
     const nsf_fvector_t lines[], const nsf_color_t color[]);
+int nsf_window_draw_points(const nsf_window_t *window, size_t len,
+    const nsf_fvector_t points[], const nsf_color_t color[]);
 void nsf_window_fill(const nsf_window_t *window, const nsf_color_t color[]);
 void nsf_window_draw(const nsf_window_t *window);
 

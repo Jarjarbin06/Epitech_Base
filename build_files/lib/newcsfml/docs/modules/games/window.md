@@ -24,20 +24,20 @@ typedef struct {
     nsf_window_settings_t *settings;
     sfRenderWindow *window;
     nsf_background_t *background;
-    nsf_window_elements_t **elements;
+    nsf_element_list_t elements;
     nsf_cstr_t title;
 } nsf_window_t;
 ```
 
 ### Description
 
-| Field        | Type                       | Description                              |
-|--------------|----------------------------|------------------------------------------|
-| `settings`   | `nsf_window_settings_t *`  | Window configuration (size, bpp, style)  |
-| `window`     | `sfRenderWindow *`         | Underlying SFML render window            |
-| `background` | `nsf_background_t *`       | Background renderer                      |
-| `elements`   | `nsf_window_elements_t **` | Registry of drawable/interactive objects |
-| `title`      | `nsf_cstr_t`               | Window title string                      |
+| Field        | Type                      | Description                              |
+|--------------|---------------------------|------------------------------------------|
+| `settings`   | `nsf_window_settings_t *` | Window configuration (size, bpp, style)  |
+| `window`     | `sfRenderWindow *`        | Underlying SFML render window            |
+| `background` | `nsf_background_t *`      | Background renderer                      |
+| `elements`   | `nsf_element_list_t`      | Registry of drawable/interactive objects |
+| `title`      | `nsf_cstr_t`              | Window title string                      |
 
 ---
 
@@ -125,11 +125,12 @@ Central abstraction for rendering and input handling.
 
 ### Drawing
 
-| Function                     | Description                               |
-|------------------------------|-------------------------------------------|
-| `nsf_window_draw(...)`       | Render full frame (background + elements) |
-| `nsf_window_fill(...)`       | Clear screen with color                   |
-| `nsf_window_draw_lines(...)` | Draw line strip using vertex array        |
+| Function                      | Description                               |
+|-------------------------------|-------------------------------------------|
+| `nsf_window_draw(...)`        | Render full frame (background + elements) |
+| `nsf_window_fill(...)`        | Clear screen with color                   |
+| `nsf_window_draw_lines(...)`  | Draw line strip using vertex array        |
+| `nsf_window_draw_points(...)` | Draw points using vertex array            |
 
 ---
 

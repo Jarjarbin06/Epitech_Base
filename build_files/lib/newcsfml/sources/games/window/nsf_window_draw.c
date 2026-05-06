@@ -39,7 +39,7 @@ void nsf_window_fill(const nsf_window_t *window, const nsf_color_t color[])
 }
 
 static void set_values(sfVertexArray *vertex, const size_t len,
-    const nsf_fvector_t vect[], const nsf_color_t *color)
+    const nsf_fvector_t vect[], const nsf_color_t color[])
 {
     sfVertex *tmp_vect = NULL;
 
@@ -48,11 +48,11 @@ static void set_values(sfVertexArray *vertex, const size_t len,
         if (NSF_UNLIKELY(!tmp_vect))
             return;
         tmp_vect->position = vect[idx];
-        tmp_vect->color = *color;
+        tmp_vect->color = color[idx];
     }
 }
 
-static sfVertexArray *get_vertices(sfPrimitiveType type, const size_t len,
+static sfVertexArray *get_vertices(const sfPrimitiveType type, const size_t len,
     const nsf_fvector_t lines[], const nsf_color_t color[])
 {
     sfVertexArray *array = NULL;
