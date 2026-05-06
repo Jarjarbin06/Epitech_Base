@@ -151,8 +151,8 @@ test_$(TESTCNAME)_run: fclean test_$(TESTCNAME)
 test_gcovr: test_$(TESTCNAME)
 	@gcovr -e $(TEST_PATH)
 
-test_style_check:
-	epiclang $(MAIN) $(SRC) $(BONUS) $(CFLAGS) $(CPPFLAGS) $(CFLAGS_PLUS)
+test_style:
+	-@make --no-print-directory CC=epiclang re fclean
 	@printf '\033[92mepiclang done\033[0m\n'
 
 test_run: test_$(TESTCNAME)_run
