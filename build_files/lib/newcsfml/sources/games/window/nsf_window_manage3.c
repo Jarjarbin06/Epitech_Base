@@ -27,17 +27,21 @@
 #include "newcsfml/games/window.h"
 #include "newcsfml/systems/utils.h"
 
-static void add_size(nsf_element_list_t *element, nsf_game_t *game)
+static void resize_elements(nsf_element_list_t *element, nsf_game_t *game)
 {
-    nsf_elements_t **new_elements = NULL;
     nsf_uint_t new_size = 0;
+    nsf_elements_t **new_elements = NULL;
 
     if (NSF_UNLIKELY(!element || !game))
         return;
     new_size = element->size * 2;
-    new_elements = malloc_any(sizeof(nsf_elements_t *) * new_size);
-    for (size_t idx = 0; idx < new_size; idx++)
-        new_elements[idx] = element->elements[idx];
+    new_elements = malloc_any(sizeof(*new_elements) * new_size);
+    if (NSF_UNLIKELY(!new_elements))
+        return;
+    for (size_t i = 0; i < element->amount; i++)
+        new_elements[i] = element->elements[i];
+    for (size_t i = element->amount; i < new_size; i++)
+        new_elements[i] = NULL;
     free_any(element->elements);
     element->elements = new_elements;
     element->size = new_size;
@@ -54,10 +58,10 @@ static nsf_elements_t **append_element(nsf_window_t *window,
         return NULL;
     new_element->element_type = element->element_type;
     new_element->ptr = element->ptr;
+    if (window->elements.amount >= window->elements.size)
+        resize_elements(&window->elements, game);
+    window->elements.elements[window->elements.amount] = new_element;
     window->elements.amount++;
-    if (window->elements.amount > window->elements.size)
-        add_size(&window->elements, game);
-    window->elements.elements[window->elements.amount - 1] = new_element;
     if (game)
         game->allocations++;
     return new_elements;

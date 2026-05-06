@@ -31,6 +31,7 @@ EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/Epitech_Base
 ALLOW_UNBUILD	=	false
 ALLOW_AUTO_PUSH	=	true
 DEBUG	=	false
+HAS_CSFML	=	false
 
 # -----------------------------------------------------------------------------
 # PATHS
@@ -63,8 +64,6 @@ LIBS_LIST	=	$(sort $(notdir $(shell find lib -mindepth 1 -maxdepth 1 -type d)))
 LIB_FLAGS	=	\
 	$(foreach lib,$(LIBS_LIST), \
     $(if $(wildcard lib/$(lib)/lib$(lib).a),-l$(lib),))
-
-HAS_NEWCSFML = $(wildcard lib/libnewcsfml.a)
 
 # -----------------------------------------------------------------------------
 # MAIN
@@ -112,7 +111,7 @@ CPPFLAGS	=	$(INCLUDES)
 CFLAGS_PLUS	=	-L./$(LIB_PATH) $(LIB_FLAGS)
 
 
-ifeq ($(HAS_NEWCSFML),)
+ifeq ($(HAS_CSFML),)
 CFLAGS_PLUS	+=
 else
 CFLAGS_PLUS	+=	\

@@ -78,7 +78,7 @@ nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
     new_window->background = NULL;
     new_window->settings = new_settings;
     if (game)
-        game->allocations += 3;
+        game->allocations += 2;
     return new_window;
 }
 
@@ -94,16 +94,17 @@ static void destroy_element(nsf_elements_t *element, nsf_game_t *game)
         nsf_sound_destroy((nsf_sound_t **)&(element->ptr), game);
     if (element->element_type == NSF_TEXT_ELEMENT)
         nsf_text_destroy((nsf_text_t **)&(element->ptr), game);
+    free_any(element);
+    if (game)
+        game->allocations--;
 }
 
-static void destroy_elements(nsf_elements_t **elements, nsf_game_t *game)
+static void destroy_elements(const nsf_element_list_t *elements,
+    nsf_game_t *game)
 {
-    for (int idx = 0; elements[idx]; idx++) {
-        destroy_element(elements[idx], game);
-        free_any(elements[idx]);
-        game->allocations--;
-    }
-    free_any(elements);
+    for (size_t idx = 0; idx < elements->amount; idx++)
+        destroy_element(elements->elements[idx], game);
+    free_any(elements->elements);
     game->allocations--;
 }
 
@@ -116,7 +117,7 @@ int nsf_window_destroy(nsf_window_t **window, nsf_game_t *game)
     if (NSF_LIKELY((*window)->settings))
         nsf_window_settings_destroy(&(*window)->settings, game);
     if (NSF_LIKELY((*window)->elements.elements))
-        destroy_elements((*window)->elements.elements, game);
+        destroy_elements(&(*window)->elements, game);
     if (NSF_LIKELY((*window)->window))
         sfRenderWindow_destroy((*window)->window);
     if (NSF_LIKELY((*window)->title))
