@@ -55,20 +55,27 @@ static void set_values(sfVertexArray *vertex, const size_t len,
 static sfVertexArray *get_vertices(sfPrimitiveType type, const size_t len,
     const nsf_fvector_t lines[], const nsf_color_t color[])
 {
-    sfVertexArray *array = sfVertexArray_create();
+    sfVertexArray *array = NULL;
 
+    if (NSF_UNLIKELY(!lines || !color))
+        return NULL;
+    array = sfVertexArray_create();
     if (NSF_UNLIKELY(!array))
         return NULL;
-    sfVertexArray_setPrimitiveType(array, sfLineStrip);
+    sfVertexArray_setPrimitiveType(array, type);
     sfVertexArray_resize(array, len);
     set_values(array, len, lines, color);
+    return array;
 }
 
 int nsf_window_draw_lines(const nsf_window_t *window, const size_t len,
     const nsf_fvector_t lines[], const nsf_color_t color[])
 {
-    sfVertexArray *array = sfVertexArray_create();
+    sfVertexArray *array = NULL;
 
+    if (NSF_UNLIKELY(!window || !window->window || !lines || !color))
+        return EXIT_ERROR;
+    array = get_vertices(sfLineStrip, len, lines, color);
     if (NSF_UNLIKELY(!array))
         return EXIT_ERROR;
     sfRenderWindow_drawVertexArray(window->window, array, NULL);
@@ -79,13 +86,13 @@ int nsf_window_draw_lines(const nsf_window_t *window, const size_t len,
 int nsf_window_draw_points(const nsf_window_t *window, const size_t len,
     const nsf_fvector_t points[], const nsf_color_t color[])
 {
-    sfVertexArray *array = sfVertexArray_create();
+    sfVertexArray *array = NULL;
 
+    if (NSF_UNLIKELY(!window || !window->window || !points || !color))
+        return EXIT_ERROR;
+    array = get_vertices(sfPoints, len, points, color);
     if (NSF_UNLIKELY(!array))
         return EXIT_ERROR;
-    sfVertexArray_setPrimitiveType(array, sfPoints);
-    sfVertexArray_resize(array, len);
-    set_values(array, len, points, color);
     sfRenderWindow_drawVertexArray(window->window, array, NULL);
     sfVertexArray_destroy(array);
     return EXIT_SUCCESS;

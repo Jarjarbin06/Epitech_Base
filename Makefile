@@ -122,7 +122,7 @@ compile_libs:
 	done
 	@cp -f lib/*/*.a lib/ 2>/dev/null || true
 	@for lib in $(LIBS_LIST); do \
-		ranlib lib/lib$$lib.a
+		ranlib lib/lib$$lib.a; \
 	done
 
 clean_libs:
