@@ -38,13 +38,13 @@ void nsf_window_fill(const nsf_window_t *window, const nsf_color_t color[])
     sfRenderWindow_clear(window->window, *color);
 }
 
-static void set_values(sfVertexArray *triangle, const size_t len,
+static void set_values(sfVertexArray *vertex, const size_t len,
     const nsf_fvector_t vect[], const nsf_color_t *color)
 {
     sfVertex *tmp_vect = NULL;
 
     for (size_t idx = 0; idx < len; idx++) {
-        tmp_vect = sfVertexArray_getVertex(triangle, idx);
+        tmp_vect = sfVertexArray_getVertex(vertex, idx);
         if (NSF_UNLIKELY(!tmp_vect))
             return;
         tmp_vect->position = vect[idx];
@@ -52,18 +52,42 @@ static void set_values(sfVertexArray *triangle, const size_t len,
     }
 }
 
+static sfVertexArray *get_vertices(sfPrimitiveType type, const size_t len,
+    const nsf_fvector_t lines[], const nsf_color_t color[])
+{
+    sfVertexArray *array = sfVertexArray_create();
+
+    if (NSF_UNLIKELY(!array))
+        return NULL;
+    sfVertexArray_setPrimitiveType(array, sfLineStrip);
+    sfVertexArray_resize(array, len);
+    set_values(array, len, lines, color);
+}
+
 int nsf_window_draw_lines(const nsf_window_t *window, const size_t len,
+    const nsf_fvector_t lines[], const nsf_color_t color[])
+{
+    sfVertexArray *array = sfVertexArray_create();
+
+    if (NSF_UNLIKELY(!array))
+        return EXIT_ERROR;
+    sfRenderWindow_drawVertexArray(window->window, array, NULL);
+    sfVertexArray_destroy(array);
+    return EXIT_SUCCESS;
+}
+
+int nsf_window_draw_points(const nsf_window_t *window, const size_t len,
     const nsf_fvector_t points[], const nsf_color_t color[])
 {
-    sfVertexArray *triangle = sfVertexArray_create();
+    sfVertexArray *array = sfVertexArray_create();
 
-    if (NSF_UNLIKELY(!triangle))
+    if (NSF_UNLIKELY(!array))
         return EXIT_ERROR;
-    sfVertexArray_setPrimitiveType(triangle, sfLineStrip);
-    sfVertexArray_resize(triangle, len);
-    set_values(triangle, len, points, color);
-    sfRenderWindow_drawVertexArray(window->window, triangle, NULL);
-    sfVertexArray_destroy(triangle);
+    sfVertexArray_setPrimitiveType(array, sfPoints);
+    sfVertexArray_resize(array, len);
+    set_values(array, len, points, color);
+    sfRenderWindow_drawVertexArray(window->window, array, NULL);
+    sfVertexArray_destroy(array);
     return EXIT_SUCCESS;
 }
 

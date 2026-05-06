@@ -121,6 +121,9 @@ compile_libs:
 		$(MAKE) --no-print-directory -C lib/$$lib CC=$(CC) CFLAGS="$(CFLAGS)"; \
 	done
 	@cp -f lib/*/*.a lib/ 2>/dev/null || true
+	@for lib in $(LIBS_LIST); do \
+		ranlib lib/lib$$lib.a
+	done
 
 clean_libs:
 	@for lib in $(LIBS_LIST); do \

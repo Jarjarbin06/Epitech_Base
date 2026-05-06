@@ -62,6 +62,7 @@ all:	$(LIB_NAME)
 
 $(LIB_NAME):	$(SRC_OBJ)
 	$(LIB_CREATOR) $(LIB_NAME).a $(SRC_OBJ)
+	ranlib $(LIB_NAME).a
 
 clean:
 	@rm -f $(SRC_OBJ)
