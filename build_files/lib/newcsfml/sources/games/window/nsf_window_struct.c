@@ -42,10 +42,10 @@ static sfRenderWindow *get_new_window(const nsf_window_settings_t settings[],
         *title_str, (sfWindowStyle)window_style, NULL);
 }
 
-static nsf_window_elements_t **create_elements(nsf_game_t *game)
+static nsf_elements_t **create_elements(nsf_game_t *game)
 {
-    nsf_window_elements_t **elements = malloc_any(
-        sizeof(nsf_window_elements_t *));
+    nsf_elements_t **elements = malloc_any(
+        sizeof(nsf_elements_t *));
 
     if (NSF_UNLIKELY(!elements))
         return NULL;
@@ -65,14 +65,16 @@ nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
         game);
     sfRenderWindow *sf_window = get_new_window(settings, &title_str,
         window_style);
-    nsf_window_elements_t **elements = create_elements(game);
+    nsf_elements_t **elements = create_elements(game);
 
     if (NSF_UNLIKELY(!new_window || !new_settings || !sf_window || !title_str ||
         !elements))
         return NULL;
     new_window->window = sf_window;
     new_window->title = title_str;
-    new_window->elements = elements;
+    new_window->elements.elements = elements;
+    new_window->elements.amount = 0;
+    new_window->elements.size = 1;
     new_window->background = NULL;
     new_window->settings = new_settings;
     if (game)
@@ -80,7 +82,7 @@ nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
     return new_window;
 }
 
-static void destroy_element(nsf_window_elements_t *element, nsf_game_t *game)
+static void destroy_element(nsf_elements_t *element, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!element))
         return;
@@ -94,7 +96,7 @@ static void destroy_element(nsf_window_elements_t *element, nsf_game_t *game)
         nsf_text_destroy((nsf_text_t **)&(element->ptr), game);
 }
 
-static void destroy_elements(nsf_window_elements_t **elements, nsf_game_t *game)
+static void destroy_elements(nsf_elements_t **elements, nsf_game_t *game)
 {
     for (int idx = 0; elements[idx]; idx++) {
         destroy_element(elements[idx], game);
@@ -113,8 +115,8 @@ int nsf_window_destroy(nsf_window_t **window, nsf_game_t *game)
         nsf_background_destroy(&(*window)->background, game);
     if (NSF_LIKELY((*window)->settings))
         nsf_window_settings_destroy(&(*window)->settings, game);
-    if (NSF_LIKELY((*window)->elements))
-        destroy_elements((*window)->elements, game);
+    if (NSF_LIKELY((*window)->elements.elements))
+        destroy_elements((*window)->elements.elements, game);
     if (NSF_LIKELY((*window)->window))
         sfRenderWindow_destroy((*window)->window);
     if (NSF_LIKELY((*window)->title))

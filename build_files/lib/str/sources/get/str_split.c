@@ -40,7 +40,7 @@ static size_t goto_next_word(const cstr_t string, size_t idx, cc_t separator)
 str_t *str_split(const cstr_t string, cc_t separator)
 {
     const unsigned int word_amount = get_word_amount(string, separator);
-    str_t *ret = malloc_any(sizeof(str_t ) * (word_amount + 1));
+    str_t *ret = malloc_any(sizeof(str_t) * (word_amount + 1));
     size_t ret_idx = 0;
 
     if (!string || !ret || word_amount == 0)

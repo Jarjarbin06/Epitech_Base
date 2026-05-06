@@ -50,6 +50,7 @@ typedef const char *cstr_t;
 typedef sfVector2i nsf_ivector_t;
 typedef sfEvent nsf_event_t;
 typedef sfVector2f nsf_fvector_t;
+typedef unsigned int nsf_uint_t;
 typedef struct nsf_background_s nsf_background_t;
 typedef sfColor nsf_color_t;
 typedef struct nsf_window_settings_s nsf_window_settings_t;
@@ -67,18 +68,24 @@ typedef enum
     NSF_BUTTON_ELEMENT,
     NSF_SOUND_ELEMENT,
     NSF_TEXT_ELEMENT
-} nsf_window_element_t;
+} nsf_element_type_t;
 
 typedef struct {
-    nsf_window_element_t element_type;
+    nsf_element_type_t element_type;
     const void *ptr;
-} nsf_window_elements_t;
+} nsf_elements_t;
+
+typedef struct {
+    nsf_elements_t **elements;
+    nsf_uint_t amount;
+    nsf_uint_t size;
+} nsf_element_list_t;
 
 typedef struct nsf_window_s {
     nsf_window_settings_t *settings;
     sfRenderWindow *window;
     nsf_background_t *background;
-    nsf_window_elements_t **elements;
+    nsf_element_list_t elements;
     nsf_cstr_t title;
 } nsf_window_t;
 

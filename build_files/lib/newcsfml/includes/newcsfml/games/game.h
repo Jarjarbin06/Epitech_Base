@@ -59,13 +59,13 @@ typedef struct {
     nsf_uint_t fps;
     nsf_uint_t draw_count;
     nsf_clock_t *clock;
-} nsf_game_fps;
+} nsf_game_fps_t;
 
 typedef struct nsf_game_s {
     nsf_window_t *window;
     nsf_music_t *music;
     nsf_clock_t *clock;
-    nsf_game_fps real_fps;
+    nsf_game_fps_t real_fps;
     int allocations;
     void *data;
 } nsf_game_t;

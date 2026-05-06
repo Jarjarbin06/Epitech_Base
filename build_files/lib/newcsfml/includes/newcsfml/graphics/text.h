@@ -31,7 +31,7 @@
     #include <stdbool.h>
     #include <stddef.h>
 
-#ifndef EXIT_D
+    #ifndef EXIT_D
         #define EXIT_D
 
         #ifndef EXIT_SUCCESS
@@ -80,7 +80,7 @@ int nsf_text_destroy(nsf_text_t **text, nsf_game_t *game);
 // MANAGE //
 void nsf_text_set_string(nsf_text_t *text, const char string[]);
 void nsf_text_set_size(nsf_text_t *text, nsf_uint_t size);
-void nsf_text_set_position(nsf_text_t *text,const nsf_fvector_t position[]);
+void nsf_text_set_position(nsf_text_t *text, const nsf_fvector_t position[]);
 void nsf_text_set_color(nsf_text_t *text, const nsf_color_t color[]);
 void nsf_text_set_watcher(nsf_text_t *text, nsf_watcher_t *watcher);
 nsf_watcher_t *nsf_text_get_watcher(nsf_text_t *text);

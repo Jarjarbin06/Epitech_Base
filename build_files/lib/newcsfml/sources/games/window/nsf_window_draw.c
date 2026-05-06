@@ -69,18 +69,20 @@ int nsf_window_draw_lines(const nsf_window_t *window, const size_t len,
 
 void nsf_window_draw(const nsf_window_t *window)
 {
-    if (NSF_UNLIKELY(!window || !window->elements || !window->background))
+    if (NSF_UNLIKELY(!window || !window->elements.elements ||
+        !window->background))
         return;
     nsf_background_draw(window->background, window);
-    for (int idx = 0; window->elements[idx]; idx++)
-        if (window->elements[idx]->element_type == NSF_SPRITE_ELEMENT)
-            nsf_sprite_draw((nsf_sprite_t *)(window->elements[idx]->ptr),
-                window);
-    for (int idx = 0; window->elements[idx]; idx++)
-        if (window->elements[idx]->element_type == NSF_BUTTON_ELEMENT)
-            nsf_button_draw((nsf_button_t *)(window->elements[idx]->ptr),
-                window);
-    for (int idx = 0; window->elements[idx]; idx++)
-        if (window->elements[idx]->element_type == NSF_TEXT_ELEMENT)
-            nsf_text_draw((nsf_text_t *)(window->elements[idx]->ptr), window);
+    for (size_t idx = 0; idx < window->elements.amount; idx++)
+        if (window->elements.elements[idx]->element_type == NSF_SPRITE_ELEMENT)
+            nsf_sprite_draw((nsf_sprite_t *)(
+                window->elements.elements[idx]->ptr), window);
+    for (size_t idx = 0; window->elements.elements[idx]; idx++)
+        if (window->elements.elements[idx]->element_type == NSF_BUTTON_ELEMENT)
+            nsf_button_draw((nsf_button_t *)(
+                window->elements.elements[idx]->ptr), window);
+    for (size_t idx = 0; window->elements.elements[idx]; idx++)
+        if (window->elements.elements[idx]->element_type == NSF_TEXT_ELEMENT)
+            nsf_text_draw((nsf_text_t *)(
+                window->elements.elements[idx]->ptr), window);
 }

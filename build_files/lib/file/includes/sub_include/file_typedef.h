@@ -13,7 +13,7 @@
 
     #include "file_include.h"
 
-#ifndef FILE_T_TYPE
+    #ifndef FILE_T_TYPE
         #define FILE_T_TYPE
 
         #ifndef T_VOID_FUNC
@@ -21,20 +21,20 @@
 typedef void *(*void_func_t)(void *);
         #endif
 
-    #ifndef T_CC
-        #define T_CC
+        #ifndef T_CC
+            #define T_CC
 typedef const char cc_t;
-    #endif
+        #endif
 
-    #ifndef T_STR
-        #define T_STR
+        #ifndef T_STR
+            #define T_STR
 typedef char *str_t;
-    #endif
+        #endif
 
-    #ifndef T_CSTR
-        #define T_CSTR
+        #ifndef T_CSTR
+            #define T_CSTR
 typedef const char *cstr_t;
-    #endif
+        #endif
 
 // add type typedefs here //
 

@@ -25,16 +25,6 @@
 #include "newcsfml/audios/sound.h"
 #include "newcsfml/systems/utils.h"
 
-static int get_elements_len(nsf_window_elements_t **element)
-{
-    int idx = 0;
-
-    if (NSF_UNLIKELY(!element))
-        return idx;
-    for (; element[idx]; idx++);
-    return idx;
-}
-
 int nsf_window_play_sound(const nsf_window_t *window,
     const char sound_name[])
 {
@@ -65,20 +55,21 @@ int nsf_window_stop_sound(const nsf_window_t *window,
 int nsf_window_all_sound_volume(const nsf_window_t *window,
     const float volume)
 {
-    if (NSF_UNLIKELY(!window || !window->elements))
+    if (NSF_UNLIKELY(!window || !window->elements.elements))
         return EXIT_ERROR;
-    for (int idx = 0; idx < get_elements_len(window->elements); idx++)
-        if (window->elements[idx]->element_type == NSF_SPRITE_ELEMENT)
-            nsf_sound_volume((nsf_sound_t *)window->elements[idx]->ptr, volume);
+    for (size_t idx = 0; idx < window->elements.amount; idx++)
+        if (window->elements.elements[idx]->element_type == NSF_SPRITE_ELEMENT)
+            nsf_sound_volume((nsf_sound_t *)window->elements.elements[idx]->ptr,
+                volume);
     return EXIT_SUCCESS;
 }
 
 int nsf_window_stop_all_sound(const nsf_window_t *window)
 {
-    if (NSF_UNLIKELY(!window || !window->elements))
+    if (NSF_UNLIKELY(!window || !window->elements.elements))
         return EXIT_ERROR;
-    for (int idx = 0; idx < get_elements_len(window->elements); idx++)
-        if (window->elements[idx]->element_type == NSF_SPRITE_ELEMENT)
-            nsf_sound_stop((nsf_sound_t *)window->elements[idx]->ptr);
+    for (size_t idx = 0; idx < window->elements.amount; idx++)
+        if (window->elements.elements[idx]->element_type == NSF_SPRITE_ELEMENT)
+            nsf_sound_stop((nsf_sound_t *)window->elements.elements[idx]->ptr);
     return EXIT_SUCCESS;
 }

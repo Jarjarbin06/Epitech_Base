@@ -27,52 +27,55 @@
 #include "newcsfml/games/window.h"
 #include "newcsfml/systems/utils.h"
 
-static int get_elements_len(nsf_window_elements_t **element)
+static void add_size(nsf_element_list_t *element, nsf_game_t *game)
 {
-    int idx = 0;
+    nsf_elements_t **new_elements = NULL;
+    nsf_uint_t new_size = 0;
 
-    if (NSF_UNLIKELY(!element))
-        return idx;
-    for (; element[idx]; idx++);
-    return idx;
+    if (NSF_UNLIKELY(!element || !game))
+        return;
+    new_size = element->size * 2;
+    new_elements = malloc_any(sizeof(nsf_elements_t *) * new_size);
+    for (size_t idx = 0; idx < new_size; idx++)
+        new_elements[idx] = element->elements[idx];
+    free_any(element->elements);
+    element->elements = new_elements;
+    element->size = new_size;
 }
 
-static nsf_window_elements_t **append_element(const nsf_window_t *window,
-    const nsf_window_elements_t element[], nsf_game_t *game)
+static nsf_elements_t **append_element(nsf_window_t *window,
+    const nsf_elements_t element[], nsf_game_t *game)
 {
-    const nsf_uint_t old_len = get_elements_len(window->elements);
-    const nsf_uint_t new_len = old_len + 1;
-    nsf_window_elements_t **new_elements = malloc_any(
-        sizeof(nsf_window_elements_t *) * (new_len + 1));
-    nsf_window_elements_t *new_element = malloc_any(
-        sizeof(nsf_window_elements_t));
+    nsf_elements_t **new_elements = NULL;
+    nsf_elements_t *new_element = malloc_any(
+        sizeof(nsf_elements_t));
 
-    if (NSF_UNLIKELY(!window->elements || !new_elements || !new_element))
+    if (NSF_UNLIKELY(!window->elements.elements || !new_element || !game))
         return NULL;
     new_element->element_type = element->element_type;
     new_element->ptr = element->ptr;
-    for (int idx = 0; (nsf_uint_t)idx < old_len; idx++)
-        new_elements[idx] = window->elements[idx];
-    new_elements[old_len] = new_element;
-    new_elements[new_len] = NULL;
+    window->elements.amount++;
+    if (window->elements.amount > window->elements.size)
+        add_size(&window->elements, game);
+    window->elements.elements[window->elements.amount - 1] = new_element;
     if (game)
-        game->allocations += 2;
+        game->allocations++;
     return new_elements;
 }
 
 void nsf_window_add_sprite(nsf_window_t *window, const nsf_sprite_t *sprite,
     nsf_game_t *game)
 {
-    nsf_window_elements_t **new_elements = NULL;
+    nsf_elements_t **new_elements = NULL;
 
-    if (NSF_UNLIKELY(!window || !window->elements || !sprite))
+    if (NSF_UNLIKELY(!window || !window->elements.elements || !sprite))
         return;
     new_elements = append_element(window,
-        (nsf_window_elements_t[]){{NSF_SPRITE_ELEMENT, (void *)sprite}}, game);
+        (nsf_elements_t[]){{NSF_SPRITE_ELEMENT, (void *)sprite}}, game);
     if (NSF_UNLIKELY(!new_elements))
         return;
-    free_any(window->elements);
-    window->elements = new_elements;
+    free_any(window->elements.elements);
+    window->elements.elements = new_elements;
     if (game)
         game->allocations--;
 }
@@ -80,16 +83,16 @@ void nsf_window_add_sprite(nsf_window_t *window, const nsf_sprite_t *sprite,
 void nsf_window_add_button(nsf_window_t *window, const nsf_button_t *button,
     nsf_game_t *game)
 {
-    nsf_window_elements_t **new_elements = NULL;
+    nsf_elements_t **new_elements = NULL;
 
-    if (NSF_UNLIKELY(!window || !window->elements || !button))
+    if (NSF_UNLIKELY(!window || !window->elements.elements || !button))
         return;
     new_elements = append_element(window,
-        (nsf_window_elements_t[]){{NSF_BUTTON_ELEMENT, (void *)button}}, game);
+        (nsf_elements_t[]){{NSF_BUTTON_ELEMENT, (void *)button}}, game);
     if (NSF_UNLIKELY(!new_elements))
         return;
-    free_any(window->elements);
-    window->elements = new_elements;
+    free_any(window->elements.elements);
+    window->elements.elements = new_elements;
     if (game)
         game->allocations--;
 }
@@ -97,16 +100,16 @@ void nsf_window_add_button(nsf_window_t *window, const nsf_button_t *button,
 void nsf_window_add_sound(nsf_window_t *window, const nsf_sound_t *sound,
     nsf_game_t *game)
 {
-    nsf_window_elements_t **new_elements = NULL;
+    nsf_elements_t **new_elements = NULL;
 
-    if (NSF_UNLIKELY(!window || !window->elements || !sound))
+    if (NSF_UNLIKELY(!window || !window->elements.elements || !sound))
         return;
     new_elements = append_element(window,
-        (nsf_window_elements_t[]){{NSF_SOUND_ELEMENT, (void *)sound}}, game);
+        (nsf_elements_t[]){{NSF_SOUND_ELEMENT, (void *)sound}}, game);
     if (NSF_UNLIKELY(!new_elements))
         return;
-    free_any(window->elements);
-    window->elements = new_elements;
+    free_any(window->elements.elements);
+    window->elements.elements = new_elements;
     if (game)
         game->allocations--;
 }
@@ -114,16 +117,16 @@ void nsf_window_add_sound(nsf_window_t *window, const nsf_sound_t *sound,
 void nsf_window_add_text(nsf_window_t *window, const nsf_text_t *text,
     nsf_game_t *game)
 {
-    nsf_window_elements_t **new_elements = NULL;
+    nsf_elements_t **new_elements = NULL;
 
-    if (NSF_UNLIKELY(!window || !window->elements || !text))
+    if (NSF_UNLIKELY(!window || !window->elements.elements || !text))
         return;
     new_elements = append_element(window,
-        (nsf_window_elements_t[]){{NSF_TEXT_ELEMENT, (void *)text}}, game);
+        (nsf_elements_t[]){{NSF_TEXT_ELEMENT, (void *)text}}, game);
     if (NSF_UNLIKELY(!new_elements))
         return;
-    free_any(window->elements);
-    window->elements = new_elements;
+    free_any(window->elements.elements);
+    window->elements.elements = new_elements;
     if (game)
         game->allocations--;
 }
