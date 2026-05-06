@@ -19,7 +19,7 @@ void file_exist(void);
 
     #ifndef P_FILE_CREATE
         #define P_FILE_CREATE
-file_t *file_create(char full_path[]);
+file_t *file_create(const char full_path[]);
     #endif
 
     #ifndef P_FILE_DESTROY
@@ -90,7 +90,7 @@ int str_len(cstr_t string);
 
     #ifndef P_STR_TO_WORD_ARRAY
         #define P_STR_TO_WORD_ARRAY
-str_t *str_to_word_array(cstr_t string, cc_t separator);
+str_t *str_split(cstr_t string, cc_t separator);
     #endif
 
 #endif

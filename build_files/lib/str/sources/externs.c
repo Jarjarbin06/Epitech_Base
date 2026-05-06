@@ -37,7 +37,7 @@ const str_check_t check = {
 
 const str_get_t get = {
     str_get_nbr,
-    str_to_word_array,
+    str_split,
     str_len
 };
 

@@ -53,8 +53,8 @@ typedef struct {
         #define T_STR_GET
 typedef struct {
     int (*nbr)(const char *);
-    char **(*word_array)(const char *, char);
-    int (*len)(const char *);
+    char **(*split)(const char *, char);
+    size_t (*len)(const char *);
 } str_get_t;
     #endif
 
@@ -62,7 +62,7 @@ typedef struct {
         #define T_STR_MANAGE
 typedef struct {
     char *(*cat)(const char *, const char *);
-    char *(*cpy)(char *, const char *);
+    char *(*copy)(char *, const char *);
     char *(*dup)(const char *);
     char *(*ndup)(const char *, int);
 } str_manage_t;

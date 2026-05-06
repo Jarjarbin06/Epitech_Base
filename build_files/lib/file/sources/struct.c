@@ -44,7 +44,7 @@ static file_t *check_file(file_t **file)
     return *file;
 }
 
-file_t *file_create(char full_path[])
+file_t *file_create(const char full_path[])
 {
     file_t *file = NULL;
 

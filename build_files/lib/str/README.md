@@ -143,7 +143,7 @@ Handles extraction and parsing.
 
 * String length
 * Integer parsing
-* Word array splitting
+* String splitting
 
 ---
 

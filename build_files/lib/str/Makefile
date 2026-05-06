@@ -9,8 +9,8 @@
 ## info ##
 ##########
 info_NAME	=	str
-info_VERSION	=	v0.1.3
-info_LAST_UPDATE	=	2026/03/30 13:24
+info_VERSION	=	v0.1.4
+info_LAST_UPDATE	=	2026/05/06 10:37
 info_LIB_MAKER	=	Makefile
 
 

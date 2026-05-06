@@ -16,7 +16,7 @@
 
 typedef char const *title_t;
 typedef char const *message_t;
-typedef char const *file_t;
+typedef char const *file_name_t;
 typedef char const *function_t;
 typedef int const line_t;
 typedef bool fatal_t;
@@ -31,7 +31,7 @@ typedef bool fatal_t;
 typedef struct {
     title_t title;
     message_t msg;
-    file_t file;
+    file_name_t file;
     function_t func;
     line_t line;
     fatal_t fatal;

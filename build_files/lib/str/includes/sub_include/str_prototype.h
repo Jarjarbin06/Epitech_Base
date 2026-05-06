@@ -93,7 +93,7 @@ bool str_is_upper(cstr_t str);
 
     #ifndef P_STR_TO_WORD_ARRAY
         #define P_STR_TO_WORD_ARRAY
-str_t *str_to_word_array(cstr_t string, cc_t separator);
+str_t *str_split(cstr_t string, cc_t separator);
     #endif
 
     #ifndef P_STR_CAPITALIZE
@@ -123,7 +123,7 @@ str_t str_dup(cstr_t src);
 
     #ifndef P_STR_LEN
         #define P_STR_LEN
-int str_len(cstr_t string);
+size_t str_len(cstr_t string);
     #endif
 
     #ifndef P_STR_LOWCASE

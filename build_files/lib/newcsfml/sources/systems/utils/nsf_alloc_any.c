@@ -69,3 +69,14 @@ int nsf_auto_free(const nsf_uint_t len, const nsf_free_t free_list[],
         game->allocations -= freed;
     return freed;
 }
+
+void *nsf_free_array(void **array, nsf_game_t *game)
+{
+    if (NSF_LIKELY(array)) {
+        for (size_t idx = 0; array[idx]; idx++) {
+            nsf_free_any(array[idx], game);
+        }
+        nsf_free_any(array, game);
+    }
+    return NULL;
+}

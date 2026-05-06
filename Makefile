@@ -35,18 +35,10 @@ BONUS_PATH	=	bonus
 BONUS	=	$(BONUS_PATH)/bonus_file.c
 
 # Lib list #
-LIBS_LIST	=	\
-	newerror \
-	llist \
-	newcsfml \
-	print \
-	str \
-	twodlist \
-	file \
-	utils
+LIBS_LIST	=	$(notdir $(shell find lib -mindepth 1 -maxdepth 1 -type d))
 LIB_FLAGS	=	\
 	$(foreach lib,$(LIBS_LIST), \
-    $(if $(shell find . -type f -name "lib$(lib).a" 2>/dev/null),-l$(lib),))
+    $(if $(wildcard lib/$(lib)/lib$(lib).a),-l$(lib),))
 
 # Main #
 MAIN	=	$(SRC_PATH)/main.c
@@ -96,7 +88,7 @@ all:
 	@make --no-print-directory $(CNAME)
 
 $(CNAME):	$(SRC_OBJ) $(MAIN_OBJ)
-	$(CC) -o $(CNAME) $(SRC_OBJ) $(MAIN_OBJ) $(CFLAGS) $(CPPFLAGS) $(CFLAGS_PLUS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(SRC_OBJ) $(MAIN_OBJ) -o $(CNAME) $(CFLAGS_PLUS)
 
 clean:	clean_libs
 	@rm -f $(SRC_OBJ)
@@ -125,17 +117,20 @@ asan:
 ## Lib rules ##
 ###############
 compile_libs:
-	-@$(foreach lib,$(LIBS_LIST), \
-		$(MAKE) --no-print-directory -C lib/$(lib) CC=$(CC) CFLAGS="$(CFLAGS)";)
-	-@cp -f lib/*/*.a lib/
+	@for lib in $(LIBS_LIST); do \
+		$(MAKE) --no-print-directory -C lib/$$lib CC=$(CC) CFLAGS="$(CFLAGS)"; \
+	done
+	@cp -f lib/*/*.a lib/ 2>/dev/null || true
 
 clean_libs:
-	-@$(foreach lib,$(LIBS_LIST), \
-		$(MAKE) --no-print-directory -C lib/$(lib) clean;)
+	@for lib in $(LIBS_LIST); do \
+		$(MAKE) --no-print-directory -C lib/$$lib clean; \
+	done
 
 fclean_libs:
-	-@$(foreach lib,$(LIBS_LIST), \
-		$(MAKE) --no-print-directory -C lib/$(lib) fclean;)
+	@for lib in $(LIBS_LIST); do \
+		$(MAKE) --no-print-directory -C lib/$$lib fclean; \
+	done
 
 
 ###################

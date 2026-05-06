@@ -7,9 +7,9 @@
 
 #include "../../includes/str.h"
 
-int str_len(const cstr_t string)
+size_t str_len(const cstr_t string)
 {
-    int idx = 0;
+    size_t idx = 0;
 
     if (!string)
         return idx;
