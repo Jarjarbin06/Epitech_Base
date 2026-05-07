@@ -9,8 +9,6 @@
 #ifndef FILE_T
     #define FILE_T
 
-    #include <stdio.h>
-
     #include "file_include.h"
 
     #ifndef FILE_T_TYPE
@@ -54,8 +52,8 @@ typedef struct rights_s {
 
         #ifndef T_FILE
             #define T_FILE
-typedef struct file_s {
-    FILE *fd;
+typedef struct {
+    int fd;
     char *full_path;
     char *path;
     char *name;

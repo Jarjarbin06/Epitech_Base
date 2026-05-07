@@ -5,16 +5,18 @@
 ** <description>
 */
 
-#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 #include "../includes/file.h"
 
-static size_t get_file_size(FILE *fp)
+static size_t get_file_size(const int fd)
 {
     size_t size = 0;
     char tmp[1];
 
-    for (; fread(tmp, 1, 1, fp) == 1; size++);
+    for (; read(fd, tmp, 1) == 1; size++);
     return size;
 }
 
@@ -24,50 +26,51 @@ int file_open(file_t *file)
         return EXIT_ERROR;
     if (file->is_open)
         return EXIT_ERROR;
-    file->fd = fopen(file->full_path, "r");
+    file->fd = open(file->full_path, O_RDONLY);
+    if (file->fd == -1)
+        return EXIT_ERROR;
     file->is_open = true;
     return EXIT_SUCCESS;
 }
 
 int file_close(file_t *file)
 {
-    if (!file)
+    if (!file || !file->is_open)
         return EXIT_ERROR;
-    if (!file->is_open)
-        return EXIT_ERROR;
-    fclose(file->fd);
-    file->fd = 0;
+
+    close(file->fd);
+    file->fd = -1;
     file->is_open = false;
     return EXIT_SUCCESS;
 }
 
 static int get_size(file_t *file, size_t *size)
 {
-    if (!file)
+    if (!file || !size)
         return EXIT_ERROR;
     if (file_open(file))
         return EXIT_ERROR;
     *size = get_file_size(file->fd);
-    file_close(file);
+    if (file_close(file))
+        return EXIT_ERROR;
     return EXIT_SUCCESS;
 }
 
 static int get_raw(file_t *file, const size_t size)
 {
-    size_t read_size = 0;
+    ssize_t read_size = 0;
 
     if (!file)
         return EXIT_ERROR;
     if (file_open(file))
         return EXIT_ERROR;
     file->raw = malloc_any(sizeof(char) * (size + 1));
-    if (!file->raw) {
-        fclose(file->fd);
+    if (!file->raw)
+        return (file_close(file)) ? (EXIT_ERROR) : (EXIT_ERROR);
+    read_size = read(file->fd, file->raw, size);
+    if (file_close(file))
         return EXIT_ERROR;
-    }
-    read_size = fread(file->raw, 1, size, file->fd);
-    file_close(file);
-    if (read_size != size) {
+    if (read_size != (ssize_t)size) {
         file->raw = free_any(file->raw);
         return EXIT_ERROR;
     }
