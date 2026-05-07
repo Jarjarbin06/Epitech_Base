@@ -50,7 +50,7 @@ build_dir() {
 
     if [[ ! -e "$dir/Makefile" ]]; then
         cp -f /home/jarjarbin/Desktop/c/Epitech_Base/Makefile "$dir/"
-        if make --no-print-directory -C "$dir" build > /dev/null 2>&1; then
+        if make --no-print-directory -C "$dir" setup-build > /dev/null 2>&1; then
             printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${DARK}${BG_GREEN}             built ${RESET}\n" "$DIR_WIDTH" "$name"
         else
             printf "${BLACK}  %-*s : ${RESET}${DARK}${BG_RED}   failed to build ${RESET}\n" "$DIR_WIDTH" "$name"
@@ -104,7 +104,7 @@ rebuild_dir() {
     # Then build
     if [[ ! -e "$dir/Makefile" ]]; then
         cp -f /home/jarjarbin/Desktop/c/Epitech_Base/Makefile "$dir/"
-        if make --no-print-directory -C "$dir" build > /dev/null 2>&1; then
+        if make --no-print-directory -C "$dir" setup-build > /dev/null 2>&1; then
             printf "${BG_WHITE} ${RESET}${WHITE} %-*s : ${RESET}${DARK}${BG_GREEN}           rebuilt ${RESET}\n" "$DIR_WIDTH" "$name"
         else
             printf "${BLACK}  %-*s : ${RESET}${DARK}${BG_RED} failed to rebuild ${RESET}\n" "$DIR_WIDTH" "$name"

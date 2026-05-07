@@ -44,12 +44,12 @@ LIB_PATH        = lib
 # -----------------------------------------------------------------------------
 # SOURCES
 # -----------------------------------------------------------------------------
-SRC     =	$(sort $(shell find $(SRC_PATH) -type f -name "*.c" ! -name "main.c"))
+SRC     =	$(sort $(shell [ -d "$(SRC_PATH)" ] && find $(SRC_PATH) -type f -name "*.c" ! -name "main.c"))
 
 # -----------------------------------------------------------------------------
 # INCLUDES
 # -----------------------------------------------------------------------------
-INCLUDES	=	$(sort $(addprefix -I,$(shell find $(INCLUDE_PATH) -type d)))
+INCLUDES	=	$(sort $(addprefix -I,$(shell [ -d "$(INCLUDE_PATH)" ] && find $(INCLUDE_PATH) -type d)))
 
 # -----------------------------------------------------------------------------
 # BONUS
@@ -60,7 +60,7 @@ BONUS	=	$(BONUS_PATH)/bonus_file.c
 # -----------------------------------------------------------------------------
 # LIBRARIES
 # -----------------------------------------------------------------------------
-LIBS_LIST	=	$(sort $(notdir $(shell find lib -mindepth 1 -maxdepth 1 -type d)))
+LIBS_LIST	=	$(sort $(notdir $(shell [ -d "$(LIB_SRC_PATH)" ] && find $(LIB_SRC_PATH) -mindepth 1 -maxdepth 1 -type d)))
 LIB_FLAGS	=	\
 	$(foreach lib,$(LIBS_LIST), \
     $(if $(wildcard lib/$(lib)/lib$(lib).a),-l$(lib),))
@@ -74,7 +74,7 @@ MAIN	=	$(SRC_PATH)/main.c
 # TEST VARIABLES
 # -----------------------------------------------------------------------------
 TEST_PATH	=	tests
-TEST	=	$(sort $(shell find $(TEST_PATH) -type f -name "*.c"))
+TEST	=	$(sort $(shell [ -d "$(TEST_PATH)" ] && find $(TEST_PATH) -type f -name "*.c"))
 
 # -----------------------------------------------------------------------------
 # OBJECTS
