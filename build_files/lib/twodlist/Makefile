@@ -72,19 +72,19 @@ all:	$(LIB_NAME)
 # ARCHIVE BUILD
 # -----------------------------------------------------------------------------
 $(LIB_NAME):	$(OBJ)
-	$(AR) $@ $^
-	$(RANLIB) $@
+	$(AR) $(LIB_NAME) $(OBJ)
+	$(RANLIB) $(LIB_NAME)
 
 
 # -----------------------------------------------------------------------------
 # CLEAN RULES
 # -----------------------------------------------------------------------------
 clean:
-	@rm -f $(OBJ)
-	@rm -f $(DEP)
+	$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.o"))
+	$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.d"))
 
 fclean:	clean
-	@rm -f $(LIB_NAME)
+	rm -f $(LIB_NAME)
 
 re:	fclean all
 
@@ -94,20 +94,21 @@ re:	fclean all
 ###############################################################################
 
 show_info:
-	@echo "NAME: $(info_NAME)"
-	@echo "VERSION: $(info_VERSION)"
-	@echo "LAST UPDATE: $(info_LAST_UPDATE)"
-	@echo "LIB MAKER: $(info_LIB_MAKER)"
+	echo "NAME: $(info_NAME)"
+	echo "VERSION: $(info_VERSION)"
+	echo "LAST UPDATE: $(info_LAST_UPDATE)"
+	echo "LIB MAKER: $(info_LIB_MAKER)"
 
 show_var:
-	@echo "SRC: $(SRC)"
-	@echo "OBJ: $(OBJ)"
-	@echo "LIB: $(LIB_NAME)"
+	echo "SRC: $(SRC)"
+	echo "OBJ: $(OBJ)"
+	echo "LIB: $(LIB_NAME)"
 
 
 ###############################################################################
 # SAFETY / PHONY
 ###############################################################################
+.SILENT:	clean fclean show_info show_var
 .PHONY:	all clean fclean re show_info show_var
 
 -include $(SRC_OBJ:.o=.d) $(MAIN_OBJ:.o=.d) $(TEST_OBJ:.o=.d)

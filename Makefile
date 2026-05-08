@@ -156,22 +156,22 @@ $(CNAME):	$(SRC_OBJ) $(MAIN_OBJ)
 # CLEAN
 # -----------------------------------------------------------------------------
 clean:	lib-clean
-	@$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.o"))
-	@$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.d"))
-	@$(RM) $(sort $(shell find "." -type f -name "*.out"))
-	@$(RM) $(sort $(shell find "." -type f -name "*.pch"))
-	@$(RM) $(sort $(shell find "." -type f -name "*.gc*"))
-	@$(RM) $(sort $(shell find "." -type f -name "*~*"))
-	@$(RM) $(sort $(shell find "." -type f -name "#*#"))
+	$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.o"))
+	$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.d"))
+	$(RM) $(sort $(shell find "." -type f -name "*.out"))
+	$(RM) $(sort $(shell find "." -type f -name "*.pch"))
+	$(RM) $(sort $(shell find "." -type f -name "*.gc*"))
+	$(RM) $(sort $(shell find "." -type f -name "*~*"))
+	$(RM) $(sort $(shell find "." -type f -name "#*#"))
 
 # -----------------------------------------------------------------------------
 # FULL CLEAN
 # -----------------------------------------------------------------------------
 fclean:	lib-fclean clean
-	@$(RM) $(CNAME)
-	@$(RM) $(TESTCNAME)
-	@$(RM) $(TESTSEGCNAME)
-	@$(RM) $(sort $(shell find "$(LIB_PATH)" -type f -name "*.a"))
+	$(RM) $(CNAME)
+	$(RM) $(TESTCNAME)
+	$(RM) $(TESTSEGCNAME)
+	$(RM) $(sort $(shell find "$(LIB_PATH)" -type f -name "*.a"))
 
 # -----------------------------------------------------------------------------
 # REBUILD
@@ -188,7 +188,7 @@ run: all
 # SANITIZER BUILD
 # -----------------------------------------------------------------------------
 debug-asan:
-	@make DEBUG=true CFLAGS_EXTRA="-fsanitize=address -fno-omit-frame-pointer" LDFLAGS_EXTRA="-fsanitize=address" re
+	make DEBUG=true CFLAGS_EXTRA="-fsanitize=address -fno-omit-frame-pointer" LDFLAGS_EXTRA="-fsanitize=address" re
 
 
 # =============================================================================
@@ -201,11 +201,11 @@ debug-asan:
 # COMPILE LIBS
 # -----------------------------------------------------------------------------
 lib-build:
-	@for lib in $(LIBS_LIST); do \
+	for lib in $(LIBS_LIST); do \
 		$(MAKE) --no-print-directory -C lib/$$lib CC=$(CC) DEBUG="$(DEBUG)"; \
 	done
-	@cp -f lib/*/*.a lib/ 2>/dev/null || true
-	@for lib in $(LIBS_LIST); do \
+	cp -f lib/*/*.a lib/ 2>/dev/null || true
+	for lib in $(LIBS_LIST); do \
 		[ -f lib/lib$$lib.a ] && ranlib lib/lib$$lib.a || true; \
 	done
 
@@ -213,7 +213,7 @@ lib-build:
 # CLEAN LIBS
 # -----------------------------------------------------------------------------
 lib-clean:
-	@for lib in $(LIBS_LIST); do \
+	for lib in $(LIBS_LIST); do \
 		$(MAKE) --no-print-directory -C lib/$$lib clean; \
 	done
 
@@ -221,7 +221,7 @@ lib-clean:
 # FULL CLEAN LIBS
 # -----------------------------------------------------------------------------
 lib-fclean:
-	@for lib in $(LIBS_LIST); do \
+	for lib in $(LIBS_LIST); do \
 		$(MAKE) --no-print-directory -C lib/$$lib fclean; \
 	done
 
@@ -236,20 +236,20 @@ lib-fclean:
 # DEBUG / TEST
 # -----------------------------------------------------------------------------
 test-valgrind: re
-	@valgrind --leak-check=full --track-origins=yes ./$(CNAME) $(CARG)
+	valgrind --leak-check=full --track-origins=yes ./$(CNAME) $(CARG)
 
 # -----------------------------------------------------------------------------
 # COVERAGE
 # -----------------------------------------------------------------------------
 test-gcovr: test-run
-	@gcovr -e $(TEST_PATH)
+	gcovr -e $(TEST_PATH)
 
 # -----------------------------------------------------------------------------
 # STYLE CHECK
 # -----------------------------------------------------------------------------
 test-style:
-	-@make --no-print-directory CC=epiclang re fclean
-	@printf '\033[92mepiclang done\033[0m\n'
+	-make --no-print-directory CC=epiclang re fclean
+	printf '\033[92mepiclang done\033[0m\n'
 
 # -----------------------------------------------------------------------------
 # UNIT TESTS
@@ -261,7 +261,7 @@ test-build: lib-build $(TEST_OBJ) $(SRC_OBJ)
 # UNIT TESTS RUNNING
 # -----------------------------------------------------------------------------
 test-run: test-build
-	@./$(TESTCNAME)
+	./$(TESTCNAME)
 
 test_run: test-run
 
@@ -273,39 +273,39 @@ test_run: test-run
 # =============================================================================
 
 git-commit-msg:
-	@python3 /home/jarjarbin/Desktop/python/commit_name.py
+	python3 /home/jarjarbin/Desktop/python/commit_name.py
 
 git-pull:
-	@git pull origin main
+	git pull origin main
 
 git-status:
-	@git status --long
+	git status --long
 
 git-push-repo:
-	-@git add -A
-	-@git commit -m "[REPO] Repo initialization"
-	-@git push origin main
+	-git add -A
+	-git commit -m "[REPO] Repo initialization"
+	-git push origin main
 
 ifeq ($(ALLOW_AUTO_PUSH), true)
 git-push-libs:
-	-@git add lib includes/lib_includes
-	-@git commit -m "[REPO] Library auto-import / auto-update"
-	-@git push origin main
+	-git add lib includes/lib_includes
+	-git commit -m "[REPO] Library auto-import / auto-update"
+	-git push origin main
 else
 git-push-libs:
-	@printf '\033[91mPushLib is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling lib-push.\033[0m\n'
-	@exit 84
+	printf '\033[91mPushLib is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling lib-push.\033[0m\n'
+	exit 84
 endif
 
 ifeq ($(ALLOW_AUTO_PUSH), true)
 git-push-makefile:
-	-@git add Makefile
-	-@git commit -m "[REPO] Makefile auto-update"
-	-@git push origin main
+	-git add Makefile
+	-git commit -m "[REPO] Makefile auto-update"
+	-git push origin main
 else
 git-push-makefile:
-	@printf '\033[91mPushMakefile is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling lib-push.\033[0m\n'
-	@exit 84
+	printf '\033[91mPushMakefile is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling lib-push.\033[0m\n'
+	exit 84
 endif
 
 
@@ -319,11 +319,11 @@ ifeq ($(wildcard *), Makefile)
 setup-build:
 	cp -rf $(EPITECH_BASE_PATH)/.gitignore ./
 	cp -rf $(EPITECH_BASE_PATH)/build_files/tree/* ./
-	-@make git-push-repo
+	-make git-push-repo
 else
 setup-build:
-	@printf '\033[91mBuild is disabled. To enable it, call the unbuild rule.\033[0m\n'
-	@exit 84
+	printf '\033[91mBuild is disabled. To enable it, call the unbuild rule.\033[0m\n'
+	exit 84
 endif
 
 # -----------------------------------------------------------------------------
@@ -331,16 +331,16 @@ endif
 # -----------------------------------------------------------------------------
 ifeq ($(ALLOW_UNBUILD), true)
 setup-unbuild: fclean
-	@rm -dfr bonus includes lib sources tests main.c
+	rm -dfr bonus includes lib sources tests main.c
 else
 setup-unbuild:
-	@printf '\033[91mUnbuild is disabled. To enable it, set ALLOW_UNBUILD to "true" before calling unbuild.\033[0m\n'
-	@exit 84
+	printf '\033[91mUnbuild is disabled. To enable it, set ALLOW_UNBUILD to "true" before calling unbuild.\033[0m\n'
+	exit 84
 endif
 
 maint-update:
-	@cp $(EPITECH_BASE_PATH)/Makefile ./
-	-@make git-push-makefile
+	cp $(EPITECH_BASE_PATH)/Makefile ./
+	-make git-push-makefile
 
 
 # =============================================================================
@@ -350,71 +350,71 @@ maint-update:
 # =============================================================================
 
 setup-import-newerror:
-	-@rm -rdf ./lib/newerror ./includes/lib_includes/newerror
-	-@mkdir ./lib/newerror
-	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newerror/* ./lib/newerror
-	-@mkdir ./includes/lib_includes/newerror
-	@cp -rf lib/newerror/includes/* ./includes/lib_includes/newerror
-	-@make git-push-libs
+	-rm -rdf ./lib/newerror ./includes/lib_includes/newerror
+	-mkdir ./lib/newerror
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newerror/* ./lib/newerror
+	-mkdir ./includes/lib_includes/newerror
+	cp -rf lib/newerror/includes/* ./includes/lib_includes/newerror
+	-make git-push-libs
 
 setup-import-llist:
-	-@rm -rdf ./lib/llist ./includes/lib_includes/llist
-	-@mkdir ./lib/llist
-	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
-	-@mkdir ./includes/lib_includes/llist
-	@cp -rf lib/llist/includes/* ./includes/lib_includes/llist
-	-@make git-push-libs
+	-rm -rdf ./lib/llist ./includes/lib_includes/llist
+	-mkdir ./lib/llist
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
+	-mkdir ./includes/lib_includes/llist
+	cp -rf lib/llist/includes/* ./includes/lib_includes/llist
+	-make git-push-libs
 
 setup-import-newcsfml:
-	-@rm -rdf ./lib/newcsfml ./includes/lib_includes/newcsfml
-	-@mkdir ./lib/newcsfml
-	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
-	-@mkdir ./includes/lib_includes/newcsfml
-	@cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml
-	-@make git-push-libs
+	-rm -rdf ./lib/newcsfml ./includes/lib_includes/newcsfml
+	-mkdir ./lib/newcsfml
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
+	-mkdir ./includes/lib_includes/newcsfml
+	cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml
+	-make git-push-libs
 
 setup-import-print:
-	-@rm -rdf ./lib/print ./includes/lib_includes/print
-	-@mkdir ./lib/print
-	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/print/* ./lib/print
-	-@mkdir ./includes/lib_includes/print
-	@cp -rf lib/print/includes/* ./includes/lib_includes/print
-	-@make git-push-libs
+	-rm -rdf ./lib/print ./includes/lib_includes/print
+	-mkdir ./lib/print
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/print/* ./lib/print
+	-mkdir ./includes/lib_includes/print
+	cp -rf lib/print/includes/* ./includes/lib_includes/print
+	-make git-push-libs
 
 setup-import-str:
-	-@rm -rdf ./lib/str ./includes/lib_includes/str
-	-@mkdir ./lib/str
-	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
-	-@mkdir ./includes/lib_includes/str
-	@cp -rf lib/str/includes/* ./includes/lib_includes/str
-	-@make git-push-libs
+	-rm -rdf ./lib/str ./includes/lib_includes/str
+	-mkdir ./lib/str
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
+	-mkdir ./includes/lib_includes/str
+	cp -rf lib/str/includes/* ./includes/lib_includes/str
+	-make git-push-libs
 
 setup-import-twodlist:
-	-@rm -rdf ./lib/twodlist ./includes/lib_includes/twodlist
-	-@mkdir ./lib/twodlist
-	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
-	-@mkdir ./includes/lib_includes/twodlist
-	@cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist
-	-@make git-push-libs
+	-rm -rdf ./lib/twodlist ./includes/lib_includes/twodlist
+	-mkdir ./lib/twodlist
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
+	-mkdir ./includes/lib_includes/twodlist
+	cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist
+	-make git-push-libs
 
 setup-import-file:
-	-@rm -rdf ./lib/file ./includes/lib_includes/file
-	-@mkdir ./lib/file
-	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/file/* ./lib/file
-	-@mkdir ./includes/lib_includes/file
-	@cp -rf lib/file/includes/* ./includes/lib_includes/file
-	-@make git-push-libs
+	-rm -rdf ./lib/file ./includes/lib_includes/file
+	-mkdir ./lib/file
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/file/* ./lib/file
+	-mkdir ./includes/lib_includes/file
+	cp -rf lib/file/includes/* ./includes/lib_includes/file
+	-make git-push-libs
 
 setup-import-utils:
-	-@rm -rdf ./lib/utils ./includes/lib_includes/utils
-	-@mkdir ./lib/utils
-	@cp -rf $(EPITECH_BASE_PATH)/build_files/lib/utils/* ./lib/utils
-	-@mkdir ./includes/lib_includes/utils
-	@cp -rf lib/utils/includes/* ./includes/lib_includes/utils
-	-@make git-push-libs
+	-rm -rdf ./lib/utils ./includes/lib_includes/utils
+	-mkdir ./lib/utils
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/utils/* ./lib/utils
+	-mkdir ./includes/lib_includes/utils
+	cp -rf lib/utils/includes/* ./includes/lib_includes/utils
+	-make git-push-libs
 
 setup-import-all:
-	@make \
+	make \
 	setup-import-newerror \
 	setup-import-llist \
 	setup-import-newcsfml \
