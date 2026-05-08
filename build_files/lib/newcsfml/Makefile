@@ -21,74 +21,132 @@
 ## It is a custom implementation layer built on top of CSFML.
 ##
 
-##########
-## info ##
-##########
+
+###############################################################################
+# META
+###############################################################################
+
 info_NAME	=	newcsfml
 info_VERSION	=	v0.2.3
-info_LAST_UPDATE	=	2026/05/05 13:38
+info_LAST_UPDATE	=	2026/05/08 18h
 info_LIB_MAKER	=	Makefile
 
 
-#########
-## VAR ##
-#########
-# Paths #
-SRC_PATH        = sources
-INCLUDE_PATH    = includes
+###############################################################################
+# CONFIG
+###############################################################################
 
-# Sources #
-SRC     = $(shell find $(SRC_PATH) -type f -name "*.c")
-SRC_OBJ = $(SRC:.c=.o)
-
-# Includes #
-INCLUDES = $(shell find $(INCLUDE_PATH) -type d -printf '-I%p ')
-
-# Lib #
-LIB_CREATOR	=	ar rc
-LIB_NAME	=	lib$(info_NAME)
-
-# Compilation #
 CC	=	clang
-CFLAGS	=	 \
-	-Wall \
-	-Wextra
-CPPFLAGS	=	$(INCLUDES)
 
-#################
-## BASIC RULES ##
-#################
+DEBUG	?=	false
+
+CFLAGS_BASE	=	-Wall -Wextra -Werror -MMD -MP
+CFLAGS_DEBUG	=	-g3 -O0
+CFLAGS_RELEASE	=	-O3 -march=native
+
+ifeq ($(DEBUG), true)
+CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_DEBUG)
+else
+CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_RELEASE)
+endif
+
+CPPFLAGS	=	-Iincludes
+
+
+###############################################################################
+# PATHS
+###############################################################################
+
+SRC_PATH	=	sources
+INC_PATH	=	includes
+
+
+###############################################################################
+# SOURCES
+###############################################################################
+
+SRC	=	$(sort $(shell [ -d "$(SRC_PATH)" ] && find $(SRC_PATH) -type f -name "*.c"))
+OBJ	=	$(SRC:.c=.o)
+
+
+###############################################################################
+# OUTPUT
+###############################################################################
+
+LIB_NAME	=	lib$(info_NAME).a
+AR	=	ar rc
+RANLIB	=	ranlib
+
+
+###############################################################################
+# RULES
+###############################################################################
+
 all:	$(LIB_NAME)
 
-$(LIB_NAME):	$(SRC_OBJ)
-	$(LIB_CREATOR) $(LIB_NAME).a $(SRC_OBJ)
-	ranlib $(LIB_NAME).a
 
+# -----------------------------------------------------------------------------
+# ARCHIVE BUILD
+# -----------------------------------------------------------------------------
+$(LIB_NAME):	$(OBJ)
+	$(AR) $@ $^
+	$(RANLIB) $@
+
+
+# -----------------------------------------------------------------------------
+# CLEAN RULES
+# -----------------------------------------------------------------------------
 clean:
-	@rm -f $(SRC_OBJ)
+	@rm -f $(OBJ)
+	@rm -f $(DEP)
 
 fclean:	clean
-	@rm -f $(LIB_NAME).a
+	@rm -f $(LIB_NAME)
 
 re:	fclean all
 
+
+###############################################################################
+# DEBUG HELPERS
+###############################################################################
+
 show_info:
-	@printf "\033[4minfo_NAME\033[0m : "; echo $(info_NAME)
-	@printf "\033[4minfo_VERSION\033[0m : "; echo $(info_VERSION)
-	@printf "\033[4minfo_LAST_UPDATE\033[0m : "; echo $(info_LAST_UPDATE)
-	@printf "\033[4minfo_LIB_MAKER\033[0m : "; echo $(info_LIB_MAKER)
+	@echo "NAME: $(info_NAME)"
+	@echo "VERSION: $(info_VERSION)"
+	@echo "LAST UPDATE: $(info_LAST_UPDATE)"
+	@echo "LIB MAKER: $(info_LIB_MAKER)"
 
 show_var:
-	@printf "\033[4mSRC_PATH\033[0m : "; echo $(SRC_PATH)
-	@printf "\033[4mSRC\033[0m : "; echo $(SRC)
-	@printf "\033[4mSRC_OBJ\033[0m : "; echo $(SRC_OBJ)
-	@printf "\033[4mLIB_CREATOR\033[0m : "; echo $(LIB_CREATOR)
-	@printf "\033[4mLIB_NAME\033[0m : "; echo $(LIB_NAME)
+	@echo "SRC: $(SRC)"
+	@echo "OBJ: $(OBJ)"
+	@echo "LIB: $(LIB_NAME)"
 
-.PHONY:	\
-	all \
-	clean \
-	fclean \
-	re \
-	show_info \
-	show_var
+
+###############################################################################
+# SAFETY / PHONY
+###############################################################################
+.PHONY:	all clean fclean re show_info show_var
+
+-include $(SRC_OBJ:.o=.d) $(MAIN_OBJ:.o=.d) $(TEST_OBJ:.o=.d)
+##
+## EPITECH PROJECT, 2025
+## NCSFML - New C Simple Fast Multimedia Library
+## File description:
+## •
+## NSFML is a lightweight wrapper over CSFML that simplifies usage
+## while reducing low-level flexibility for easier game development.
+## •
+## Version: ncsfml-v0.2.3
+## Author: Jarjarbin06
+## License: GPL v3
+## •
+## This library is inspired by SFML/CSFML and is designed for
+## educational and game-development purposes.
+## •
+## It provides higher-level abstractions over CSFML to reduce
+## boilerplate code and enforce safer usage patterns.
+## •
+## WARNING:
+## This is NOT the original SFML/CSFML library.
+## It is a custom implementation layer built on top of CSFML.
+##

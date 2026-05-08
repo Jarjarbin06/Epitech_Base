@@ -1,8 +1,8 @@
 ##
 ## EPITECH PROJECT, 2025
-## Makefile
+## Main - Makefile
 ## File description:
-## <description>
+## Generic repo build system
 ##
 
 
@@ -12,8 +12,8 @@
 # Project metadata and build configuration reference.
 ###############################################################################
 info_NAME	=	Epitech Base
-info_VERSION	=	v1.0.2
-info_LAST_UPDATE	=	2026/05/06 22:30
+info_VERSION	=	v1.0.3
+info_LAST_UPDATE	=	2026/05/08 18h
 info_LIB_MAKER	=	Makefile
 
 
@@ -30,7 +30,7 @@ info_LIB_MAKER	=	Makefile
 EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/Epitech_Base
 ALLOW_UNBUILD	=	false
 ALLOW_AUTO_PUSH	=	true
-DEBUG	=	false
+DEBUG	?=	false
 HAS_CSFML	=	false
 
 # -----------------------------------------------------------------------------
@@ -111,15 +111,15 @@ CPPFLAGS	=	$(INCLUDES)
 CFLAGS_PLUS	=	-L./$(LIB_PATH) $(LIB_FLAGS)
 
 
-ifeq ($(HAS_CSFML),)
-CFLAGS_PLUS	+=
-else
+ifeq ($(HAS_CSFML), true)
 CFLAGS_PLUS	+=	\
 	-lcsfml-graphics \
 	-lcsfml-window \
 	-lcsfml-system \
 	-lcsfml-audio \
 	-lm
+else
+CFLAGS_PLUS	+=
 endif
 
 CFLAGS_PLUS	+=	$(LDFLAGS_EXTRA)
@@ -158,11 +158,11 @@ $(CNAME):	$(SRC_OBJ) $(MAIN_OBJ)
 clean:	lib-clean
 	@$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.o"))
 	@$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.d"))
-	@$(RM) *.out */*.out */*/*.out
-	@$(RM) *.pch */*.pch */*/*.pch
-	@$(RM) *.gc* */*.gc* */*/*.gc*
-	@$(RM) *~* */*~* */*/*~*
-	@$(RM) *# */*# */*/*#
+	@$(RM) $(sort $(shell find "." -type f -name "*.out"))
+	@$(RM) $(sort $(shell find "." -type f -name "*.pch"))
+	@$(RM) $(sort $(shell find "." -type f -name "*.gc*"))
+	@$(RM) $(sort $(shell find "." -type f -name "*~*"))
+	@$(RM) $(sort $(shell find "." -type f -name "#*#"))
 
 # -----------------------------------------------------------------------------
 # FULL CLEAN
@@ -171,7 +171,7 @@ fclean:	lib-fclean clean
 	@$(RM) $(CNAME)
 	@$(RM) $(TESTCNAME)
 	@$(RM) $(TESTSEGCNAME)
-	@$(RM) lib/*.a
+	@$(RM) $(sort $(shell find "$(LIB_PATH)" -type f -name "*.a"))
 
 # -----------------------------------------------------------------------------
 # REBUILD
@@ -202,7 +202,7 @@ debug-asan:
 # -----------------------------------------------------------------------------
 lib-build:
 	@for lib in $(LIBS_LIST); do \
-		$(MAKE) --no-print-directory -C lib/$$lib CC=$(CC) CFLAGS="$(CFLAGS)"; \
+		$(MAKE) --no-print-directory -C lib/$$lib CC=$(CC) DEBUG="$(DEBUG)"; \
 	done
 	@cp -f lib/*/*.a lib/ 2>/dev/null || true
 	@for lib in $(LIBS_LIST); do \
@@ -255,7 +255,7 @@ test-style:
 # UNIT TESTS
 # -----------------------------------------------------------------------------
 test-build: lib-build $(TEST_OBJ) $(SRC_OBJ)
-	$(CC) $(TEST_CFLAGS) $(CPPFLAGS) -o $(TESTCNAME) $(TEST_OBJ) $(SRC_OBJ) $(CFLAGS_PLUS) $(TEST_CFLAGS)
+	$(CC) $(TEST_CFLAGS) $(CPPFLAGS) -o $(TESTCNAME) $(TEST_OBJ) $(SRC_OBJ) $(CFLAGS_PLUS)
 
 # -----------------------------------------------------------------------------
 # UNIT TESTS RUNNING
