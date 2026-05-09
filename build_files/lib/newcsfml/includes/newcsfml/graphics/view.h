@@ -21,11 +21,11 @@
 ** It is a custom implementation layer built on top of CSFML.
 */
 
-#ifndef NEWCSFML_CLOCK_H
-    #define NEWCSFML_CLOCK_H
+#ifndef NEWCSFML_VIEW_H
+    #define NEWCSFML_VIEW_H
 
-    #include <SFML/System/Time.h>
-    #include <SFML/System/Clock.h>
+    #include <SFML/Graphics/View.h>
+    #include <SFML/System/Vector2.h>
     #include <stdbool.h>
     #include <stddef.h>
 
@@ -43,30 +43,24 @@
     #endif
 
 /// TMP ///
-typedef const char *nsf_cstr_t;
 typedef struct nsf_game_s nsf_game_t;
+typedef sfVector2f nsf_fvector_t;
 
 /// TYPEDEFS ///
-typedef struct nsf_clock_s {
-    sfClock *clock;
-    float last;
-    float delta;
-    float accumulator;
-    nsf_cstr_t name;
-} nsf_clock_t;
+typedef struct nsf_view_s {
+    sfView *view;
+    nsf_fvector_t center;
+    nsf_fvector_t size;
+    float rotation;
+} nsf_view_t;
 
 /// PROTOTYPES ///
 // STRUCT //
-nsf_clock_t *nsf_clock_create(const char name[], nsf_game_t *game);
-int nsf_clock_destroy(nsf_clock_t **clock, nsf_game_t *game);
+nsf_view_t *nsf_view_create(nsf_game_t *game);
+int nsf_view_destroy(nsf_view_t **view, nsf_game_t *game);
 
 // MANAGE //
-float nsf_clock_restart(const nsf_clock_t *clock);
-float nsf_clock_get_elapsed(const nsf_clock_t *clock);
-float nsf_clock_get_delta(const nsf_clock_t *clock);
-void nsf_clock_update(nsf_clock_t *clock);
-void nsf_clock_reset(nsf_clock_t *clock);
-bool nsf_clock_is_new_loop(nsf_clock_t *clock, float seconds);
-void nsf_clock_set_new_loop(nsf_clock_t *clock, float seconds);
+void nsf_view_set_center(nsf_view_t *view, const nsf_fvector_t *center);
+void nsf_view_set_size(nsf_view_t *view, const nsf_fvector_t *size);
 
 #endif

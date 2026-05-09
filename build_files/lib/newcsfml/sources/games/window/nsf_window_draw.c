@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.4
+** Version: ncsfml-v0.2.5
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -30,6 +30,7 @@
 #include "newcsfml/graphics/particle.h"
 #include "newcsfml/graphics/text.h"
 #include "newcsfml/graphics/sprite.h"
+#include "newcsfml/graphics/view.h"
 #include "newcsfml/systems/utils.h"
 
 void nsf_window_fill(const nsf_window_t *window, const nsf_color_t color[])
@@ -99,13 +100,32 @@ int nsf_window_draw_points(const nsf_window_t *window, const size_t len,
     return EXIT_SUCCESS;
 }
 
+static bool is_ui(const nsf_elements_t *element)
+{
+    STR_ELEMENT_UI_PREFIX;
+    for (size_t idx = 0; element->name[idx] != '\0' &&
+        STR_ELEMENT_UI_PREFIX[idx] != '\0'; idx++)
+        if (element->name[idx] != STR_ELEMENT_UI_PREFIX[idx])
+            return false;
+    return true;
+}
+
 static void draw_sprites(const nsf_window_t *window)
 {
     const nsf_elements_t *element = NULL;
 
+    if (NSF_UNLIKELY(!window || !window->elements.elements))
+        return;
+    nsf_window_set_view(window, window->element_view);
     for (size_t idx = 0; idx < window->elements.amount; idx++) {
         element = window->elements.elements[idx];
-        if (element->element_type == NSF_SPRITE_ELEMENT)
+        if (element->element_type == NSF_SPRITE_ELEMENT && !is_ui(element))
+            nsf_sprite_draw((nsf_sprite_t *)(element->ptr), window);
+    }
+    nsf_window_set_view(window, window->ui_view);
+    for (size_t idx = 0; idx < window->elements.amount; idx++) {
+        element = window->elements.elements[idx];
+        if (element->element_type == NSF_SPRITE_ELEMENT && is_ui(element))
             nsf_sprite_draw((nsf_sprite_t *)(element->ptr), window);
     }
 }
@@ -114,9 +134,18 @@ static void draw_particles(const nsf_window_t *window)
 {
     const nsf_elements_t *element = NULL;
 
+    if (NSF_UNLIKELY(!window || !window->elements.elements))
+        return;
+    nsf_window_set_view(window, window->element_view);
     for (size_t idx = 0; idx < window->elements.amount; idx++) {
         element = window->elements.elements[idx];
-        if (element->element_type == NSF_PARTICLE_ELEMENT)
+        if (element->element_type == NSF_PARTICLE_ELEMENT && !is_ui(element))
+            nsf_particle_draw((nsf_particle_t *)(element->ptr), window);
+    }
+    nsf_window_set_view(window, window->ui_view);
+    for (size_t idx = 0; idx < window->elements.amount; idx++) {
+        element = window->elements.elements[idx];
+        if (element->element_type == NSF_PARTICLE_ELEMENT && is_ui(element))
             nsf_particle_draw((nsf_particle_t *)(element->ptr), window);
     }
 }
@@ -125,9 +154,18 @@ static void draw_button(const nsf_window_t *window)
 {
     const nsf_elements_t *element = NULL;
 
+    if (NSF_UNLIKELY(!window || !window->elements.elements))
+        return;
+    nsf_window_set_view(window, window->element_view);
     for (size_t idx = 0; idx < window->elements.amount; idx++) {
         element = window->elements.elements[idx];
-        if (element->element_type == NSF_BUTTON_ELEMENT)
+        if (element->element_type == NSF_BUTTON_ELEMENT && !is_ui(element))
+            nsf_button_draw((nsf_button_t *)(element->ptr), window);
+    }
+    nsf_window_set_view(window, window->ui_view);
+    for (size_t idx = 0; idx < window->elements.amount; idx++) {
+        element = window->elements.elements[idx];
+        if (element->element_type == NSF_BUTTON_ELEMENT && is_ui(element))
             nsf_button_draw((nsf_button_t *)(element->ptr), window);
     }
 }
@@ -136,9 +174,18 @@ static void draw_text(const nsf_window_t *window)
 {
     const nsf_elements_t *element = NULL;
 
+    if (NSF_UNLIKELY(!window || !window->elements.elements))
+        return;
+    nsf_window_set_view(window, window->element_view);
     for (size_t idx = 0; idx < window->elements.amount; idx++) {
         element = window->elements.elements[idx];
-        if (element->element_type == NSF_TEXT_ELEMENT)
+        if (element->element_type == NSF_TEXT_ELEMENT && !is_ui(element))
+            nsf_text_draw((nsf_text_t *)(element->ptr), window);
+    }
+    nsf_window_set_view(window, window->ui_view);
+    for (size_t idx = 0; idx < window->elements.amount; idx++) {
+        element = window->elements.elements[idx];
+        if (element->element_type == NSF_TEXT_ELEMENT && is_ui(element))
             nsf_text_draw((nsf_text_t *)(element->ptr), window);
     }
 }

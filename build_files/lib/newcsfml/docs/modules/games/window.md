@@ -20,11 +20,14 @@ It handles window lifecycle, drawable elements, input events, and audio/sprite i
 ## 🔹 Structure
 
 ```c
-typedef struct {
+typedef struct nsf_window_s {
     nsf_window_settings_t *settings;
     sfRenderWindow *window;
     nsf_background_t *background;
+    nsf_view_t *element_view;
+    nsf_view_t *ui_view;
     nsf_element_list_t elements;
+    nsf_window_style_t style;
     nsf_cstr_t title;
 } nsf_window_t;
 ```
@@ -54,14 +57,17 @@ Central abstraction for rendering and input handling.
 
 ## 🔹 Dependencies
 
-| Module                | Usage                                        |
-|-----------------------|----------------------------------------------|
-| `nsf_game`            | Allocation tracking and lifecycle management |
-| `nsf_sprite`          | Drawable sprite elements                     |
-| `nsf_button`          | UI interaction elements                      |
-| `nsf_sound`           | Audio playback system                        |
-| `nsf_background`      | Background rendering                         |
-| `nsf_window_settings` | Window configuration                         |
+| Module                | Usage                                                    |
+|-----------------------|----------------------------------------------------------|
+| `nsf_game`            | Allocation tracking and lifecycle management             |
+| `nsf_sprite`          | Drawable sprite elements                                 |
+| `nsf_button`          | UI interaction elements                                  |
+| `nsf_text`            | Drawable text                                            |
+| `nsf_particle`        | Particle system with lifetime and custom update function |
+| `nsf_view`            | Window view management                                   |
+| `nsf_sound`           | Audio playback system                                    |
+| `nsf_background`      | Background rendering                                     |
+| `nsf_window_settings` | Window configuration                                     |
 
 ---
 
@@ -86,6 +92,7 @@ Central abstraction for rendering and input handling.
 | `nsf_window_get_event(...)`       | Poll SFML events                |
 | `nsf_window_update_settings(...)` | Sync runtime size into settings |
 | `nsf_window_get_mouse(...)`       | Get mouse position              |
+| `nsf_window_set_view(...)`        | Set a new view to the window    |
 
 ---
 

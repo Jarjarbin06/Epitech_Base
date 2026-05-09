@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.4
+** Version: ncsfml-v0.2.5
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -23,6 +23,7 @@
 
 #include "newcsfml/graphics/background.h"
 #include "newcsfml/games/window.h"
+#include "newcsfml/graphics/view.h"
 #include "newcsfml/systems/utils.h"
 
 void nsf_window_set_background(nsf_window_t *window,
@@ -38,4 +39,11 @@ const nsf_background_t *nsf_window_get_background(const nsf_window_t *window)
     if (NSF_UNLIKELY(!window))
         return NULL;
     return window->background;
+}
+
+void nsf_window_set_view(const nsf_window_t *window, nsf_view_t *view)
+{
+    if (NSF_UNLIKELY(!window || !view))
+        return;
+    sfRenderWindow_setView(window->window, view->view);
 }

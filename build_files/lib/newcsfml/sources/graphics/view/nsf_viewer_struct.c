@@ -21,19 +21,35 @@
 ** It is a custom implementation layer built on top of CSFML.
 */
 
-#include "newcsfml/games/window.h"
 #include "newcsfml/games/game.h"
-#include "newcsfml/systems/clock.h"
+#include "newcsfml/graphics/view.h"
+#include "newcsfml/systems/other.h"
 #include "newcsfml/systems/utils.h"
 
-int nsf_game_update(const nsf_game_t *game)
+nsf_view_t *nsf_view_create(nsf_game_t *game)
 {
-    if (NSF_UNLIKELY(!game || !game->window))
+    nsf_view_t *new_view = malloc_any(sizeof(nsf_view_t));
+    sfView *sf_view = sfView_create();
+
+    if (NSF_UNLIKELY(!new_view || !sf_view))
+        return NULL;
+    new_view->view = sf_view;
+    new_view->center = (nsf_fvector_t){0.0f, 0.0f};
+    new_view->size = (nsf_fvector_t){0.0f, 0.0f};
+    new_view->rotation = 0.0f;
+    if (game)
+        game->allocations++;
+    return new_view;
+}
+
+int nsf_view_destroy(nsf_view_t **view, nsf_game_t *game)
+{
+    if (NSF_UNLIKELY(!view || !*view))
         return EXIT_ERROR;
-    nsf_window_update_settings(game->window);
-    if (game->clock)
-        nsf_clock_update(game->clock);
-    if (game->real_fps.clock)
-        nsf_clock_update(game->real_fps.clock);
+    if (NSF_LIKELY((*view)->view))
+        sfView_destroy((*view)->view);
+    *view = free_any(*view);
+    if (game)
+        game->allocations--;
     return EXIT_SUCCESS;
 }

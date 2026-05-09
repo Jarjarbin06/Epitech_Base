@@ -21,12 +21,23 @@
 ** It is a custom implementation layer built on top of CSFML.
 */
 
-#ifndef NEWCSFML
-    #define NEWCSFML
+#include "newcsfml/systems/other.h"
+#include "newcsfml/systems/utils.h"
+#include "newcsfml/graphics/view.h"
+#include "newcsfml/systems/vector.h"
 
-    #include "newcsfml/audios.h"
-    #include "newcsfml/games.h"
-    #include "newcsfml/graphics.h"
-    #include "newcsfml/systems.h"
+void nsf_view_set_center(nsf_view_t *view, const nsf_fvector_t *center)
+{
+    if (NSF_UNLIKELY(!view || !center))
+        return;
+    nsf_fvector_copy(center, &view->center);
+    sfView_setCenter(view->view, view->center);
+}
 
-#endif
+void nsf_view_set_size(nsf_view_t *view, const nsf_fvector_t *size)
+{
+    if (NSF_UNLIKELY(!view))
+        return;
+    nsf_fvector_copy(size, &view->size);
+    sfView_setSize(view->view, view->size);
+}

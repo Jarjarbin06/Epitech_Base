@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.4
+** Version: ncsfml-v0.2.5
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -43,6 +43,8 @@
         #endif
 
     #endif
+/// MACRO ///
+#define STR_ELEMENT_UI_PREFIX "[UI]"
 
 /// TMP ///
 typedef const char *nsf_cstr_t;
@@ -59,6 +61,7 @@ typedef struct nsf_sprite_s nsf_sprite_t;
 typedef struct nsf_button_s nsf_button_t;
 typedef struct nsf_sound_s nsf_sound_t;
 typedef struct nsf_text_s nsf_text_t;
+typedef struct nsf_view_s nsf_view_t;
 typedef struct nsf_particle_s nsf_particle_t;
 
 /// TYPEDEFS ///
@@ -84,14 +87,6 @@ typedef struct {
     nsf_uint_t size;
 } nsf_element_list_t;
 
-typedef struct nsf_window_s {
-    nsf_window_settings_t *settings;
-    sfRenderWindow *window;
-    nsf_background_t *background;
-    nsf_element_list_t elements;
-    nsf_cstr_t title;
-} nsf_window_t;
-
 typedef enum {
     NSF_WDW_UNKNOWN = -1,
     NSF_WDW_NONE = 0,
@@ -101,6 +96,17 @@ typedef enum {
     NSF_WDW_FULLSCREEN = 1 << 3,
     NSF_WDW_DEFAULT_STYLE = NSF_WDW_TITLEBAR | NSF_WDW_RESIZE | NSF_WDW_CLOSE
 } nsf_window_style_t;
+
+typedef struct nsf_window_s {
+    nsf_window_settings_t *settings;
+    sfRenderWindow *window;
+    nsf_background_t *background;
+    nsf_view_t *element_view;
+    nsf_view_t *ui_view;
+    nsf_element_list_t elements;
+    nsf_window_style_t style;
+    nsf_cstr_t title;
+} nsf_window_t;
 
 /// PROTOTYPES ///
 // STRUCT //
@@ -136,6 +142,7 @@ nsf_particle_t *nsf_window_get_particle(const nsf_window_t *window,
 void nsf_window_set_background(nsf_window_t *window,
     nsf_background_t *background);
 const nsf_background_t *nsf_window_get_background(const nsf_window_t *window);
+void nsf_window_set_view(const nsf_window_t *window, nsf_view_t *view);
 int nsf_window_play_sound(const nsf_window_t *window, const char sound_name[]);
 int nsf_window_pause_sound(const nsf_window_t *window, const char sound_name[]);
 int nsf_window_stop_sound(const nsf_window_t *window, const char sound_name[]);

@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.4
+** Version: ncsfml-v0.2.5
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -31,8 +31,10 @@
 #include "newcsfml/games/window_settings.h"
 #include "newcsfml/systems/other.h"
 #include "newcsfml/systems/utils.h"
+#include "newcsfml/systems/vector.h"
 #include "newcsfml/games/window.h"
 #include "newcsfml/graphics/text.h"
+#include "newcsfml/graphics/view.h"
 
 static sfRenderWindow *get_new_window(const nsf_window_settings_t settings[],
     const cstr_t *title_str, const nsf_window_style_t window_style)
@@ -55,12 +57,46 @@ static nsf_elements_t **create_elements(nsf_game_t *game)
     return elements;
 }
 
+static void init_views(nsf_window_t *new_window, nsf_game_t *game)
+{
+    nsf_fvector_t tmp1 = {};
+    nsf_fvector_t tmp2 = {};
+
+    if (NSF_UNLIKELY(!new_window))
+        return;
+    tmp1 = (nsf_fvector_t){
+        (float)new_window->settings->width,
+        (float)new_window->settings->height
+    };
+    nsf_vector_div(&tmp1, 2.0f, &tmp2);
+    new_window->element_view = nsf_view_create(game);
+    nsf_view_set_center(new_window->element_view, &tmp2);
+    nsf_view_set_size(new_window->element_view, &tmp1);
+    new_window->ui_view = nsf_view_create(game);
+    nsf_view_set_center(new_window->ui_view, &tmp2);
+    nsf_view_set_size(new_window->ui_view, &tmp1);
+}
+
+static void init_values(nsf_window_t *new_window, nsf_game_t *game)
+{
+    new_window->elements.amount = 0;
+    new_window->elements.size = 1;
+    new_window->background = NULL;
+    init_views(new_window, game);
+    if (NSF_UNLIKELY(!new_window->element_view || !new_window->ui_view)) {
+        if (NSF_LIKELY(new_window->element_view))
+            nsf_view_destroy(&new_window->element_view, game);
+        if (NSF_LIKELY(new_window->ui_view))
+            nsf_view_destroy(&new_window->ui_view, game);
+    }
+}
+
 nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
     const char title[], const nsf_window_style_t window_style,
     nsf_game_t *game)
 {
     nsf_window_t *new_window = malloc_any(sizeof(nsf_window_t));
-    const nsf_cstr_t title_str = str_dup((const char *const)title);
+    const nsf_cstr_t title_str = str_dup(title);
     nsf_window_settings_t *new_settings = nsf_window_settings_create(settings,
         game);
     sfRenderWindow *sf_window = get_new_window(settings, &title_str,
@@ -73,10 +109,8 @@ nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
     new_window->window = sf_window;
     new_window->title = title_str;
     new_window->elements.elements = elements;
-    new_window->elements.amount = 0;
-    new_window->elements.size = 1;
-    new_window->background = NULL;
     new_window->settings = new_settings;
+    init_values(new_window, game);
     if (game)
         game->allocations += 2;
     return new_window;
