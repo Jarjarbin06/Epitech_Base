@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.3
+** Version: ncsfml-v0.2.4
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -55,6 +55,8 @@ int nsf_game_destroy(nsf_game_t **game)
         nsf_window_destroy(&(*game)->window, *game);
     if (NSF_LIKELY((*game)->music))
         nsf_music_destroy(&(*game)->music, *game);
+    if (NSF_LIKELY((*game)->clock))
+        nsf_clock_destroy(&(*game)->clock, *game);
     if (NSF_LIKELY((*game)->real_fps.clock))
         nsf_clock_destroy(&(*game)->real_fps.clock, *game);
     *game = free_any(*game);
