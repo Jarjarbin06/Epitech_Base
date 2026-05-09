@@ -94,6 +94,8 @@ static void destroy_element(nsf_elements_t *element, nsf_game_t *game)
         nsf_sound_destroy((nsf_sound_t **)&(element->ptr), game);
     if (element->element_type == NSF_TEXT_ELEMENT)
         nsf_text_destroy((nsf_text_t **)&(element->ptr), game);
+    if (element->name)
+        free_any((void *)element->name);
     free_any(element);
     if (game)
         game->allocations--;

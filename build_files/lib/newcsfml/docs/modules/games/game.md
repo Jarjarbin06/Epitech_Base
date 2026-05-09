@@ -106,12 +106,13 @@ It abstracts the concept of a "game instance" over CSFML by adding:
 
 ### Graphics Management
 
-| Function                   | Description     |
-|----------------------------|-----------------|
-| `nsf_game_add_sprite(...)` | Register sprite |
-| `nsf_game_add_button(...)` | Register button |
-| `nsf_game_add_text(...)`   | Register text   |
-| `nsf_game_add_sound(...)`  | Register sound  |
+| Function                     | Description       |
+|------------------------------|-------------------|
+| `nsf_game_add_sprite(...)`   | Register sprite   |
+| `nsf_game_add_button(...)`   | Register button   |
+| `nsf_game_add_text(...)`     | Register text     |
+| `nsf_game_add_sound(...)`    | Register sound    |
+| `nsf_game_add_particle(...)` | Register particle |
 
 ---
 
@@ -141,12 +142,13 @@ It abstracts the concept of a "game instance" over CSFML by adding:
 
 ### Resource Access
 
-| Function                   | Description     |
-|----------------------------|-----------------|
-| `nsf_game_get_sprite(...)` | Retrieve sprite |
-| `nsf_game_get_button(...)` | Retrieve button |
-| `nsf_game_get_sound(...)`  | Retrieve sound  |
-| `nsf_game_get_text(...)`   | Retrieve text   |
+| Function                     | Description       |
+|------------------------------|-------------------|
+| `nsf_game_get_sprite(...)`   | Retrieve sprite   |
+| `nsf_game_get_button(...)`   | Retrieve button   |
+| `nsf_game_get_text(...)`     | Retrieve text     |
+| `nsf_game_get_sound(...)`    | Retrieve sound    |
+| `nsf_game_get_particle(...)` | Retrieve particle |
 
 ---
 

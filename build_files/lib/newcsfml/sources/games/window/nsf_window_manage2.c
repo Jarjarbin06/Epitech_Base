@@ -25,58 +25,64 @@
 #include "newcsfml/graphics/sprite.h"
 #include "newcsfml/graphics/button.h"
 #include "newcsfml/graphics/text.h"
+#include "newcsfml/graphics/particle.h"
 #include "newcsfml/audios/sound.h"
 #include "newcsfml/games/window.h"
 #include "newcsfml/systems/utils.h"
 
+static const void *get_element(const nsf_window_t *window,
+    const char name[], const nsf_element_type_t type)
+{
+    nsf_elements_t *current_element = NULL;
+
+    if (NSF_UNLIKELY(!window || !window->elements.elements || !name))
+        return NULL;
+    for (size_t idx = 0; idx < window->elements.amount; idx++) {
+        current_element = window->elements.elements[idx];
+        if (current_element->element_type == type &&
+            !str_cmp(current_element->name, name))
+            return current_element->ptr;
+    }
+    return NULL;
+}
+
 nsf_sprite_t *nsf_window_get_sprite(const nsf_window_t *window,
     const char sprite_name[])
 {
-    if (NSF_UNLIKELY(!window || !window->elements.elements || !sprite_name))
+    if (NSF_UNLIKELY(!window || !sprite_name))
         return NULL;
-    for (size_t idx = 0; idx < window->elements.amount; idx++)
-        if (window->elements.elements[idx]->element_type == NSF_SPRITE_ELEMENT &&
-            !str_cmp(((nsf_sprite_t *)window->elements.elements[idx]->ptr)->name,
-                sprite_name))
-            return (nsf_sprite_t *)window->elements.elements[idx]->ptr;
-    return NULL;
+    return (nsf_sprite_t *)get_element(window, sprite_name, NSF_SPRITE_ELEMENT);
 }
 
 nsf_button_t *nsf_window_get_button(const nsf_window_t *window,
     const char button_name[])
 {
-    if (NSF_UNLIKELY(!window || !window->elements.elements || !button_name))
+    if (NSF_UNLIKELY(!window || !button_name))
         return NULL;
-    for (size_t idx = 0; idx < window->elements.amount; idx++)
-        if (window->elements.elements[idx]->element_type == NSF_BUTTON_ELEMENT &&
-            !str_cmp(((nsf_button_t *)window->elements.elements[idx]->ptr)->name,
-                button_name))
-            return (nsf_button_t *)window->elements.elements[idx]->ptr;
-    return NULL;
+    return (nsf_button_t *)get_element(window, button_name, NSF_BUTTON_ELEMENT);
 }
 
 nsf_sound_t *nsf_window_get_sound(const nsf_window_t *window,
     const char sound_name[])
 {
-    if (NSF_UNLIKELY(!window || !window->elements.elements || !sound_name))
+    if (NSF_UNLIKELY(!window || !sound_name))
         return NULL;
-    for (size_t idx = 0; idx < window->elements.amount; idx++)
-        if (window->elements.elements[idx]->element_type == NSF_SOUND_ELEMENT &&
-            !str_cmp(((nsf_sound_t *)window->elements.elements[idx]->ptr)->name,
-                sound_name))
-            return (nsf_sound_t *)window->elements.elements[idx]->ptr;
-    return NULL;
+    return (nsf_sound_t *)get_element(window, sound_name, NSF_SOUND_ELEMENT);
 }
 
 nsf_text_t *nsf_window_get_text(const nsf_window_t *window,
     const char text_name[])
 {
-    if (NSF_UNLIKELY(!window || !window->elements.elements || !text_name))
+    if (NSF_UNLIKELY(!window || !text_name))
         return NULL;
-    for (size_t idx = 0; idx < window->elements.amount; idx++)
-        if (window->elements.elements[idx]->element_type == NSF_TEXT_ELEMENT &&
-            !str_cmp(((nsf_text_t *)window->elements.elements[idx]->ptr)->name,
-                text_name))
-            return (nsf_text_t *)window->elements.elements[idx]->ptr;
-    return NULL;
+    return (nsf_text_t *)get_element(window, text_name, NSF_TEXT_ELEMENT);
+}
+
+nsf_particle_t *nsf_window_get_particle(const nsf_window_t *window,
+    const char particle_name[])
+{
+    if (NSF_UNLIKELY(!window || !particle_name))
+        return NULL;
+    return (nsf_particle_t *)get_element(window, particle_name,
+        NSF_PARTICLE_ELEMENT);
 }

@@ -151,6 +151,7 @@ The sprite module provides a complete abstraction over CSFML sprites, managing b
 
 ## 🔹 Related Submodules
 
+* [`nsf_particle` 🔗](particle.md)
 * [`nsf_texture` 🔗](texture.md)
 * [`nsf_window` 🔗](../games/window.md)
 * [`nsf_background` 🔗](background.md)

@@ -53,10 +53,3 @@ bool nsf_game_get_event(const nsf_game_t *game, nsf_event_t *event)
         return false;
     return nsf_window_get_event(game->window, event);
 }
-
-void nsf_game_set_window(nsf_game_t *game, nsf_window_t *window)
-{
-    if (NSF_UNLIKELY(!game || !window))
-        return;
-    game->window = window;
-}

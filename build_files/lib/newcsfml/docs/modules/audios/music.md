@@ -71,13 +71,13 @@ It abstracts SFML `sfMusic` into a safer and more consistent framework API.
 
 ### Core Functions
 
-| Function                         | Description            |
-|----------------------------------|------------------------|
-| `nsf_music_play(music)`          | Start playback         |
-| `nsf_music_pause(music)`         | Pause playback         |
-| `nsf_music_stop(music)`          | Stop playback          |
-| `nsf_music_volume(music, vol)`   | Set volume (0–100)     |
-| `nsf_music_looping(music, bool)` | Enable/disable looping |
+| Function                             | Description            |
+|--------------------------------------|------------------------|
+| `nsf_music_play(music)`              | Start playback         |
+| `nsf_music_pause(music)`             | Pause playback         |
+| `nsf_music_stop(music)`              | Stop playback          |
+| `nsf_music_set_volume(music, vol)`   | Set volume (0–100)     |
+| `nsf_music_set_looping(music, bool)` | Enable/disable looping |
 
 ---
 

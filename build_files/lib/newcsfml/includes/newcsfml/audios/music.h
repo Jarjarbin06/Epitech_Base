@@ -63,8 +63,8 @@ int nsf_music_destroy(nsf_music_t **music, nsf_game_t *game);
 void nsf_music_play(const nsf_music_t *music);
 void nsf_music_pause(const nsf_music_t *music);
 void nsf_music_stop(const nsf_music_t *music);
-void nsf_music_looping(const nsf_music_t *music, bool looping);
-void nsf_music_volume(const nsf_music_t *music, float volume);
+void nsf_music_set_looping(const nsf_music_t *music, bool looping);
+void nsf_music_set_volume(const nsf_music_t *music, float volume);
 nsf_sound_status_t nsf_music_get_status(const nsf_music_t *music);
 
 #endif

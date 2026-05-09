@@ -27,6 +27,7 @@
 #include "newcsfml/games/window.h"
 #include "newcsfml/graphics/background.h"
 #include "newcsfml/graphics/button.h"
+#include "newcsfml/graphics/particle.h"
 #include "newcsfml/graphics/text.h"
 #include "newcsfml/graphics/sprite.h"
 #include "newcsfml/systems/utils.h"
@@ -98,22 +99,58 @@ int nsf_window_draw_points(const nsf_window_t *window, const size_t len,
     return EXIT_SUCCESS;
 }
 
+static void draw_sprites(const nsf_window_t *window)
+{
+    const nsf_elements_t *element = NULL;
+
+    for (size_t idx = 0; idx < window->elements.amount; idx++) {
+        element = window->elements.elements[idx];
+        if (element->element_type == NSF_SPRITE_ELEMENT)
+            nsf_sprite_draw((nsf_sprite_t *)(element->ptr), window);
+    }
+}
+
+static void draw_particles(const nsf_window_t *window)
+{
+    const nsf_elements_t *element = NULL;
+
+    for (size_t idx = 0; idx < window->elements.amount; idx++) {
+        element = window->elements.elements[idx];
+        if (element->element_type == NSF_PARTICLE_ELEMENT)
+            nsf_particle_draw((nsf_particle_t *)(element->ptr), window);
+    }
+}
+
+static void draw_button(const nsf_window_t *window)
+{
+    const nsf_elements_t *element = NULL;
+
+    for (size_t idx = 0; idx < window->elements.amount; idx++) {
+        element = window->elements.elements[idx];
+        if (element->element_type == NSF_BUTTON_ELEMENT)
+            nsf_button_draw((nsf_button_t *)(element->ptr), window);
+    }
+}
+
+static void draw_text(const nsf_window_t *window)
+{
+    const nsf_elements_t *element = NULL;
+
+    for (size_t idx = 0; idx < window->elements.amount; idx++) {
+        element = window->elements.elements[idx];
+        if (element->element_type == NSF_TEXT_ELEMENT)
+            nsf_text_draw((nsf_text_t *)(element->ptr), window);
+    }
+}
+
 void nsf_window_draw(const nsf_window_t *window)
 {
     if (NSF_UNLIKELY(!window || !window->elements.elements ||
         !window->background))
         return;
     nsf_background_draw(window->background, window);
-    for (size_t idx = 0; idx < window->elements.amount; idx++)
-        if (window->elements.elements[idx]->element_type == NSF_SPRITE_ELEMENT)
-            nsf_sprite_draw((nsf_sprite_t *)(
-                window->elements.elements[idx]->ptr), window);
-    for (size_t idx = 0; window->elements.elements[idx]; idx++)
-        if (window->elements.elements[idx]->element_type == NSF_BUTTON_ELEMENT)
-            nsf_button_draw((nsf_button_t *)(
-                window->elements.elements[idx]->ptr), window);
-    for (size_t idx = 0; window->elements.elements[idx]; idx++)
-        if (window->elements.elements[idx]->element_type == NSF_TEXT_ELEMENT)
-            nsf_text_draw((nsf_text_t *)(
-                window->elements.elements[idx]->ptr), window);
+    draw_sprites(window);
+    draw_particles(window);
+    draw_button(window);
+    draw_text(window);
 }

@@ -29,13 +29,6 @@
 #include "newcsfml/graphics/text.h"
 #include "newcsfml/systems/utils.h"
 
-nsf_window_t *nsf_game_get_window(const nsf_game_t *game)
-{
-    if (NSF_UNLIKELY(!game))
-        return NULL;
-    return game->window;
-}
-
 void nsf_game_add_sprite(nsf_game_t *game, nsf_sprite_t *sprite)
 {
     if (NSF_UNLIKELY(!game || !game->window || !sprite))
@@ -62,4 +55,11 @@ void nsf_game_add_text(nsf_game_t *game, nsf_text_t *text)
     if (NSF_UNLIKELY(!game || !game->window || !text))
         return;
     nsf_window_add_text(game->window, text, game);
+}
+
+void nsf_game_add_particle(nsf_game_t *game, nsf_particle_t *particle)
+{
+    if (NSF_UNLIKELY(!game || !game->window || !particle))
+        return;
+    nsf_window_add_particle(game->window, particle, game);
 }

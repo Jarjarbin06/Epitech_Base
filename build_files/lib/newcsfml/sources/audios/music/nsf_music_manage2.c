@@ -27,14 +27,14 @@
 #include "newcsfml/audios/sound.h"
 #include "newcsfml/systems/utils.h"
 
-void nsf_music_looping(const nsf_music_t *music, const bool looping)
+void nsf_music_set_looping(const nsf_music_t *music, const bool looping)
 {
     if (NSF_UNLIKELY(!music))
         return;
     sfMusic_setLoop(music->music, looping);
 }
 
-void nsf_music_volume(const nsf_music_t *music, const float volume)
+void nsf_music_set_volume(const nsf_music_t *music, const float volume)
 {
     if (NSF_UNLIKELY(!music))
         return;

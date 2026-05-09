@@ -53,6 +53,7 @@ typedef struct nsf_button_s nsf_button_t;
 typedef struct nsf_clock_s nsf_clock_t;
 typedef struct nsf_text_s nsf_text_t;
 typedef sfEvent nsf_event_t;
+typedef struct nsf_particle_s nsf_particle_t;
 
 /// TYPEDEFS ///
 typedef struct {
@@ -86,6 +87,7 @@ void nsf_game_add_sprite(nsf_game_t *game, nsf_sprite_t *sprite);
 void nsf_game_add_button(nsf_game_t *game, nsf_button_t *button);
 void nsf_game_add_sound(nsf_game_t *game, nsf_sound_t *sound);
 void nsf_game_add_text(nsf_game_t *game, nsf_text_t *text);
+void nsf_game_add_particle(nsf_game_t *game, nsf_particle_t *particle);
 nsf_sprite_t *nsf_game_get_sprite(const nsf_game_t *game,
     const char sprite_name[]);
 nsf_button_t *nsf_game_get_button(const nsf_game_t *game,
@@ -93,6 +95,8 @@ nsf_button_t *nsf_game_get_button(const nsf_game_t *game,
 nsf_sound_t *nsf_game_get_sound(const nsf_game_t *game,
     const char sound_name[]);
 nsf_text_t *nsf_game_get_text(const nsf_game_t *game, const char text_name[]);
+nsf_particle_t *nsf_game_get_particle(const nsf_game_t *game,
+    const char particle_name[]);
 void nsf_game_set_background(const nsf_game_t *game,
     nsf_background_t *background);
 const nsf_background_t *nsf_game_get_background(const nsf_game_t *game);

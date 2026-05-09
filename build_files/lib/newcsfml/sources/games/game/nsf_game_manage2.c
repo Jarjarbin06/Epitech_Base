@@ -27,6 +27,7 @@
 #include "newcsfml/graphics/sprite.h"
 #include "newcsfml/graphics/button.h"
 #include "newcsfml/graphics/text.h"
+#include "newcsfml/graphics/particle.h"
 #include "newcsfml/systems/utils.h"
 
 nsf_sprite_t *nsf_game_get_sprite(const nsf_game_t *game,
@@ -57,4 +58,12 @@ nsf_text_t *nsf_game_get_text(const nsf_game_t *game, const char text_name[])
     if (NSF_UNLIKELY(!game || !game->window || !text_name))
         return NULL;
     return nsf_window_get_text(game->window, text_name);
+}
+
+nsf_particle_t *nsf_game_get_particle(const nsf_game_t *game,
+    const char particle_name[])
+{
+    if (NSF_UNLIKELY(!game || !game->window || !particle_name))
+        return NULL;
+    return nsf_window_get_particle(game->window, particle_name);
 }

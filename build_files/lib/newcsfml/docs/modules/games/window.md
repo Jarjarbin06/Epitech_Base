@@ -91,14 +91,18 @@ Central abstraction for rendering and input handling.
 
 ### Element Management
 
-| Function                     | Description               |
-|------------------------------|---------------------------|
-| `nsf_window_add_sprite(...)` | Register sprite in window |
-| `nsf_window_add_button(...)` | Register button           |
-| `nsf_window_add_sound(...)`  | Register sound            |
-| `nsf_window_get_sprite(...)` | Retrieve sprite by name   |
-| `nsf_window_get_button(...)` | Retrieve button by name   |
-| `nsf_window_get_sound(...)`  | Retrieve sound by name    |
+| Function                       | Description               |
+|--------------------------------|---------------------------|
+| `nsf_window_add_sprite(...)`   | Register sprite in window |
+| `nsf_window_add_button(...)`   | Register button           |
+| `nsf_window_add_text(...)`     | Register text             |
+| `nsf_window_add_sound(...)`    | Register sound            |
+| `nsf_window_add_particle(...)` | Register particle         |
+| `nsf_window_get_sprite(...)`   | Retrieve sprite by name   |
+| `nsf_window_get_button(...)`   | Retrieve button by name   |
+| `nsf_window_get_text(...)`     | Retrieve text             |
+| `nsf_window_get_sound(...)`    | Retrieve sound by name    |
+| `nsf_window_get_particle(...)` | Retrieve particle         |
 
 ---
 

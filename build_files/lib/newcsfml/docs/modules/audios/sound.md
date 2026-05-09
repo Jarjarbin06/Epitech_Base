@@ -74,14 +74,14 @@ It corresponds to SFML `sfSound` and `sfSoundBuffer`.
 
 ### Core Functions
 
-| Function                         | Description            |
-|----------------------------------|------------------------|
-| `nsf_sound_play(sound)`          | Start playback         |
-| `nsf_sound_pause(sound)`         | Pause playback         |
-| `nsf_sound_stop(sound)`          | Stop playback          |
-| `nsf_sound_looping(sound, bool)` | Enable/disable looping |
-| `nsf_sound_volume(sound, float)` | Set volume             |
-| `nsf_sound_get_status(sound)`    | Get playback state     |
+| Function                             | Description            |
+|--------------------------------------|------------------------|
+| `nsf_sound_play(sound)`              | Start playback         |
+| `nsf_sound_pause(sound)`             | Pause playback         |
+| `nsf_sound_stop(sound)`              | Stop playback          |
+| `nsf_sound_set_looping(sound, bool)` | Enable/disable looping |
+| `nsf_sound_set_volume(sound, float)` | Set volume             |
+| `nsf_sound_get_status(sound)`        | Get playback state     |
 
 ---
 

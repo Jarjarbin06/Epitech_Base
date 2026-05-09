@@ -59,6 +59,7 @@ typedef struct nsf_sprite_s nsf_sprite_t;
 typedef struct nsf_button_s nsf_button_t;
 typedef struct nsf_sound_s nsf_sound_t;
 typedef struct nsf_text_s nsf_text_t;
+typedef struct nsf_particle_s nsf_particle_t;
 
 /// TYPEDEFS ///
 typedef enum
@@ -67,12 +68,14 @@ typedef enum
     NSF_SPRITE_ELEMENT,
     NSF_BUTTON_ELEMENT,
     NSF_SOUND_ELEMENT,
-    NSF_TEXT_ELEMENT
+    NSF_TEXT_ELEMENT,
+    NSF_PARTICLE_ELEMENT,
 } nsf_element_type_t;
 
 typedef struct {
     nsf_element_type_t element_type;
     const void *ptr;
+    nsf_cstr_t name;
 } nsf_elements_t;
 
 typedef struct {
@@ -118,6 +121,8 @@ void nsf_window_add_sound(nsf_window_t *window, const nsf_sound_t *sound,
     nsf_game_t *game);
 void nsf_window_add_text(nsf_window_t *window, const nsf_text_t *text,
     nsf_game_t *game);
+void nsf_window_add_particle(nsf_window_t *window,
+    const nsf_particle_t *particle, nsf_game_t *game);
 nsf_sprite_t *nsf_window_get_sprite(const nsf_window_t *window,
     const char sprite_name[]);
 nsf_button_t *nsf_window_get_button(const nsf_window_t *window,
@@ -126,6 +131,8 @@ nsf_sound_t *nsf_window_get_sound(const nsf_window_t *window,
     const char sound_name[]);
 nsf_text_t *nsf_window_get_text(const nsf_window_t *window,
     const char text_name[]);
+nsf_particle_t *nsf_window_get_particle(const nsf_window_t *window,
+    const char particle_name[]);
 void nsf_window_set_background(nsf_window_t *window,
     nsf_background_t *background);
 const nsf_background_t *nsf_window_get_background(const nsf_window_t *window);

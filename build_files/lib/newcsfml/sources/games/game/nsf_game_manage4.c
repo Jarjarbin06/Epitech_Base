@@ -57,5 +57,5 @@ void nsf_game_set_music_volume(const nsf_game_t *game, const float volume)
 {
     if (NSF_UNLIKELY(!game || !game->music))
         return;
-    nsf_music_volume(game->music, volume);
+    nsf_music_set_volume(game->music, volume);
 }

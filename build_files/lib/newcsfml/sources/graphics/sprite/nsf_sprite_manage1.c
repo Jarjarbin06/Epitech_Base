@@ -31,14 +31,10 @@
 
 void nsf_sprite_set_texture(nsf_sprite_t *sprite, const nsf_texture_t *texture)
 {
-    nsf_uvector_t texture_size = {};
-
     if (NSF_UNLIKELY(!sprite || !texture))
         return;
     sprite->texture = texture;
     sfSprite_setTexture(sprite->sprite, sprite->texture->texture, sfFalse);
-    texture_size = sfTexture_getSize(texture->texture);
-    nsf_sprite_set_size(sprite, &texture_size);
 }
 
 void nsf_sprite_set_scale(nsf_sprite_t *sprite, const nsf_fvector_t scale[])
@@ -46,7 +42,7 @@ void nsf_sprite_set_scale(nsf_sprite_t *sprite, const nsf_fvector_t scale[])
     if (NSF_UNLIKELY(!sprite || !scale))
         return;
     nsf_fvector_copy(scale, &sprite->scale);
-    sfSprite_setScale(sprite->sprite, *scale);
+    sfSprite_setScale(sprite->sprite, sprite->scale);
 }
 
 void nsf_sprite_set_size(nsf_sprite_t *sprite, const nsf_uvector_t size[])

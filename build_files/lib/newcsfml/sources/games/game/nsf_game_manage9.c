@@ -21,16 +21,20 @@
 ** It is a custom implementation layer built on top of CSFML.
 */
 
-#include <SFML/Graphics/RenderWindow.h>
-
 #include "newcsfml/games/window.h"
-#include "newcsfml/graphics/sprite.h"
+#include "newcsfml/games/game.h"
 #include "newcsfml/systems/utils.h"
 
-void nsf_sprite_draw(const nsf_sprite_t *sprite, const nsf_window_t *window)
+void nsf_game_set_window(nsf_game_t *game, nsf_window_t *window)
 {
-    if (NSF_UNLIKELY(!sprite || !window))
+    if (NSF_UNLIKELY(!game || !window))
         return;
-    nsf_sprite_update((nsf_sprite_t *)sprite);
-    sfRenderWindow_drawSprite(window->window, sprite->sprite, NULL);
+    game->window = window;
+}
+
+nsf_window_t *nsf_game_get_window(const nsf_game_t *game)
+{
+    if (NSF_UNLIKELY(!game))
+        return NULL;
+    return game->window;
 }

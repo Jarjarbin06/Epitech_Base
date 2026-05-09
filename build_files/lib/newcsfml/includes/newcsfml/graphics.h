@@ -26,8 +26,9 @@
 
     #include "newcsfml/graphics/background.h"
     #include "newcsfml/graphics/button.h"
+    #include "newcsfml/graphics/particle.h"
     #include "newcsfml/graphics/sprite.h"
-    #include "newcsfml/graphics/texture.h"
     #include "newcsfml/graphics/text.h"
+    #include "newcsfml/graphics/texture.h"
 
 #endif

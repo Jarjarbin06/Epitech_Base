@@ -71,8 +71,8 @@ int nsf_sound_destroy(nsf_sound_t **sound, nsf_game_t *game);
 void nsf_sound_play(const nsf_sound_t *sound);
 void nsf_sound_pause(const nsf_sound_t *sound);
 void nsf_sound_stop(const nsf_sound_t *sound);
-void nsf_sound_looping(const nsf_sound_t *sound, bool looping);
-void nsf_sound_volume(const nsf_sound_t *sound, float volume);
+void nsf_sound_set_looping(const nsf_sound_t *sound, bool looping);
+void nsf_sound_set_volume(const nsf_sound_t *sound, float volume);
 nsf_sound_status_t nsf_sound_get_status(const nsf_sound_t *sound);
 
 #endif
