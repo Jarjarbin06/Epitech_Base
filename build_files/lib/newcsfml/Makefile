@@ -40,9 +40,9 @@ CC	=	clang
 
 DEBUG	?=	false
 
-CFLAGS_BASE	=	-Wall -Wextra -Werror -MMD -MP
+CFLAGS_BASE	=	-Wall -Wextra -Werror -MMD -MP  -fdata-sections -ffunction-sections
 CFLAGS_DEBUG	=	-g3 -O0
-CFLAGS_RELEASE	=	-O3 -march=native
+CFLAGS_RELEASE	=	-O3 -march=native -mtune=native -fno-plt
 
 ifeq ($(DEBUG), true)
 CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_DEBUG)

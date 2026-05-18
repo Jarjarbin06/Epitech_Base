@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2025
-## Lib TwoDList - Makefile
+## Lib File - Makefile
 ## File description:
 ## Generic per-library build system (main-makefile compatible)
 ##
@@ -9,9 +9,9 @@
 # META
 ###############################################################################
 
-info_NAME	=	twodlist
-info_VERSION	=	v0.0.0
-info_LAST_UPDATE	=	0000/00/00 00h
+info_NAME	=	flag
+info_VERSION	=	v0.1.0
+info_LAST_UPDATE	=	2026/05/11 14h
 info_LIB_MAKER	=	Makefile
 
 
@@ -108,6 +108,7 @@ show_var:
 ###############################################################################
 # SAFETY / PHONY
 ###############################################################################
+
 .SILENT:	clean fclean show_info show_var
 .PHONY:	all clean fclean re show_info show_var
 

@@ -9,5 +9,5 @@
 
 int function(const int argc, const char **argv)
 {
-    return EXIT_SUCCESS;
+    return E_SUCCESS;
 }

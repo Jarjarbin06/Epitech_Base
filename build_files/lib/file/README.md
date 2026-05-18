@@ -309,7 +309,7 @@ file_destroy(&file);
 ```c
 file_t *file = file_create(path);
 
-if (file_load(file) == EXIT_SUCCESS)
+if (file_load(file) == E_SUCCESS)
     printf("File loaded successfully\n");
 
 file_destroy(&file);

@@ -31,6 +31,7 @@ EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/Epitech_Base
 ALLOW_UNBUILD	=	false
 ALLOW_AUTO_PUSH	=	true
 DEBUG	?=	false
+ARCH	?=	native		# native / generic
 HAS_CSFML	=	false
 
 # -----------------------------------------------------------------------------
@@ -90,18 +91,19 @@ CC	=	clang
 CNAME	=	binary
 CARG	=
 
-CFLAGS	=	-Wall -Wextra -Werror -MMD -MP
+CFLAGS_BASE	=	-Wall -Wextra -Werror -MMD -MP -fdata-sections -ffunction-sections
+CFLAGS_DEBUG	=	-g3 -O0
+CFLAGS_RELEASE	=	-O3 -fno-plt
 
-DEBUG_FLAGS	=	-g3 -O0
-RELEASE_FLAGS = -O3 -march=native
-
-ifeq ($(DEBUG), true)
-CFLAGS	+=	$(DEBUG_FLAGS)
-else
-CFLAGS	+=	$(RELEASE_FLAGS)
+ifeq ($(ARCH),native)
+CFLAGS_RELEASE	+=	-march=native -mtune=native
 endif
 
-CFLAGS	+=	$(CFLAGS_EXTRA)
+ifeq ($(DEBUG), true)
+CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_DEBUG)
+else
+CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_RELEASE)
+endif
 
 CPPFLAGS	=	$(INCLUDES)
 
@@ -150,7 +152,7 @@ all:	lib-build $(CNAME)
 # MAIN BUILD
 # -----------------------------------------------------------------------------
 $(CNAME):	$(SRC_OBJ) $(MAIN_OBJ)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -o $(CNAME) $(MAIN_OBJ) $(SRC_OBJ) $(CFLAGS_PLUS)
+	$(CC) $(CFLAGS) -o $(CNAME) $(MAIN_OBJ) $(SRC_OBJ) $(CFLAGS_PLUS)
 
 # -----------------------------------------------------------------------------
 # CLEAN
@@ -188,7 +190,7 @@ run: all
 # SANITIZER BUILD
 # -----------------------------------------------------------------------------
 debug-asan:
-	make DEBUG=true CFLAGS_EXTRA="-fsanitize=address -fno-omit-frame-pointer" LDFLAGS_EXTRA="-fsanitize=address" re
+	make DEBUG=true CFLAGS_EXTRA="-fsanitize=address -fno-omit-frame-pointer" re
 
 
 # =============================================================================
@@ -256,7 +258,7 @@ test-style:
 # UNIT TESTS
 # -----------------------------------------------------------------------------
 test-build: lib-build $(TEST_OBJ) $(SRC_OBJ)
-	$(CC) $(TEST_CFLAGS) $(CPPFLAGS) -o $(TESTCNAME) $(TEST_OBJ) $(SRC_OBJ) $(CFLAGS_PLUS)
+	$(CC) $(TEST_CFLAGS) -o $(TESTCNAME) $(TEST_OBJ) $(SRC_OBJ) $(CFLAGS_PLUS)
 
 # -----------------------------------------------------------------------------
 # UNIT TESTS RUNNING
@@ -406,6 +408,14 @@ setup-import-file:
 	cp -rf lib/file/includes/* ./includes/lib_includes/file
 	-make git-push-libs
 
+setup-import-flag:
+	-rm -rdf ./lib/flag ./includes/lib_includes/flag
+	-mkdir ./lib/flag
+	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/flag/* ./lib/flag
+	-mkdir ./includes/lib_includes/flag
+	cp -rf lib/flag/includes/* ./includes/lib_includes/flag
+	-make git-push-libs
+
 setup-import-utils:
 	-rm -rdf ./lib/utils ./includes/lib_includes/utils
 	-mkdir ./lib/utils
@@ -422,6 +432,7 @@ setup-import-all:
 	setup-import-print \
 	setup-import-str \
 	setup-import-file \
+	setup-import-flag \
 	setup-import-twodlist \
 	setup-import-utils
 
@@ -442,7 +453,7 @@ help:
 	setup-build setup-unbuild setup-import-all \
 	setup-import-newerror setup-import-llist setup-import-newcsfml \
 	setup-import-print setup-import-str setup-import-file \
-	setup-import-twodlist setup-import-utils \
+	setup-import-flag setup-import-twodlist setup-import-utils \
 	maint-update help
 
 .PHONY: \
@@ -453,7 +464,7 @@ help:
 	setup-build setup-unbuild setup-import-all \
 	setup-import-newerror setup-import-llist setup-import-newcsfml \
 	setup-import-print setup-import-str setup-import-file \
-	setup-import-twodlist setup-import-utils \
+	setup-import-flag setup-import-twodlist setup-import-utils \
 	maint-update help
 
 -include $(SRC_OBJ:.o=.d) $(MAIN_OBJ:.o=.d) $(TEST_OBJ:.o=.d)

@@ -69,12 +69,11 @@ file_t *file_create(const char full_path[])
 int file_destroy(file_t **file)
 {
     if (!file || !*file)
-        return EXIT_ERROR;
+        return E_ERROR;
     free_any((char *)(*file)->full_path);
     free_any((char *)(*file)->path);
     free_any((char *)(*file)->name);
     free_any((*file)->raw);
-    free_any(*file);
-    *file = NULL;
-    return EXIT_SUCCESS;
+    *file = free_any(*file);
+    return E_SUCCESS;
 }
