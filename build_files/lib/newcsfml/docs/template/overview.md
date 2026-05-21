@@ -226,7 +226,7 @@ utils      v0.1.5
 
 Author: Nathan (Jarjarbin06) • EPITECH<br>
 Licence: GPL v3<br>
-Repository: [Epitech Base](https://github.com/Jarjarbin06/Epitech_Base)
+Repository: <a href="https://github.com/Jarjarbin06/Epitech_Base">Epitech Base</a>
 </div>
 
 ---
