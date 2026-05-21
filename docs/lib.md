@@ -126,7 +126,7 @@ Makefile    → Compilation and cleanup
 
 ### 📦 Data Structures
 
-#### Flag Library (FILE)
+#### Flag Library (FLAG)
 
 > Easy to use file reader
 
@@ -164,7 +164,7 @@ Makefile    → Compilation and cleanup
 
 ---
 
-#### Linked List Library (str)
+#### Linked List Library (LLIST)
 
 > Generic linked list implementation
 
@@ -173,7 +173,7 @@ Makefile    → Compilation and cleanup
 
 ---
 
-#### Two-Dimensional List Library (str)
+#### Two-Dimensional List Library (TWODLIST)
 
 > Advanced list structure for complex data layouts
 
