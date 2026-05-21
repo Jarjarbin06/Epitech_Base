@@ -166,20 +166,20 @@ The background module is responsible for displaying a full-window visual layer.
 
 Epitech Base • Modular C Ecosystem
 
-Libraries:\
-• `file` - `v0.1.2`\
-• `flag` - `v0.1.1`\
-• `llist` - `v0.0.0`\
-• `newcsfml` - `v0.2.7`\
-• `newerror` - `v0.1.1`\
-• `print` - `v0.1.5`\
-• `str` - `v0.1.5`\
-• `print` - `v0.0.0`\
-• `twodlist` - `v0.1.5`\
-• `utils` - `v0.1.5`
+Libraries:<br>
+• `file` - `v0.1.2`<br>
+• `flag` - `v0.1.1`<br>
+• `llist` - `v0.0.0`<br>
+• `newcsfml` - `v0.2.7`<br>
+• `newerror` - `v0.1.1`<br>
+• `print` - `v0.1.5`<br>
+• `str` - `v0.1.5`<br>
+• `print` - `v0.0.0`<br>
+• `twodlist` - `v0.1.5`<br>
+• `utils` - `v0.1.5`<br>
 
-Author: Nathan (Jarjarbin06) • EPITECH  
-Licence: GPL v3\
+Author: Nathan (Jarjarbin06) • EPITECH<br>
+Licence: GPL v3<br>
 Repository: [Epitech Base](https://github.com/Jarjarbin06/Epitech_Base)
 </div>
 
