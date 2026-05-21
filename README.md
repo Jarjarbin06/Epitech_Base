@@ -9,9 +9,14 @@
 
 ---
 
-## 🔹 📦 Epitech Base — Footer
+<div align="center">
 
-**[LOGO / ICON PLACEHOLDER]**
+## 📦 Epitech Base — Footer
+
+</div>
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseLogo.png" width="120"  alt="Epitech Base Logo"/>
 
 Epitech Base • Modular C Ecosystem
 
@@ -28,7 +33,8 @@ Libraries:\
 • `utils` - `v0.1.5`
 
 Author: Nathan (Jarjarbin06) • EPITECH  
-License: GPL v3
+Licence: GPL v3\
 Repository: [Epitech Base](https://github.com/Jarjarbin06/Epitech_Base)
+</div>
 
---- 
+---
