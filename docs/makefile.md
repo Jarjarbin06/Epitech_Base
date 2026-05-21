@@ -442,8 +442,16 @@ setup-import-*
 
 ## 🔹 Help Command
 
+For all help:
+
 ```bash
 make help
+```
+
+For specialised help:
+
+```bash
+make help-*
 ```
 
 ---
@@ -459,7 +467,7 @@ make help
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

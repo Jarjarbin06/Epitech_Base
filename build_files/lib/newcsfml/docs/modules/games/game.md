@@ -274,7 +274,7 @@ It abstracts the concept of a "game instance" over CSFML by adding:
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

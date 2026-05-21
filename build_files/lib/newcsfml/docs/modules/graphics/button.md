@@ -189,7 +189,7 @@ Represents an interactive UI element that reacts to mouse input.
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

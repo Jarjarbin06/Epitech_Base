@@ -189,7 +189,7 @@ These rules apply to **all modules, functions, structures, and systems** in the 
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

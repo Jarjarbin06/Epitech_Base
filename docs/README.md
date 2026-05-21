@@ -251,7 +251,7 @@ Status:
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

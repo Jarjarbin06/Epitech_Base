@@ -201,7 +201,7 @@ This module provides core utility features used across the NCSFML ecosystem, mai
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

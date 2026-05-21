@@ -177,7 +177,7 @@ It abstracts SFML `sfMusic` into a safer and more consistent framework API.
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

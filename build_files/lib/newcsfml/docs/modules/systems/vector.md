@@ -192,7 +192,7 @@ This module provides all fundamental operations related to 2D vectors.
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

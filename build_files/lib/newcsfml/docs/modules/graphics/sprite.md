@@ -190,7 +190,7 @@ The sprite module provides a complete abstraction over CSFML sprites, managing b
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

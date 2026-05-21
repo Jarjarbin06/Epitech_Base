@@ -234,7 +234,7 @@ Detailed behavior and API are described within each submodule.
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

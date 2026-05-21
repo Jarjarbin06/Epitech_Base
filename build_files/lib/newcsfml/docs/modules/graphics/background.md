@@ -157,7 +157,7 @@ The background module is responsible for displaying a full-window visual layer.
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">

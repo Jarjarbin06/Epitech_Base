@@ -256,7 +256,7 @@ nsf_particle_set_source(p, (nsf_fvector_t[]){{50.0f, 20.0f}});
 
 <div align="center">
 
-## 📦 Epitech Base — Footer
+<h1>📦 Epitech Base — Footer</h1>
 
 </div>
 <div align="center">
