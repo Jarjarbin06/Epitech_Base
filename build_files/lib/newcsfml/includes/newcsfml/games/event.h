@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.5
+** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -33,19 +33,27 @@
     #ifndef EXIT_D
         #define EXIT_D
 
-        #ifndef EXIT_SUCCESS
-            #define EXIT_SUCCESS 0
+        #ifndef E_SUCCESS
+            #define E_SUCCESS (0)
         #endif
 
-        #ifndef EXIT_ERROR
-            #define EXIT_ERROR 84
+        #ifndef E_ERROR
+            #define E_ERROR (84)
+        #endif
+
+        #ifndef E_FAILURE
+            #define E_FAILURE (-1)
         #endif
 
     #endif
 
+/// MACRO ///
+    #define NSF_EVENT "NSF_EVENT"
+
 /// TMP ///
 typedef sfVector2i nsf_ivector_t;
 typedef enum nsf_key_code_e nsf_key_code_t;
+typedef enum nsf_mouse_button_e nsf_mouse_button_t;
 
 /// TYPEDEFS ///
 typedef sfEvent nsf_event_t;
@@ -77,16 +85,6 @@ typedef enum {
     NSF_EVT_SENSOR_CHANGED,
     NSF_EVT_COUNT
 } nsf_event_type_t;
-
-typedef enum nsf_mouse_button_e {
-    NSF_MSE_UNKNOWN = -1,
-    NSF_MSE_LEFT,
-    NSF_MSE_RIGHT,
-    NSF_MSE_MIDDLE,
-    NSF_MSE_X_BTTN_1,
-    NSF_MSE_X_BTTN_2,
-    NSF_MSE_COUNT
-} nsf_mouse_button_t;
 
 /// PROTOTYPES ///
 // MANAGE //

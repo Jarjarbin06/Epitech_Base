@@ -12,8 +12,8 @@
 # Project metadata and build configuration reference.
 ###############################################################################
 info_NAME	=	Epitech Base
-info_VERSION	=	v1.0.3
-info_LAST_UPDATE	=	2026/05/08 18h
+info_VERSION	=	v1.0.4
+info_LAST_UPDATE	=	2026/05/18 15h
 info_LIB_MAKER	=	Makefile
 
 
@@ -322,6 +322,7 @@ ifeq ($(wildcard *), Makefile)
 setup-build:
 	cp -rf $(EPITECH_BASE_PATH)/.gitignore ./
 	cp -rf $(EPITECH_BASE_PATH)/build_files/tree/* ./
+	cp -rf $(EPITECH_BASE_PATH)/build_files/tree/.gitignore ./
 	-make git-push-repo
 else
 setup-build:

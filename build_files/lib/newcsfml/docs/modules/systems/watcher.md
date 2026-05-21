@@ -117,10 +117,10 @@ This module provides advanced runtime values handling with watchers.
 
 ## 🔹 Internal Files
 
-| File                    | Role                         |
-|-------------------------|------------------------------|
-| `nsf_watcher_manage*.c` | Watcher retrival logic       |
-| `nsf_watcher_struct.c`  | Watcher creation/destruction |
+| File                     | Role                         |
+|--------------------------|------------------------------|
+| `nsf_watcher_struct.c`   | Watcher creation/destruction |
+| `nsf_watcher_manage_*.c` | Watcher retrival logic       |
 
 ---
 

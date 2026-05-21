@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.5
+** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -33,17 +33,22 @@
     #ifndef EXIT_D
         #define EXIT_D
 
-        #ifndef EXIT_SUCCESS
-            #define EXIT_SUCCESS 0
+        #ifndef E_SUCCESS
+            #define E_SUCCESS (0)
         #endif
 
-        #ifndef EXIT_ERROR
-            #define EXIT_ERROR 84
+        #ifndef E_ERROR
+            #define E_ERROR (84)
+        #endif
+
+        #ifndef E_FAILURE
+            #define E_FAILURE (-1)
         #endif
 
     #endif
 
 /// MACRO ///
+    #define NSF_VECTOR "NSF_VECTOR"
     #define NSF_PI M_PI
     #define NSF_RADIAN(x) ((x) * (NSF_PI / 180.0))
     #define NSF_DEGREE(x) ((x) * (180.0 / NSF_PI))
@@ -104,6 +109,8 @@ void nsf_vector_clamp_y(const nsf_fvector_t v[], float min, float max,
     nsf_fvector_t out[]);
 void nsf_vector_clamp(const nsf_fvector_t v[], float min, float max,
     nsf_fvector_t out[]);
-void nsf_vector_print(const nsf_fvector_t v[]);
+
+// SHOW //
+void nsf_vector_debug(const nsf_fvector_t v[]);
 
 #endif

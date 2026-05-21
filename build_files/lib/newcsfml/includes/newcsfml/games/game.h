@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.5
+** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -32,15 +32,22 @@
     #ifndef EXIT_D
         #define EXIT_D
 
-        #ifndef EXIT_SUCCESS
-            #define EXIT_SUCCESS 0
+        #ifndef E_SUCCESS
+            #define E_SUCCESS (0)
         #endif
 
-        #ifndef EXIT_ERROR
-            #define EXIT_ERROR 84
+        #ifndef E_ERROR
+            #define E_ERROR (84)
+        #endif
+
+        #ifndef E_FAILURE
+            #define E_FAILURE (-1)
         #endif
 
     #endif
+
+/// MACRO ///
+    #define NSF_GAME "NSF_GAME"
 
 /// TMP ///
 typedef struct nsf_sound_s nsf_sound_t;
@@ -49,6 +56,7 @@ typedef unsigned int nsf_uint_t;
 typedef struct nsf_background_s nsf_background_t;
 typedef struct nsf_window_s nsf_window_t;
 typedef struct nsf_sprite_s nsf_sprite_t;
+typedef const char *nsf_cstr_t;
 typedef struct nsf_button_s nsf_button_t;
 typedef struct nsf_clock_s nsf_clock_t;
 typedef struct nsf_text_s nsf_text_t;
@@ -115,6 +123,8 @@ int nsf_game_stop_sound(const nsf_game_t *game, const char sound_name[]);
 int nsf_game_all_sound_volume(const nsf_game_t *game, float volume);
 int nsf_game_stop_all_sound(const nsf_game_t *game);
 int nsf_game_update(const nsf_game_t *game);
+void nsf_game_add_screen(nsf_game_t *game, nsf_cstr_t screen_name);
+int nsf_game_set_screen(nsf_game_t *game, nsf_cstr_t screen_name);
 
 // DRAW //
 void nsf_game_draw(nsf_game_t *game);

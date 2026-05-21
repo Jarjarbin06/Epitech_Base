@@ -141,15 +141,16 @@ This module provides all fundamental operations related to 2D vectors.
 
 ## 🔹 Internal Files
 
-| File                   | Role                    |
-|------------------------|-------------------------|
-| `nsf_vector_manage1.c` | Basic float operations  |
-| `nsf_vector_manage2.c` | Integer operations      |
-| `nsf_vector_manage3.c` | Unsigned operations     |
-| `nsf_vector_manage4.c` | Arithmetic operations   |
-| `nsf_vector_manage5.c` | Length / normalization  |
-| `nsf_vector_manage6.c` | Geometry operations     |
-| `nsf_vector_manage7.c` | Clamp / debug utilities |
+| File                           | Role                      |
+|--------------------------------|---------------------------|
+| `nsf_vector_manage_f.c`        | Float vector utilities    |
+| `nsf_vector_manage_i.c`        | Integer vector utilities  |
+| `nsf_vector_manage_u.c`        | Unsigned vector utilities |
+| `nsf_vector_manage_angle.c`    | Angle utilities           |
+| `nsf_vector_manage_clamp.c`    | Clamp utilities           |
+| `nsf_vector_manage_relative.c` | Comparission utilities    |
+| `nsf_vector_manage_special.c`  | Special utilities         |
+| `nsf_vector_debug.c`           | Debug                     |
 
 ---
 

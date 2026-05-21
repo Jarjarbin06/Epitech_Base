@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.5
+** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -30,6 +30,7 @@
     #include "newcsfml/graphics/sprite.h"
     #include "newcsfml/graphics/text.h"
     #include "newcsfml/graphics/texture.h"
+    #include "newcsfml/graphics/animation.h"
     #include "newcsfml/graphics/view.h"
 
 #endif

@@ -8,11 +8,11 @@
 #ifndef PRINT
     #define PRINT
     #include "print_flag.h"
-    #ifndef EXIT_SUCCESS
-        #define EXIT_SUCCESS 0
+    #ifndef E_SUCCESS
+        #define E_SUCCESS 0
     #endif
-    #ifndef EXIT_ERROR
-        #define EXIT_ERROR 84
+    #ifndef E_ERROR
+        #define E_ERROR 84
     #endif
     #define UP_CASE(c, up) ((up) ? (c - 32) : (c))
 

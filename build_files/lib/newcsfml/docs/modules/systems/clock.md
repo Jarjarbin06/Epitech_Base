@@ -18,22 +18,24 @@ Time management module built on top of CSFML clocks.
 ## 🔹 Structure
 
 ```c
-typedef struct {
+typedef struct nsf_clock_s {
     sfClock *clock;
     float last;
     float delta;
+    float accumulator;
     nsf_cstr_t name;
 } nsf_clock_t;
 ```
 
 ### Description
 
-| Field   | Type         | Description                          |
-|---------|--------------|--------------------------------------|
-| `clock` | `sfClock *`  | Underlying CSFML clock instance      |
-| `last`  | `float`      | Last recorded time (seconds)         |
-| `delta` | `float`      | Delta time between updates (seconds) |
-| `name`  | `nsf_cstr_t` | Identifier for debugging / tracking  |
+| Field         | Type         | Description                                 |
+|---------------|--------------|---------------------------------------------|
+| `clock`       | `sfClock *`  | Underlying CSFML clock instance             |
+| `last`        | `float`      | Last recorded time (seconds)                |
+| `delta`       | `float`      | Delta time between updates (seconds)        |
+| `accumulator` | `float`      | Sum of all delta times before a clock reset |
+| `name`        | `nsf_cstr_t` | Identifier for debugging / tracking         |
 
 ---
 
@@ -108,12 +110,12 @@ Provides a high-level abstraction over CSFML timing utilities.
 
 ## 🔹 Return Values
 
-| Type      | Meaning                       |
-|-----------|-------------------------------|
-| `pointer` | Valid clock instance          |
-| `NULL`    | Allocation failure            |
-| `int`     | `EXIT_SUCCESS` / `EXIT_ERROR` |
-| `float`   | Time value in seconds         |
+| Type      | Meaning                 |
+|-----------|-------------------------|
+| `pointer` | Valid clock instance    |
+| `NULL`    | Allocation failure      |
+| `int`     | `E_SUCCESS` / `E_ERROR` |
+| `float`   | Time value in seconds   |
 
 ---
 
@@ -128,10 +130,12 @@ Provides a high-level abstraction over CSFML timing utilities.
 
 ## 🔹 Internal Files
 
-| File                  | Role                      |
-|-----------------------|---------------------------|
-| `nsf_clock_struct.c`  | Creation / destruction    |
-| `nsf_clock_manage*.c` | Timing logic / operations |
+| File                         | Role                      |
+|------------------------------|---------------------------|
+| `nsf_clock_struct.c`         | Creation / destruction    |
+| `nsf_clock_manage_runtime.c` | Timing logic / operations |
+| `nsf_clock_manage_update.c`  | Updater                   |
+| `nsf_clock_manage_get.c`     | Getter                    |
 
 ---
 

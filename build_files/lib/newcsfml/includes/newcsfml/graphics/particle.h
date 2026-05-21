@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.5
+** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -29,18 +29,25 @@
     #include <stdbool.h>
     #include <stddef.h>
 
-#ifndef EXIT_D
+    #ifndef EXIT_D
         #define EXIT_D
 
-        #ifndef EXIT_SUCCESS
-            #define EXIT_SUCCESS 0
+        #ifndef E_SUCCESS
+            #define E_SUCCESS (0)
         #endif
 
-        #ifndef EXIT_ERROR
-            #define EXIT_ERROR 84
+        #ifndef E_ERROR
+            #define E_ERROR (84)
+        #endif
+
+        #ifndef E_FAILURE
+            #define E_FAILURE (-1)
         #endif
 
     #endif
+
+/// MACRO ///
+    #define NSF_PARTICLE "NSF_PARTICLE"
 
 /// TMP ///
 typedef struct nsf_sprite_s nsf_sprite_t;
@@ -88,7 +95,7 @@ int nsf_particle_destroy(nsf_particle_t **particle, nsf_game_t *game);
 
 // MANAGE //
 void nsf_particle_set_texture(nsf_particle_t *particle,
-    const nsf_texture_t *texture);
+    nsf_texture_t *texture);
 void nsf_particle_set_max_lifetime(nsf_particle_t *particle,
     nsf_uint_t max_lifetime);
 void nsf_particle_set_scale(nsf_particle_t *particle,

@@ -12,12 +12,16 @@
     #ifndef EXIT_D
         #define EXIT_D
 
-        #ifndef EXIT_SUCCESS
-            #define EXIT_SUCCESS 0
+        #ifndef E_SUCCESS
+            #define E_SUCCESS (0)
         #endif
 
-        #ifndef EXIT_ERROR
-            #define EXIT_ERROR 84
+        #ifndef E_ERROR
+            #define E_ERROR (84)
+        #endif
+
+        #ifndef E_FAILURE
+            #define E_FAILURE (-1)
         #endif
 
     #endif
@@ -55,7 +59,7 @@
     #endif
 
     #ifndef INT_ERR
-        #define INT_ERR EXIT_ERROR
+        #define INT_ERR E_ERROR
     #endif
 
 #endif

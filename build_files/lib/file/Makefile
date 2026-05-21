@@ -10,8 +10,8 @@
 ###############################################################################
 
 info_NAME	=	file
-info_VERSION	=	v0.1.1
-info_LAST_UPDATE	=	2026/05/08 18h
+info_VERSION	=	v0.1.2
+info_LAST_UPDATE	=	2026/05/18 15h
 info_LIB_MAKER	=	Makefile
 
 

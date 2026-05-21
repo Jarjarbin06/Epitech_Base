@@ -1,10 +1,11 @@
-# 📦 Event Module (`nsf_keyboard`)
+# 📦 Keyboard Module (`nsf_keyboard`)
 #### part of [Games](overview.md)
 
-Provides a lightweight abstraction over CSFML keyboard.
+Low-level input abstraction module providing a clean wrapper over SFML keyboard handling.
+It exposes a unified key enumeration and a simple API to query real-time key states.
 
 > Example:
-> Allows safe keyboard handling without directly exposing SFML keyboard structures.
+> Detects whether a specific key is currently pressed using a unified internal key mapping system.
 
 ---
 
@@ -128,98 +129,136 @@ typedef enum nsf_key_code_e {
 
 ### Description
 
-| Field  | Type        | Description                                             |
-|--------|-------------|---------------------------------------------------------|
-| `type` | `sfKeyCode` | Event category (closed, key pressed, mouse moved, etc.) |
+| Field / Value       | Type | Description                                      |
+|---------------------|------|--------------------------------------------------|
+| `NSF_KEY_*`         | enum | Unified key representation independent from SFML |
+| `NSF_KEY_A-Z`       | enum | Alphabet keys                                    |
+| `NSF_KEY_0-9`       | enum | Numeric keys                                     |
+| `NSF_KEY_F_*`       | enum | Function keys                                    |
+| `NSF_KEY_L_* / R_*` | enum | Modifier keys (Ctrl, Shift, Alt, System)         |
+| `NSF_KEY_*` arrows  | enum | Directional input keys                           |
+| `NSF_KEY_COUNT`     | enum | Total number of supported keys                   |
 
 ---
 
 ## 🔹 Purpose
 
-This module wraps SFML keyboard to provide:
+Keyboard module abstraction built on top of SFML input system.
 
-* Safe key state checks
-* Simplified keyboard handling
-* Lightweight abstraction over raw `sfKeyCode`
+* Provides a **portable and unified key mapping**
+* Wraps `sfKeyboard_isKeyPressed` into a safe API
+* Decouples game logic from SFML key codes
+* Ensures consistent input handling across the engine
 
-It sits at the **keyboard input layer of the framework**, used mainly by the window systems to interpret advanced user interactions.
+This module is part of the **input layer** in NCSFML and is typically used alongside the event system.
 
 ---
 
 ## 🔹 Dependencies
 
-| Module                   | Usage                          |
-|--------------------------|--------------------------------|
-| `SFML/Window/Keyboard.h` | Base keyboard system           |
+| Module      | Usage                                 |
+|-------------|---------------------------------------|
+| `sfml`      | Direct backend input query            |
+| `nsf_event` | Often combined for event-driven input |
+| `nsf_game`  | Input context in game loop (indirect) |
 
 ---
 
 ## 🔹 API
 
-### Event Comparison
+### Creation / Destruction
 
-| Function                       | Description              |
-|--------------------------------|--------------------------|
-| `nsf_keyboard_is_pressed(key)` | Checks if key is pressed |
+Not applicable (stateless module)
+
+| Function | Description            |
+|----------|------------------------|
+| *(none)* | No allocation required |
+
+---
+
+### Core Functions
+
+| Function                       | Description                          |
+|--------------------------------|--------------------------------------|
+| `nsf_keyboard_is_pressed(...)` | Checks if a key is currently pressed |
+
+---
+
+### Advanced / Optional
+
+| Function | Description          |
+|----------|----------------------|
+| *(none)* | No advanced features |
 
 ---
 
 ## 🔹 Parameters Reference
 
-| Name  | Type             | Description                    |
-|-------|------------------|--------------------------------|
-| `key` | `nsf_key_code_t` | Event category to compare      |
+| Name  | Type             | Description             |
+|-------|------------------|-------------------------|
+| `key` | `nsf_key_code_t` | Key identifier to check |
 
 ---
 
 ## 🔹 Return Values
 
-| Type    | Meaning     |
-|---------|-------------|
-| `bool`  | Key pressed |
+| Type   | Meaning                  |
+|--------|--------------------------|
+| `bool` | `true` if key is pressed |
+| `bool` | `false` otherwise        |
 
 ---
 
 ## 🔹 Notes
 
-* Keyboard comparisons rely on direct SFML enum casting
+* This module is **stateless and lightweight**
+* It directly maps `nsf_key_code_t → sfKeyCode`
+* No memory allocation or internal state
+* Should be used for **real-time polling input only**
+* Prefer `nsf_event` for discrete input events
 
 ---
 
 ## 🔹 Internal Files
 
-| File                    | Role               |
-|-------------------------|--------------------|
-| `nsf_keyboard_manage.c` | Keyboard utilities |
+| File                              | Role               |
+|-----------------------------------|--------------------|
+| `nsf_keyboard_manage_key_press.c` | Key state querying |
 
 ---
 
-## 🔹 Related Submodules
+## 🔹 Related Modules
 
-* [`nsf_event` 🔗](event.md)
-* [`nsf_game` 🔗](game.md)
-* [`nsf_window` 🔗](window.md)
+* `nsf_event` — event-based input handling
+* `nsf_window` — window input context
+* `nsf_mouse` — mouse input counterpart (if applicable)
 
 ---
 
 ## 🔹 CSFML Mapping (Optional)
 
-| NSF              | CSFML       |
-|------------------|-------------|
-| `nsf_key_code_t` | `sfKeyCode` |
+| NSF Function              | CSFML Equivalent          |
+|---------------------------|---------------------------|
+| `nsf_keyboard_is_pressed` | `sfKeyboard_isKeyPressed` |
+| `nsf_key_code_t`          | `sfKeyCode`               |
 
 ---
 
 ## 🔹 Implementation Notes (for contributors)
 
-* Keyboard handling must remain **stateless**
-* Never store `sfKeyboard` pointers long-term
-* Avoid exposing SFML-specific logic outside this module
+* Keep mapping strictly aligned with SFML `sfKeyCode`
+* Do not introduce engine-side key remapping here
+* Avoid adding state (module must remain stateless)
+* Ensure enum completeness matches SFML version used
+* Keep function inline-friendly if possible for performance
 
 ---
 
 ## 🔹 Extension Points
 
-* Extend key utilities without modifying structure
+* Add key remapping layer (optional higher abstraction module)
+* Add input buffering system (for gameplay systems)
+* Add support for combination keys (Ctrl + key, etc.)
+* Extend to gamepad abstraction layer if needed
 
 ---

@@ -33,11 +33,11 @@ print_help() {
     cat <<EOF
 Usage: build_all.sh [option]
 Options:
-  -h, --help							    Show this help message
-  -d, --description				    Show a complete description of the program
-  -r, --rebuild						    Rebuild all directories (overwrite existing Makefiles)
-  -u, --unbuild               Unbuild all directories (remove Makefiles)
-  (no option), -b, --build    Build only directories without a Makefile
+    -h, --help							    Show this help message
+    -d, --description				    Show a complete description of the program
+    -r, --rebuild						    Rebuild all directories (overwrite existing Makefiles)
+    -u, --unbuild               Unbuild all directories (remove Makefiles)
+    (no option), -b, --build    Build only directories without a Makefile
 EOF
 }
 
@@ -165,6 +165,7 @@ case "$1" in
                 - red indicates failure.
         
         The script supports optional flags for :
+                - building a specified path (<path>),
                 - building ((no option)/-b/--build),
                 - unbuilding (-u/--unbuild),
                 - rebuilding (-r/--rebuild),
@@ -174,18 +175,18 @@ case "$1" in
         ;;
 
     ""|-b|--build)
-        printf "${BG_WHITE}Building all directories...${RESET}\n\n"
+        printf "%sBuilding all directories...%s\n\n" "${BG_WHITE}" "${RESET}"
         for dir in */; do
             [[ -d "$dir" ]] && build_dir "$dir"
         done
-            printf "\n${BG_WHITE}Build complete.${RESET}\n"
+            printf "\n%sBuild complete.%s\n" "${BG_WHITE}" "${RESET}"
         ;;
     
     *)
         if [ -d "$1" ]; then
             build_dir "$1"
         else
-            printf "\n${BG_WHITE}The specified directory does not exist or is not a folder.${RESET}\n"
+            printf "\n%sThe specified directory does not exist or is not a folder.%s\n" "${BG_WHITE}" "${RESET}"
         fi
         ;;
 esac

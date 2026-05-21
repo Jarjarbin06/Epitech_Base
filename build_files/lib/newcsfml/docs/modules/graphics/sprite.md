@@ -141,11 +141,13 @@ The sprite module provides a complete abstraction over CSFML sprites, managing b
 
 ## 🔹 Internal Files
 
-| File                   | Role                      |
-|------------------------|---------------------------|
-| `nsf_sprite_struct.c`  | Creation / destruction    |
-| `nsf_sprite_manage*.c` | Transform logic / getters |
-| `nsf_sprite_draw.c`    | Rendering                 |
+| File                         | Role                   |
+|------------------------------|------------------------|
+| `nsf_sprite_struct.c`        | Creation / destruction |
+| `nsf_sprite_manage_get.c`    | Getters                |
+| `nsf_sprite_manage_set.c`    | Transform logic        |
+| `nsf_sprite_manage_update.c` | Updarer                |
+| `nsf_sprite_draw.c`          | Rendering              |
 
 ---
 

@@ -96,12 +96,12 @@ Defines the configuration parameters used to create and update a window.
 
 ## 🔹 Return Values
 
-| Type      | Meaning                                    |
-|-----------|--------------------------------------------|
-| `pointer` | Successfully allocated settings object     |
-| `NULL`    | Allocation failure                         |
-| `int`     | Status code (`EXIT_SUCCESS`, `EXIT_ERROR`) |
-| `bool`    | Not used                                   |
+| Type      | Meaning                                |
+|-----------|----------------------------------------|
+| `pointer` | Successfully allocated settings object |
+| `NULL`    | Allocation failure                     |
+| `int`     | Status code (`E_SUCCESS`, `E_ERROR`)   |
+| `bool`    | Not used                               |
 
 ---
 

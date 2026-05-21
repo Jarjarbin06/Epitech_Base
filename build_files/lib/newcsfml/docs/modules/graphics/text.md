@@ -118,11 +118,11 @@ Represents an UI text element.
 
 ## 🔹 Return Values
 
-| Type                  | Meaning                                    |
-|-----------------------|--------------------------------------------|
-| `pointer`             | Valid text object                          |
-| `NULL`                | Allocation or initialization failure       |
-| `int`                 | Status code (`EXIT_SUCCESS`, `EXIT_ERROR`) |
+| Type      | Meaning                              |
+|-----------|--------------------------------------|
+| `pointer` | Valid text object                    |
+| `NULL`    | Allocation or initialization failure |
+| `int`     | Status code (`E_SUCCESS`, `E_ERROR`) |
 
 ---
 
@@ -136,11 +136,13 @@ Represents an UI text element.
 
 ## 🔹 Internal Files
 
-| File                | Role                           |
-|---------------------|--------------------------------|
-| `nsf_text_struct.c` | Creation and destruction logic |
-| `nsf_text_manage.c` | Setters and state logic        |
-| `nsf_text_draw.c`   | Rendering                      |
+| File                        | Role                           |
+|-----------------------------|--------------------------------|
+| `nsf_text_struct.c`         | Creation and destruction logic |
+| `nsf_text_manage_set.c`     | Setters and state logic        |
+| `nsf_text_manage_get.c`     | Getters                        |
+| `nsf_text_manage_watcher.c` | Watcher setters and logic      |
+| `nsf_text_draw.c`           | Rendering                      |
 
 ---
 

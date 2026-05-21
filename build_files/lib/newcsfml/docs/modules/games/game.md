@@ -23,6 +23,7 @@ typedef struct nsf_game_s {
     nsf_window_t *window;
     nsf_music_t *music;
     nsf_clock_t *clock;
+    nsf_game_fps_t real_fps;
     int allocations;
     void *data;
 } nsf_game_t;
@@ -35,6 +36,7 @@ typedef struct nsf_game_s {
 | `window`      | `nsf_window_t *` | Main rendering window and event system |
 | `music`       | `nsf_music_t *`  | Global music controller                |
 | `clock`       | `nsf_clock_t *`  | Global timing system                   |
+| `real_fps`    | `nsf_game_fps_t` | Drawing fps computing                  |
 | `allocations` | `int`            | Debug / tracking of allocated objects  |
 | `data`        | `void *`         | User-defined global context pointer    |
 
@@ -101,6 +103,15 @@ It abstracts the concept of a "game instance" over CSFML by adding:
 | `nsf_game_isopen(...)`     | Check if window is open  |
 | `nsf_game_close(...)`      | Close application window |
 | `nsf_game_get_event(...)`  | Poll events              |
+
+---
+
+### Screen Management
+
+| Function                   | Description                    |
+|----------------------------|--------------------------------|
+| `nsf_game_add_screen(...)` | Add a new screen to the window |
+| `nsf_game_set_screen(...)` | Select a screen to draw        |
 
 ---
 
@@ -203,11 +214,20 @@ It abstracts the concept of a "game instance" over CSFML by adding:
 
 ## 🔹 Internal Files
 
-| File                 | Role                         |
-|----------------------|------------------------------|
-| `nsf_game_struct.c`  | Creation / destruction logic |
-| `nsf_game_manage*.c` | Core system orchestration    |
-| `nsf_game_draw.c`    | Frame rendering              |
+| File                              | Role                          |
+|-----------------------------------|-------------------------------|
+| `nsf_game_struct.c`               | Data structures & lifecycle   |
+| `nsf_game_manage_background.c`    | Background manager            |
+| `nsf_game_manage_clock.c`         | Clock manager                 |
+| `nsf_game_manage_elementes_add.c` | Sprite/button/etc... registry |
+| `nsf_game_manage_elementes_get.c` | Sprite/button/etc... getter   |
+| `nsf_game_manage_background.c`    | Background manager            |
+| `nsf_game_manage_runtime.c`       | Event and display handling    |
+| `nsf_game_manage_sound.c`         | Sound manager                 |
+| `nsf_game_manage_state.c`         | Window state control          |
+| `nsf_game_manage_window.c`        | Window manager                |
+| `nsf_game_manage_update.c`        | Updater                       |
+| `nsf_game_draw.c`                 | Rendering logic               |
 
 ---
 

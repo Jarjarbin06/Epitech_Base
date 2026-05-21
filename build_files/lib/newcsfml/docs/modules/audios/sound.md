@@ -120,10 +120,11 @@ It corresponds to SFML `sfSound` and `sfSoundBuffer`.
 
 ## 🔹 Internal Files
 
-| File                | Role                   |
-|---------------------|------------------------|
-| nsf_sound_struct.c  | Creation & destruction |
-| nsf_sound_manage*.c | Playback controls      |
+| File                       | Role                   |
+|----------------------------|------------------------|
+| `nsf_sound_struct.c`       | Creation & destruction |
+| `nsf_sound_manage_set.c`   | Playback controls      |
+| `nsf_sound_manage_state.c` | Getters                |
 
 ---
 

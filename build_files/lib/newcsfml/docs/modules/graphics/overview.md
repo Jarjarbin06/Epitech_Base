@@ -187,10 +187,14 @@ Detailed behavior and API are described within each submodule.
 
 ### Submodules
 
+* [Animation](animation.md) — Animation texture
+* [Texture](texture.md) — Normal texture
+* [Sprite](sprite.md) — Drawable entity
+* [Particle](particle.md) — Entity with customisable behaviour
 * [Background](background.md) — Background image
 * [Button](button.md) — Interactive element
-* [Sprite](sprite.md) — Drawable entity
-* [Texture](texture.md) — Texture structure
+* [Text](text.md) — Text element
+* [View](view.md) — Window view system
 
 ---
 

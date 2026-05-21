@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.5
+** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -34,17 +34,25 @@
     #ifndef EXIT_D
         #define EXIT_D
 
-        #ifndef EXIT_SUCCESS
-            #define EXIT_SUCCESS 0
+        #ifndef E_SUCCESS
+            #define E_SUCCESS (0)
         #endif
 
-        #ifndef EXIT_ERROR
-            #define EXIT_ERROR 84
+        #ifndef E_ERROR
+            #define E_ERROR (84)
+        #endif
+
+        #ifndef E_FAILURE
+            #define E_FAILURE (-1)
         #endif
 
     #endif
+
 /// MACRO ///
-#define STR_ELEMENT_UI_PREFIX "[UI]"
+    #define NSF_WINDOW "NSF_WINDOW"
+    #define MAX_SCREENS 50
+    #define SPECIAL_STR_UI "[UI]"
+    #define SPECIAL_STR_UNIVERSAL "[*]"
 
 /// TMP ///
 typedef const char *nsf_cstr_t;
@@ -106,6 +114,9 @@ typedef struct nsf_window_s {
     nsf_element_list_t elements;
     nsf_window_style_t style;
     nsf_cstr_t title;
+    nsf_uint_t screen_len;
+    int current_screen;
+    nsf_cstr_t screens[MAX_SCREENS];
 } nsf_window_t;
 
 /// PROTOTYPES ///
@@ -150,6 +161,10 @@ int nsf_window_all_sound_volume(const nsf_window_t *window, float volume);
 int nsf_window_stop_all_sound(const nsf_window_t *window);
 int nsf_window_update_settings(const nsf_window_t *window);
 void nsf_window_get_mouse(const nsf_window_t *window, nsf_ivector_t out[]);
+void nsf_window_add_screen(nsf_window_t *window, nsf_cstr_t screen_name);
+int nsf_window_set_screen(nsf_window_t *window, nsf_cstr_t screen_name);
+int nsf_window_get_screen_idx(nsf_window_t *window);
+nsf_cstr_t nsf_window_get_screen_name(nsf_window_t *window);
 
 // DRAW //
 int nsf_window_draw_lines(const nsf_window_t *window, size_t len,

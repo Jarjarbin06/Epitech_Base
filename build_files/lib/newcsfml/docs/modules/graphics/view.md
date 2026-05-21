@@ -119,10 +119,11 @@ The view module abstracts the CSFML camera system, allowing control over how the
 
 ## 🔹 Internal Files
 
-| File                | Role                    |
-|---------------------|-------------------------|
-| `nsf_view_struct.c` | Creation / destruction  |
-| `nsf_view_manage.c` | Setters (center / size) |
+| File                    | Role                    |
+|-------------------------|-------------------------|
+| `nsf_view_struct.c`     | Creation / destruction  |
+| `nsf_view_manage_set.c` | Setters (center / size) |
+| `nsf_view_manage_get.c` | Getters                 |
 
 ---
 

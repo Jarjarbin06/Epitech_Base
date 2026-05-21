@@ -12,7 +12,7 @@
 int str_putstr(const char *str)
 {
     if (!str)
-        return EXIT_ERROR;
+        return E_ERROR;
     return ((write(ERR_FILE, str, str_strlen(str)) != str_strlen(str)) ?
-        (EXIT_ERROR) : (EXIT_SUCCESS));
+        (E_ERROR) : (E_SUCCESS));
 }

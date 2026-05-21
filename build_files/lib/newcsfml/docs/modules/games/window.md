@@ -29,18 +29,27 @@ typedef struct nsf_window_s {
     nsf_element_list_t elements;
     nsf_window_style_t style;
     nsf_cstr_t title;
+    nsf_uint_t screen_len;
+    int current_screen;
+    nsf_cstr_t screens[MAX_SCREENS];
 } nsf_window_t;
 ```
 
 ### Description
 
-| Field        | Type                      | Description                              |
-|--------------|---------------------------|------------------------------------------|
-| `settings`   | `nsf_window_settings_t *` | Window configuration (size, bpp, style)  |
-| `window`     | `sfRenderWindow *`        | Underlying SFML render window            |
-| `background` | `nsf_background_t *`      | Background renderer                      |
-| `elements`   | `nsf_element_list_t`      | Registry of drawable/interactive objects |
-| `title`      | `nsf_cstr_t`              | Window title string                      |
+| Field             | Type                      | Description                              |
+|-------------------|---------------------------|------------------------------------------|
+| `settings`        | `nsf_window_settings_t *` | Window configuration (size, bpp, style)  |
+| `window`          | `sfRenderWindow *`        | Underlying SFML render window            |
+| `background`      | `nsf_background_t *`      | Background renderer                      |
+| `element_view`    | `nsf_view_t *`            | View unique to the elements              |
+| `ui_view`         | `nsf_view_t *`            | View unique to the UI elements           |
+| `elements`        | `nsf_element_list_t`      | Registry of drawable/interactive objects |
+| `style `          | `nsf_window_style_t`      | Current window style                     |
+| `screen_len `     | `nsf_uint_t`              | Length of the screens registry buffer    |
+| `screens `        | `nsf_cstr_t`              | Screen registry                          |
+| `current_screen ` | `int`                     | Current selected screen                  |
+| `title`           | `nsf_cstr_t`              | Window title string                      |
 
 ---
 
@@ -113,6 +122,17 @@ Central abstraction for rendering and input handling.
 
 ---
 
+### Screen Management
+
+| Function                          | Description                  |
+|-----------------------------------|------------------------------|
+| `nsf_window_add_screen(...)`      | Add a new screen             |
+| `nsf_window_set_screen(...)`      | Set the current screen       |
+| `nsf_window_get_screen_idx(...)`  | Get the current screen index |
+| `nsf_window_get_screen_name(...)` | Set the current screen name  |
+
+---
+
 ### Background Control
 
 | Function                         | Description    |
@@ -182,16 +202,19 @@ Central abstraction for rendering and input handling.
 
 ## 🔹 Internal Files
 
-| File                   | Role                         |
-|------------------------|------------------------------|
-| `nsf_window_struct.c`  | Creation and destruction     |
-| `nsf_window_manage1.c` | Event and display handling   |
-| `nsf_window_manage2.c` | Sprite/button/sound registry |
-| `nsf_window_manage3.c` | Audio control                |
-| `nsf_window_manage4.c` | Settings and mouse utilities |
-| `nsf_window_manage5.c` | Background handling          |
-| `nsf_window_manage6.c` | Extended system logic        |
-| `nsf_window_draw.c`    | Rendering pipeline           |
+| File                                | Role                          |
+|-------------------------------------|-------------------------------|
+| `nsf_window_struct.c`               | Creation and destruction      |
+| `nsf_window_manage_runtime.c`       | Event and display handling    |
+| `nsf_window_manage_elementes_add.c` | Sprite/button/etc... registry |
+| `nsf_window_manage_elementes_get.c` | Sprite/button/etc... getter   |
+| `nsf_window_manage_sound.c`         | Audio control                 |
+| `nsf_window_manage_state.c`         | Window state control          |
+| `nsf_window_manage_background.c`    | Background handling           |
+| `nsf_window_manage_view.c`          | View manager                  |
+| `nsf_window_manage_update.c`        | Updater                       |
+| `nsf_window_draw_basic.c`           | Basic rendering pipeline      |
+| `nsf_window_draw_advanced.c`        | Advanced rendering pipeline   |
 
 ---
 

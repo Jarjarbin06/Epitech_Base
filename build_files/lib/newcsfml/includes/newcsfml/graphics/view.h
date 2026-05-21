@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.5
+** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -32,25 +32,33 @@
     #ifndef EXIT_D
         #define EXIT_D
 
-        #ifndef EXIT_SUCCESS
-            #define EXIT_SUCCESS 0
+        #ifndef E_SUCCESS
+            #define E_SUCCESS (0)
         #endif
 
-        #ifndef EXIT_ERROR
-            #define EXIT_ERROR 84
+        #ifndef E_ERROR
+            #define E_ERROR (84)
+        #endif
+
+        #ifndef E_FAILURE
+            #define E_FAILURE (-1)
         #endif
 
     #endif
 
+/// MACRO ///
+    #define NSF_VIEW "NSF_VIEW"
+
 /// TMP ///
 typedef struct nsf_game_s nsf_game_t;
 typedef sfVector2f nsf_fvector_t;
+typedef sfVector2u nsf_uvector_t;
 
 /// TYPEDEFS ///
 typedef struct nsf_view_s {
     sfView *view;
     nsf_fvector_t center;
-    nsf_fvector_t size;
+    nsf_uvector_t size;
     float rotation;
 } nsf_view_t;
 
@@ -61,6 +69,8 @@ int nsf_view_destroy(nsf_view_t **view, nsf_game_t *game);
 
 // MANAGE //
 void nsf_view_set_center(nsf_view_t *view, const nsf_fvector_t *center);
-void nsf_view_set_size(nsf_view_t *view, const nsf_fvector_t *size);
+void nsf_view_set_size(nsf_view_t *view, const nsf_uvector_t *size);
+void nsf_view_get_center(nsf_view_t *view, nsf_fvector_t *out);
+void nsf_view_get_size(nsf_view_t *view, nsf_uvector_t *out);
 
 #endif

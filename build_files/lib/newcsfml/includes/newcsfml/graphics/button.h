@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.5
+** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -34,15 +34,22 @@
     #ifndef EXIT_D
         #define EXIT_D
 
-        #ifndef EXIT_SUCCESS
-            #define EXIT_SUCCESS 0
+        #ifndef E_SUCCESS
+            #define E_SUCCESS (0)
         #endif
 
-        #ifndef EXIT_ERROR
-            #define EXIT_ERROR 84
+        #ifndef E_ERROR
+            #define E_ERROR (84)
+        #endif
+
+        #ifndef E_FAILURE
+            #define E_FAILURE (-1)
         #endif
 
     #endif
+
+/// MACRO ///
+    #define NSF_BUTTON "NSF_BUTTON"
 
 /// TMP ///
 typedef const char *cstr_t;
@@ -50,6 +57,7 @@ typedef sfColor nsf_color_t;
 typedef struct nsf_game_s nsf_game_t;
 typedef struct nsf_window_s nsf_window_t;
 typedef sfVector2f nsf_fvector_t;
+typedef sfVector2u nsf_uvector_t;
 typedef struct nsf_texture_s nsf_texture_t;
 typedef unsigned int nsf_uint_t;
 typedef const char *nsf_cstr_t;
@@ -59,7 +67,7 @@ typedef enum nsf_mouse_button_e nsf_mouse_button_t;
 typedef struct nsf_button_s {
     sfRectangleShape *button;
     const nsf_texture_t *texture;
-    nsf_fvector_t size;
+    nsf_uvector_t size;
     nsf_fvector_t position;
     nsf_color_t fill_color;
     nsf_color_t outline_color;
@@ -82,10 +90,10 @@ int nsf_button_destroy(nsf_button_t **button, nsf_game_t *game);
 void nsf_button_set_texture(nsf_button_t *button, const nsf_texture_t *texture);
 void nsf_button_set_position(nsf_button_t *button,
     const nsf_fvector_t position[]);
-void nsf_button_set_size(nsf_button_t *button, const nsf_fvector_t size[]);
+void nsf_button_set_size(nsf_button_t *button, const nsf_uvector_t size[]);
 void nsf_button_set_colors(nsf_button_t *button,
     const nsf_color_t fill_color[], const nsf_color_t outline_color[],
-    nsf_uint_t outline_thickness);
+    int outline_thickness);
 nsf_button_status_t nsf_button_get_state(const nsf_button_t *button,
     const nsf_window_t *window, nsf_mouse_button_t mouse_button);
 

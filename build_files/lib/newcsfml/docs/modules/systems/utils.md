@@ -1,7 +1,7 @@
 # 📦 Utils Module (`nsf_utils`)
 #### part of [Systems](overview.md)
 
-Utility helper module for memory management, optimization hints, and internal tooling.
+Utility helper module for memory management, optimisation hints, logic gates, and internal tooling.
 
 > Provides allocation helpers, branch prediction macros, and utility abstractions for safe and tracked memory usage.
 
@@ -49,6 +49,7 @@ This module provides core utility features used across the NCSFML ecosystem, mai
 
 | Module      | Usage                          |
 |-------------|--------------------------------|
+| `stdio`     | debug printing                 |
 | `nsf_game`  | Allocation tracking (optional) |
 | `nsf_other` | Underlying low-level utilities |
 
@@ -56,22 +57,54 @@ This module provides core utility features used across the NCSFML ecosystem, mai
 
 ## 🔹 API
 
-### Creation / Destruction
+### Memory Functions
 
-| Function              | Description                   |
-|-----------------------|-------------------------------|
-| `nsf_malloc_any(...)` | Allocate memory with tracking |
-| `nsf_free_any(...)`   | Free memory with tracking     |
+| Function                    | Description                              |
+|-----------------------------|------------------------------------------|
+| `nsf_utils_malloc(...)`     | Allocate memory and update allocations   |
+| `nsf_utils_free(...)`       | Free memory and update allocations       |
+| `nsf_utils_free_batch(...)` | Batch free multiple resources            |
+| `nsf_utils_free_array(...)` | Free an array of any kind (simple array) |
 
 ---
 
-### Core Functions
+### Logic Functions
 
-| Function              | Description                            |
-|-----------------------|----------------------------------------|
-| `nsf_malloc_any(...)` | Allocate memory and update allocations |
-| `nsf_free_any(...)`   | Free memory and update allocations     |
-| `nsf_auto_free(...)`  | Batch free multiple resources          |
+| Function                          | Description           |
+|-----------------------------------|-----------------------|
+| `nsf_utils_logic_not(...)`        | NOT logic gate        |
+| `nsf_utils_logic_and(...)`        | AND logic gate        |
+| `nsf_utils_logic_and_batch(...)`  | Batch AND logic gate  |
+| `nsf_utils_logic_nand(...)`       | NAND logic gate       |
+| `nsf_utils_logic_nand_batch(...)` | Batch NAND logic gate |
+| `nsf_utils_logic_or(...)`         | OR logic gate         |
+| `nsf_utils_logic_or_batch(...)`   | Batch OR logic gate   |
+| `nsf_utils_logic_nor(...)`        | NOR logic gate        |
+| `nsf_utils_logic_nor_batch(...)`  | Batch NOR logic gate  |
+| `nsf_utils_logic_xor(...)`        | XOR logic gate        |
+| `nsf_utils_logic_xor_batch(...)`  | Batch XOR logic gate  |
+| `nsf_utils_logic_nxor(...)`       | NXOR logic gate       |
+| `nsf_utils_logic_nxor_batch(...)` | Batch NXOR logic gate |
+
+---
+
+### Environment Checker
+
+| Function                           | Description                            |
+|------------------------------------|----------------------------------------|
+| `nsf_utils_env_check_display(...)` | Check for DISPLAY environment variable |
+
+---
+
+### Debug Functions
+
+| Function                   | Description                           |
+|----------------------------|---------------------------------------|
+| `nsf_utils_log(...)`       | Show pretty printded logs             |
+| `nsf_utils_log_null(...)`  | Log and return a NULL pointer         |
+| `nsf_utils_log_false(...)` | Log and return a false boolean        |
+| `nsf_utils_log_error(...)` | Log and return a E_ERROR (84) integer |
+| `nsf_utils_log_zero(...)`  | Log and return a 0 integer            |
 
 ---
 
@@ -81,6 +114,8 @@ This module provides core utility features used across the NCSFML ecosystem, mai
 |--------------------|-----------------------------------------|
 | `NSF_LIKELY(x)`    | Branch prediction hint (expected true)  |
 | `NSF_UNLIKELY(x)`  | Branch prediction hint (expected false) |
+| `NSF_FALSE`        | Boolean (false)(0)                      |
+| `NSF_TRUE`         | Boolean (true)(1)                       |
 | `newcsfml_exist()` | Dummy function for linkage/validation   |
 
 ---
@@ -120,9 +155,13 @@ This module provides core utility features used across the NCSFML ecosystem, mai
 
 ## 🔹 Internal Files
 
-| File              | Role                           |
-|-------------------|--------------------------------|
-| `nsf_alloc_any.c` | Memory allocation / free logic |
+| File                                | Role                                |
+|-------------------------------------|-------------------------------------|
+| `nsf_utils_manage_env.c`            | Environement checker                |
+| `nsf_utils_manage_logic_advanced.c` | Advanced logic gates (XOR, NXOR)    |
+| `nsf_utils_manage_logic_medium.c`   | Medium logic gates (OR, NOR)        |
+| `nsf_utils_manage_logic_simple.c`   | Simple logic gates (NOT, AND, NAND) |
+| `nsf_utils_manage_memory.c`         | Memory allocation / free logic      |
 
 ---
 

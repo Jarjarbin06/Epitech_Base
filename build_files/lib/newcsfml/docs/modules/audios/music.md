@@ -108,8 +108,8 @@ It abstracts SFML `sfMusic` into a safer and more consistent framework API.
 |----------------------|-------------------------------|
 | `nsf_music_t *`      | Successfully created music    |
 | `NULL`               | Allocation or loading failure |
-| `EXIT_SUCCESS`       | Successful destruction        |
-| `EXIT_ERROR`         | Invalid pointer / failure     |
+| `E_SUCCESS`          | Successful destruction        |
+| `E_ERROR`            | Invalid pointer / failure     |
 | `nsf_sound_status_t` | Playback state                |
 
 ---
@@ -126,10 +126,11 @@ It abstracts SFML `sfMusic` into a safer and more consistent framework API.
 
 ## 🔹 Internal Files
 
-| File                  | Role                         |
-|-----------------------|------------------------------|
-| `nsf_music_struct.c`  | Creation / destruction logic |
-| `nsf_music_manage*.c` | Playback control API         |
+| File                       | Role                   |
+|----------------------------|------------------------|
+| `nsf_music_struct.c`       | Creation & destruction |
+| `nsf_music_manage_set.c`   | Playback controls      |
+| `nsf_music_manage_state.c` | Getters                |
 
 ---
 

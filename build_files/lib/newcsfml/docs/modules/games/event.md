@@ -1,10 +1,10 @@
 # 📦 Event Module (`nsf_event`)
 #### part of [Games](overview.md)
 
-Provides a lightweight abstraction over CSFML events, including input handling, event comparison, and mouse utilities.
+Lightweight abstraction over SFML event handling, providing safer comparisons and helper accessors for keyboard and mouse-related input.
 
 > Example:
-> Allows safe event filtering (keyboard, mouse, window events) without directly exposing SFML event structures.
+> Handles event type checking, key comparison, and extraction of mouse movement / wheel data from SFML event polling.
 
 ---
 
@@ -24,34 +24,38 @@ typedef sfEvent nsf_event_t;
 
 ### Description
 
-| Field              | Type                      | Description                                             |
-|--------------------|---------------------------|---------------------------------------------------------|
-| `type`             | `sfEventType`             | Event category (closed, key pressed, mouse moved, etc.) |
-| `mouseMove`        | `sfMouseMoveEvent`        | Mouse position data                                     |
-| `mouseWheelScroll` | `sfMouseWheelScrollEvent` | Mouse wheel delta                                       |
-| `...`              | `...`                     | Other SFML event variants                               |
+| Field              | Type                      | Description                                          |
+|--------------------|---------------------------|------------------------------------------------------|
+| `type` (internal)  | `sfEventType`             | Event category (closed, key press, mouse move, etc.) |
+| `key`              | `sfKeyEvent`              | Keyboard event data (code, modifiers)                |
+| `mouseMove`        | `sfMouseMoveEvent`        | Mouse position data                                  |
+| `mouseWheelScroll` | `sfMouseWheelScrollEvent` | Mouse wheel delta                                    |
+| `...`              | `...`                     | Other SFML event payload fields                      |
 
 ---
 
 ## 🔹 Purpose
 
-This module wraps SFML events to provide:
+This module provides a thin but safe abstraction layer over SFML events.
 
-* Safe comparison utilities
-* Simplified keyboard and mouse handling
-* Lightweight abstraction over raw `sfEvent`
+* Standardizes event comparisons (type, key)
+* Extracts mouse movement and wheel data safely
+* Avoids direct SFML field access in higher-level systems
+* Acts as a helper layer for input handling in `nsf_window`
 
-It sits at the **input layer of the framework**, used mainly by the game and window systems to interpret user interactions.
+It does **not replace SFML event system**, but simplifies its usage inside the engine architecture.
 
 ---
 
 ## 🔹 Dependencies
 
-| Module                | Usage                          |
-|-----------------------|--------------------------------|
-| `SFML/Window/Event.h` | Base event system              |
-| `nsf_keyboard`        | Key press match                |
-| `nsf_utils`           | Safety macros (`NSF_UNLIKELY`) |
+| Module            | Usage                            |
+|-------------------|----------------------------------|
+| `sfEvent` (CSFML) | Base event structure             |
+| `nsf_keyboard`    | Key code abstraction             |
+| `nsf_mouse`       | Mouse input mapping              |
+| `nsf_vector`      | Mouse position output formatting |
+| `nsf_window`      | Event polling integration        |
 
 ---
 
@@ -59,91 +63,99 @@ It sits at the **input layer of the framework**, used mainly by the game and win
 
 ### Event Comparison
 
-| Function                        | Description                                   |
-|---------------------------------|-----------------------------------------------|
-| `nsf_event_cmp(event, type)`    | Checks if event matches a specific event type |
-| `nsf_event_cmp_key(event, key)` | Checks if keyboard event matches a key        |
+| Function                        | Description                                |
+|---------------------------------|--------------------------------------------|
+| `nsf_event_cmp(event, type)`    | Compare event type with `nsf_event_type_t` |
+| `nsf_event_cmp_key(event, key)` | Compare keyboard event key code            |
 
 ---
 
-### Mouse Utilities
+### Mouse Input Access
 
 | Function                               | Description                         |
 |----------------------------------------|-------------------------------------|
-| `nsf_event_get_mouse_move(event, out)` | Retrieves mouse position from event |
-| `nsf_event_get_mouse_wheel(event)`     | Retrieves mouse wheel delta         |
+| `nsf_event_get_mouse_move(event, out)` | Retrieve mouse movement coordinates |
+| `nsf_event_get_mouse_wheel(event)`     | Get mouse wheel scroll delta        |
 
 ---
 
 ## 🔹 Parameters Reference
 
-| Name         | Type                  | Description                    |
-|--------------|-----------------------|--------------------------------|
-| `event`      | `const nsf_event_t *` | Input event reference          |
-| `event_type` | `nsf_event_type_t`    | Event category to compare      |
-| `out`        | `nsf_ivector_t[]`     | Output vector (mouse position) |
+| Name         | Type               | Description                      |
+|--------------|--------------------|----------------------------------|
+| `event`      | `nsf_event_t *`    | SFML event instance              |
+| `event_type` | `nsf_event_type_t` | Abstracted event type            |
+| `key_code`   | `nsf_key_code_t`   | Abstracted keyboard key          |
+| `out`        | `nsf_ivector_t[]`  | Output vector for mouse position |
 
 ---
 
 ## 🔹 Return Values
 
-| Type    | Meaning                   |
-|---------|---------------------------|
-| `bool`  | Event matches condition   |
-| `float` | Mouse wheel delta         |
-| `void`  | Output filled via pointer |
+| Type        | Meaning                          |
+|-------------|----------------------------------|
+| `bool`      | True if match / valid comparison |
+| `float`     | Mouse wheel delta                |
+| `void`      | Output-based functions           |
+| `false / 0` | Invalid or null input            |
 
 ---
 
 ## 🔹 Notes
 
-* Always validate event pointers before usage (already handled internally where needed)
-* Event comparisons rely on direct SFML enum casting
-* Mouse utilities do not allocate memory
-* Output vectors must be preallocated before calling `nsf_event_get_mouse_move`
+* Direct SFML event structure is reused (no wrapper allocation)
+* Always validate event pointer before usage
+* Mouse helpers only extract data, they do not modify SFML state
+* Designed for polling systems inside `nsf_window`
+* Safe to use in tight input loops
 
 ---
 
 ## 🔹 Internal Files
 
-| File                 | Role                         |
-|----------------------|------------------------------|
-| `nsf_event_manage.c` | Event comparison + utilities |
+| File                         | Role                                |
+|------------------------------|-------------------------------------|
+| `nsf_event_manage_compare.c` | Event type + key comparison logic   |
+| `nsf_event_manage_get.c`     | Mouse movement and wheel extraction |
 
 ---
 
-## 🔹 Related Submodules
+## 🔹 Related Modules
 
-* [`nsf_game` 🔗](game.md)
-* [`nsf_window` 🔗](window.md)
-* [`nsf_vector` 🔗](../systems/vector.md)
-* [`nsf_keyboard` 🔗](keyboard.md)
+* `nsf_window`
+* `nsf_keyboard`
+* `nsf_mouse`
+* `nsf_game`
 
 ---
 
 ## 🔹 CSFML Mapping (Optional)
 
-| NSF                | CSFML         |
-|--------------------|---------------|
-| `nsf_event_t`      | `sfEvent`     |
-| `nsf_event_type_t` | `sfEventType` |
+| NSF                         | CSFML                            |
+|-----------------------------|----------------------------------|
+| `nsf_event_t`               | `sfEvent`                        |
+| `nsf_event_cmp`             | `sfEvent.type` comparison        |
+| `nsf_event_get_mouse_move`  | `sfEvent.mouseMove`              |
+| `nsf_event_get_mouse_wheel` | `sfEvent.mouseWheelScroll.delta` |
 
 ---
 
 ## 🔹 Implementation Notes (for contributors)
 
-* Event handling must remain **stateless**
-* Never store `sfEvent` pointers long-term
-* Keep comparison functions pure (no side effects)
-* Avoid exposing SFML-specific logic outside this module
-* Use safe guards (`NSF_UNLIKELY`) for all external inputs
+* Keep event functions stateless (pure helpers)
+* Do not extend SFML event structure manually
+* Avoid allocations in event processing path
+* Keep comparisons branch-light for performance
+* Follow strict separation between compare and extract logic
 
 ---
 
 ## 🔹 Extension Points
 
-* Add joystick helpers in a future manage file
-* Extend mouse utilities without modifying structure
-* Wrap additional SFML event types if needed (touch, sensors)
+* Add key press/release helpers (hold system abstraction)
+* Add event buffering layer for input replay
+* Add normalized mouse position relative to window/view
+* Extend abstraction for joystick and touch input
+* Add higher-level input mapping system (actions/binds)
 
 ---

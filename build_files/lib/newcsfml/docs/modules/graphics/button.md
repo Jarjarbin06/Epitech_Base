@@ -115,12 +115,12 @@ Represents an interactive UI element that reacts to mouse input.
 
 ## 🔹 Return Values
 
-| Type                  | Meaning                                    |
-|-----------------------|--------------------------------------------|
-| `pointer`             | Valid button object                        |
-| `NULL`                | Allocation or initialization failure       |
-| `int`                 | Status code (`EXIT_SUCCESS`, `EXIT_ERROR`) |
-| `nsf_button_status_t` | Interaction state result                   |
+| Type                  | Meaning                              |
+|-----------------------|--------------------------------------|
+| `pointer`             | Valid button object                  |
+| `NULL`                | Allocation or initialization failure |
+| `int`                 | Status code (`E_SUCCESS`, `E_ERROR`) |
+| `nsf_button_status_t` | Interaction state result             |
 
 ---
 
@@ -136,11 +136,12 @@ Represents an interactive UI element that reacts to mouse input.
 
 ## 🔹 Internal Files
 
-| File                  | Role                           |
-|-----------------------|--------------------------------|
-| `nsf_button_struct.c` | Creation and destruction logic |
-| `nsf_button_manage.c` | Setters and state logic        |
-| `nsf_button_draw.c`   | Rendering                      |
+| File                      | Role                           |
+|---------------------------|--------------------------------|
+| `nsf_button_struct.c`     | Creation and destruction logic |
+| `nsf_button_manage_get.c` | Getters                        |
+| `nsf_button_manage_set.c` | Setters and state logic        |
+| `nsf_button_draw.c`       | Rendering                      |
 
 ---
 

@@ -176,12 +176,13 @@ The particle module provides a flexible and efficient system to simulate multipl
 
 ## 🔹 Internal Files
 
-| File                     | Role                          |
-|--------------------------|-------------------------------|
-| `nsf_particle_struct.c`  | Creation / destruction        |
-| `nsf_particle_manage1.c` | Setters (texture, size, etc.) |
-| `nsf_particle_manage2.c` | Update logic & spawning       |
-| `nsf_particle_draw.c`    | Rendering + timed update      |
+| File                               | Role                     |
+|------------------------------------|--------------------------|
+| `nsf_particle_struct.c`            | Creation / destruction   |
+| `nsf_particle_manage_set_update.c` | Update functions setters |
+| `nsf_particle_manage_set_value.c`  | Settings setters         |
+| `nsf_particle_manage_update.c`     | Update logic & spawning  |
+| `nsf_particle_draw.c`              | Rendering + timed update |
 
 ---
 

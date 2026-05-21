@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.5
+** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -25,10 +25,10 @@
     #define NEWCSFML_SYSTEMS_H
 
     #include "newcsfml/systems/clock.h"
-    #include "newcsfml/systems/vector.h"
     #include "newcsfml/systems/color.h"
     #include "newcsfml/systems/other.h"
     #include "newcsfml/systems/utils.h"
+    #include "newcsfml/systems/vector.h"
     #include "newcsfml/systems/watcher.h"
 
 #endif

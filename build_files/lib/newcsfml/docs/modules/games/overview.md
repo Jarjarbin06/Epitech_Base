@@ -201,6 +201,7 @@ Detailed behavior and API are described within each submodule.
 
 * [Event](event.md) — Event managing
 * [Keyboard](keyboard.md) — Keyboard managing
+* [Mouse](mouse.md) — Mouse managing
 * [Game](game.md) — Main ownership structure
 * [Window](window.md) — Core rendering system
 * [Window Settings](window_settings.md) — Rendering settings

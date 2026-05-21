@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.5
+** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
 ** License: GPL v3
 ** •
@@ -29,18 +29,8 @@
     #include <stdbool.h>
     #include <stddef.h>
 
-    #ifndef EXIT_D
-        #define EXIT_D
-
-        #ifndef EXIT_SUCCESS
-            #define EXIT_SUCCESS 0
-        #endif
-
-        #ifndef EXIT_ERROR
-            #define EXIT_ERROR 84
-        #endif
-
-    #endif
+/// MACRO ///
+    #define NSF_SOUND "NSF_SOUND"
 
 /// TMP ///
 typedef const char *cstr_t;
