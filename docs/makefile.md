@@ -9,6 +9,7 @@
 **This Makefile provides a complete build and project management system for EPITECH-style repositories, integrating multi-library compilation, automated imports, testing tools, and Git workflows.**
 
 It acts as both:
+
 * A **build orchestrator**
 * A **project bootstrap system**
 
@@ -23,8 +24,8 @@ It acts as both:
 
 ## 🔹 Versioning
 
-* Version: `v0.3.1`
-* Last update: `2026/05/05`
+* Version: `v1.0.4`
+* Last update: `2026/05/18 15h`
 * Maintained via central base repository
 
 ---
@@ -48,22 +49,23 @@ This Makefile is designed to:
 * 📦 Dynamic library linking
 * 🧱 Modular project structure
 * ⚙️ Integrated testing system (Criterion, Valgrind, gcovr)
-* 🔄 Git automation (commit, push, update)
-* 🏗️ Project template bootstrap (`build`)
-* 📥 Library import system
-* 🧹 Advanced cleanup system
-* 🧪 Debug tools (ASAN, coverage)
+* 🔄 Git automation (pull, status, commit helpers, push system)
+* 🏗️ Project template bootstrap (`setup-build`)
+* 📥 Library import system (full + individual modules)
+* 🧹 Advanced cleanup system (lib + project + tests)
+* 🧪 Debug tools (ASAN, coverage, style checker)
 
 ---
 
 ## 🔹 Architecture Overview
 
 ```
-
 EpitechBase Root
 │
 └── build_files/          → Base repository (external reference)
+```
 
+```
 Project Root
 │
 ├── includes/             → Headers
@@ -73,8 +75,7 @@ Project Root
 ├── bonus/                → Project bonus
 │
 └── Makefile              → Central controller
-
-````
+```
 
 ---
 
@@ -83,8 +84,8 @@ Project Root
 ### Automatic Source Detection
 
 ```make
-SRC = $(shell find sources -type f -name "*.c" ! -name "main.c")
-````
+SRC = $(sort $(shell [ -d "$(SRC_PATH)" ] && find $(SRC_PATH) -type f -name "*.c" ! -name "main.c"))
+```
 
 * Detects all `.c` files automatically
 * Excludes `main.c` (handled separately)
@@ -94,7 +95,7 @@ SRC = $(shell find sources -type f -name "*.c" ! -name "main.c")
 ### Include Handling
 
 ```make
-INCLUDES = $(shell find includes -type d -printf '-I%p ')
+INCLUDES = $(sort $(addprefix -I,$(shell [ -d "$(INCLUDE_PATH)" ] && find $(INCLUDE_PATH) -type d)))
 ```
 
 * Recursively includes all header directories
@@ -104,7 +105,7 @@ INCLUDES = $(shell find includes -type d -printf '-I%p ')
 ### Library Detection
 
 ```make
-LIBS_LIST = $(notdir $(shell find lib -mindepth 1 -maxdepth 1 -type d))
+LIBS_LIST = $(sort $(notdir $(shell [ -d "$(LIB_SRC_PATH)" ] && find $(LIB_SRC_PATH) -mindepth 1 -maxdepth 1 -type d)))
 ```
 
 * Automatically detects all libraries in `lib/`
@@ -114,20 +115,22 @@ LIBS_LIST = $(notdir $(shell find lib -mindepth 1 -maxdepth 1 -type d))
 ### Automatic Linking
 
 ```make
-LIB_FLAGS = -l<libname>
+LIB_FLAGS = $(foreach lib,$(LIBS_LIST), $(if $(wildcard lib/$(lib)/lib$(lib).a),-l$(lib),))
 ```
 
-* Only links libraries that are already compiled (`lib<name>.a`)
+* Only links compiled libraries
 
 ---
 
 ### CSFML Auto-Linking
 
+Enabled via:
+
 ```make
-ifneq ($(filter -lnewcsfml,$(CFLAGS_PLUS)),)
+HAS_CSFML = true/false
 ```
 
-Automatically adds:
+If enabled, adds:
 
 ```
 -lcsfml-graphics
@@ -149,8 +152,8 @@ make
 
 Steps:
 
-1. Compile all libraries
-2. Compile project
+1. Compile all libraries (`lib-build`)
+2. Compile project sources
 3. Link everything into `binary`
 
 ---
@@ -159,20 +162,20 @@ Steps:
 
 ```bash
 make clean     # Remove object files
-make fclean    # Remove binaries + libs
+make fclean    # Remove binary + libs
 make re        # Full rebuild
-make run       # Compile and run
+make run       # Compile and execute
 ```
 
 ---
 
-### Debugging
+### Debugging (ASAN)
 
 ```bash
-make asan
+make debug-asan
 ```
 
-* Enables AddressSanitizer
+* Enables AddressSanitizer build
 
 ---
 
@@ -181,31 +184,31 @@ make asan
 ### Compile All Libraries
 
 ```bash
-make compile_libs
+make lib-build
 ```
 
 * Builds each library inside `lib/`
-* Copies `.a` files into `lib/`
-* Runs `ranlib` automatically
+* Copies `.a` files into root `lib/`
+* Runs `ranlib`
 
 ---
 
 ### Clean Libraries
 
 ```bash
-make clean_libs
-make fclean_libs
+make lib-clean
+make lib-fclean
 ```
 
 ---
 
 ## 🔹 Testing System
 
-### Unit Tests (Criterion)
+### Unit Tests
 
 ```bash
-make test_unit_tests
-make test_unit_tests_run
+make test-run
+make test-build
 ```
 
 ---
@@ -213,7 +216,7 @@ make test_unit_tests_run
 ### Valgrind
 
 ```bash
-make test_valgrind
+make test-valgrind
 ```
 
 ---
@@ -221,15 +224,15 @@ make test_valgrind
 ### Coverage
 
 ```bash
-make test_gcovr
+make test-gcovr
 ```
 
 ---
 
-### Coding Style
+### Style Check
 
 ```bash
-make test_style
+make test-style
 ```
 
 * Uses `epiclang`
@@ -238,17 +241,17 @@ make test_style
 
 ## 🔹 Git Integration
 
-### Utilities
+### Core Commands
 
 ```bash
-make git_pull
-make git_info
-make git_get_commit
+make git-pull
+make git-status
+make git-commit-msg
 ```
 
 ---
 
-### Auto Push System
+### Push System
 
 Controlled by:
 
@@ -256,51 +259,48 @@ Controlled by:
 ALLOW_AUTO_PUSH = true
 ```
 
----
-
-### Auto Commit Examples
+Rules:
 
 ```bash
-make push_setup
-make push_makefile
-make push_lib
+make git-push-repo
+make git-push-libs
+make git-push-makefile
 ```
 
 ---
 
 ## 🔹 Project Bootstrap System
 
-### Build (Project Initialization)
+### Build Setup
 
 ```bash
-make build
+make setup-build
 ```
 
-* Copies:
-
-    * `.gitignore`
-    * Base project structure
-    * Template files
-
-⚠️ Only works if repository is clean
+* Copies template project structure
+* Copies `.gitignore`
+* Initializes base environment
 
 ---
 
 ### Unbuild (Dangerous)
 
 ```bash
-make unbuild
+make setup-unbuild
 ```
 
-* Deletes:
+⚠️ Deletes:
 
-    * sources/
-    * includes/
-    * lib/
-    * tests/
-    * bonus/
+```
+bonus/
+includes/
+lib/
+sources/
+tests/
+main.c
+```
 
-Requires:
+Controlled by:
 
 ```make
 ALLOW_UNBUILD = true
@@ -310,17 +310,18 @@ ALLOW_UNBUILD = true
 
 ## 🔹 Library Import System
 
-### Import Individual Libraries
+### Individual Imports
 
 ```bash
-make import_str
-make import_print
-make import_utils
-make import_newcsfml
-make import_newerror
-make import_llist
-make import_twodlist
-make import_file
+make setup-import-newerror
+make setup-import-llist
+make setup-import-newcsfml
+make setup-import-print
+make setup-import-str
+make setup-import-file
+make setup-import-flag
+make setup-import-utils
+make setup-import-twodlist
 ```
 
 ---
@@ -328,7 +329,7 @@ make import_file
 ### Import All
 
 ```bash
-make import_all
+make setup-import-all
 ```
 
 ---
@@ -337,10 +338,10 @@ make import_all
 
 Each import:
 
-1. Deletes old version
+1. Deletes old library version
 2. Copies from base repository
 3. Copies headers into `includes/lib_includes/`
-4. Commits & pushes (if enabled)
+4. Optionally pushes to Git
 
 ---
 
@@ -357,17 +358,20 @@ EPITECH_BASE_PATH = /path/to/Epitech_Base
 ### Compilation
 
 ```make
-CC      = clang
-CFLAGS  = -g3 -O0 -O3 -Wall -Wextra
+CC = clang
+CFLAGS = -Wall -Wextra -Werror -g3 -O3
 ```
 
 ---
 
-### Behavior Flags
+### Flags
 
 ```make
-ALLOW_UNBUILD     = false
-ALLOW_AUTO_PUSH   = true
+ALLOW_UNBUILD = false
+ALLOW_AUTO_PUSH = true
+DEBUG ?= false
+ARCH ?= native
+HAS_CSFML = false
 ```
 
 ---
@@ -378,12 +382,9 @@ ALLOW_AUTO_PUSH   = true
 
 ```
 make
- ├── compile_libs
- │    └── build each lib
- │
- └── compile binary
-      ├── compile sources
-      └── link libs
+ ├── lib-build
+ ├── compile sources
+ └── link binary
 ```
 
 ---
@@ -391,11 +392,11 @@ make
 ### Import Flow
 
 ```
-import_lib
+setup-import-*
  ├── remove old lib
  ├── copy new lib
  ├── copy headers
- └── push changes
+ └── git push (if enabled)
 ```
 
 ---
@@ -411,31 +412,31 @@ import_lib
 
 ---
 
-## 🔹 Security & Safety Notes
+## 🔹 Security Notes
 
-* `build` and `unbuild` are **destructive**
-* Git auto-push should be used carefully
-* Imports overwrite existing libraries
+* `setup-unbuild` is destructive
+* Git auto-push must be controlled
+* Imports overwrite local libraries
 * Requires valid `EPITECH_BASE_PATH`
 
 ---
 
 ## 🔹 Limitations
 
-* Linux-focused environment
-* Requires consistent repo structure
+* Linux-focused
+* Requires strict repo structure
+* No version manager for libraries
 * Depends on external base repository
-* No dependency versioning system
 
 ---
 
 ## 🔹 Best Practices
 
-* Keep `lib/` clean and organized
-* Use `import_*` instead of manual copying
-* Disable auto-push in team environments if needed
-* Always test after imports
-* Avoid modifying imported libraries directly
+* Use `setup-import-*` instead of manual copying
+* Keep `lib/` clean
+* Avoid modifying imported libs directly
+* Test after each import
+* Disable auto-push in shared environments
 
 ---
 
@@ -445,19 +446,43 @@ import_lib
 make help
 ```
 
-Displays:
-
-* Main commands
-* Testing commands
-* Utility rules
-
 ---
 
 ## 🔹 Notes
 
-* Designed for **high productivity in EPITECH projects**
-* Encourages **modular architecture**
-* Centralizes **all project operations in one tool**
-* Scales from small projects to full frameworks (e.g., NewCSFML)
+* Designed for EPITECH workflow efficiency
+* Encourages modular architecture
+* Centralizes all operations into a single system
+* Scales from small projects to full frameworks (NewCSFML, etc.)
+
+---
+
+<div align="center">
+
+## 📦 Epitech Base — Footer
+
+</div>
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseLogo.png" width="120"  alt="Epitech Base Logo"/>
+
+Epitech Base • Modular C Ecosystem
+
+Libraries:\
+• `file` - `v0.1.2`\
+• `flag` - `v0.1.1`\
+• `llist` - `v0.0.0`\
+• `newcsfml` - `v0.2.7`\
+• `newerror` - `v0.1.1`\
+• `print` - `v0.1.5`\
+• `str` - `v0.1.5`\
+• `print` - `v0.0.0`\
+• `twodlist` - `v0.1.5`\
+• `utils` - `v0.1.5`
+
+Author: Nathan (Jarjarbin06) • EPITECH  
+Licence: GPL v3\
+Repository: [Epitech Base](https://github.com/Jarjarbin06/Epitech_Base)
+</div>
 
 ---

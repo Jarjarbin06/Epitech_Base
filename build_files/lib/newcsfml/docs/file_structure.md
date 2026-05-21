@@ -121,6 +121,8 @@ games/
 ├── game.h
 ├── window.h
 ├── event.h
+├── keyboard.h
+├── mouse.h
 └── window_settings.h
 ```
 
@@ -128,7 +130,9 @@ games/
 |-----------------|-------------------------|
 | game            | Core engine controller  |
 | window          | Render + event handling |
-| event           | Input abstraction       |
+| event           | Event abstraction       |
+| keyboard        | Keyboard abstraction    |
+| mouse           | Mouse abstraction       |
 | window_settings | Window configuration    |
 
 ---
@@ -138,16 +142,24 @@ games/
 ```text
 graphics/
 ├── sprite.h
+├── particle.h
+├── text.h
 ├── button.h
 ├── texture.h
+├── animation.h
+├── view.h
 └── background.h
 ```
 
 | File       | Role                   |
 |------------|------------------------|
 | sprite     | Drawable entity        |
+| particle   | Drawable particle      |
+| text       | Drawable text          |
 | button     | UI interaction element |
 | texture    | GPU resource wrapper   |
+| animation  | SpriteSheet manager    |
+| view       | Window view manager    |
 | background | Scene background       |
 
 ---
@@ -160,16 +172,18 @@ systems/
 ├── color.h
 ├── utils.h
 ├── clock.h
+├── watcher.h
 └── other.h
 ```
 
-| File   | Role                |
-|--------|---------------------|
-| vector | Math structures     |
-| color  | Color utilities     |
-| utils  | Generic helpers     |
-| clock  | Time management     |
-| other  | Other lib functions |
+| File    | Role                |
+|---------|---------------------|
+| vector  | Math structures     |
+| color   | Color utilities     |
+| utils   | Generic helpers     |
+| clock   | Time management     |
+| watcher | Pointer watcher     |
+| other   | Other lib functions |
 
 ---
 
@@ -208,15 +222,19 @@ sources/games/
 ├── game/
 ├── window/
 ├── event/
+├── keyboard/
+├── mouse/
 └── window_settings/
 ```
 
-| Folder          | Role                 |
-|-----------------|----------------------|
-| game            | Core game logic      |
-| window          | Rendering system     |
-| event           | Input handling       |
-| window_settings | Window configuration |
+| File            | Role                    |
+|-----------------|-------------------------|
+| game            | Core engine controller  |
+| window          | Render + event handling |
+| event           | Event abstraction       |
+| keyboard        | Keyboard abstraction    |
+| mouse           | Mouse abstraction       |
+| window_settings | Window configuration    |
 
 ---
 
@@ -225,17 +243,25 @@ sources/games/
 ```text
 sources/graphics/
 ├── sprite/
+├── particle/
+├── text/
 ├── button/
 ├── texture/
+├── animation/
+├── view/
 └── background/
 ```
 
-| Folder     | Role                 |
-|------------|----------------------|
-| sprite     | Sprite logic         |
-| button     | UI system            |
-| texture    | Texture loading      |
-| background | Background rendering |
+| File       | Role                   |
+|------------|------------------------|
+| sprite     | Drawable entity        |
+| particle   | Drawable particle      |
+| text       | Drawable text          |
+| button     | UI interaction element |
+| texture    | GPU resource wrapper   |
+| animation  | SpriteSheet manager    |
+| view       | Window view manager    |
+| background | Scene background       |
 
 ---
 
@@ -245,18 +271,20 @@ sources/graphics/
 sources/systems/
 ├── vector/
 ├── color/
-├── clock/
 ├── utils/
+├── clock/
+├── watcher/
 └── other/
 ```
 
-| Folder | Role                     |
-|--------|--------------------------|
-| vector | Math operations          |
-| color  | Color extern definitions |
-| clock  | Time system              |
-| utils  | Allocation helpers       |
-| other  | String utilities         |
+| File    | Role                |
+|---------|---------------------|
+| vector  | Math structures     |
+| color   | Color utilities     |
+| utils   | Generic helpers     |
+| clock   | Time management     |
+| watcher | Pointer watcher     |
+| other   | Other lib functions |
 
 ---
 
@@ -291,5 +319,35 @@ systems → graphics → games → application
 * Documentation → `docs/modules/<module>/`
 * Keep strict 1:1 mapping between include and source
 * Avoid deep nesting (>3 levels)
+
+---
+
+<div align="center">
+
+## 📦 Epitech Base — Footer
+
+</div>
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseLogo.png" width="120"  alt="Epitech Base Logo"/>
+
+Epitech Base • Modular C Ecosystem
+
+Libraries:\
+• `file` - `v0.1.2`\
+• `flag` - `v0.1.1`\
+• `llist` - `v0.0.0`\
+• `newcsfml` - `v0.2.7`\
+• `newerror` - `v0.1.1`\
+• `print` - `v0.1.5`\
+• `str` - `v0.1.5`\
+• `print` - `v0.0.0`\
+• `twodlist` - `v0.1.5`\
+• `utils` - `v0.1.5`
+
+Author: Nathan (Jarjarbin06) • EPITECH  
+Licence: GPL v3\
+Repository: [Epitech Base](https://github.com/Jarjarbin06/Epitech_Base)
+</div>
 
 ---

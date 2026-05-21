@@ -3,6 +3,7 @@
 ## Main - Makefile
 ## File description:
 ## Generic repo build system
+## See documentation here : https://jarjarbin06.github.io/Epitech_Base/makefile.html
 ##
 
 
@@ -28,11 +29,11 @@ info_LIB_MAKER	=	Makefile
 # Safe to modify unless stated otherwise.
 # -----------------------------------------------------------------------------
 EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/Epitech_Base
-ALLOW_UNBUILD	=	false
-ALLOW_AUTO_PUSH	=	true
-DEBUG	?=	false
-ARCH	?=	native		# native / generic
 HAS_CSFML	=	false
+ALLOW_UNBUILD	?=	false	#	true / false
+ALLOW_AUTO_PUSH	?=	false	#	true / false
+DEBUG	?=	false        	#	true / false
+ARCH	?=	native        	#	native / generic
 
 # -----------------------------------------------------------------------------
 # PATHS
@@ -169,11 +170,10 @@ clean:	lib-clean
 # -----------------------------------------------------------------------------
 # FULL CLEAN
 # -----------------------------------------------------------------------------
-fclean:	lib-fclean clean
+fclean:
 	$(RM) $(CNAME)
 	$(RM) $(TESTCNAME)
 	$(RM) $(TESTSEGCNAME)
-	$(RM) $(sort $(shell find "$(LIB_PATH)" -type f -name "*.a"))
 
 # -----------------------------------------------------------------------------
 # REBUILD
@@ -204,11 +204,11 @@ debug-asan:
 # -----------------------------------------------------------------------------
 lib-build:
 	for lib in $(LIBS_LIST); do \
-		$(MAKE) --no-print-directory -C lib/$$lib CC=$(CC) DEBUG="$(DEBUG)"; \
+        $(MAKE) --no-print-directory -C lib/$$lib CC=$(CC) DEBUG="$(DEBUG)"; \
 	done
 	cp -f lib/*/*.a lib/ 2>/dev/null || true
 	for lib in $(LIBS_LIST); do \
-		[ -f lib/lib$$lib.a ] && ranlib lib/lib$$lib.a || true; \
+        [ -f lib/lib$$lib.a ] && ranlib lib/lib$$lib.a || true; \
 	done
 
 # -----------------------------------------------------------------------------
@@ -216,15 +216,16 @@ lib-build:
 # -----------------------------------------------------------------------------
 lib-clean:
 	for lib in $(LIBS_LIST); do \
-		$(MAKE) --no-print-directory -C lib/$$lib clean; \
+        $(MAKE) --no-print-directory -C lib/$$lib clean; \
 	done
 
 # -----------------------------------------------------------------------------
 # FULL CLEAN LIBS
 # -----------------------------------------------------------------------------
 lib-fclean:
+	$(RM) $(sort $(shell find "$(LIB_PATH)" -type f -name "*.a"))
 	for lib in $(LIBS_LIST); do \
-		$(MAKE) --no-print-directory -C lib/$$lib fclean; \
+        $(MAKE) --no-print-directory -C lib/$$lib fclean; \
 	done
 
 
@@ -252,7 +253,7 @@ test-gcovr: test-run
 # -----------------------------------------------------------------------------
 test-style:
 	-make --no-print-directory CC=epiclang re fclean
-	printf '\033[92mepiclang done\033[0m\n'
+	printf '\x1b[92mepiclang done\x1b[0m\n'
 
 # -----------------------------------------------------------------------------
 # UNIT TESTS
@@ -296,7 +297,7 @@ git-push-libs:
 	-git push origin main
 else
 git-push-libs:
-	printf '\033[91mPushLib is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling lib-push.\033[0m\n'
+	printf '\x1b[91mPushLib is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling lib-push.\x1b[0m\n'
 	exit 84
 endif
 
@@ -307,7 +308,7 @@ git-push-makefile:
 	-git push origin main
 else
 git-push-makefile:
-	printf '\033[91mPushMakefile is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling lib-push.\033[0m\n'
+	printf '\x1b[91mPushMakefile is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling lib-push.\x1b[0m\n'
 	exit 84
 endif
 
@@ -326,7 +327,7 @@ setup-build:
 	-make git-push-repo
 else
 setup-build:
-	printf '\033[91mBuild is disabled. To enable it, call the unbuild rule.\033[0m\n'
+	printf '\x1b[91mBuild is disabled. To enable it, call the unbuild rule.\x1b[0m\n'
 	exit 84
 endif
 
@@ -338,7 +339,7 @@ setup-unbuild: fclean
 	rm -dfr bonus includes lib sources tests main.c
 else
 setup-unbuild:
-	printf '\033[91mUnbuild is disabled. To enable it, set ALLOW_UNBUILD to "true" before calling unbuild.\033[0m\n'
+	printf '\x1b[91mUnbuild is disabled. To enable it, set ALLOW_UNBUILD to "true" before calling unbuild.\x1b[0m\n'
 	exit 84
 endif
 
@@ -445,7 +446,71 @@ setup-import-all:
 # =============================================================================
 
 help:
-	echo "helper not done"
+	echo -e "============================================================"
+	echo -e "                    \x1b[1;36m$(info_NAME)\x1b[0m"
+	echo -e "                    Version: $(info_VERSION)"
+	echo -e "============================================================"
+	echo -e ""
+
+	make --no-print-directory --silent help-base
+
+	make --no-print-directory --silent help-test
+
+	make --no-print-directory --silent help-lib
+
+	make --no-print-directory --silent help-git
+
+	make --no-print-directory --silent help-setup
+
+	echo -e "============================================================"
+	echo -e "\x1b[2;37mTip: variables like DEBUG=true ARCH=native can be used\x1b[0m"
+	echo -e "============================================================"
+
+help-base:
+	echo -e "\x1b[1;33mBUILD\x1b[0m"
+	echo -e "  make                     → Build project"
+	echo -e "  make run                 → Build + run binary"
+	echo -e "  make re                  → Full rebuild"
+	echo -e ""
+
+	echo -e "\x1b[1;33mCLEANING\x1b[0m"
+	echo -e "  make clean               → Remove objects & temp files"
+	echo -e "  make fclean              → Full clean (binary + libs)"
+	echo -e ""
+
+help-test:
+	echo -e "\x1b[1;33mDEBUG / TEST\x1b[0m"
+	echo -e "  make debug-asan          → Build with AddressSanitizer"
+	echo -e "  make test-run            → Run unit tests"
+	echo -e "  make test-valgrind       → Run with Valgrind"
+	echo -e "  make test-gcovr          → Coverage report"
+	echo -e "  make test-style          → Style check"
+	echo -e ""
+
+help-lib:
+	echo -e "\x1b[1;33mLIBRARIES\x1b[0m"
+	echo -e "  make lib-build           → Build all libs"
+	echo -e "  make lib-clean           → Clean libs"
+	echo -e "  make lib-fclean          → Full clean libs"
+	echo -e ""
+
+	echo -e "\x1b[1;33mIMPORT SYSTEM\x1b[0m"
+	echo -e "  make setup-import-all    → Import all libs"
+	echo -e "  make setup-import-*      → Import specific lib"
+	echo -e ""
+
+help-git:
+	echo -e "\x1b[1;33mGIT\x1b[0m"
+	echo -e "  make git-status          → Show git status"
+	echo -e "  make git-pull            → Pull main branch"
+	echo -e "  make git-push-repo       → Push repository"
+	echo -e ""
+
+help-setup:
+	echo -e "\x1b[1;33mSETUP\x1b[0m"
+	echo -e "  make setup-build         → Initialize project"
+	echo -e "  make maint-update        → Update Makefile"
+	echo -e ""
 
 .DEFAULT_GOAL	:=	all
 
@@ -455,7 +520,7 @@ help:
 	setup-import-newerror setup-import-llist setup-import-newcsfml \
 	setup-import-print setup-import-str setup-import-file \
 	setup-import-flag setup-import-twodlist setup-import-utils \
-	maint-update help
+	maint-update help help-base help-test help-lib help-git help-setup
 
 .PHONY: \
 	all clean fclean re run debug-asan \
@@ -466,6 +531,6 @@ help:
 	setup-import-newerror setup-import-llist setup-import-newcsfml \
 	setup-import-print setup-import-str setup-import-file \
 	setup-import-flag setup-import-twodlist setup-import-utils \
-	maint-update help
+	maint-update help help-base help-test help-lib help-git help-setup
 
 -include $(SRC_OBJ:.o=.d) $(MAIN_OBJ:.o=.d) $(TEST_OBJ:.o=.d)
