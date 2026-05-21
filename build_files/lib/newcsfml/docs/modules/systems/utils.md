@@ -206,7 +206,7 @@ This module provides core utility features used across the NCSFML ecosystem, mai
 </div>
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseLogo.png" width="120"  alt="Epitech Base Logo"/>
+<img src="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseLogo.png" width="120"  alt="Epitech Base Logo"/><br>
 
 Epitech Base • Modular C Ecosystem
 
