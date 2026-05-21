@@ -170,7 +170,7 @@ clean:	lib-clean
 # -----------------------------------------------------------------------------
 # FULL CLEAN
 # -----------------------------------------------------------------------------
-fclean:
+fclean: clean
 	$(RM) $(CNAME)
 	$(RM) $(TESTCNAME)
 	$(RM) $(TESTSEGCNAME)
@@ -204,8 +204,10 @@ debug-asan:
 # -----------------------------------------------------------------------------
 lib-build:
 	for lib in $(LIBS_LIST); do \
-        $(MAKE) --no-print-directory -C lib/$$lib CC=$(CC) DEBUG="$(DEBUG)"; \
-	done
+        if [ ! -f lib/lib$$lib.a ]; then \
+            $(MAKE) --no-print-directory -C lib/$$lib CC=$(CC) DEBUG="$(DEBUG)"; \
+        fi; \
+    done
 	cp -f lib/*/*.a lib/ 2>/dev/null || true
 	for lib in $(LIBS_LIST); do \
         [ -f lib/lib$$lib.a ] && ranlib lib/lib$$lib.a || true; \
