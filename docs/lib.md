@@ -75,13 +75,14 @@ Makefile    → Compilation and cleanup
 
 ### 🎮 Frameworks
 
-#### NewCSFML (NCSFML)
+#### NewCSFML Library (NCSFML)
 
 > High-level wrapper over CSFML for structured game development
 
 * Modular architecture (graphics, audio, systems, game)
 * Memory-safe via `nsf_game_t`
 * Simplified rendering and event handling
+* Logging implementation across whole library
 
 📖 Documentation:  
 → [NewCSFML Documentation](../build_files/lib/newcsfml/docs/README.md)
@@ -90,7 +91,19 @@ Makefile    → Compilation and cleanup
 
 ### 🧱 Core Utility Libraries
 
-#### Utils
+#### NewError Library (NERROR)
+
+> Structured error handling library
+
+* Error management
+* Custom error systems
+
+📖 Entry point:  
+→ [NewError README](../build_files/lib/newerror/README.md)
+
+---
+
+#### Utils Library (UTILS)
 
 > General-purpose helper functions
 
@@ -99,7 +112,46 @@ Makefile    → Compilation and cleanup
 
 ---
 
-#### String Library (str)
+#### Print Library (PRINT)
+
+> Custom formatted output system
+
+* Conversion system
+* Modular formatting
+
+📖 Entry point:  
+→ [Print README](../build_files/lib/print/README.md)
+
+---
+
+### 📦 Data Structures
+
+#### Flag Library (FILE)
+
+> Easy to use file reader
+
+* Customisable flag
+* Easy to use
+* Fast fetch and auto handling
+
+📖 Entry point:  
+→ [Flag README](../build_files/lib/flag/README.md)
+
+---
+
+#### File Library (FILE)
+
+> Command argument (flag) handler
+
+* Auto file reader
+* Manual/custom file reader
+
+📖 Entry point:  
+→ [File README](../build_files/lib/file/README.md)
+
+---
+
+#### String Library (STR)
 
 > String manipulation utilities
 
@@ -112,35 +164,7 @@ Makefile    → Compilation and cleanup
 
 ---
 
-#### Print Library
-
-> Custom formatted output system
-
-* Flag handling
-* Conversion system
-* Modular formatting
-
-📖 Entry point:  
-→ [Print README](../build_files/lib/print/README.md)
-
----
-
-#### NewError
-
-> Structured error handling library
-
-* Error management
-* Custom error systems
-* Safer error propagation
-
-📖 Entry point:  
-→ [NewError README](../build_files/lib/newerror/README.md)
-
----
-
-### 📦 Data Structures
-
-#### Linked List (llist)
+#### Linked List Library (str)
 
 > Generic linked list implementation
 
@@ -149,7 +173,7 @@ Makefile    → Compilation and cleanup
 
 ---
 
-#### Two-Dimensional List (twodlist)
+#### Two-Dimensional List Library (str)
 
 > Advanced list structure for complex data layouts
 
