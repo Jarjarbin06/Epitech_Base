@@ -56,7 +56,7 @@ int nsf_window_set_screen(nsf_window_t *window, const nsf_cstr_t screen_name)
             return E_SUCCESS;
         }
     return nsf_utils_log_error(NSF_LOG_LVL_WARNING, NSF_WINDOW, __FUNCTION__,
-            "screen doesn't exist");
+        "screen doesn't exist");
 }
 
 int nsf_window_get_screen_idx(nsf_window_t *window)

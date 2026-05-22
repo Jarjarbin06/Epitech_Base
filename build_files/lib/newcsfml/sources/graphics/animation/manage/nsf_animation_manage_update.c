@@ -34,7 +34,7 @@ void nsf_animation_update(nsf_animation_t *animation)
         return nsf_utils_log(NSF_LOG_LVL_WARNING, NSF_ANIMATION,
             __FUNCTION__, "columns or rows not set properly");
     if (NSF_UNLIKELY(animation->sprite_size.x == 0 ||
-        animation->sprite_size.y == 0))
+            animation->sprite_size.y == 0))
         return nsf_utils_log(NSF_LOG_LVL_WARNING, NSF_ANIMATION,
             __FUNCTION__, "sprite size not set properly");
     animation->rect.left = (animation->step % animation->columns) *

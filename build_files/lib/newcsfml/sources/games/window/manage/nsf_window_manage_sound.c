@@ -63,8 +63,8 @@ int nsf_window_all_sound_volume(const nsf_window_t *window,
             __FUNCTION__, "pointer corrupted");
     for (size_t idx = 0; idx < window->elements.amount; idx++)
         if (window->elements.elements[idx]->element_type == NSF_SPRITE_ELEMENT)
-            nsf_sound_set_volume((nsf_sound_t *)window->elements.elements[idx]->ptr,
-                volume);
+            nsf_sound_set_volume(
+                (nsf_sound_t *)window->elements.elements[idx]->ptr, volume);
     return E_SUCCESS;
 }
 

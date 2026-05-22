@@ -34,7 +34,8 @@ float nsf_watcher_get_float(nsf_watcher_t *watcher)
         return *(float *)watcher->ptr;
     if (watcher->type == NSF_WTC_INT)
         return (float)nsf_watcher_get_int(watcher);
-    return 0.0f;
+    return nsf_utils_log_zero(NSF_LOG_LVL_WARNING, NSF_WATCHER,
+        __FUNCTION__, "invalid type");
 }
 
 long int nsf_watcher_get_int(nsf_watcher_t *watcher)
@@ -44,13 +45,16 @@ long int nsf_watcher_get_int(nsf_watcher_t *watcher)
             __FUNCTION__, "pointer corrupted");
     if (watcher->type == NSF_WTC_INT)
         return *(int *)watcher->ptr;
+    if (watcher->type == NSF_WTC_UINT)
+        return *(long unsigned int *)watcher->ptr;
     if (watcher->type == NSF_WTC_FLOAT)
         return (long int)nsf_watcher_get_float(watcher);
     if (watcher->type == NSF_WTC_CHAR)
         return (long int)nsf_watcher_get_char(watcher);
     if (watcher->type == NSF_WTC_STRING)
         return (long int)nsf_watcher_get_string(watcher);
-    return 0;
+    return nsf_utils_log_zero(NSF_LOG_LVL_WARNING, NSF_WATCHER,
+        __FUNCTION__, "invalid type");
 }
 
 char nsf_watcher_get_char(nsf_watcher_t *watcher)
@@ -62,7 +66,8 @@ char nsf_watcher_get_char(nsf_watcher_t *watcher)
         return *(char *)watcher->ptr;
     if (watcher->type == NSF_WTC_INT)
         return (char)nsf_watcher_get_int(watcher);
-    return 0;
+    return nsf_utils_log_zero(NSF_LOG_LVL_WARNING, NSF_WATCHER,
+        __FUNCTION__, "invalid type");
 }
 
 char *nsf_watcher_get_string(nsf_watcher_t *watcher)
@@ -72,6 +77,6 @@ char *nsf_watcher_get_string(nsf_watcher_t *watcher)
             __FUNCTION__, "pointer corrupted");
     if (watcher->type == NSF_WTC_STRING)
         return *(char **)watcher->ptr;
-    return nsf_utils_log_null(NSF_LOG_LVL_ERROR, NSF_WATCHER, __FUNCTION__,
-        "corruption");
+    return nsf_utils_log_null(NSF_LOG_LVL_WARNING, NSF_WATCHER, __FUNCTION__,
+        "invalid type");
 }

@@ -27,8 +27,8 @@
 #include "newcsfml/systems/utils.h"
 #include "newcsfml/systems/vector.h"
 
-static void init_values(nsf_animation_t *new_animation) {
-
+static void init_values(nsf_animation_t *new_animation)
+{
     if (NSF_UNLIKELY(!new_animation))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_ANIMATION,
             __FUNCTION__, "pointer corrupted");

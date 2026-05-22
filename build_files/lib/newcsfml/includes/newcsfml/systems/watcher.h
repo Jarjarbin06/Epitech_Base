@@ -57,6 +57,7 @@ typedef enum {
     NSF_WTC_UNKNOWN = -1,
     NSF_WTC_FLOAT,
     NSF_WTC_INT,
+    NSF_WTC_UINT,
     NSF_WTC_CHAR,
     NSF_WTC_STRING
 } nsf_watcher_type_t;

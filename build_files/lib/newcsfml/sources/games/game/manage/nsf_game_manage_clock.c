@@ -52,7 +52,7 @@ bool nsf_game_update_clock(nsf_game_t *game)
     float seconds = 0.0f;
 
     if (NSF_UNLIKELY(!game || !game->clock || !game->window ||
-        !game->window->settings)) {
+            !game->window->settings)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
         return true;
@@ -69,7 +69,7 @@ bool nsf_game_update_clock(nsf_game_t *game)
 void nsf_game_wait_new_loop(nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!game || !game->clock || !game->window ||
-        !game->window->settings))
+            !game->window->settings))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
     while (!nsf_game_update_clock(game))

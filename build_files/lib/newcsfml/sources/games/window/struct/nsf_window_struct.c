@@ -107,7 +107,7 @@ nsf_window_t *nsf_window_create(const nsf_window_settings_t settings[],
     nsf_elements_t **elements = create_elements(game);
 
     if (NSF_UNLIKELY(!new_window || !new_settings || !sf_window || !title_str ||
-        !elements))
+            !elements))
         return NULL;
     new_window->window = sf_window;
     new_window->title = title_str;

@@ -356,7 +356,7 @@ maint-update:
 # Manages external library imports into the project.
 # =============================================================================
 
-setup-import-newerror:
+setup-import-newerror: lib-fclean
 	-rm -rdf ./lib/newerror ./includes/lib_includes/newerror
 	-mkdir ./lib/newerror
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newerror/* ./lib/newerror
@@ -364,7 +364,7 @@ setup-import-newerror:
 	cp -rf lib/newerror/includes/* ./includes/lib_includes/newerror
 	-make git-push-libs
 
-setup-import-llist:
+setup-import-llist: lib-fclean
 	-rm -rdf ./lib/llist ./includes/lib_includes/llist
 	-mkdir ./lib/llist
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/llist/* ./lib/llist
@@ -372,7 +372,7 @@ setup-import-llist:
 	cp -rf lib/llist/includes/* ./includes/lib_includes/llist
 	-make git-push-libs
 
-setup-import-newcsfml:
+setup-import-newcsfml: lib-fclean
 	-rm -rdf ./lib/newcsfml ./includes/lib_includes/newcsfml
 	-mkdir ./lib/newcsfml
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/newcsfml/* ./lib/newcsfml
@@ -380,7 +380,7 @@ setup-import-newcsfml:
 	cp -rf lib/newcsfml/includes/* ./includes/lib_includes/newcsfml
 	-make git-push-libs
 
-setup-import-print:
+setup-import-print: lib-fclean
 	-rm -rdf ./lib/print ./includes/lib_includes/print
 	-mkdir ./lib/print
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/print/* ./lib/print
@@ -388,7 +388,7 @@ setup-import-print:
 	cp -rf lib/print/includes/* ./includes/lib_includes/print
 	-make git-push-libs
 
-setup-import-str:
+setup-import-str: lib-fclean
 	-rm -rdf ./lib/str ./includes/lib_includes/str
 	-mkdir ./lib/str
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/str/* ./lib/str
@@ -396,7 +396,7 @@ setup-import-str:
 	cp -rf lib/str/includes/* ./includes/lib_includes/str
 	-make git-push-libs
 
-setup-import-twodlist:
+setup-import-twodlist: lib-fclean
 	-rm -rdf ./lib/twodlist ./includes/lib_includes/twodlist
 	-mkdir ./lib/twodlist
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/twodlist/* ./lib/twodlist
@@ -404,7 +404,7 @@ setup-import-twodlist:
 	cp -rf lib/twodlist/includes/* ./includes/lib_includes/twodlist
 	-make git-push-libs
 
-setup-import-file:
+setup-import-file: lib-fclean
 	-rm -rdf ./lib/file ./includes/lib_includes/file
 	-mkdir ./lib/file
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/file/* ./lib/file
@@ -412,7 +412,7 @@ setup-import-file:
 	cp -rf lib/file/includes/* ./includes/lib_includes/file
 	-make git-push-libs
 
-setup-import-flag:
+setup-import-flag: lib-fclean
 	-rm -rdf ./lib/flag ./includes/lib_includes/flag
 	-mkdir ./lib/flag
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/flag/* ./lib/flag
@@ -420,7 +420,7 @@ setup-import-flag:
 	cp -rf lib/flag/includes/* ./includes/lib_includes/flag
 	-make git-push-libs
 
-setup-import-utils:
+setup-import-utils: lib-fclean
 	-rm -rdf ./lib/utils ./includes/lib_includes/utils
 	-mkdir ./lib/utils
 	cp -rf $(EPITECH_BASE_PATH)/build_files/lib/utils/* ./lib/utils
@@ -429,7 +429,6 @@ setup-import-utils:
 	-make git-push-libs
 
 setup-import-all:
-	make \
 	setup-import-newerror \
 	setup-import-llist \
 	setup-import-newcsfml \
