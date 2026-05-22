@@ -48,7 +48,7 @@ void nsf_text_update_from_watcher(nsf_text_t *text)
     if (!text->watcher)
         return;
     if (NSF_UNLIKELY(
-        nsf_watcher_get_string_in_buffer(text->watcher, text->buffer)))
+            nsf_watcher_get_string_in_buffer(text->watcher, text->buffer)))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_TEXT, __FUNCTION__,
             "watcher value retrieval failed");
     nsf_text_set_string(text, text->buffer);

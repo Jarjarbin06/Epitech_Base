@@ -68,7 +68,7 @@ nsf_animation_t *nsf_sprite_get_animation(const nsf_sprite_t *sprite)
 {
     if (NSF_UNLIKELY(!sprite))
         return nsf_utils_log_null(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
-        "pointer corrupted");
+            "pointer corrupted");
     if (NSF_UNLIKELY(sprite->texture_type != NSF_TXR_ANIMATION))
         return nsf_utils_log_null(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
             "invalid texture type");

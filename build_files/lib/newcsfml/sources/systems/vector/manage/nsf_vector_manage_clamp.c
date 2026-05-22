@@ -24,8 +24,8 @@
 #include "newcsfml/systems/utils.h"
 #include "newcsfml/systems/vector.h"
 
-void nsf_vector_clamp_x(const nsf_fvector_t v[], const float min, const float max,
-    nsf_fvector_t *out)
+void nsf_vector_clamp_x(const nsf_fvector_t v[], const float min,
+    const float max, nsf_fvector_t *out)
 {
     if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
@@ -39,8 +39,8 @@ void nsf_vector_clamp_x(const nsf_fvector_t v[], const float min, const float ma
         out->x = max;
 }
 
-void nsf_vector_clamp_y(const nsf_fvector_t v[], const float min, const float max,
-    nsf_fvector_t *out)
+void nsf_vector_clamp_y(const nsf_fvector_t v[], const float min,
+    const float max, nsf_fvector_t *out)
 {
     if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
@@ -54,8 +54,8 @@ void nsf_vector_clamp_y(const nsf_fvector_t v[], const float min, const float ma
         out->y = max;
 }
 
-void nsf_vector_clamp(const nsf_fvector_t v[], const float min, const float max,
-    nsf_fvector_t *out)
+void nsf_vector_clamp(const nsf_fvector_t v[], const float min,
+    const float max, nsf_fvector_t *out)
 {
     nsf_fvector_t out_tmp = {0, 0};
 

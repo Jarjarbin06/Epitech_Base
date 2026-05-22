@@ -50,6 +50,22 @@ void *nsf_utils_free(void *ptr, nsf_game_t *game)
     return NULL;
 }
 
+static void do_free(const nsf_free_t free_list[],
+    int *freed)
+{
+    if (NSF_UNLIKELY(free_list->ptr && free_list->free_func)) {
+        nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_UTILS,
+            __FUNCTION__, "pointer corrupted");
+        return;
+    }
+    if (free_list->condition) {
+        ((void_func_t)free_list->free_func)(
+            free_list->ptr
+        );
+        (*freed)++;
+    }
+}
+
 int nsf_utils_free_batch(const nsf_uint_t len, const nsf_free_t free_list[],
     nsf_game_t *game)
 {
@@ -58,19 +74,8 @@ int nsf_utils_free_batch(const nsf_uint_t len, const nsf_free_t free_list[],
     if (NSF_UNLIKELY(!free_list))
         return nsf_utils_log_zero(NSF_LOG_LVL_ERROR, NSF_UTILS,
             __FUNCTION__, "pointer corrupted");
-    for (int idx = 0; idx < (int)len; idx++) {
-        if (NSF_UNLIKELY(free_list[idx].ptr && free_list[idx].free_func)) {
-            nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_UTILS,
-                __FUNCTION__, "pointer corrupted");
-            continue;
-        }
-        if (free_list[idx].condition) {
-            ((void_func_t)free_list[idx].free_func)(
-                free_list[idx].ptr
-            );
-            freed++;
-        }
-    }
+    for (size_t idx = 0; idx < len; idx++)
+        do_free(&free_list[idx], &freed);
     if (game)
         game->allocations -= freed;
     return freed;

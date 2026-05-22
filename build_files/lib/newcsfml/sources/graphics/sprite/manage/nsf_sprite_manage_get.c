@@ -51,20 +51,20 @@ void nsf_sprite_get_size(const nsf_sprite_t *sprite, nsf_uvector_t *out)
 
 void nsf_sprite_get_position(const nsf_sprite_t *sprite, nsf_fvector_t *out)
 {
-        if (NSF_UNLIKELY(!sprite)) {
-            nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
-                "pointer corrupted");
-            return nsf_fvector_empty(out);
-        }
+    if (NSF_UNLIKELY(!sprite)) {
+        nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
+            "pointer corrupted");
+        return nsf_fvector_empty(out);
+    }
     nsf_fvector_copy(&sprite->position, out);
 }
 
 void nsf_sprite_get_origin(const nsf_sprite_t *sprite, nsf_fvector_t *out)
 {
-        if (NSF_UNLIKELY(!sprite)) {
-            nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
-                "pointer corrupted");
-            return nsf_fvector_empty(out);
-        }
+    if (NSF_UNLIKELY(!sprite)) {
+        nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
+            "pointer corrupted");
+        return nsf_fvector_empty(out);
+    }
     nsf_fvector_copy(&sprite->origin, out);
 }

@@ -77,7 +77,7 @@ void nsf_button_set_colors(nsf_button_t *button,
     if (fill_color) {
         button->fill_color = *fill_color;
         sfRectangleShape_setFillColor(button->button, button->fill_color);
-    };
+    }
     if (outline_color) {
         button->outline_color = *outline_color;
         sfRectangleShape_setOutlineColor(button->button,
