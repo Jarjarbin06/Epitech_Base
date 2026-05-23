@@ -30,21 +30,22 @@ static int set_flag(flags_t *flags, const size_t idx, const char *flag,
     return E_SUCCESS;
 }
 
-static int fill_flags(flags_t *flags, const char *flag, const char *value)
+static int fill_flags(flags_t *flags, const char *flag[2], const char *value)
 {
-    flag_t *current_flag = {};
+    const flag_t *current = {};
 
-    if (!flags || !flags->flags || !flag)
+    if (!flags || !flags->flags || (!flag[0] && !flag[1]))
         return E_ERROR;
     for (size_t idx = 0; idx < flags->size; idx++) {
-        current_flag = &flags->flags[idx];
-        if (!current_flag)
+        current = &flags->flags[idx];
+        if (!current)
             return E_ERROR;
-        if ((current_flag->simple &&
-                str_len(flag) == 1 && current_flag->simple == flag[0]) ||
-            (current_flag->advanced &&
-                str_len(flag) > 1 && !str_cmp(current_flag->advanced, flag)))
-            return set_flag(flags, idx, flag, value);
+        if (current->simple && str_len(flag[0]) == 1 &&
+                current->simple == flag[0][0])
+            return set_flag(flags, idx, flag[0], value);
+        if (current->advanced && str_len(flag[1]) > 1 &&
+                !str_cmp(current->advanced, flag[1]))
+            return set_flag(flags, idx, flag[1], value);
     }
     return E_ERROR;
 }
@@ -54,32 +55,46 @@ static const char *get_flag(const char *flag)
     if (!flag)
         return NULL;
     if (str_len(flag) && flag[0] == '-')
-        flag = &flag[1];
-    if (str_len(flag) && flag[0] == '-')
-        flag = &flag[1];
-    return flag;
+        return &flag[1];
+    return NULL;
+}
+
+static bool set_vars(const char **value, const char *flag[2],
+    const char *const *argv, const size_t idx)
+{
+    flag[0] = get_flag(argv[idx]);
+    flag[1] = get_flag(flag[0]);
+    if (argv[idx + 1] && (str_len(argv[idx] + 1) && argv[idx + 1][0] != '-')) {
+        *value = argv[idx + 1];
+        return true;
+    }
+    return false;
+}
+
+static void reset_vars(const char **value, const char *flag[2])
+{
+    if (!flag || !value)
+        return;
+    flag[0] = NULL;
+    flag[1] = NULL;
+    *value = NULL;
 }
 
 int flag_load(flags_t *flags, const int argc, const char *const *argv)
 {
     const char *value = NULL;
-    const char *flag = NULL;
+    const char *flag[2] = {NULL, NULL};
 
     if (!flags || !argv)
         return E_ERROR;
     for (size_t idx = 1; idx < (size_t)argc; idx++) {
-        flag = get_flag(argv[idx]);
-        if (!flag)
-            return E_ERROR;
-        if ((idx + 1) < (size_t)argc &&
-            (str_len(argv[idx]) && argv[idx + 1][0] != '-')) {
-            value = argv[idx + 1];
+        if (set_vars(&value, flag, argv, idx))
             idx++;
-        }
+        if (!flag[0] && !flag[1])
+            return E_ERROR;
         if (fill_flags(flags, flag, value))
             return E_ERROR;
-        flag = NULL;
-        value = NULL;
+        reset_vars(&value, flag);
     }
     return E_SUCCESS;
 }
