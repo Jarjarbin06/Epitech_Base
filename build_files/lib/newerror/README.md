@@ -19,7 +19,7 @@ It replaces traditional string-based error handling with a consistent, composabl
 
 ---
 
-## 🔹 License
+## 🔹 Licence
 
 GPL v3
 

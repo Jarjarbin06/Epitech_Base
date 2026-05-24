@@ -17,7 +17,7 @@
 
 ---
 
-## 🔹 License
+## 🔹 Licence
 
 GPL v3
 

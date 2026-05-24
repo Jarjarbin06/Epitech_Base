@@ -18,7 +18,7 @@ Each library is designed with a consistent architecture, clear API design, and c
 
 ---
 
-## 🔹 License
+## 🔹 Licence
 
 GPL v3 across the full repo libraries
 

@@ -19,7 +19,7 @@ It is designed to centralize memory handling patterns and reduce manual error-pr
 
 ---
 
-## 🔹 License
+## 🔹 Licence
 
 GPL v3
 

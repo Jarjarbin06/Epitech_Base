@@ -19,7 +19,7 @@ It centralizes common string operations into grouped APIs for clarity, consisten
 
 ---
 
-## 🔹 License
+## 🔹 Licence
 
 GPL v3
 

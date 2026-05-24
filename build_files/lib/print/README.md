@@ -19,7 +19,7 @@ It is designed to replicate standard behavior while remaining fully extensible a
 
 ---
 
-## 🔹 License
+## 🔹 Licence
 
 GPL v3
 

@@ -8,7 +8,7 @@
 ** •
 ** Version: ncsfml-v0.2.7
 ** Author: Jarjarbin06
-** License: GPL v3
+** Licence: GPL v3
 ** •
 ** This library is inspired by SFML/CSFML and is designed for
 ** educational and game-development purposes.

@@ -19,7 +19,7 @@ It is designed to **accelerate development**, **standardize project architecture
 
 ---
 
-## 🔹 License
+## 🔹 Licence
 
 GPL v3
 
@@ -56,7 +56,7 @@ Epitech Base aims to:
 ├── build_files/      → Core libraries, template, and builder system
 ├── docs/             → Global documentation (libs + Makefile)
 ├── Makefile          → Main project controller
-├── LICENSE
+├── Licence
 └── ForTheComminity
 
 ```
