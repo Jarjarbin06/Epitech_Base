@@ -13,8 +13,8 @@
 # Project metadata and build configuration reference.
 ###############################################################################
 info_NAME	=	Epitech Base
-info_VERSION	=	v1.0.4
-info_LAST_UPDATE	=	2026/05/18 15h
+info_VERSION	=	v1.0.5
+info_LAST_UPDATE	=	2026/06/02 10h
 info_LIB_MAKER	=	Makefile
 
 
@@ -28,25 +28,28 @@ info_LIB_MAKER	=	Makefile
 # CONFIG (CUSTOMIZABLE)
 # Safe to modify unless stated otherwise.
 # -----------------------------------------------------------------------------
-EPITECH_BASE_PATH	=	/home/jarjarbin/Desktop/c/Epitech_Base
-HAS_CSFML	=	false
+EPITECH_BASE_PATH	?=	/home/jarjarbin/Desktop/c/Epitech_Base
+HAS_CSFML	?=	false
 ALLOW_UNBUILD	?=	false	#	true / false
 ALLOW_AUTO_PUSH	?=	false	#	true / false
-DEBUG	?=	false        	#	true / false
-ARCH	?=	native        	#	native / generic
+BONUS	?=	false			#	true / false
+DEBUG	?=	false			#	true / false
+ARCH	?=	native			#	native / generic
+NAME	?=	binary		#	binary name
 
 # -----------------------------------------------------------------------------
 # PATHS
 # -----------------------------------------------------------------------------
-SRC_PATH        = sources
-LIB_SRC_PATH    = lib
-INCLUDE_PATH    = includes
-LIB_PATH        = lib
+SRC_PATH		= sources
+BONUS_PATH		= bonus
+LIB_SRC_PATH	= lib
+INCLUDE_PATH	= includes
+LIB_PATH		= lib
 
 # -----------------------------------------------------------------------------
 # SOURCES
 # -----------------------------------------------------------------------------
-SRC     =	$(sort $(shell [ -d "$(SRC_PATH)" ] && find $(SRC_PATH) -type f -name "*.c" ! -name "main.c"))
+SRC	=	$(sort $(shell [ -d "$(SRC_PATH)" ] && find $(SRC_PATH) -type f -name "*.c" ! -name "main.c"))
 
 # -----------------------------------------------------------------------------
 # INCLUDES
@@ -56,8 +59,7 @@ INCLUDES	=	$(sort $(addprefix -I,$(shell [ -d "$(INCLUDE_PATH)" ] && find $(INCL
 # -----------------------------------------------------------------------------
 # BONUS
 # -----------------------------------------------------------------------------
-BONUS_PATH	=	bonus
-BONUS	=	$(BONUS_PATH)/bonus_file.c
+BONUS_SRC     =	$(sort $(shell [ -d "$(BONUS_PATH)" ] && find $(BONUS_PATH) -type f -name "*.c"))
 
 # -----------------------------------------------------------------------------
 # LIBRARIES
@@ -82,6 +84,7 @@ TEST	=	$(sort $(shell [ -d "$(TEST_PATH)" ] && find $(TEST_PATH) -type f -name "
 # OBJECTS
 # -----------------------------------------------------------------------------
 SRC_OBJ	=	$(SRC:.c=.o)
+BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 MAIN_OBJ	=	$(MAIN:.c=.o)
 TEST_OBJ	=	$(TEST:.c=.o)
 
@@ -89,14 +92,14 @@ TEST_OBJ	=	$(TEST:.c=.o)
 # COMPILATION FLAGS
 # -----------------------------------------------------------------------------
 CC	=	clang
-CNAME	=	binary
+CNAME	=	$(NAME)
 CARG	=
 
 CFLAGS_BASE	=	-Wall -Wextra -Werror -MMD -MP -fdata-sections -ffunction-sections
 CFLAGS_DEBUG	=	-g3 -O0
 CFLAGS_RELEASE	=	-O3 -fno-plt
 
-ifeq ($(ARCH),native)
+ifeq ($(ARCH), native)
 CFLAGS_RELEASE	+=	-march=native -mtune=native
 endif
 
@@ -104,6 +107,10 @@ ifeq ($(DEBUG), true)
 CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_DEBUG)
 else
 CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_RELEASE)
+endif
+
+ifeq ($(BONUS), true)
+CFLAGS	+=	-DBONUS=1
 endif
 
 CPPFLAGS	=	$(INCLUDES)
@@ -152,8 +159,13 @@ all:	lib-build $(CNAME)
 # -----------------------------------------------------------------------------
 # MAIN BUILD
 # -----------------------------------------------------------------------------
+ifeq ($(BONUS), true)
 $(CNAME):	$(SRC_OBJ) $(MAIN_OBJ)
 	$(CC) $(CFLAGS) -o $(CNAME) $(MAIN_OBJ) $(SRC_OBJ) $(CFLAGS_PLUS)
+else
+$(CNAME):	$(SRC_OBJ) $(MAIN_OBJ) $(BONUS_OBJ)
+	$(CC) $(CFLAGS) -o $(CNAME) $(MAIN_OBJ) $(SRC_OBJ) $(BONUS_OBJ) $(CFLAGS_PLUS)
+endif
 
 # -----------------------------------------------------------------------------
 # CLEAN
