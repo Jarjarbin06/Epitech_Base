@@ -1,6 +1,6 @@
 # 📦 Epitech Base Makefile System
 
-> Advanced and modular Makefile designed to automate compilation, library management, testing, and repository workflow for EPITECH projects.
+> Advanced and modular Makefile system designed to automate compilation, library management, testing, and repository workflow for EPITECH projects.
 
 ---
 
@@ -11,7 +11,7 @@
 It acts as both:
 
 * A **build orchestrator**
-* A **project bootstrap system**
+* A **project bootstrap and maintenance system**
 
 ---
 
@@ -24,9 +24,9 @@ It acts as both:
 
 ## 🔹 Versioning
 
-* Version: `v1.0.4`
-* Last update: `2026/05/18 15h`
-* Maintained via central base repository
+* Version: `v1.0.6`
+* Last update: `2026/06/03 09h`
+* Makefile name: `Makefile`
 
 ---
 
@@ -39,7 +39,7 @@ This Makefile is designed to:
 * Simplify library integration
 * Provide built-in testing tools
 * Automate Git workflows
-* Enable fast project bootstrapping
+* Enable fast project bootstrapping and maintenance
 
 ---
 
@@ -54,97 +54,137 @@ This Makefile is designed to:
 * 📥 Library import system (full + individual modules)
 * 🧹 Advanced cleanup system (lib + project + tests)
 * 🧪 Debug tools (ASAN, coverage, style checker)
+* ⚡ CSFML optional integration (`HAS_CSFML`)
 
 ---
 
-## 🔹 Architecture Overview
+## 🔹 Configuration Variables
 
+### Project Metadata
+
+```make
+info_NAME = Epitech Base
+info_VERSION = v1.0.6
+info_LAST_UPDATE = 2026/06/03 09h
+info_LIB_MAKER = Makefile
 ```
-EpitechBase Root
-│
-└── build_files/          → Base repository (external reference)
+
+---
+
+### Build Configuration
+
+```make
+EPITECH_BASE_PATH ?= /home/jarjarbin/Desktop/c/Epitech_Base
+NAME ?= binary
+ARCH ?= generic
 ```
+
+---
+
+### Feature Flags
+
+```make
+HAS_CSFML ?= false
+ALLOW_UNBUILD ?= false
+ALLOW_AUTO_PUSH ?= false
+BONUS ?= false
+DEBUG ?= false
+```
+
+---
+
+## 🔹 Purpose of Flags
+
+| Flag              | Description                                  |
+|-------------------|----------------------------------------------|
+| `HAS_CSFML`       | Enables CSFML linking                        |
+| `ALLOW_UNBUILD`   | Allows destructive project reset             |
+| `ALLOW_AUTO_PUSH` | Enables automatic git push for libs/makefile |
+| `BONUS`           | Enables bonus compilation                    |
+| `DEBUG`           | Switches between debug and release mode      |
+
+---
+
+## 🔹 Project Structure
 
 ```
 Project Root
 │
+├── sources/              → Source files (.c)
 ├── includes/             → Headers
-├── sources/              → Project source files
-├── lib/                  → Imported libraries (.a + sources)
-├── tests/                → Test files (Criterion)
-├── bonus/                → Project bonus
+├── lib/                  → External + internal libraries
+├── tests/                → Unit tests (Criterion)
+├── bonus/                → Bonus code
+├── resources/            → Resource files (instructions pdf, assets, etc...)
 │
-└── Makefile              → Central controller
+└── Makefile              → Build system controller
 ```
 
 ---
 
 ## 🔹 Compilation System
 
-### Automatic Source Detection
+### Source Detection
+
+Automatically detects all `.c` files excluding `main.c`.
 
 ```make
-SRC = $(sort $(shell [ -d "$(SRC_PATH)" ] && find $(SRC_PATH) -type f -name "*.c" ! -name "main.c"))
+SRC = $(sort $(shell find sources -type f -name "*.c" ! -name "main.c"))
 ```
-
-* Detects all `.c` files automatically
-* Excludes `main.c` (handled separately)
 
 ---
 
-### Include Handling
+### Include Detection
+
+Automatically includes all header directories.
 
 ```make
-INCLUDES = $(sort $(addprefix -I,$(shell [ -d "$(INCLUDE_PATH)" ] && find $(INCLUDE_PATH) -type d)))
+INCLUDES = $(sort $(addprefix -I,$(shell find includes -type d)))
 ```
-
-* Recursively includes all header directories
 
 ---
 
 ### Library Detection
 
-```make
-LIBS_LIST = $(sort $(notdir $(shell [ -d "$(LIB_SRC_PATH)" ] && find $(LIB_SRC_PATH) -mindepth 1 -maxdepth 1 -type d)))
-```
+Automatically detects libraries inside `lib/`.
 
-* Automatically detects all libraries in `lib/`
+```make
+LIBS_LIST = $(sort $(notdir $(shell find lib -mindepth 1 -maxdepth 1 -type d)))
+```
 
 ---
 
-### Automatic Linking
+### Library Linking
+
+Only links compiled libraries:
 
 ```make
-LIB_FLAGS = $(foreach lib,$(LIBS_LIST), $(if $(wildcard lib/$(lib)/lib$(lib).a),-l$(lib),))
+LIB_FLAGS = -l<libname>
 ```
-
-* Only links compiled libraries
 
 ---
 
-### CSFML Auto-Linking
+### CSFML Support
 
-Enabled via:
+When enabled:
 
 ```make
-HAS_CSFML = true/false
+HAS_CSFML = true
 ```
 
-If enabled, adds:
+Adds:
 
-```
--lcsfml-graphics
--lcsfml-window
--lcsfml-system
--lcsfml-audio
--lm
-```
+* `-lcsfml-graphics`
+* `-lcsfml-window`
+* `-lcsfml-system`
+* `-lcsfml-audio`
+* `-lm`
 
 ---
 
 ## 🔹 Build Rules
 
-### Main Compilation
+### Main Build
 
 ```bash
 make
@@ -152,42 +192,45 @@ make
 
 Steps:
 
-1. Compile all libraries (`lib-build`)
-2. Compile project sources
-3. Link everything into `binary`
+1. Build libraries (`lib-build`)
+2. Compile sources
+3. Link binary (`$(NAME)`)
 
 ---
 
-### Standard Rules
+### Standard Commands
 
 ```bash
-make clean     # Remove object files
-make fclean    # Remove binary + libs
-make re        # Full rebuild
-make run       # Compile and execute
+make clean     # Remove objects and temporary files
+make fclean    # Full cleanup (binary + libs)
+make re        # Rebuild everything
+make run       # Build and execute
 ```
 
 ---
 
-### Debugging (ASAN)
+### Debug Build
 
 ```bash
 make debug-asan
 ```
 
-* Enables AddressSanitizer build
+Enables:
+
+* AddressSanitizer
+* Frame pointer preservation
 
 ---
 
 ## 🔹 Library System
 
-### Compile All Libraries
+### Build Libraries
 
 ```bash
 make lib-build
 ```
 
-* Builds each library inside `lib/`
+* Builds each module inside `lib/`
 * Copies `.a` files into root `lib/`
 * Runs `ranlib`
 
@@ -211,6 +254,10 @@ make test-run
 make test-build
 ```
 
+Uses:
+
+* Criterion (`-lcriterion`)
+
 ---
 
 ### Valgrind
@@ -227,6 +274,11 @@ make test-valgrind
 make test-gcovr
 ```
 
+Uses:
+
+* LLVM coverage tools (`llvm-cov gcov`)
+* gcovr filtering
+
 ---
 
 ### Style Check
@@ -235,13 +287,15 @@ make test-gcovr
 make test-style
 ```
 
-* Uses `epiclang`
+Uses:
+
+* `epiclang` compiler
 
 ---
 
 ## 🔹 Git Integration
 
-### Core Commands
+### Basic Commands
 
 ```bash
 make git-pull
@@ -259,7 +313,7 @@ Controlled by:
 ALLOW_AUTO_PUSH = true
 ```
 
-Rules:
+Commands:
 
 ```bash
 make git-push-repo
@@ -269,42 +323,40 @@ make git-push-makefile
 
 ---
 
-## 🔹 Project Bootstrap System
+### Behavior Notes
 
-### Build Setup
+* Push is disabled by default if `ALLOW_AUTO_PUSH=false`
+
+---
+
+## 🔹 Project Setup System
+
+### Initialize Project
 
 ```bash
 make setup-build
 ```
 
-* Copies template project structure
-* Copies `.gitignore`
-* Initializes base environment
+Copies:
+
+* `.gitignore`
+* Base project structure from `EPITECH_BASE_PATH`
 
 ---
 
-### Unbuild (Dangerous)
+### Destructive Reset
 
 ```bash
 make setup-unbuild
 ```
 
-⚠️ Deletes:
-
-```
-bonus/
-includes/
-lib/
-sources/
-tests/
-main.c
-```
-
-Controlled by:
+⚠️ Requires:
 
 ```make
 ALLOW_UNBUILD = true
 ```
+
+Deletes everything inside the project
 
 ---
 
@@ -338,47 +390,14 @@ make setup-import-all
 
 Each import:
 
-1. Deletes old library version
-2. Copies from base repository
+1. Removes existing library
+2. Copies from base repository (`build_files`)
 3. Copies headers into `includes/lib_includes/`
-4. Optionally pushes to Git
+4. Optionally triggers git push
 
 ---
 
-## 🔹 Configuration Variables
-
-### Paths
-
-```make
-EPITECH_BASE_PATH = /path/to/Epitech_Base
-```
-
----
-
-### Compilation
-
-```make
-CC = clang
-CFLAGS = -Wall -Wextra -Werror -g3 -O3
-```
-
----
-
-### Flags
-
-```make
-ALLOW_UNBUILD = false
-ALLOW_AUTO_PUSH = true
-DEBUG ?= false
-ARCH ?= native
-HAS_CSFML = false
-```
-
----
-
-## 🔹 Internal Flow
-
-### Build Flow
+## 🔹 Build Flow
 
 ```
 make
@@ -389,79 +408,82 @@ make
 
 ---
 
-### Import Flow
+## 🔹 Import Flow
 
 ```
 setup-import-*
- ├── remove old lib
- ├── copy new lib
+ ├── remove old library
+ ├── copy new library
  ├── copy headers
  └── git push (if enabled)
 ```
 
 ---
 
-## 🔹 Design Philosophy
+## 🔹 Help System
 
-* Fully automated workflow
-* Minimal manual configuration
-* Modular and scalable
-* EPITECH-compatible
-* Centralized tooling
-* Reproducible environments
+### Main Help
+
+```bash
+make help
+```
+
+Displays grouped commands:
+
+* build
+* clean
+* test
+* git
+* setup
+* lib
+
+---
+
+## 🔹 Dependencies & Tools
+
+* Clang compiler (`CC = clang`)
+* Criterion for unit tests
+* Valgrind for memory checking
+* gcovr + llvm-cov for coverage
+* Git CLI
+* Optional CSFML libraries
+
+---
+
+## 🔹 Limitations
+
+* Linux-oriented workflow
+* Requires strict directory structure
+* No versioning system for libraries
+* Depends on external base repository path
 
 ---
 
 ## 🔹 Security Notes
 
 * `setup-unbuild` is destructive
-* Git auto-push must be controlled
-* Imports overwrite local libraries
-* Requires valid `EPITECH_BASE_PATH`
-
----
-
-## 🔹 Limitations
-
-* Linux-focused
-* Requires strict repo structure
-* No version manager for libraries
-* Depends on external base repository
+* Auto-push must be carefully enabled
+* Library imports overwrite local state
+* `EPITECH_BASE_PATH` must be valid
 
 ---
 
 ## 🔹 Best Practices
 
-* Use `setup-import-*` instead of manual copying
-* Keep `lib/` clean
-* Avoid modifying imported libs directly
-* Test after each import
+* Prefer `setup-import-*` over manual edits
+* Keep `lib/` synchronized
+* Avoid modifying imported libraries directly
+* Use `DEBUG=true` for debugging builds
 * Disable auto-push in shared environments
-
----
-
-## 🔹 Help Command
-
-For all help:
-
-```bash
-make help
-```
-
-For specialised help:
-
-```bash
-make help-*
-```
 
 ---
 
 ## 🔹 Notes
 
-* Designed for EPITECH workflow efficiency
-* Encourages modular architecture
-* Centralizes all operations into a single system
-* Scales from small projects to full frameworks (NewCSFML, etc.)
+* Designed for EPITECH workflow automation
+* Centralizes build + git + setup operations
+* Scales from small projects to full frameworks
+* Enforces modular architecture
 
 ---
 

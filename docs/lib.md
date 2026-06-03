@@ -85,7 +85,7 @@ Makefile    → Compilation and cleanup
 * Logging implementation across whole library
 
 📖 Documentation:  
-→ [NewCSFML Documentation](../build_files/lib/newcsfml/docs/README.md)
+→ [NewCSFML Documentation](lib/newcsfml/README.md)
 
 ---
 
@@ -99,7 +99,7 @@ Makefile    → Compilation and cleanup
 * Custom error systems
 
 📖 Entry point:  
-→ [NewError README](../build_files/lib/newerror/README.md)
+→ [NewError README](lib/newerror/README.md)
 
 ---
 
@@ -108,7 +108,7 @@ Makefile    → Compilation and cleanup
 > General-purpose helper functions
 
 📖 Entry point:  
-→ [Utils README](../build_files/lib/utils/README.md)
+→ [Utils README](lib/utils/README.md)
 
 ---
 
@@ -120,7 +120,7 @@ Makefile    → Compilation and cleanup
 * Modular formatting
 
 📖 Entry point:  
-→ [Print README](../build_files/lib/print/README.md)
+→ [Print README](lib/print/README.md)
 
 ---
 
@@ -135,7 +135,7 @@ Makefile    → Compilation and cleanup
 * Fast fetch and auto handling
 
 📖 Entry point:  
-→ [Flag README](../build_files/lib/flag/README.md)
+→ [Flag README](lib/flag/README.md)
 
 ---
 
@@ -147,7 +147,7 @@ Makefile    → Compilation and cleanup
 * Manual/custom file reader
 
 📖 Entry point:  
-→ [File README](../build_files/lib/file/README.md)
+→ [File README](lib/file/README.md)
 
 ---
 
@@ -160,7 +160,7 @@ Makefile    → Compilation and cleanup
 * String operations
 
 📖 Entry point:  
-→ [Str README](../build_files/lib/str/README.md)
+→ [Str README](lib/str/README.md)
 
 ---
 
@@ -169,7 +169,7 @@ Makefile    → Compilation and cleanup
 > Generic linked list implementation
 
 📖 Entry point:  
-→ [LList README](../build_files/lib/llist/README.md)
+→ [LList README](lib/llist/README.md)
 
 ---
 
@@ -178,7 +178,7 @@ Makefile    → Compilation and cleanup
 > Advanced list structure for complex data layouts
 
 📖 Entry point:  
-→ [TwoDList README](../build_files/lib/twodlist/README.md)
+→ [TwoDList README](lib/twodlist/README.md)
 
 ---
 

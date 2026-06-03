@@ -316,7 +316,7 @@ git-push-libs:
 	-git push origin main
 else
 git-push-libs:
-	printf '\x1b[91mPushLib is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling lib-push.\x1b[0m\n'
+	printf '\x1b[91mPushLib is disabled. To enable it, set ALLOW_AUTO_PUSH to "true" before calling lib-push.\x1b[0m\n'
 	exit 84
 endif
 
@@ -327,7 +327,7 @@ git-push-makefile:
 	-git push origin main
 else
 git-push-makefile:
-	printf '\x1b[91mPushMakefile is disabled. To enable it, set ALLOW_LIB_PUSH to "true" before calling lib-push.\x1b[0m\n'
+	printf '\x1b[91mPushMakefile is disabled. To enable it, set ALLOW_AUTO_PUSH to "true" before calling lib-push.\x1b[0m\n'
 	exit 84
 endif
 
@@ -355,7 +355,7 @@ endif
 # -----------------------------------------------------------------------------
 ifeq ($(ALLOW_UNBUILD), true)
 setup-unbuild: fclean
-	rm -dfr bonus includes lib sources tests main.c
+	rm -dfr *
 else
 setup-unbuild:
 	printf '\x1b[91mUnbuild is disabled. To enable it, set ALLOW_UNBUILD to "true" before calling unbuild.\x1b[0m\n'
