@@ -19,6 +19,11 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y build-essential
 
+      - name: Install CSFML
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcsfml-dev
+
       - name: Set compiler
         run: echo "CC=${{ matrix.compiler }}" >> $GITHUB_ENV
 
