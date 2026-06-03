@@ -1,0 +1,14 @@
+name: Library integrity checker
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Placeholder
+        run: echo "Library integrity checker"

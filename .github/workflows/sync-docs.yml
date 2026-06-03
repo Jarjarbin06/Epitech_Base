@@ -40,17 +40,14 @@ jobs:
 
               mkdir -p "$target"
 
-              # Case 1: docs folder exists
               if [ -d "$lib/docs" ]; then
                 echo "Syncing docs/ for $libname"
                 rsync -av --delete "$lib/docs/" "$target/"
 
-              # Case 2: README.md fallback
               elif [ -f "$lib/README.md" ]; then
                 echo "Using README.md for $libname"
                 cp "$lib/README.md" "$target/README.md"
 
-              # Case 3: nothing
               else
                 echo "No documentation found for $libname"
                 rmdir "$target" 2>/dev/null || true

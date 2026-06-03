@@ -77,7 +77,7 @@ build_files/lib/
 
 Includes:
 
-* Utility libraries (`utils`, `str`, `print`, `newerror`)
+* Utility libraries (`utils`, `flag`, `str`, `print`, `newerror`)
 * Data structures (`llist`, `twodlist`)
 * File handling (`file`)
 * Framework (`newcsfml`)
