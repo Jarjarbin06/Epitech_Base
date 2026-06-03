@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="EpitechBaseWebIcon.png">
+
 # 📦 Epitech Base
 
 > Centralized repository of reusable C libraries, build tools, and project templates designed for EPITECH development workflows.
