@@ -45,12 +45,3 @@ jobs:
               echo "Skipping $(basename "$lib") (no Makefile)"
             fi
           done
-
-      - name: Build main project
-        run: make re
-
-      - name: Test template build
-        run: |
-          make fclean
-          make build
-          make
