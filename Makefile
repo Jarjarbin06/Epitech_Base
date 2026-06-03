@@ -286,7 +286,7 @@ test-build: fclean lib-fclean lib-build $(TEST_OBJ) $(SRC_OBJ)
 test-run: test-build
 	./$(TEST_CNAME)
 
-test_run: test-run
+tests_run: test-gcovr
 
 
 # =============================================================================
