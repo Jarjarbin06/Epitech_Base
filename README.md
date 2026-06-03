@@ -22,7 +22,7 @@ Libraries:
 file       v0.1.2
 flag       v0.1.1
 llist      v0.0.0
-newcsfml   v0.2.7
+newcsfml   v0.2.8
 newerror   v0.1.1
 print      v0.1.5
 str        v0.1.5

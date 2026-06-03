@@ -13,8 +13,8 @@
 # Project metadata and build configuration reference.
 ###############################################################################
 info_NAME	=	Epitech Base
-info_VERSION	=	v1.0.5
-info_LAST_UPDATE	=	2026/06/02 10h
+info_VERSION	=	v1.0.6
+info_LAST_UPDATE	=	2026/06/03 09h
 info_LIB_MAKER	=	Makefile
 
 
@@ -34,14 +34,15 @@ ALLOW_UNBUILD	?=	false	#	true / false
 ALLOW_AUTO_PUSH	?=	false	#	true / false
 BONUS	?=	false			#	true / false
 DEBUG	?=	false			#	true / false
-ARCH	?=	native			#	native / generic
-NAME	?=	binary		#	binary name
+ARCH	?=	generic			#	native / generic
+NAME	?=	binary			#	binary name
 
 # -----------------------------------------------------------------------------
 # PATHS
 # -----------------------------------------------------------------------------
 SRC_PATH		= sources
 BONUS_PATH		= bonus
+TEST_PATH	=	tests
 LIB_SRC_PATH	= lib
 INCLUDE_PATH	= includes
 LIB_PATH		= lib
@@ -75,10 +76,9 @@ LIB_FLAGS	=	\
 MAIN	=	$(SRC_PATH)/main.c
 
 # -----------------------------------------------------------------------------
-# TEST VARIABLES
+# TEST
 # -----------------------------------------------------------------------------
-TEST_PATH	=	tests
-TEST	=	$(sort $(shell [ -d "$(TEST_PATH)" ] && find $(TEST_PATH) -type f -name "*.c"))
+TEST_SRC	=	$(sort $(shell [ -d "$(TEST_PATH)" ] && find $(TEST_PATH) -type f -name "*.c"))
 
 # -----------------------------------------------------------------------------
 # OBJECTS
@@ -86,7 +86,7 @@ TEST	=	$(sort $(shell [ -d "$(TEST_PATH)" ] && find $(TEST_PATH) -type f -name "
 SRC_OBJ	=	$(SRC:.c=.o)
 BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 MAIN_OBJ	=	$(MAIN:.c=.o)
-TEST_OBJ	=	$(TEST:.c=.o)
+TEST_OBJ	=	$(TEST_SRC:.c=.o)
 
 # -----------------------------------------------------------------------------
 # COMPILATION FLAGS
@@ -109,8 +109,12 @@ else
 CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_RELEASE)
 endif
 
+CFLAGS	+=	$(LDFLAGS_EXTRA)
+
 ifeq ($(BONUS), true)
 CFLAGS	+=	-DBONUS=1
+else
+CFLAGS	+=	-DBONUS=0
 endif
 
 CPPFLAGS	=	$(INCLUDES)
@@ -137,8 +141,8 @@ CFLAGS_PLUS	+=	$(LDFLAGS_EXTRA)
 # -----------------------------------------------------------------------------
 # TEST FLAGS
 # -----------------------------------------------------------------------------
-TESTCNAME	=	unit_tests
-TEST_CFLAGS	=	-Wall -Wextra -g3 -O0 --coverage
+TEST_CNAME	=	unit_tests
+TEST_CFLAGS	=	-g -O0 -lcriterion
 
 # -----------------------------------------------------------------------------
 # COMMANDS
@@ -159,13 +163,8 @@ all:	lib-build $(CNAME)
 # -----------------------------------------------------------------------------
 # MAIN BUILD
 # -----------------------------------------------------------------------------
-ifeq ($(BONUS), true)
-$(CNAME):	$(SRC_OBJ) $(MAIN_OBJ)
-	$(CC) $(CFLAGS) -o $(CNAME) $(MAIN_OBJ) $(SRC_OBJ) $(CFLAGS_PLUS)
-else
 $(CNAME):	$(SRC_OBJ) $(MAIN_OBJ) $(BONUS_OBJ)
 	$(CC) $(CFLAGS) -o $(CNAME) $(MAIN_OBJ) $(SRC_OBJ) $(BONUS_OBJ) $(CFLAGS_PLUS)
-endif
 
 # -----------------------------------------------------------------------------
 # CLEAN
@@ -173,9 +172,14 @@ endif
 clean:	lib-clean
 	$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.o"))
 	$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.d"))
+	$(RM) $(sort $(shell find $(BONUS_PATH) -type f -name "*.o"))
+	$(RM) $(sort $(shell find $(BONUS_PATH) -type f -name "*.d"))
+	$(RM) $(sort $(shell find $(TEST_PATH) -type f -name "*.o"))
+	$(RM) $(sort $(shell find $(TEST_PATH) -type f -name "*.d"))
+	$(RM) $(sort $(shell find $(INCLUDE_PATH) -type f -name "*.pch"))
+	$(RM) $(sort $(shell find $(SRC_PATH) -type f -name "*.gc*"))
+	$(RM) $(sort $(shell find $(TEST_PATH) -type f -name "*.gc*"))
 	$(RM) $(sort $(shell find "." -type f -name "*.out"))
-	$(RM) $(sort $(shell find "." -type f -name "*.pch"))
-	$(RM) $(sort $(shell find "." -type f -name "*.gc*"))
 	$(RM) $(sort $(shell find "." -type f -name "*~*"))
 	$(RM) $(sort $(shell find "." -type f -name "#*#"))
 
@@ -184,7 +188,7 @@ clean:	lib-clean
 # -----------------------------------------------------------------------------
 fclean: clean
 	$(RM) $(CNAME)
-	$(RM) $(TESTCNAME)
+	$(RM) $(TEST_CNAME)
 	$(RM) $(TESTSEGCNAME)
 
 # -----------------------------------------------------------------------------
@@ -202,7 +206,7 @@ run: all
 # SANITIZER BUILD
 # -----------------------------------------------------------------------------
 debug-asan:
-	make DEBUG=true CFLAGS_EXTRA="-fsanitize=address -fno-omit-frame-pointer" re
+	make DEBUG=true LDFLAGS_EXTRA="-fsanitize=address -fno-omit-frame-pointer" re
 
 
 # =============================================================================
@@ -259,8 +263,9 @@ test-valgrind:
 # -----------------------------------------------------------------------------
 # COVERAGE
 # -----------------------------------------------------------------------------
-test-gcovr: test-run
-	gcovr -e $(TEST_PATH)
+test-gcovr:
+	make --no-print-directory DEBUG=true LDFLAGS_EXTRA="-fprofile-arcs -ftest-coverage -fprofile-instr-generate -fcoverage-mapping" test-run
+	gcovr --gcov-executable "llvm-cov gcov" -e $(TEST_PATH)
 
 # -----------------------------------------------------------------------------
 # STYLE CHECK
@@ -272,14 +277,14 @@ test-style:
 # -----------------------------------------------------------------------------
 # UNIT TESTS
 # -----------------------------------------------------------------------------
-test-build: lib-build $(TEST_OBJ) $(SRC_OBJ)
-	$(CC) $(TEST_CFLAGS) -o $(TESTCNAME) $(TEST_OBJ) $(SRC_OBJ) $(CFLAGS_PLUS)
+test-build: fclean lib-fclean lib-build $(TEST_OBJ) $(SRC_OBJ)
+	$(CC) $(TEST_CFLAGS) -o $(TEST_CNAME) $(TEST_OBJ) $(SRC_OBJ) $(CFLAGS_PLUS)
 
 # -----------------------------------------------------------------------------
 # UNIT TESTS RUNNING
 # -----------------------------------------------------------------------------
 test-run: test-build
-	./$(TESTCNAME)
+	./$(TEST_CNAME)
 
 test_run: test-run
 

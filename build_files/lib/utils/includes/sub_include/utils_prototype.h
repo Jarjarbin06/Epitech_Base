@@ -17,24 +17,24 @@
 void utils_exist(void);
     #endif
 
-    #ifndef P_MALLOC_ANY
-        #define P_MALLOC_ANY
-void *malloc_any(unsigned size);
+    #ifndef P_UTILS_MALLOC
+        #define P_UTILS_MALLOC
+void *utils_malloc(unsigned size);
     #endif
 
-    #ifndef P_FREE_ANY
-        #define P_FREE_ANY
-void *free_any(void *ptr);
+    #ifndef P_UTILS_FREE
+        #define P_UTILS_FREE
+void *utils_free(void *ptr);
     #endif
 
-    #ifndef P_AUTO_FREE
-        #define P_AUTO_FREE
-int auto_free(unsigned len, free_t free_list[]);
+    #ifndef P_UTILS_FREE_BATCH
+        #define P_UTILS_FREE_BATCH
+int utils_free_batch(unsigned len, free_t free_list[]);
     #endif
 
-    #ifndef P_FREE_ARRAY
-        #define P_FREE_ARRAY
-void *free_array(void **array);
+    #ifndef P_UTILS_FREE_ARRAY
+        #define P_UTILS_FREE_ARRAY
+void *utils_free_array(void **array);
     #endif
 
 #endif

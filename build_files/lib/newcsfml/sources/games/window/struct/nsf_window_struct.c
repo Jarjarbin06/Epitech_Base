@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.7
+** Version: ncsfml-v0.2.8
 ** Author: Jarjarbin06
 ** Licence: GPL v3
 ** •
@@ -151,13 +151,26 @@ static void destroy_elements(const nsf_element_list_t *elements,
     game->allocations--;
 }
 
+static void destroy_views_and_background(nsf_window_t **window,
+    nsf_game_t *game)
+{
+    if (NSF_UNLIKELY(!window || !*window))
+        return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+            __FUNCTION__, "pointer corrupted");
+    if (NSF_LIKELY((*window)->element_view))
+        nsf_view_destroy(&(*window)->element_view, game);
+    if (NSF_LIKELY((*window)->ui_view))
+        nsf_view_destroy(&(*window)->ui_view, game);
+    if (NSF_LIKELY((*window)->background))
+        nsf_background_destroy(&(*window)->background, game);
+}
+
 int nsf_window_destroy(nsf_window_t **window, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!window || !*window))
         return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
-    if (NSF_LIKELY((*window)->background))
-        nsf_background_destroy(&(*window)->background, game);
+    destroy_views_and_background(window, game);
     if (NSF_LIKELY((*window)->settings))
         nsf_window_settings_destroy(&(*window)->settings, game);
     if (NSF_LIKELY((*window)->elements.elements))

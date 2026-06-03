@@ -9,7 +9,7 @@
 
 #include "../includes/utils.h"
 
-void *malloc_any(const unsigned size)
+void *utils_malloc(const unsigned size)
 {
     void *alloc = malloc(size);
 
@@ -18,14 +18,14 @@ void *malloc_any(const unsigned size)
     return alloc;
 }
 
-void *free_any(void *ptr)
+void *utils_free(void *ptr)
 {
     if (ptr)
         free(ptr);
     return NULL;
 }
 
-int auto_free(const unsigned len, free_t free_list[])
+int utils_free_batch(const unsigned len, free_t free_list[])
 {
     int freed = 0;
     void **ptr = NULL;
@@ -40,10 +40,11 @@ int auto_free(const unsigned len, free_t free_list[])
     return freed;
 }
 
-void *free_array(void **array)
+void *utils_free_array(void **array)
 {
     if (array)
         for (int idx = 0; array[idx]; idx++)
-            free_any(array[idx]);
-    return free_any(array);
+            utils_free(array[idx]);
+    utils_free(array);
+    return NULL;
 }

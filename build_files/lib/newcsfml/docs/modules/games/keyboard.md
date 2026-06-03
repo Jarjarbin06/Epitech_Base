@@ -229,9 +229,9 @@ Not applicable (stateless module)
 
 ## 🔹 Related Modules
 
-* `nsf_event` — event-based input handling
-* `nsf_window` — window input context
-* `nsf_mouse` — mouse input counterpart (if applicable)
+* [`nsf_event` 🔗](event.md)
+* [`nsf_window` 🔗](window.md)
+* [`nsf_mouse` 🔗](mouse.md)
 
 ---
 
@@ -276,7 +276,7 @@ Libraries:
 file       v0.1.2
 flag       v0.1.1
 llist      v0.0.0
-newcsfml   v0.2.7
+newcsfml   v0.2.8
 newerror   v0.1.1
 print      v0.1.5
 str        v0.1.5

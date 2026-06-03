@@ -70,10 +70,11 @@ int file_destroy(file_t **file)
 {
     if (!file || !*file)
         return E_ERROR;
-    free_any((char *)(*file)->full_path);
-    free_any((char *)(*file)->path);
-    free_any((char *)(*file)->name);
-    free_any((*file)->raw);
+    free_any((*file)->full_path);
+    free_any((*file)->path);
+    free_any((*file)->name);
+    if ((*file)->raw)
+        free_any((*file)->raw);
     *file = free_any(*file);
     return E_SUCCESS;
 }
