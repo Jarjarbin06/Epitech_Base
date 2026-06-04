@@ -293,6 +293,9 @@ print      v0.1.5
 str        v0.1.5
 twodlist   v0.0.0
 utils      v0.1.5
+
+Other:
+Makefile   v1.0.6
 </pre>
 
 Author: Nathan (Jarjarbin06) • EPITECH<br>

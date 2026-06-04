@@ -27,8 +27,8 @@
 ###############################################################################
 
 info_NAME	=	newcsfml
-info_VERSION	=	v0.2.7
-info_LAST_UPDATE	=	2026/05/21 11h
+info_VERSION	=	v0.2.8
+info_LAST_UPDATE	=	2026/06/03 10h
 info_LIB_MAKER	=	Makefile
 
 
