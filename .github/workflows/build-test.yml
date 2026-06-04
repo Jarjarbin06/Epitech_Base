@@ -30,7 +30,7 @@ jobs:
         run: |
           set -e
 
-          LIB_DIR="build_files/lib"
+          LIB_DIR="lib/"
 
           for lib in "$LIB_DIR"/*; do
             if [ -d "$lib" ] && [ -f "$lib/Makefile" ]; then
