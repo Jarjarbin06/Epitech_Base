@@ -1,5 +1,5 @@
 ---
-title: Epitech Base | Library | NewCSFML - File Structure
+title: Epitech Base -- Library -- NewCSFML - File Structure
 ---
 <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/build_files/lib/newcsfml/resouces/NCSFML_logo_transparent.png">
 
