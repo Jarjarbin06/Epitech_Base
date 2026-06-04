@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
+
 # 📦 NewCSFML (NCSFML)
 
 > Lightweight C wrapper over CSFML providing safer memory management and simplified game development APIs.

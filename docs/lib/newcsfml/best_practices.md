@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
+
 ## 🔹 Global Best Practices (Framework-wide)
 
 These rules apply to **all modules, functions, structures, and systems** in the framework. They are designed to ensure consistency, safety, and maintainability across the entire codebase.
