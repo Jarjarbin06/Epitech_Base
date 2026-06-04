@@ -5,7 +5,7 @@
 ---
 
 📖 See Documentation here:  
-→ [Main Documentation](docs/README.md)
+→ [Main Documentation](https://jarjarbin06.github.io/Epitech_Base/)
 
 ---
 
