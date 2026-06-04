@@ -1,6 +1,21 @@
 ---
 title: NewCSFML - Games - NSF_Game
 ---
+<style>
+    * {
+      position: relative;
+      z-index: 5;
+    body {
+      font-family: "Roboto", sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+    }
+}
+</style>
 <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/build_files/lib/newcsfml/resouces/NCSFML_logo_transparent.png">
 
 # 📦 Game Module (`nsf_game`)
