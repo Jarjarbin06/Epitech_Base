@@ -1,7 +1,7 @@
 ---
 title: Makefile
 sidebar: sidebar
-permalink: overview/makefile.html
+permalink: overview_makefile.html
 folder: docs
 ---
 

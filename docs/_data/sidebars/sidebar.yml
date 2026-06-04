@@ -27,9 +27,9 @@ entries:
             type: homepage
 
           - title: Libraries
-            url: /overview/lib.html
+            url: /overview_lib.html
             output: web, pdf
 
           - title: Makefile
-            url: /overview/makefile.html
+            url: /overview_makefile.html
             output: web, pdf
