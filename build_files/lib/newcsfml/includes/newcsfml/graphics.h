@@ -24,13 +24,13 @@
 #ifndef NEWCSFML_GRAPHICS_H
     #define NEWCSFML_GRAPHICS_H
 
+#include "newcsfml/graphics/animation.h"
     #include "newcsfml/graphics/background.h"
     #include "newcsfml/graphics/button.h"
     #include "newcsfml/graphics/particle.h"
     #include "newcsfml/graphics/sprite.h"
     #include "newcsfml/graphics/text.h"
     #include "newcsfml/graphics/texture.h"
-    #include "newcsfml/graphics/animation.h"
     #include "newcsfml/graphics/view.h"
 
 #endif

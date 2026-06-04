@@ -1,3 +1,6 @@
+---
+title: Epitech Base | Library | NewCSFML - Systems - NSF_Clock
+---
 <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/build_files/lib/newcsfml/resouces/NCSFML_logo_transparent.png">
 
 # 📦 Clock Module (`nsf_clock`)

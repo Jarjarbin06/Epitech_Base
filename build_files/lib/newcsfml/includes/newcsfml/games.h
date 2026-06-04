@@ -26,6 +26,7 @@
 
     #include "newcsfml/games/event.h"
     #include "newcsfml/games/game.h"
+    #include "newcsfml/games/joystick.h"
     #include "newcsfml/games/keyboard.h"
     #include "newcsfml/games/mouse.h"
     #include "newcsfml/games/window.h"
