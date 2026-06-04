@@ -1,5 +1,5 @@
 ---
-title: Epitech Base -- Library -- Flag
+title: Epitech Base - Library - Flag
 ---
 <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
 
