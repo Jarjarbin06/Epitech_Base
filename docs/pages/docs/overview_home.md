@@ -2,7 +2,7 @@
 layout: page
 title: Home
 sidebar: sidebar
-permalink: /
+permalink: /overview_home.html
 ---
 
 # 📦 Epitech Base

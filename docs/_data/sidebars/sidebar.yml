@@ -22,7 +22,7 @@ entries:
         folderitems:
 
           - title: Home
-            url: /
+            url: /overview_home.html
             output: web, pdf
             type: homepage
 
