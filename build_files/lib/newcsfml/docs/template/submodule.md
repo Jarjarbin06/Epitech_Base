@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
+
 # 📦 `<Submodule Name>` (`nsf_<name>`)
 #### part of [Category](overview.md)
 

@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
+
 # 📦 Clock Module (`nsf_clock`)
 #### part of [Systems](overview.md)
 

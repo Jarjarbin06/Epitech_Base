@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
+
 # 📦 Naming Conventions
 
 This document defines the strict naming rules used across the **NewCSFML framework** to ensure consistency, readability, and maintainability.

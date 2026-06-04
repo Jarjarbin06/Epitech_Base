@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
+
 # 📦 Epitech Base Makefile System
 
 > Advanced and modular Makefile system designed to automate compilation, library management, testing, and repository workflow for EPITECH projects.

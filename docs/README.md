@@ -1,4 +1,4 @@
-<link rel="icon" type="image/x-icon" href="EpitechBaseWebIcon.png">
+<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
 
 # 📦 Epitech Base
 
