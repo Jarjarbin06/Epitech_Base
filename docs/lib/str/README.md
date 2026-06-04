@@ -1,5 +1,5 @@
 ---
-title: Epitech Base - Library - Str
+title: Library - Str
 ---
 <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
 
