@@ -11,7 +11,7 @@
 
     #include "include_include.h"
 
-    #ifndef INCLUDE_T_TYPE
+#ifndef INCLUDE_T_TYPE
         #define INCLUDE_T_TYPE
 
 // add type typedefs here //

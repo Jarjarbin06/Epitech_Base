@@ -12,7 +12,7 @@
     #include <stdbool.h>
     #include "str_typedef.h"
 
-    #ifndef T_STR_TRANSFORM
+#ifndef T_STR_TRANSFORM
         #define T_STR_TRANSFORM
 typedef struct {
     char *(*reverse)(char *);

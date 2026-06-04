@@ -11,7 +11,7 @@
 
     #include "str_include.h"
 
-    #ifndef STR_T_TYPE
+#ifndef STR_T_TYPE
         #define STR_T_TYPE
 
         #ifndef T_VOID_FUNC

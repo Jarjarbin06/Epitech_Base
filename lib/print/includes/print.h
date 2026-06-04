@@ -8,7 +8,7 @@
 #ifndef PRINT
     #define PRINT
     #include "print_flag.h"
-    #ifndef E_SUCCESS
+#ifndef E_SUCCESS
         #define E_SUCCESS 0
     #endif
     #ifndef E_ERROR

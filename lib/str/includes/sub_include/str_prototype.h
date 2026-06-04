@@ -11,7 +11,7 @@
 
     #include "str_typedef.h"
 
-    #ifndef STR_P_BASE
+#ifndef STR_P_BASE
         #define STR_P_BASE
 void str_exist(void);
     #endif
