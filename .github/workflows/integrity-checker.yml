@@ -3,7 +3,6 @@ name: Library integrity checker
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   check:
