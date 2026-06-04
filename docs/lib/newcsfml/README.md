@@ -1,3 +1,6 @@
+---
+title: Epitech Base | Library | NewCSFML - Home
+---
 <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/build_files/lib/newcsfml/resouces/NCSFML_logo_transparent.png">
 
 # 📦 NewCSFML (NCSFML)
@@ -184,8 +187,10 @@ Minimal working window example:
 
 static nsf_window_t *create_window(nsf_game_t *game)
 {
+    nsf_window_settings_t window_setting = {800, 600, 32, 30};
+
     return nsf_window_create(
-        (nsf_window_settings_t[]){{800, 600, 32, 30}},
+        &window_setting,
         "NCSFML Window",
         NSF_WDW_DEFAULT_STYLE,
         game
@@ -200,7 +205,7 @@ int main(void)
     nsf_game_set_window(game, create_window(game));
 
     while (nsf_game_isopen(game)) {
-        while (nsf_window_get_event(nsf_game_get_window(game), &event)) {
+        while (nsf_game_get_event(game, &event)) {
             if (nsf_event_cmp(&event, NSF_EVT_CLOSED))
                 nsf_window_close(nsf_game_get_window(game));
         }
@@ -228,7 +233,7 @@ nsf_game_t
 This ensures:
 
 * Centralized memory ownership
-* Automatic cleanup on `nsf_game_destroy`
+* Automatic clean-up on `nsf_game_destroy`
 * Reduced memory leaks risk
 * Predictable lifecycle management
 

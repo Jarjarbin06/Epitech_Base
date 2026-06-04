@@ -1,3 +1,6 @@
+---
+title: Epitech Base | Library | NewCSFML - Naming Conventions
+---
 <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/build_files/lib/newcsfml/resouces/NCSFML_logo_transparent.png">
 
 # 📦 Naming Conventions
@@ -16,11 +19,12 @@ includes/newcsfml/<module>/<submodule>.h
 
 ### Rules
 
-| Element      | Convention                                          |
-|--------------|-----------------------------------------------------|
-| Folder       | snake_case, plural (`graphics`, `games`, `systems`) |
-| File         | snake_case (`sprite.h`, `window_settings.h`)        |
-| Main include | `newcsfml.h`                                        |
+| Element        | Convention                                                |
+|----------------|-----------------------------------------------------------|
+| Folder         | snake_case, plural (`graphics`, `games`, `systems`)       |
+| File           | snake_case (`sprite.h`, `window_settings.h`)              |
+| Global include | snake_case, plural (`graphics.h`, `games.h`, `systems.h`) |
+| Main include   | `newcsfml.h`                                              |
 
 ---
 
@@ -40,12 +44,12 @@ nsf_game_struct.c
 
 ### Rules
 
-| Element   | Convention                                          |
-|-----------|:----------------------------------------------------|
-| Prefix    | `nsf_` mandatory                                    |
-| Submodule | corresponds to folder                               |
-| Splitting | large modules split into `manage1`, `manage2`, etc. |
-| Unique    | file name must be unique across all source files    |
+| Element   | Convention                                            |
+|-----------|:------------------------------------------------------|
+| Prefix    | `nsf_` mandatory                                      |
+| Submodule | corresponds to folder                                 |
+| Splitting | large modules split into `manage_?`, `manage_?`, etc. |
+| Unique    | file name must be unique across all source files      |
 
 ---
 
