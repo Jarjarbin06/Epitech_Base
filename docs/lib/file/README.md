@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
+
 # 📦 libfile
 
 > Minimal and structured file handling library for C based on direct system calls (`open`, `read`, `close`) with controlled memory ownership and safe file abstraction.
