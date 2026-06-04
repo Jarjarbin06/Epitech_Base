@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Home
+sidebar: sidebar
 permalink: /
 ---
 
@@ -90,7 +91,7 @@ Includes:
 * Libraries tests (`test_lib`)
 
 📖 Full documentation:  
-→ [Libraries Documentation](lib.md)
+→ [Libraries Documentation](overview/lib.md)
 
 ---
 
@@ -106,7 +107,7 @@ The repository includes an advanced Makefile that manages:
 * Library import system
 
 📖 Full documentation:  
-→ [Makefile Documentation](makefile.md)
+→ [Makefile Documentation](overview/makefile.md)
 
 ---
 
@@ -204,8 +205,8 @@ docs/
 
 ### Main Entries
 
-* → [Libraries Documentation](lib.md)
-* → [Makefile Documentation](makefile.md)
+* → [Libraries Documentation](overview/lib.md)
+* → [Makefile Documentation](overview/makefile.md)
 
 Each library may also contain its own README or `docs/` folder.
 

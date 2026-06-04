@@ -1,15 +1,35 @@
 entries:
-  - title: Documentation
-    product: Epitech Base
-
+  - title: sidebar
+    product: Jekyll Doc Theme
+    version: 6.0
     folders:
 
-      - title: Libraries
-        output: web
-
+      - title:
+        output: pdf
+        type: frontmatter
         folderitems:
-          - title: Makefile
-            url: /makefile.html
+          - title:
+            url: /titlepage.html
+            output: pdf
+            type: frontmatter
+          - title:
+            url: /tocpage.html
+            output: pdf
+            type: frontmatter
+
+      - title: Overview
+        output: web, pdf
+        folderitems:
+
+          - title: Home
+            url: /
+            output: web, pdf
+            type: homepage
 
           - title: Libraries
-            url: /lib.html
+            url: /overview/lib.html
+            output: web, pdf
+
+          - title: Makefile
+            url: /overview/makefile.html
+            output: web, pdf

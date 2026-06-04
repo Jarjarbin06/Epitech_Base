@@ -1,7 +1,7 @@
 ---
 title: Makefile
-sidebar: EpitechBaseSidebar
-permalink: makefile.html
+sidebar: sidebar
+permalink: overview/makefile.html
 folder: docs
 ---
 
