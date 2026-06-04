@@ -1,22 +1,9 @@
 ---
 title: Makefile
+sidebar: EpitechBaseSidebar
+permalink: makefile.html
+folder: docs
 ---
-<style>
-    * {
-      position: relative;
-      z-index: 5;
-    body {
-      font-family: "Roboto", sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-    a {
-      text-decoration: none;
-    }
-}
-</style>
-<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
 
 # 📦 Epitech Base Makefile System
 

@@ -1,0 +1,15 @@
+entries:
+  - title: Documentation
+    product: Epitech Base
+
+    folders:
+
+      - title: Libraries
+        output: web
+
+        folderitems:
+          - title: Makefile
+            url: /makefile.html
+
+          - title: Libraries
+            url: /lib.html

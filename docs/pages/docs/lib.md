@@ -1,23 +1,9 @@
 ---
 title: Libraries
+sidebar: EpitechBaseSidebar
+permalink: lib.html
+folder: docs
 ---
-<style>
-    * {
-      position: relative;
-      z-index: 5;
-    body {
-      font-family: "Roboto", sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-    a {
-      text-decoration: none;
-    }
-}
-</style>
-<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jarjarbin06/Epitech_Base/refs/heads/main/docs/EpitechBaseWebIcon.png">
-
 # 📦 Epitech Base Libraries
 
 > Collection of reusable C libraries designed for EPITECH projects, focusing on modularity, consistency, and structured development.
@@ -105,7 +91,7 @@ Makefile    → Compilation and cleanup
 * Logging implementation across whole library
 
 📖 Documentation:  
-→ [NewCSFML Documentation](lib/newcsfml/README.md)
+→ [NewCSFML Documentation](../../../docs_2/lib/newcsfml/README.md)
 
 ---
 
@@ -119,7 +105,7 @@ Makefile    → Compilation and cleanup
 * Custom error systems
 
 📖 Entry point:  
-→ [NewError README](lib/newerror/README.md)
+→ [NewError README](../../../docs_2/lib/newerror/README.md)
 
 ---
 
@@ -128,7 +114,7 @@ Makefile    → Compilation and cleanup
 > General-purpose helper functions
 
 📖 Entry point:  
-→ [Utils README](lib/utils/README.md)
+→ [Utils README](../../../docs_2/lib/utils/README.md)
 
 ---
 
@@ -140,7 +126,7 @@ Makefile    → Compilation and cleanup
 * Modular formatting
 
 📖 Entry point:  
-→ [Print README](lib/print/README.md)
+→ [Print README](../../../docs_2/lib/print/README.md)
 
 ---
 
@@ -155,7 +141,7 @@ Makefile    → Compilation and cleanup
 * Fast fetch and auto handling
 
 📖 Entry point:  
-→ [Flag README](lib/flag/README.md)
+→ [Flag README](../../../docs_2/lib/flag/README.md)
 
 ---
 
@@ -167,7 +153,7 @@ Makefile    → Compilation and cleanup
 * Manual/custom file reader
 
 📖 Entry point:  
-→ [File README](lib/file/README.md)
+→ [File README](../../../docs_2/lib/file/README.md)
 
 ---
 
@@ -180,7 +166,7 @@ Makefile    → Compilation and cleanup
 * String operations
 
 📖 Entry point:  
-→ [Str README](lib/str/README.md)
+→ [Str README](../../../docs_2/lib/str/README.md)
 
 ---
 
@@ -189,7 +175,7 @@ Makefile    → Compilation and cleanup
 > Generic linked list implementation
 
 📖 Entry point:  
-→ [LList README](lib/llist/README.md)
+→ [LList README](../../../docs_2/lib/llist/README.md)
 
 ---
 
@@ -198,7 +184,7 @@ Makefile    → Compilation and cleanup
 > Advanced list structure for complex data layouts
 
 📖 Entry point:  
-→ [TwoDList README](lib/twodlist/README.md)
+→ [TwoDList README](../../../docs_2/lib/twodlist/README.md)
 
 ---
 
