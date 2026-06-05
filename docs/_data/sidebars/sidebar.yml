@@ -82,19 +82,130 @@ entries:
             url: /lib_newcsfml_doc_quick_reference.html
             output: web, pdf
 
-          - title: Module • Audios
+          - title: Audios
             url: /lib_newcsfml_doc_modules_audios.html
             output: web, pdf
 
             subfolders:
-              - title: Module • Audios
+              - title: Audios • SubModules
                 output: web, pdf
                 subfolderitems:
 
-                  - title: Module • Audios • Music
+                  - title: Audios • Music
                     url: /lib_newcsfml_doc_modules_audios_music.html
                     output: web, pdf
 
-                  - title: Module • Audios • Sound
+                  - title: Audios • Sound
                     url: /lib_newcsfml_doc_modules_audios_sound.html
+                    output: web, pdf
+
+          - title: Games
+            url: /lib_newcsfml_doc_modules_games.html
+            output: web, pdf
+
+            subfolders:
+              - title: Games • SubModules
+                output: web, pdf
+                subfolderitems:
+
+                  - title: Games • Event
+                    url: /lib_newcsfml_doc_modules_games_event.html
+                    output: web, pdf
+
+                  - title: Games • Game
+                    url: /lib_newcsfml_doc_modules_games_game.html
+                    output: web, pdf
+
+                  - title: Games • Joystick
+                    url: /lib_newcsfml_doc_modules_games_joystick.html
+                    output: web, pdf
+
+                  - title: Games • Keyboard
+                    url: /lib_newcsfml_doc_modules_games_keyboard.html
+                    output: web, pdf
+
+                  - title: Games • Mouse
+                    url: /lib_newcsfml_doc_modules_games_mouse.html
+                    output: web, pdf
+
+                  - title: Games • Window
+                    url: /lib_newcsfml_doc_modules_games_window.html
+                    output: web, pdf
+
+                  - title: Games • Window Settings
+                    url: /lib_newcsfml_doc_modules_games_window_settings.html
+                    output: web, pdf
+
+          - title: Games
+            url: /lib_newcsfml_doc_modules_graphics.html
+            output: web, pdf
+
+            subfolders:
+              - title: Graphics • SubModules
+                output: web, pdf
+                subfolderitems:
+
+                  - title: Graphics • Animation
+                    url: /lib_newcsfml_doc_modules_graphics_animation.html
+                    output: web, pdf
+
+                  - title: Graphics • Background
+                    url: /lib_newcsfml_doc_modules_graphics_background.html
+                    output: web, pdf
+
+                  - title: Graphics • Button
+                    url: /lib_newcsfml_doc_modules_graphics_button.html
+                    output: web, pdf
+
+                  - title: Graphics • Particle
+                    url: /lib_newcsfml_doc_modules_graphics_particle.html
+                    output: web, pdf
+
+                  - title: Graphics • Sprite
+                    url: /lib_newcsfml_doc_modules_graphics_sprite.html
+                    output: web, pdf
+
+                  - title: Graphics • Text
+                    url: /lib_newcsfml_doc_modules_graphics_text.html
+                    output: web, pdf
+
+                  - title: Graphics • Texture
+                    url: /lib_newcsfml_doc_modules_graphics_texture.html
+                    output: web, pdf
+
+                  - title: Graphics • View
+                    url: /lib_newcsfml_doc_modules_graphics_view.html
+                    output: web, pdf
+
+          - title: Systems
+            url: /lib_newcsfml_doc_modules_systems.html
+            output: web, pdf
+
+            subfolders:
+              - title: Systems • SubModules
+                output: web, pdf
+                subfolderitems:
+
+                  - title: Systems • Clock
+                    url: /lib_newcsfml_doc_modules_systems_clock.html
+                    output: web, pdf
+
+                  - title: Systems • Color
+                    url: /lib_newcsfml_doc_modules_systems_color.html
+                    output: web, pdf
+
+                  - title: Systems • Other
+                    url: /lib_newcsfml_doc_modules_systems_other.html
+                    output: web, pdf
+
+                  - title: Systems • Utils
+                    url: /lib_newcsfml_doc_modules_systems_utils.html
+                    output: web, pdf
+
+                  - title: Systems • Vector
+                    url: /lib_newcsfml_doc_modules_systems_vector.html
+                    output: web, pdf
+
+                  - title: Systems • Watcher
+                    url: /lib_newcsfml_doc_modules_systems_watcher.html
                     output: web, pdf
