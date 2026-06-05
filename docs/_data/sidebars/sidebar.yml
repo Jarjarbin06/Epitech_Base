@@ -190,6 +190,15 @@ entries:
                     url: /lib_newcsfml_doc_modules_systems_clock.html
                     output: web, pdf
 
+                    subfolders:
+                      - title: Systems • SubModules
+                        output: web, pdf
+                        subfolderitems:
+
+                          - title: Systems • Color
+                            url: /lib_newcsfml_doc_modules_systems_color.html
+                            output: web, pdf
+
                   - title: Systems • Color
                     url: /lib_newcsfml_doc_modules_systems_color.html
                     output: web, pdf
@@ -209,3 +218,43 @@ entries:
                   - title: Systems • Watcher
                     url: /lib_newcsfml_doc_modules_systems_watcher.html
                     output: web, pdf
+
+      - title: Library NewError
+        output: web, pdf
+        folderitems:
+
+          - title: NewError
+            url: /lib_newerror_doc.html
+            output: web, pdf
+
+      - title: Library Print
+        output: web, pdf
+        folderitems:
+
+          - title: Print
+            url: /lib_print_doc.html
+            output: web, pdf
+
+      - title: Library Str
+        output: web, pdf
+        folderitems:
+
+          - title: Str
+            url: /lib_str_doc.html
+            output: web, pdf
+
+      - title: Library TwoDList
+        output: web, pdf
+        folderitems:
+
+          - title: TwoDList
+            url: /lib_twodlist_doc.html
+            output: web, pdf
+
+      - title: Library Utils
+        output: web, pdf
+        folderitems:
+
+          - title: Utils
+            url: /lib_utils_doc.html
+            output: web, pdf
