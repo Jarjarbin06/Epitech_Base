@@ -75,7 +75,7 @@ entries:
             output: web, pdf
 
           - title: Naming Convention
-            url: /lib_newcsfml_doc_naming_convention.html
+            url: /lib_newcsfml_doc_naming_conventions.html
             output: web, pdf
 
           - title: Quick Reference
