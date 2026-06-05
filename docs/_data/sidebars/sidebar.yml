@@ -33,3 +33,68 @@ entries:
           - title: Makefile
             url: /overview_makefile.html
             output: web, pdf
+
+      - title: Library File
+        output: web, pdf
+        folderitems:
+
+          - title: File
+            url: /lib_file_doc.html
+            output: web, pdf
+
+      - title: Library Flag
+        output: web, pdf
+        folderitems:
+
+          - title: Flag
+            url: /lib_flag_doc.html
+            output: web, pdf
+
+      - title: Library LList
+        output: web, pdf
+        folderitems:
+
+          - title: LList
+            url: /lib_llist_doc.html
+            output: web, pdf
+
+      - title: Library NewCSFML
+        output: web, pdf
+        folderitems:
+
+          - title: NewCSFML
+            url: /lib_newcsfml_doc.html
+            output: web, pdf
+
+          - title: Best Practices
+            url: /lib_newcsfml_doc_best_practices.html
+            output: web, pdf
+
+          - title: File Structure
+            url: /lib_newcsfml_doc_file_structure.html
+            output: web, pdf
+
+          - title: Naming Convention
+            url: /lib_newcsfml_doc_naming_convention.html
+            output: web, pdf
+
+          - title: Quick Reference
+            url: /lib_newcsfml_doc_quick_reference.html
+            output: web, pdf
+
+          - title: Module • Audios
+            url: /lib_newcsfml_doc_modules_audios.html
+            output: web, pdf
+
+            subfolders:
+              - title: Module • Audios
+                output: web, pdf
+                subfolderitems:
+
+                  - title: Module • Audios • Music
+                    url: /lib_newcsfml_doc_modules_audios_music.html
+                    output: web, pdf
+
+                  - title: Module • Audios • Sound
+                    url: /lib_newcsfml_doc_modules_audios_sound.html
+                    output: web, pdf
