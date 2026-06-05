@@ -190,15 +190,6 @@ entries:
                     url: /lib_newcsfml_doc_modules_systems_clock.html
                     output: web, pdf
 
-                    subfolders:
-                      - title: Systems • SubModules
-                        output: web, pdf
-                        subfolderitems:
-
-                          - title: Systems • Color
-                            url: /lib_newcsfml_doc_modules_systems_color.html
-                            output: web, pdf
-
                   - title: Systems • Color
                     url: /lib_newcsfml_doc_modules_systems_color.html
                     output: web, pdf
