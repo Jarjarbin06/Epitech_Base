@@ -40,12 +40,12 @@ NAME	?=	binary			#	binary name
 # -----------------------------------------------------------------------------
 # PATHS
 # -----------------------------------------------------------------------------
-SRC_PATH		= sources
-BONUS_PATH		= bonus
+SRC_PATH	=	sources
+BONUS_PATH	=	bonus
 TEST_PATH	=	tests
-LIB_SRC_PATH	= lib
-INCLUDE_PATH	= includes
-LIB_PATH		= lib
+LIB_SRC_PATH	=	lib
+INCLUDE_PATH	=	includes
+LIB_PATH	=	lib
 
 # -----------------------------------------------------------------------------
 # SOURCES
@@ -95,7 +95,12 @@ CC	=	clang
 CNAME	=	$(NAME)
 CARG	=
 
-CFLAGS_BASE	=	-Wall -Wextra -Werror -MMD -MP -fdata-sections -ffunction-sections
+CFLAGS_BASE	=	\
+	-Wall \
+	-Wextra \
+	-Werror \
+	-Wuninitialized
+CFLAGS_BASE	+=	-MMD -MP -fdata-sections -ffunction-sections
 CFLAGS_DEBUG	=	-g3 -O0
 CFLAGS_RELEASE	=	-O3 -fno-plt
 
@@ -343,7 +348,8 @@ ifeq ($(wildcard *), Makefile)
 setup-build:
 	cp -rf $(EPITECH_BASE_PATH)/.gitignore ./
 	cp -rf $(EPITECH_BASE_PATH)/tree/* ./
-	cp -rf $(EPITECH_BASE_PATH)/tree/.gitignore ./
+	cp -rf $(EPITECH_BASE_PATH)/tree/.* ./
+	cmake -S . -B "cmake-build-epitech-base"
 	-make git-push-repo
 else
 setup-build:

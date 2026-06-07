@@ -1,0 +1,109 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+
+# =========================================================
+# BASIC FORMATTING
+# =========================================================
+
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+ColumnLimit: 80
+
+# =========================================================
+# BRACES (EPITECH CORE RULE)
+# =========================================================
+
+BreakBeforeBraces: Custom
+
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: true
+  AfterControlStatement: true
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  BeforeWhile: false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+
+# =========================================================
+# CONTROL STRUCTURES (EPITECH STYLE STRICTNESS)
+# =========================================================
+
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+
+AlwaysBreakAfterReturnType: None
+
+# =========================================================
+# SPACING RULES (EPITECH CLEAN STYLE)
+# =========================================================
+
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: false
+SpaceInEmptyParentheses: false
+SpaceAfterCStyleCast: true
+
+AlignOperands: false
+AlignTrailingComments: false
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+
+# =========================================================
+# POINTER STYLE (IMPORTANT FOR EPITECH READABILITY)
+# =========================================================
+
+PointerAlignment: Left
+DerivePointerAlignment: false
+
+# =========================================================
+# FUNCTIONS (EPITECH STRUCTURE ENFORCEMENT)
+# =========================================================
+
+AlwaysBreakAfterDefinitionReturnType: None
+
+# =========================================================
+# INCLUDE STYLE (EPITECH ORGANIZATION)
+# =========================================================
+
+IncludeBlocks: Regroup
+SortIncludes: true
+
+IncludeCategories:
+  - Regex: '^<.*>'
+    Priority: 1
+  - Regex: '^".*'
+    Priority: 2
+  - Regex: '.*'
+    Priority: 3
+
+# =========================================================
+# CLASS / STRUCT RULES (EPITECH C EXPECTATION)
+# =========================================================
+
+BreakConstructorInitializers: AfterColon
+
+# =========================================================
+# COMMENTS (EPITECH CLEAN CODE STYLE)
+# =========================================================
+
+SpacesBeforeTrailingComments: 1
+
+# =========================================================
+# MISC CLEANUP
+# =========================================================
+
+MaxEmptyLinesToKeep: 1
+InsertTrailingCommas: None
+FixNamespaceComments: false
+...
