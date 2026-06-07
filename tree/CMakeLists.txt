@@ -61,6 +61,26 @@ add_executable(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_INCLUDE_DIRS})
 
 # =========================================================
+# LIBRARY COMPILERS
+# =========================================================
+
+#add_custom_target(<target name> ALL
+#        COMMAND make
+#        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/<library name>
+#)
+
+#set(<library name upper> ${CMAKE_SOURCE_DIR}/lib/<library name>/lib<library name>.a)
+
+#add_dependencies(${PROJECT_NAME} <target name>)
+
+#target_link_libraries(${PROJECT_NAME} PRIVATE ${<library name upper>})
+
+#target_link_libraries(${PROJECT_NAME} PRIVATE
+#        ${CMAKE_SOURCE_DIR}/lib/<library name>/lib<library name>.a
+#        <necessary flags>
+#)
+
+# =========================================================
 # COMPILER WARNINGS (EPITECH STYLE)
 # =========================================================
 if (ENABLE_WARNINGS)
@@ -96,7 +116,7 @@ if (BUILD_TESTS)
 
     if (ENABLE_WARNINGS)
         target_compile_options(${PROJECT_NAME}_tests PRIVATE
-                -Wall -Wextra -Werror -Wuninitialized
+                -Wall -Wextra -Werror -Wshadow -Wpedantic
         )
     endif()
 endif()
