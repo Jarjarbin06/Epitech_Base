@@ -85,7 +85,7 @@ These rules apply to **all modules, functions, structures, and systems** in the 
 
 * Functions must return explicit status when applicable:
   * `NULL` for pointers
-  * `E_SUCCESS / E_ERROR` or similar for status codes
+  * `E_SUCCESS / E_FAILURE` or similar for status codes
 * Fail fast: stop execution as soon as an invalid state is detected
 
 ### ✔ Consistency
