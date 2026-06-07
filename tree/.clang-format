@@ -20,7 +20,7 @@ BreakBeforeBraces: Custom
 
 BraceWrapping:
   AfterCaseLabel: false
-  AfterClass: true
+  AfterClass: false
   AfterControlStatement: false
   AfterEnum: false
   AfterFunction: true
