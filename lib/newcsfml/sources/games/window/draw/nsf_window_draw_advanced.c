@@ -69,11 +69,11 @@ int nsf_window_draw_lines(const nsf_window_t *window, const size_t len,
     sfVertexArray *array = NULL;
 
     if (NSF_UNLIKELY(!window || !window->window || !lines || !color))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
     array = get_vertices(sfLineStrip, len, lines, color);
     if (NSF_UNLIKELY(!array))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "array retrieval failed");
     sfRenderWindow_drawVertexArray(window->window, array, NULL);
     sfVertexArray_destroy(array);
@@ -86,11 +86,11 @@ int nsf_window_draw_points(const nsf_window_t *window, const size_t len,
     sfVertexArray *array = NULL;
 
     if (NSF_UNLIKELY(!window || !window->window || !points || !color))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
     array = get_vertices(sfPoints, len, points, color);
     if (NSF_UNLIKELY(!array))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "array retrieval failed");
     sfRenderWindow_drawVertexArray(window->window, array, NULL);
     sfVertexArray_destroy(array);

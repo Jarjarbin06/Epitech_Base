@@ -56,7 +56,7 @@ nsf_sprite_t *nsf_sprite_create(const char name[], nsf_game_t *game)
 int nsf_sprite_destroy(nsf_sprite_t **sprite, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!sprite || !*sprite))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_SPRITE,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_SPRITE,
             __FUNCTION__, "pointer corrupted");
     if ((*sprite)->texture_type == NSF_TXR_TEXTURE)
         nsf_texture_destroy(&(*sprite)->texture.texture, game);

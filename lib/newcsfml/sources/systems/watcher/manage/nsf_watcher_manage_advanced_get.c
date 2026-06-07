@@ -28,7 +28,7 @@
 static int get_string_buffer(const long int nb, char *buffer, int idx)
 {
     if (NSF_UNLIKELY(!buffer))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WATCHER,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WATCHER,
             __FUNCTION__, "pointer corrupted");
     if (nb >= 10)
         idx = get_string_buffer(nb / 10, buffer, idx);
@@ -41,7 +41,7 @@ int nsf_watcher_get_string_in_buffer(nsf_watcher_t *watcher, char buffer[])
     size_t last_idx = 0;
 
     if (NSF_UNLIKELY(!watcher || !buffer))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WATCHER,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WATCHER,
             __FUNCTION__, "pointer corrupted");
     last_idx = get_string_buffer(nsf_watcher_get_int(watcher), buffer, 0);
     buffer[last_idx] = '\0';

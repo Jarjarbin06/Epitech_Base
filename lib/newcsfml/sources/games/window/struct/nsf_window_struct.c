@@ -168,7 +168,7 @@ static void destroy_views_and_background(nsf_window_t **window,
 int nsf_window_destroy(nsf_window_t **window, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!window || !*window))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
     destroy_views_and_background(window, game);
     if (NSF_LIKELY((*window)->settings))

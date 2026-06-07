@@ -106,7 +106,7 @@ void *nsf_utils_log_null(nsf_log_level_t log_level,
     nsf_cstr_t module, nsf_cstr_t name, nsf_cstr_t message);
 bool nsf_utils_log_false(nsf_log_level_t log_level,
     nsf_cstr_t module, nsf_cstr_t name, nsf_cstr_t message);
-int nsf_utils_log_error(nsf_log_level_t log_level,
+int nsf_utils_log_failure(nsf_log_level_t log_level,
     nsf_cstr_t module, nsf_cstr_t name, nsf_cstr_t message);
 int nsf_utils_log_zero(nsf_log_level_t log_level,
     nsf_cstr_t module, nsf_cstr_t name, nsf_cstr_t message);

@@ -44,7 +44,7 @@ void nsf_window_add_screen(nsf_window_t *window, const nsf_cstr_t screen_name)
 int nsf_window_set_screen(nsf_window_t *window, const nsf_cstr_t screen_name)
 {
     if (NSF_UNLIKELY(!window))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
             "pointer corrupted");
     if (NSF_UNLIKELY(!screen_name)) {
         window->current_screen = -1;
@@ -55,14 +55,14 @@ int nsf_window_set_screen(nsf_window_t *window, const nsf_cstr_t screen_name)
             window->current_screen = idx;
             return E_SUCCESS;
         }
-    return nsf_utils_log_error(NSF_LOG_LVL_WARNING, NSF_WINDOW, __FUNCTION__,
+    return nsf_utils_log_failure(NSF_LOG_LVL_WARNING, NSF_WINDOW, __FUNCTION__,
         "screen doesn't exist");
 }
 
 int nsf_window_get_screen_idx(nsf_window_t *window)
 {
     if (NSF_UNLIKELY(!window))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
             "pointer corrupted");
     return window->current_screen;
 }

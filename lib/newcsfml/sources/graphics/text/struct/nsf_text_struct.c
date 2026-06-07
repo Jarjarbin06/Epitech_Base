@@ -70,7 +70,7 @@ nsf_text_t *nsf_text_create(const char name[], const char font_path[],
 int nsf_text_destroy(nsf_text_t **text, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!text || !*text))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_TEXT, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_TEXT, __FUNCTION__,
             "pointer corrupted");
     if ((*text)->watcher)
         nsf_watcher_destroy(&(*text)->watcher, game);

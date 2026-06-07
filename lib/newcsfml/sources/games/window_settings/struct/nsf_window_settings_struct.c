@@ -48,7 +48,7 @@ int nsf_window_settings_destroy(nsf_window_settings_t **settings,
     nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!settings || !*settings))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW_SETTINGS,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW_SETTINGS,
             __FUNCTION__, "pointer corrupted");
     *settings = free_any(*settings);
     if (game)

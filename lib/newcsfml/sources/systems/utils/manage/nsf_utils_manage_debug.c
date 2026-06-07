@@ -91,11 +91,11 @@ bool nsf_utils_log_false(const nsf_log_level_t log_level,
     return NSF_FALSE;
 }
 
-int nsf_utils_log_error(const nsf_log_level_t log_level,
+int nsf_utils_log_failure(const nsf_log_level_t log_level,
     const nsf_cstr_t module, const nsf_cstr_t name, const nsf_cstr_t message)
 {
     nsf_utils_log(log_level, module, name, message);
-    return E_ERROR;
+    return E_FAILURE;
 }
 
 int nsf_utils_log_zero(const nsf_log_level_t log_level,

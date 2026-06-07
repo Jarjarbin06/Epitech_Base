@@ -48,7 +48,7 @@ nsf_texture_t *nsf_texture_create(const char path[], const char name[],
 int nsf_texture_destroy(nsf_texture_t **texture, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!texture || !*texture))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_TEXTURE,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_TEXTURE,
             __FUNCTION__, "pointer corrupted");
     if (NSF_LIKELY((*texture)->texture))
         sfTexture_destroy((*texture)->texture);

@@ -48,13 +48,14 @@ nsf_game_t *nsf_game_create(void)
 
 int nsf_game_destroy(nsf_game_t **game)
 {
-    int allocations = (*game)->allocations;
+    int allocations = 0;
 
     if (NSF_UNLIKELY(!game || !*game)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
         return -1;
     }
+    allocations = (*game)->allocations;
     if (NSF_LIKELY((*game)->window))
         nsf_window_destroy(&(*game)->window, *game);
     if (NSF_LIKELY((*game)->music))

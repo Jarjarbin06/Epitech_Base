@@ -65,7 +65,7 @@ nsf_animation_t *nsf_animation_create(const char path[], const char name[],
 int nsf_animation_destroy(nsf_animation_t **animation, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!animation || !*animation))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_ANIMATION,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_ANIMATION,
             __FUNCTION__, "pointer corrupted");
     if (NSF_LIKELY((*animation)->texture))
         sfTexture_destroy((*animation)->texture);

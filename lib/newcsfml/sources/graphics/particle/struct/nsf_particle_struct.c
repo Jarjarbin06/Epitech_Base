@@ -33,12 +33,12 @@
 static int init_particles(nsf_particle_t *new_particle, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!new_particle || !new_particle->max_particles))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_PARTICLE,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_PARTICLE,
             __FUNCTION__, "pointer corrupted");
     new_particle->particles = malloc_any(
         sizeof(nsf_single_particle_t) * new_particle->max_particles);
     if (NSF_UNLIKELY(!new_particle->particles))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_PARTICLE,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_PARTICLE,
             __FUNCTION__, "alloc failed");
     for (size_t idx = 0; idx < new_particle->max_particles; idx++)
         new_particle->particles[idx] = (nsf_single_particle_t){
@@ -110,7 +110,7 @@ static void destroy_particles(nsf_particle_t *particle, nsf_game_t *game)
 int nsf_particle_destroy(nsf_particle_t **particle, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!particle || !*particle))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_PARTICLE,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_PARTICLE,
             __FUNCTION__, "pointer corrupted");
     if (NSF_LIKELY((*particle)->particles))
         destroy_particles(*particle, game);

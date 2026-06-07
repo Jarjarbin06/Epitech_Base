@@ -28,7 +28,7 @@
 int nsf_window_display(const nsf_window_t *window)
 {
     if (NSF_UNLIKELY(!window))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
     sfRenderWindow_display(window->window);
     return E_SUCCESS;

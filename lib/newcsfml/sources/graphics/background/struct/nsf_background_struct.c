@@ -57,7 +57,7 @@ nsf_background_t *nsf_background_create(const char path[],
 int nsf_background_destroy(nsf_background_t **background, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!background || !*background))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_BACKGROUND,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_BACKGROUND,
             __FUNCTION__, "pointer corrupted");
     if (NSF_LIKELY((*background)->sprite))
         nsf_sprite_destroy(&(*background)->sprite, game);

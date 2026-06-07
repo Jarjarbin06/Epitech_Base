@@ -31,7 +31,7 @@ int nsf_window_update_settings(const nsf_window_t *window)
     nsf_uvector_t size = {0, 0};
 
     if (NSF_UNLIKELY(!window || !window->window || !window->settings))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
     size = sfRenderWindow_getSize(window->window);
     window->settings->width = size.x;

@@ -29,7 +29,7 @@ int nsf_window_play_sound(const nsf_window_t *window,
     const char sound_name[])
 {
     if (NSF_UNLIKELY(!window || !sound_name))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
     nsf_sound_play(nsf_window_get_sound(window, sound_name));
     return E_SUCCESS;
@@ -39,7 +39,7 @@ int nsf_window_pause_sound(const nsf_window_t *window,
     const char sound_name[])
 {
     if (NSF_UNLIKELY(!window || !sound_name))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
     nsf_sound_pause(nsf_window_get_sound(window, sound_name));
     return E_SUCCESS;
@@ -49,7 +49,7 @@ int nsf_window_stop_sound(const nsf_window_t *window,
     const char sound_name[])
 {
     if (NSF_UNLIKELY(!window || !sound_name))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
     nsf_sound_stop(nsf_window_get_sound(window, sound_name));
     return E_SUCCESS;
@@ -59,7 +59,7 @@ int nsf_window_all_sound_volume(const nsf_window_t *window,
     const float volume)
 {
     if (NSF_UNLIKELY(!window || !window->elements.elements))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
     for (size_t idx = 0; idx < window->elements.amount; idx++)
         if (window->elements.elements[idx]->element_type == NSF_SPRITE_ELEMENT)
@@ -71,7 +71,7 @@ int nsf_window_all_sound_volume(const nsf_window_t *window,
 int nsf_window_stop_all_sound(const nsf_window_t *window)
 {
     if (NSF_UNLIKELY(!window || !window->elements.elements))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW,
             __FUNCTION__, "pointer corrupted");
     for (size_t idx = 0; idx < window->elements.amount; idx++)
         if (window->elements.elements[idx]->element_type == NSF_SPRITE_ELEMENT)

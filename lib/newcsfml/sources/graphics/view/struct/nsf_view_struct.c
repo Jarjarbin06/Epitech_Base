@@ -46,7 +46,7 @@ nsf_view_t *nsf_view_create(nsf_game_t *game)
 int nsf_view_destroy(nsf_view_t **view, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!view || !*view))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_VIEW, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_VIEW, __FUNCTION__,
             "pointer corrupted");
     if (NSF_LIKELY((*view)->view))
         sfView_destroy((*view)->view);

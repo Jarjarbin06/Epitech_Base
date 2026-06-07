@@ -29,7 +29,7 @@ int nsf_game_play_sound(const nsf_game_t *game,
     const char sound_name[])
 {
     if (NSF_UNLIKELY(!game || !game->window || !sound_name))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
     nsf_window_play_sound(game->window, sound_name);
     return E_SUCCESS;
@@ -39,7 +39,7 @@ int nsf_game_pause_sound(const nsf_game_t *game,
     const char sound_name[])
 {
     if (NSF_UNLIKELY(!game || !game->window || !sound_name))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
     nsf_window_pause_sound(game->window, sound_name);
     return E_SUCCESS;
@@ -49,7 +49,7 @@ int nsf_game_stop_sound(const nsf_game_t *game,
     const char sound_name[])
 {
     if (NSF_UNLIKELY(!game || !game->window || !sound_name))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
     nsf_window_stop_sound(game->window, sound_name);
     return E_SUCCESS;
@@ -59,7 +59,7 @@ int nsf_game_all_sound_volume(const nsf_game_t *game,
     const float volume)
 {
     if (NSF_UNLIKELY(!game || !game->window))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
     nsf_window_all_sound_volume(game->window, volume);
     return E_SUCCESS;
@@ -68,7 +68,7 @@ int nsf_game_all_sound_volume(const nsf_game_t *game,
 int nsf_game_stop_all_sound(const nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!game || !game->window))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
     nsf_window_stop_all_sound(game->window);
     return E_SUCCESS;

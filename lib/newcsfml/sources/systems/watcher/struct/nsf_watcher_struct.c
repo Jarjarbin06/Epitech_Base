@@ -44,7 +44,7 @@ nsf_watcher_t *nsf_watcher_create(void *ptr, const nsf_watcher_type_t type,
 int nsf_watcher_destroy(nsf_watcher_t **watcher, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!watcher || !*watcher))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WATCHER,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WATCHER,
             __FUNCTION__, "pointer corrupted");
     *watcher = free_any(*watcher);
     if (game)

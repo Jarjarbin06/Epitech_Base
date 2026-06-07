@@ -29,7 +29,7 @@
 int nsf_game_update(const nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!game || !game->window))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
     nsf_window_update_settings(game->window);
     if (game->clock)

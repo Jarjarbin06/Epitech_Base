@@ -36,7 +36,7 @@ void nsf_game_add_screen(nsf_game_t *game, const nsf_cstr_t screen_name)
 int nsf_game_set_screen(nsf_game_t *game, const nsf_cstr_t screen_name)
 {
     if (NSF_UNLIKELY(!game))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
             "pointer corrupted");
     return nsf_window_set_screen(game->window, screen_name);
 }

@@ -48,7 +48,7 @@ nsf_music_t *nsf_music_create(const char path[], const char name[],
 int nsf_music_destroy(nsf_music_t **music, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!music || !*music))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_MUSIC, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_MUSIC, __FUNCTION__,
             "pointer corrupted");
     if (NSF_LIKELY((*music)->music))
         sfMusic_destroy((*music)->music);

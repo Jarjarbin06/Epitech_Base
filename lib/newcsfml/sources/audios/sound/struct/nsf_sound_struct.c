@@ -52,7 +52,7 @@ nsf_sound_t *nsf_sound_create(const char path[], const char name[],
 int nsf_sound_destroy(nsf_sound_t **sound, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!sound || !*sound))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_SOUND, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_SOUND, __FUNCTION__,
             "pointer corrupted");
     if (NSF_LIKELY((*sound)->sound))
         sfSound_destroy((*sound)->sound);

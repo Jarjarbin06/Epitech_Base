@@ -36,7 +36,7 @@ bool nsf_game_get_event(const nsf_game_t *game, nsf_event_t *event)
 int nsf_game_display(const nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!game || !game->window))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
     nsf_window_display(game->window);
     return E_SUCCESS;

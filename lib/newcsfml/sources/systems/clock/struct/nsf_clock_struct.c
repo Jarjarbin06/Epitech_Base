@@ -50,7 +50,7 @@ nsf_clock_t *nsf_clock_create(const char name[], nsf_game_t *game)
 int nsf_clock_destroy(nsf_clock_t **clock, nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!clock || !*clock))
-        return nsf_utils_log_error(NSF_LOG_LVL_ERROR, NSF_CLOCK,
+        return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_CLOCK,
             __FUNCTION__, "pointer corrupted");
     if (NSF_LIKELY((*clock)->clock))
         sfClock_destroy((*clock)->clock);
