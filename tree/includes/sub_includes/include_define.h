@@ -29,10 +29,10 @@
     #ifndef COLOR_D
         #define COLOR_D
 
-        #define C_ERROR "\033[41m"    // RED //
-        #define C_WARNING "\033[43m"  // YELLOW //
-        #define C_VALID "\033[42m"     // GREEN //
-        #define C_INFO "\033[7m"      // WHITE //
+        #define C_ERROR "\033[31m"    // RED //
+        #define C_WARNING "\033[33m"  // YELLOW //
+        #define C_VALID "\033[32m"     // GREEN //
+        #define C_INFO "\033[37m"      // WHITE //
         #define C_ITALIC "\033[3m"    // ITALIC //
         #define C_BOLD "\033[1m"      // BOLD //
         #define C_UNDERLINE "\033[4m" // UNDERLINE //

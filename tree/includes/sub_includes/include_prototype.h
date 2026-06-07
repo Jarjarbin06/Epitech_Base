@@ -10,9 +10,8 @@
     #define INCLUDE_P
 
     #include "include_include.h"
-#include "include_typedef.h"
+    #include "include_typedef.h"
 
-// sources.c //
 int function(int argc, const char **argv);
 
 #endif
