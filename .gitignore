@@ -15,7 +15,7 @@
 perf.*
 binary
 unit_tests
-default.profraw
+*.profraw
 *.zip
 
 #Folder

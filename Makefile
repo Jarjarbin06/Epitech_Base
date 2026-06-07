@@ -342,8 +342,8 @@ endif
 ifeq ($(wildcard *), Makefile)
 setup-build:
 	cp -rf $(EPITECH_BASE_PATH)/.gitignore ./
-	cp -rf $(EPITECH_BASE_PATH)/build_files/tree/* ./
-	cp -rf $(EPITECH_BASE_PATH)/build_files/tree/.gitignore ./
+	cp -rf $(EPITECH_BASE_PATH)/tree/* ./
+	cp -rf $(EPITECH_BASE_PATH)/tree/.gitignore ./
 	-make git-push-repo
 else
 setup-build:
