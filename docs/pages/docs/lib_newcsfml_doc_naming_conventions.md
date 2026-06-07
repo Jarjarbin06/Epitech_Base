@@ -40,7 +40,7 @@ sources/<module>/<submodule>/nsf_<submodule>_<feature>.c
 
 ```text
 nsf_sprite_draw.c
-nsf_window_manage1.c
+nsf_window_manage_background.c
 nsf_game_struct.c
 ```
 
