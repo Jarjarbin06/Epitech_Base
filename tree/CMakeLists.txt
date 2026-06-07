@@ -57,12 +57,12 @@ set(HEADER_FILES
 # =========================================================
 # EXECUTABLE
 # =========================================================
-add_executable(${BINARY_NAME}
+add_executable(${PROJECT_NAME}
         ${SRC_FILES}
         ${HEADER_FILES}
 )
 
-target_include_directories(${BINARY_NAME} PRIVATE ${PROJECT_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_INCLUDE_DIRS})
 
 # =========================================================
 # LIBRARY COMPILERS
@@ -75,9 +75,9 @@ add_custom_target(my_lib_make ALL
 
 set(MY_LIB ${CMAKE_SOURCE_DIR}/lib/my_lib/libmy_lib.a)
 
-add_dependencies(${BINARY_NAME} my_lib_make)
+add_dependencies(${PROJECT_NAME} my_lib_make)
 
-target_link_libraries(${BINARY_NAME} PRIVATE
+target_link_libraries(${PROJECT_NAME} PRIVATE
         ${MY_LIB}
 
         # necessary flags
@@ -88,7 +88,7 @@ target_link_libraries(${BINARY_NAME} PRIVATE
 # =========================================================
 if (ENABLE_WARNINGS)
     if (CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
-        target_compile_options(${BINARY_NAME} PRIVATE
+        target_compile_options(${PROJECT_NAME} PRIVATE
                 -Wall
                 -Wextra
                 -Werror
@@ -101,15 +101,15 @@ endif()
 # DEBUG FLAGS
 # =========================================================
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_compile_definitions(${BINARY_NAME} PRIVATE DEBUG=1)
-    target_compile_options(${BINARY_NAME} PRIVATE -g3)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE DEBUG=1)
+    target_compile_options(${PROJECT_NAME} PRIVATE -g3)
 endif()
 
 # =========================================================
 # TEST EXECUTABLE (optional separation)
 # =========================================================
 if (BUILD_TESTS)
-    add_executable(${BINARY_NAME}_tests
+    add_executable(${PROJECT_NAME}_tests
             tests/test_file.c
             tests/test_redirect.c
 
@@ -118,10 +118,10 @@ if (BUILD_TESTS)
             ${SRC_FILES}
     )
 
-    target_include_directories(${BINARY_NAME}_tests PRIVATE ${PROJECT_INCLUDE_DIRS})
+    target_include_directories(${PROJECT_NAME}_tests PRIVATE ${PROJECT_INCLUDE_DIRS})
 
     if (ENABLE_WARNINGS)
-        target_compile_options(${BINARY_NAME}_tests PRIVATE
+        target_compile_options(${PROJECT_NAME}_tests PRIVATE
                 -Wall -Wextra -Werror -Wshadow -Wpedantic
         )
     endif()
