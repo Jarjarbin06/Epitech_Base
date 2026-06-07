@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 # =========================================================
 # PROJECT
 # =========================================================
-project(<binary name> C)
+project(BINARY_NAME C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -25,10 +25,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # =========================================================
 set(PROJECT_INCLUDE_DIRS
         ${CMAKE_SOURCE_DIR}/includes
-        <other header directories>
-)
 
-include_directories(${PROJECT_INCLUDE_DIRS})
+        # other header directories
+)
 
 # =========================================================
 # SOURCES (MAIN PROJECT)
@@ -37,7 +36,7 @@ set(SRC_FILES
         sources/main.c
         sources/source.c
 
-        <other sources>
+        # other sources
 )
 
 # =========================================================
@@ -52,37 +51,36 @@ set(HEADER_FILES
         includes/sub_includes/include_prototype.h
         includes/sub_includes/include_typedef.h
 
-        <other IDE visible headers>
+        # other IDE visible headers
 )
 
 # =========================================================
 # EXECUTABLE
 # =========================================================
-add_executable(${PROJECT_NAME}
+add_executable(${BINARY_NAME}
         ${SRC_FILES}
         ${HEADER_FILES}
 )
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_INCLUDE_DIRS})
+target_include_directories(${BINARY_NAME} PRIVATE ${PROJECT_INCLUDE_DIRS})
 
 # =========================================================
 # LIBRARY COMPILERS
 # =========================================================
 
-add_custom_target(<library name>_name ALL
+add_custom_target(my_lib_make ALL
         COMMAND make
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/<library name>
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/my_lib
 )
 
-set(<library name upper> ${CMAKE_SOURCE_DIR}/lib/<library name>/lib<library name>.a)
+set(MY_LIB ${CMAKE_SOURCE_DIR}/lib/my_lib/libmy_lib.a)
 
-add_dependencies(${PROJECT_NAME} <target name>)
+add_dependencies(${BINARY_NAME} my_lib_make)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ${<library name upper>})
+target_link_libraries(${BINARY_NAME} PRIVATE
+        ${MY_LIB}
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-        ${CMAKE_SOURCE_DIR}/lib/<library name>/lib<library name>.a
-        <necessary flags>
+        # necessary flags
 )
 
 # =========================================================
@@ -90,7 +88,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 # =========================================================
 if (ENABLE_WARNINGS)
     if (CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
-        target_compile_options(${PROJECT_NAME} PRIVATE
+        target_compile_options(${BINARY_NAME} PRIVATE
                 -Wall
                 -Wextra
                 -Werror
@@ -103,25 +101,27 @@ endif()
 # DEBUG FLAGS
 # =========================================================
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE DEBUG=1)
-    target_compile_options(${PROJECT_NAME} PRIVATE -g3)
+    target_compile_definitions(${BINARY_NAME} PRIVATE DEBUG=1)
+    target_compile_options(${BINARY_NAME} PRIVATE -g3)
 endif()
 
 # =========================================================
 # TEST EXECUTABLE (optional separation)
 # =========================================================
 if (BUILD_TESTS)
-    add_executable(${PROJECT_NAME}_tests
+    add_executable(${BINARY_NAME}_tests
             tests/test_file.c
             tests/test_redirect.c
-            <other test files>
+
+            # other test files
+
             ${SRC_FILES}
     )
 
-    target_include_directories(${PROJECT_NAME}_tests PRIVATE ${PROJECT_INCLUDE_DIRS})
+    target_include_directories(${BINARY_NAME}_tests PRIVATE ${PROJECT_INCLUDE_DIRS})
 
     if (ENABLE_WARNINGS)
-        target_compile_options(${PROJECT_NAME}_tests PRIVATE
+        target_compile_options(${BINARY_NAME}_tests PRIVATE
                 -Wall -Wextra -Werror -Wshadow -Wpedantic
         )
     endif()
