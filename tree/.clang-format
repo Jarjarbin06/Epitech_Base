@@ -22,11 +22,11 @@ BraceWrapping:
   AfterCaseLabel: false
   AfterClass: true
   AfterControlStatement: false
-  AfterEnum: true
+  AfterEnum: false
   AfterFunction: true
   AfterNamespace: true
-  AfterStruct: true
-  AfterUnion: true
+  AfterStruct: false
+  AfterUnion: false
   AfterExternBlock: false
   BeforeCatch: false
   BeforeElse: false
