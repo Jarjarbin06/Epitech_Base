@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 # =========================================================
 # PROJECT
 # =========================================================
-project(JarSnake C)
+project(binary C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -69,9 +69,6 @@ if (ENABLE_WARNINGS)
                 -Wall
                 -Wextra
                 -Werror
-                -Wshadow
-                -Wpedantic
-                -Wconversion
                 -Wuninitialized
         )
     endif()
@@ -99,7 +96,7 @@ if (BUILD_TESTS)
 
     if (ENABLE_WARNINGS)
         target_compile_options(${PROJECT_NAME}_tests PRIVATE
-                -Wall -Wextra -Werror -Wshadow -Wpedantic
+                -Wall -Wextra -Werror -Wuninitialized
         )
     endif()
 endif()

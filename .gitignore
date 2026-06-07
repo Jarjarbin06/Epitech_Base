@@ -23,7 +23,3 @@ unit_tests
 .vscode
 .obsidian
 perso
-
-#CMake
-cmake-build-debug
-CMakeLists.txt
