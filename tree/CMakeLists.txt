@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 # =========================================================
 # PROJECT
 # =========================================================
-project(binary C)
+project(<binary name> C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -25,6 +25,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # =========================================================
 set(PROJECT_INCLUDE_DIRS
         ${CMAKE_SOURCE_DIR}/includes
+        <other header directories>
 )
 
 include_directories(${PROJECT_INCLUDE_DIRS})
@@ -35,6 +36,8 @@ include_directories(${PROJECT_INCLUDE_DIRS})
 set(SRC_FILES
         sources/main.c
         sources/source.c
+
+        <other sources>
 )
 
 # =========================================================
@@ -48,6 +51,8 @@ set(HEADER_FILES
         includes/sub_includes/include_include.h
         includes/sub_includes/include_prototype.h
         includes/sub_includes/include_typedef.h
+
+        <other IDE visible headers>
 )
 
 # =========================================================
@@ -64,21 +69,21 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_INCLUDE_DIRS})
 # LIBRARY COMPILERS
 # =========================================================
 
-#add_custom_target(<target name> ALL
-#        COMMAND make
-#        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/<library name>
-#)
+add_custom_target(<library name>_name ALL
+        COMMAND make
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/<library name>
+)
 
-#set(<library name upper> ${CMAKE_SOURCE_DIR}/lib/<library name>/lib<library name>.a)
+set(<library name upper> ${CMAKE_SOURCE_DIR}/lib/<library name>/lib<library name>.a)
 
-#add_dependencies(${PROJECT_NAME} <target name>)
+add_dependencies(${PROJECT_NAME} <target name>)
 
-#target_link_libraries(${PROJECT_NAME} PRIVATE ${<library name upper>})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${<library name upper>})
 
-#target_link_libraries(${PROJECT_NAME} PRIVATE
-#        ${CMAKE_SOURCE_DIR}/lib/<library name>/lib<library name>.a
-#        <necessary flags>
-#)
+target_link_libraries(${PROJECT_NAME} PRIVATE
+        ${CMAKE_SOURCE_DIR}/lib/<library name>/lib<library name>.a
+        <necessary flags>
+)
 
 # =========================================================
 # COMPILER WARNINGS (EPITECH STYLE)
@@ -109,6 +114,7 @@ if (BUILD_TESTS)
     add_executable(${PROJECT_NAME}_tests
             tests/test_file.c
             tests/test_redirect.c
+            <other test files>
             ${SRC_FILES}
     )
 
