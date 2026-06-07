@@ -29,7 +29,8 @@
     #include "newcsfml/graphics.h"
     #include "newcsfml/systems.h"
 
-    #define NSF_VERSION "0.2.7"
+/// MACRO ///
+    #define NSF_VERSION "0.2.8"
 
 /// PROTOTYPES ///
 // BASE //
