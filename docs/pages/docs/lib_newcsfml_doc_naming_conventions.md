@@ -46,12 +46,12 @@ nsf_game_struct.c
 
 ### Rules
 
-| Element   | Convention                                            |
-|-----------|:------------------------------------------------------|
-| Prefix    | `nsf_` mandatory                                      |
-| Submodule | corresponds to folder                                 |
-| Splitting | large modules split into `manage_?`, `manage_?`, etc. |
-| Unique    | file name must be unique across all source files      |
+| Element   | Convention                                          |
+|-----------|:----------------------------------------------------|
+| Prefix    | `nsf_` mandatory                                    |
+| Submodule | corresponds to folder                               |
+| Splitting | large modules split into `manage_?`, `draw_?`, etc. |
+| Unique    | file name must be unique across all source files    |
 
 ---
 
