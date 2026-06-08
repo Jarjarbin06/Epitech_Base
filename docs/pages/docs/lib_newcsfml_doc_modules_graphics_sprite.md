@@ -108,6 +108,8 @@ The sprite module provides a complete abstraction over CSFML sprites, managing b
 | `nsf_sprite_get_size(...)`     | Get computed size      |
 | `nsf_sprite_get_position(...)` | Get position           |
 | `nsf_sprite_get_origin(...)`   | Get origin             |
+| `nsf_sprite_set_data(...)`     | Set sprite data        |
+| `nsf_sprite_get_data(...)`     | Get sprite data        |
 
 ---
 
