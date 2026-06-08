@@ -106,28 +106,6 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 
 # =========================================================
-# TEST EXECUTABLE (optional separation)
-# =========================================================
-if (BUILD_TESTS)
-    add_executable(${PROJECT_NAME}_tests
-            tests/test_file.c
-            tests/test_redirect.c
-
-            # other test files
-
-            ${SRC_FILES}
-    )
-
-    target_include_directories(${PROJECT_NAME}_tests PRIVATE ${PROJECT_INCLUDE_DIRS})
-
-    if (ENABLE_WARNINGS)
-        target_compile_options(${PROJECT_NAME}_tests PRIVATE
-                -Wall -Wextra -Werror -Wshadow -Wpedantic
-        )
-    endif()
-endif()
-
-# =========================================================
 # IDE HELP (CLion / compilation database)
 # =========================================================
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

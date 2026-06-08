@@ -10,6 +10,7 @@
     #define INCLUDE_T
 
     #include "include_include.h"
+    #include "include_define.h"
 
 // add typedefs here //
 
