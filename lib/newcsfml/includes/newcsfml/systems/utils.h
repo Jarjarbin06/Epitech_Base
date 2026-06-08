@@ -54,14 +54,18 @@
     #define NSF_TERMINAL_INFO "\x1b[38;2;0;0;255m"
     #define NSF_TERMINAL_OK "\x1b[38;2;0;255;0m"
     #define NSF_TERMINAL_WARNING "\x1b[38;2;255;255;0m"
+    #define NSF_TERMINAL_FAIL "\x1b[38;2;255;255;0m"
     #define NSF_TERMINAL_ERROR "\x1b[38;2;255;0;0m"
+    #define NSF_TERMINAL_CORRUPTION "\x1b[38;2;255;0;0m"
     #define NSF_TERMINAL_RESET "\x1b[0m"
     #define NSF_TEXT_UNKNOWN "UNKNOWN"
     #define NSF_TEXT_DEBUG "DEBUG"
     #define NSF_TEXT_INFO "INFO"
     #define NSF_TEXT_OK "OK"
     #define NSF_TEXT_WARNING "WARNING"
+    #define NSF_TEXT_FAIL "WARNING"
     #define NSF_TEXT_ERROR "ERROR"
+    #define NSF_TEXT_CORRUPTION "ERROR"
     #define NSF_LIKELY(x) __builtin_expect(!!(x), 1)
     #define NSF_UNLIKELY(x) __builtin_expect(!!(x), 0)
     #define NSF_FALSE sfFalse
@@ -83,7 +87,9 @@ typedef enum {
     NSF_LOG_LVL_INFO,
     NSF_LOG_LVL_OK,
     NSF_LOG_LVL_WARNING,
-    NSF_LOG_LVL_ERROR
+    NSF_LOG_LVL_ERROR,
+    NSF_LOG_LVL_CORRUPTION,
+    NSF_LOG_LVL_FAIL
 } nsf_log_level_t;
 
 typedef struct {

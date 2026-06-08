@@ -27,6 +27,14 @@
 #include "newcsfml/systems/clock.h"
 #include "newcsfml/systems/utils.h"
 
+void nsf_game_fill(const nsf_game_t *game, const nsf_color_t color[])
+{
+    if (NSF_UNLIKELY(!game || !color))
+        return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
+            "pointer corrupted");
+    nsf_window_fill(game->window, color);
+}
+
 void nsf_game_draw(nsf_game_t *game)
 {
     if (NSF_UNLIKELY(!game || !game->window))

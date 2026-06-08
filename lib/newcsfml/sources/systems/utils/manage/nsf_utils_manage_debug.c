@@ -32,7 +32,9 @@ static const nsf_cstr_t log_level_terminal[] = {
     NSF_TERMINAL_INFO,
     NSF_TERMINAL_OK,
     NSF_TERMINAL_WARNING,
-    NSF_TERMINAL_ERROR
+    NSF_TERMINAL_ERROR,
+    NSF_TERMINAL_CORRUPTION,
+    NSF_TERMINAL_FAIL
 };
 
 static const nsf_cstr_t log_level_str[] = {
@@ -41,7 +43,9 @@ static const nsf_cstr_t log_level_str[] = {
     NSF_TEXT_INFO,
     NSF_TEXT_OK,
     NSF_TEXT_WARNING,
-    NSF_TEXT_ERROR
+    NSF_TEXT_ERROR,
+    NSF_TEXT_CORRUPTION,
+    NSF_TEXT_FAIL
 };
 
 static bool is_nsf_module(const nsf_cstr_t module)
@@ -53,28 +57,58 @@ static bool is_nsf_module(const nsf_cstr_t module)
     return true;
 }
 
-void nsf_utils_log(const nsf_log_level_t log_level, nsf_cstr_t module,
-    nsf_cstr_t name, nsf_cstr_t message)
+static void print_log(nsf_cstr_t module)
 {
-    if (!module)
-        module = "UNKNOWN";
-    if (!name)
-        name = "-";
-    if (!message)
-        message = "(null)";
     if (is_nsf_module(module))
         printf("[NSF-LOG] - ");
     else
         printf("[LOG] - ");
-    printf("[%s%s%s] [%s] [%s] %s%s%s\n",
+}
+
+static void print_log_level(const nsf_log_level_t log_level)
+{
+    printf("[%s%s%s]",
         log_level_terminal[log_level + 1],
         log_level_str[log_level + 1],
-        NSF_TERMINAL_RESET,
-        module,
-        name,
-        log_level_terminal[log_level + 1],
+        NSF_TERMINAL_RESET);
+}
+
+static void print_module(nsf_cstr_t module)
+{
+    if (!module)
+        module = "UNKNOWN";
+    printf(" [%s]", module);
+}
+
+static void print_name(nsf_cstr_t name)
+{
+    if (!name)
+        name = "-";
+    printf(" [%s]", name);
+}
+
+static void print_message(const nsf_log_level_t log_level, nsf_cstr_t message)
+{
+    printf(" %s", log_level_terminal[log_level + 1]);
+    if (log_level == NSF_LOG_LVL_CORRUPTION)
+        printf("Corruption: ");
+    if (log_level == NSF_LOG_LVL_FAIL)
+        printf("Fail: ");
+    if (!message)
+        message = "(null)";
+    printf("%s%s\n",
         message,
         NSF_TERMINAL_RESET);
+}
+
+void nsf_utils_log(const nsf_log_level_t log_level, const nsf_cstr_t module,
+    const nsf_cstr_t name, const nsf_cstr_t message)
+{
+    print_log(module);
+    print_log_level(log_level);
+    print_module(module);
+    print_name(name);
+    print_message(log_level, message);
 }
 
 void *nsf_utils_log_null(const nsf_log_level_t log_level,

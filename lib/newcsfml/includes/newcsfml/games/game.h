@@ -24,6 +24,7 @@
 #ifndef NEWCSFML_GAME_H
     #define NEWCSFML_GAME_H
 
+    #include <SFML/Graphics/Color.h>
     #include <SFML/Window/Event.h>
 
     #include <stdbool.h>
@@ -57,6 +58,7 @@ typedef struct nsf_background_s nsf_background_t;
 typedef struct nsf_window_s nsf_window_t;
 typedef struct nsf_sprite_s nsf_sprite_t;
 typedef const char *nsf_cstr_t;
+typedef sfColor nsf_color_t;
 typedef struct nsf_button_s nsf_button_t;
 typedef struct nsf_clock_s nsf_clock_t;
 typedef struct nsf_text_s nsf_text_t;
@@ -128,5 +130,6 @@ int nsf_game_set_screen(nsf_game_t *game, nsf_cstr_t screen_name);
 
 // DRAW //
 void nsf_game_draw(nsf_game_t *game);
+void nsf_game_fill(const nsf_game_t *game, const nsf_color_t color[]);
 
 #endif
