@@ -38,8 +38,8 @@ static void update_and_draw_every_particles(const nsf_particle_t *particle,
             "pointer corrupted");
     for (size_t idx = 0; idx < particle->alive_count; idx++) {
         current_particle = &particle->particles[idx];
-        nsf_vector_add(&current_particle->position,
-            &current_particle->velocity, &current_particle->position);
+        current_particle->position = nsf_vector_add(&current_particle->position,
+            &current_particle->velocity);
         nsf_sprite_set_position(particle->sprite,
             &current_particle->position);
         nsf_sprite_draw(particle->sprite, window);

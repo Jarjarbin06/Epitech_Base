@@ -71,5 +71,5 @@ void nsf_particle_set_source(nsf_particle_t *particle,
     if (NSF_UNLIKELY(!particle))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_PARTICLE, __FUNCTION__,
             "pointer corrupted");
-    nsf_fvector_copy(source, &particle->source);
+    particle->source = nsf_fvector_copy(source);
 }

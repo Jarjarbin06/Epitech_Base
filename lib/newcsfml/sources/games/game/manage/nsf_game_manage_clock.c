@@ -72,6 +72,5 @@ void nsf_game_wait_new_loop(nsf_game_t *game)
             !game->window->settings))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_GAME, __FUNCTION__,
             "pointer corrupted");
-    while (!nsf_game_update_clock(game))
-        sfSleep(sfMilliseconds(1));
+    while (!nsf_game_update_clock(game));
 }

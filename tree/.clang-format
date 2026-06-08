@@ -76,6 +76,7 @@ AlwaysBreakAfterDefinitionReturnType: None
 # INCLUDE STYLE (EPITECH ORGANIZATION)
 # =========================================================
 
+IndentPPDirectives: BeforeHash
 IncludeBlocks: Regroup
 SortIncludes: true
 

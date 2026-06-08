@@ -23,7 +23,6 @@
 
 #include <SFML/Graphics/Sprite.h>
 
-#include "newcsfml/systems/vector.h"
 #include "newcsfml/graphics/animation.h"
 #include "newcsfml/graphics/texture.h"
 #include "newcsfml/graphics/sprite.h"

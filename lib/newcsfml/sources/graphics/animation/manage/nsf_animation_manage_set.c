@@ -41,7 +41,7 @@ void nsf_animation_set_offset(nsf_animation_t *animation,
     if (NSF_UNLIKELY(!animation))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_ANIMATION,
             __FUNCTION__, "pointer corrupted");
-    nsf_uvector_copy(offset, &animation->offset);
+    animation->offset = nsf_uvector_copy(offset);
 }
 
 void nsf_animation_set_step(nsf_animation_t *animation, const nsf_uint_t step)

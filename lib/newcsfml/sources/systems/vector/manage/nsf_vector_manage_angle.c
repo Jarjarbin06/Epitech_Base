@@ -35,18 +35,19 @@ float nsf_vector_get_angle(const nsf_fvector_t v[])
     return ((float)NSF_DEGREE((double)angle));
 }
 
-void nsf_vector_rotate(const nsf_fvector_t v[], const float angle,
-    nsf_fvector_t *out)
+nsf_fvector_t nsf_vector_rotate(const nsf_fvector_t v[], const float angle)
 {
     const double rad_angle = NSF_RADIAN((double)angle);
     const float cos_res = (float)cos(rad_angle);
     const float sin_res = (float)sin(rad_angle);
+    nsf_fvector_t tmp = nsf_fvector_empty();
 
     if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    out->x = (v->x * cos_res) - (v->y * sin_res);
-    out->y = (v->x * sin_res) + (v->y * cos_res);
+    tmp.x = (v->x * cos_res) - (v->y * sin_res);
+    tmp.y = (v->x * sin_res) + (v->y * cos_res);
+    return nsf_fvector_copy(&tmp);
 }

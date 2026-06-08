@@ -26,22 +26,22 @@
 #include "newcsfml/graphics/view.h"
 #include "newcsfml/systems/vector.h"
 
-void nsf_view_get_center(nsf_view_t *view, nsf_fvector_t *out)
+nsf_fvector_t nsf_view_get_center(nsf_view_t *view)
 {
-    if (NSF_UNLIKELY(!view || !out)) {
+    if (NSF_UNLIKELY(!view)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VIEW, __FUNCTION__,
             "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    nsf_fvector_copy(&view->center, out);
+    return nsf_fvector_copy(F_TO_PTR(view->center));
 }
 
-void nsf_view_get_size(nsf_view_t *view, nsf_uvector_t *out)
+nsf_uvector_t nsf_view_get_size(nsf_view_t *view)
 {
-    if (NSF_UNLIKELY(!view || !out)) {
+    if (NSF_UNLIKELY(!view)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VIEW, __FUNCTION__,
             "pointer corrupted");
-        return nsf_uvector_empty(out);
+        return nsf_uvector_empty();
     }
-    nsf_uvector_copy(&view->size, out);
+    return nsf_uvector_copy(U_TO_PTR(view->size));
 }

@@ -56,7 +56,7 @@ void nsf_text_set_position(nsf_text_t *text, const nsf_fvector_t position[])
     if (NSF_UNLIKELY(!text))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_TEXT, __FUNCTION__,
             "pointer corrupted");
-    nsf_fvector_copy(position, &text->postition);
+    text->postition = nsf_fvector_copy(position);
     sfText_setPosition(text->text, text->postition);
 }
 

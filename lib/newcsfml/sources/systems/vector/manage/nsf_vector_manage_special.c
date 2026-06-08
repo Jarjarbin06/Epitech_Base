@@ -24,15 +24,14 @@
 #include "newcsfml/systems/utils.h"
 #include "newcsfml/systems/vector.h"
 
-void nsf_vector_neg(const nsf_fvector_t v[], nsf_fvector_t *out)
+nsf_fvector_t nsf_vector_neg(const nsf_fvector_t v[])
 {
-    if (NSF_UNLIKELY(!v || !out)) {
+    if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    out->x = -v->x;
-    out->y = -v->y;
+    return (nsf_fvector_t){-v->x, -v->y};
 }
 
 static float squared_length(const nsf_fvector_t v[])
@@ -65,19 +64,19 @@ float nsf_vector_len(const nsf_fvector_t v[])
     return x;
 }
 
-void nsf_vector_norm(const nsf_fvector_t v[], nsf_fvector_t *out)
+nsf_fvector_t nsf_vector_norm(const nsf_fvector_t v[])
 {
     const float length = nsf_vector_len(v);
 
-    if (NSF_UNLIKELY(!v || !out)) {
+    if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
     if (length == -1) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "length failed");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    return nsf_vector_div(v, length, out);
+    return nsf_vector_div(v, length);
 }

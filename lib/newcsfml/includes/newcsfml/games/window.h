@@ -160,7 +160,7 @@ int nsf_window_stop_sound(const nsf_window_t *window, const char sound_name[]);
 int nsf_window_all_sound_volume(const nsf_window_t *window, float volume);
 int nsf_window_stop_all_sound(const nsf_window_t *window);
 int nsf_window_update_settings(const nsf_window_t *window);
-void nsf_window_get_mouse(const nsf_window_t *window, nsf_ivector_t out[]);
+nsf_ivector_t nsf_window_get_mouse(const nsf_window_t *window);
 void nsf_window_add_screen(nsf_window_t *window, nsf_cstr_t screen_name);
 int nsf_window_set_screen(nsf_window_t *window, nsf_cstr_t screen_name);
 int nsf_window_get_screen_idx(nsf_window_t *window);

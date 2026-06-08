@@ -35,7 +35,7 @@ void nsf_sprite_set_scale(nsf_sprite_t *sprite, const nsf_fvector_t scale[])
     if (NSF_UNLIKELY(!sprite || !scale))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
             "pointer corrupted");
-    nsf_fvector_copy(scale, &sprite->scale);
+    sprite->scale = nsf_fvector_copy(scale);
     sfSprite_setScale(sprite->sprite, sprite->scale);
 }
 
@@ -44,14 +44,14 @@ void nsf_sprite_set_size(nsf_sprite_t *sprite, const nsf_uvector_t size[])
     nsf_uvector_t texture_size = {0, 0};
     nsf_fvector_t scale = {0, 0};
 
-    if (NSF_UNLIKELY(!sprite || !size))
+    if (NSF_UNLIKELY(!sprite || !size || !nsf_sprite_get_deep_texture(sprite)))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
             "pointer corrupted");
     if (sprite->texture_type == NSF_TXR_TEXTURE)
         texture_size = sfTexture_getSize(nsf_sprite_get_deep_texture(sprite));
     if (sprite->texture_type == NSF_TXR_ANIMATION)
-        nsf_uvector_copy(&nsf_sprite_get_animation(sprite)->sprite_size,
-            &texture_size);
+        texture_size = nsf_uvector_copy(
+            &nsf_sprite_get_animation(sprite)->sprite_size);
     scale.x = (float)size->x / (float)texture_size.x;
     scale.y = (float)size->y / (float)texture_size.y;
     nsf_sprite_set_scale(sprite, &scale);
@@ -63,25 +63,33 @@ void nsf_sprite_set_position(nsf_sprite_t *sprite,
     if (NSF_UNLIKELY(!sprite || !position))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
             "pointer corrupted");
-    nsf_fvector_copy(position, &sprite->position);
-    sfSprite_setPosition(sprite->sprite, *position);
+    sprite->position = nsf_fvector_copy(position);
+    sfSprite_setPosition(sprite->sprite, sprite->position);
 }
 
 void nsf_sprite_set_origin(nsf_sprite_t *sprite, const nsf_fvector_t origin[])
 {
     nsf_uvector_t texture_size = {0, 0};
-    nsf_fvector_t origin_tmp = {0, 0};
 
-    if (NSF_UNLIKELY(!sprite || !origin))
+    if (NSF_UNLIKELY(!sprite || !origin ||
+        !nsf_sprite_get_deep_texture(sprite)))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
             "pointer corrupted");
     texture_size = sfTexture_getSize(nsf_sprite_get_deep_texture(sprite));
     if (texture_size.x == 0 || texture_size.y == 0)
         return nsf_utils_log(NSF_LOG_LVL_WARNING, NSF_SPRITE, __FUNCTION__,
             "pointer corrupted");
-    nsf_vector_clamp_x(origin,
-        0.0f, (float)texture_size.x, &origin_tmp);
-    nsf_vector_clamp_y(&origin_tmp,
-        0.0f, (float)texture_size.y, &sprite->origin);
+
+    sprite->origin = nsf_vector_clamp_y(
+        F_TO_PTR(nsf_vector_clamp_x(origin, 0.0f, (float)texture_size.x)),
+        0.0f, (float)texture_size.y);
     sfSprite_setOrigin(sprite->sprite, sprite->origin);
+}
+
+void nsf_sprite_set_data(nsf_sprite_t *sprite, void *data)
+{
+    if (NSF_UNLIKELY(!sprite || !data))
+        return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
+            "pointer corrupted");
+    sprite->data = data;
 }

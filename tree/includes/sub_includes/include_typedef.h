@@ -11,18 +11,6 @@
 
     #include "include_include.h"
 
-    #ifndef INCLUDE_T_TYPE
-        #define INCLUDE_T_TYPE
-
-// add type typedefs here //
-
-    #endif
-
-    #ifndef INCLUDE_T_STRUCT
-        #define INCLUDE_T_STRUCT
-
-// add struct typedefs here //
-
-    #endif
+// add typedefs here //
 
 #endif

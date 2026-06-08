@@ -32,16 +32,14 @@
 
 void nsf_button_set_texture(nsf_button_t *button, const nsf_texture_t *texture)
 {
-    nsf_uvector_t tmp = {0, 0};
-
     if (NSF_UNLIKELY(!button || !texture))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_BUTTON, __FUNCTION__,
             "pointer corrupted");
     button->texture = texture;
     sfRectangleShape_setTexture(button->button, button->texture->texture,
         sfTrue);
-    tmp = sfTexture_getSize(button->texture->texture);
-    nsf_button_set_size(button, &tmp);
+    nsf_button_set_size(button,
+        U_TO_PTR(sfTexture_getSize(button->texture->texture)));
 }
 
 void nsf_button_set_position(nsf_button_t *button,
@@ -56,15 +54,12 @@ void nsf_button_set_position(nsf_button_t *button,
 
 void nsf_button_set_size(nsf_button_t *button, const nsf_uvector_t size[])
 {
-    nsf_fvector_t tmp = {0, 0};
-
     if (NSF_UNLIKELY(!button))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_BUTTON, __FUNCTION__,
             "pointer corrupted");
     button->size = *size;
     sfRectangleShape_setOrigin(button->button, (nsf_fvector_t){0.0f, 0.0f});
-    nsf_fvector_from_u(&button->size, &tmp);
-    sfRectangleShape_setSize(button->button, tmp);
+    sfRectangleShape_setSize(button->button, nsf_fvector_from_u(&button->size));
 }
 
 void nsf_button_set_colors(nsf_button_t *button,

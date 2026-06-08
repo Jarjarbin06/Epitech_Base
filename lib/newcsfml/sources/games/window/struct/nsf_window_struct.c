@@ -62,20 +62,18 @@ static void init_views(nsf_window_t *new_window, nsf_game_t *game)
 {
     nsf_uvector_t tmp1 = {0, 0};
     nsf_fvector_t tmp2 = {0, 0};
-    nsf_fvector_t tmp3 = {0, 0};
 
     if (NSF_UNLIKELY(!new_window))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
             "pointer corrupted");
     tmp1 = (nsf_uvector_t){new_window->settings->width,
         new_window->settings->height};
-    nsf_fvector_from_u(&tmp1, &tmp2);
-    nsf_vector_div(&tmp2, 2.0f, &tmp3);
+    tmp2 = nsf_vector_div(F_TO_PTR(nsf_fvector_from_u(&tmp1)), 2.0f);
     new_window->element_view = nsf_view_create(game);
-    nsf_view_set_center(new_window->element_view, &tmp3);
+    nsf_view_set_center(new_window->element_view, &tmp2);
     nsf_view_set_size(new_window->element_view, &tmp1);
     new_window->ui_view = nsf_view_create(game);
-    nsf_view_set_center(new_window->ui_view, &tmp3);
+    nsf_view_set_center(new_window->ui_view, &tmp2);
     nsf_view_set_size(new_window->ui_view, &tmp1);
     if (NSF_UNLIKELY(!new_window->element_view || !new_window->ui_view))
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
@@ -84,6 +82,7 @@ static void init_views(nsf_window_t *new_window, nsf_game_t *game)
 
 static void init_values(nsf_window_t *new_window, nsf_game_t *game)
 {
+    new_window->elements.amount = 0;
     new_window->elements.amount = 0;
     new_window->elements.size = 1;
     new_window->background = NULL;

@@ -24,52 +24,44 @@
 #include "newcsfml/systems/utils.h"
 #include "newcsfml/systems/vector.h"
 
-void nsf_vector_add(const nsf_fvector_t a[],
-    const nsf_fvector_t b[], nsf_fvector_t *out)
+nsf_fvector_t nsf_vector_add(const nsf_fvector_t a[], const nsf_fvector_t b[])
 {
-    if (NSF_UNLIKELY(!a || !b || !out)) {
+    if (NSF_UNLIKELY(!a || !b)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    out->x = a->x + b->x;
-    out->y = a->y + b->y;
+    return (nsf_fvector_t){a->x + b->x, a->y + b->y};
 }
 
-void nsf_vector_sub(const nsf_fvector_t a[],
-    const nsf_fvector_t b[], nsf_fvector_t *out)
+nsf_fvector_t nsf_vector_sub(const nsf_fvector_t a[], const nsf_fvector_t b[])
 {
-    if (NSF_UNLIKELY(!a || !b || !out)) {
+    if (NSF_UNLIKELY(!a || !b)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    out->x = a->x - b->x;
-    out->y = a->y - b->y;
+    return (nsf_fvector_t){a->x - b->x, a->y - b->y};
 }
 
-void nsf_vector_mul(const nsf_fvector_t v[], const float scalar,
-    nsf_fvector_t *out)
+nsf_fvector_t nsf_vector_mul(const nsf_fvector_t v[], const float scalar)
 {
-    if (NSF_UNLIKELY(!v || !out)) {
+    if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    out->x = v->x * scalar;
-    out->y = v->y * scalar;
+    return (nsf_fvector_t){v->x * scalar, v->y * scalar};
 }
 
-void nsf_vector_div(const nsf_fvector_t v[], float scalar,
-    nsf_fvector_t *out)
+nsf_fvector_t nsf_vector_div(const nsf_fvector_t v[], float scalar)
 {
-    if (NSF_UNLIKELY(!v || !out)) {
+    if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
     if (scalar == 0.0f)
         scalar = 1.0f;
-    out->x = v->x / scalar;
-    out->y = v->y / scalar;
+    return (nsf_fvector_t){v->x / scalar, v->y / scalar};
 }

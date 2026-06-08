@@ -24,47 +24,37 @@
 #include "newcsfml/systems/utils.h"
 #include "newcsfml/systems/vector.h"
 
-void nsf_uvector_empty(nsf_uvector_t *out)
+nsf_uvector_t nsf_uvector_empty(void)
 {
-    if (NSF_UNLIKELY(!out))
-        return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
-            __FUNCTION__, "pointer corrupted");
-    out->x = 0;
-    out->y = 0;
+    return (nsf_uvector_t){0, 0};
 }
 
-void nsf_uvector_from_f(const nsf_fvector_t v[],
-    nsf_uvector_t *out)
+nsf_uvector_t nsf_uvector_from_f(const nsf_fvector_t v[])
 {
-    if (NSF_UNLIKELY(!v || !out)) {
+    if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_uvector_empty(out);
+        return nsf_uvector_empty();
     }
-    out->x = (unsigned int)v->x;
-    out->y = (unsigned int)v->y;
+    return (nsf_uvector_t){(unsigned int)v->x, (unsigned int)v->y};
 }
 
-void nsf_uvector_from_i(const nsf_ivector_t v[],
-    nsf_uvector_t *out)
+nsf_uvector_t nsf_uvector_from_i(const nsf_ivector_t v[])
 {
-    if (NSF_UNLIKELY(!v || !out)) {
+    if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_uvector_empty(out);
+        return nsf_uvector_empty();
     }
-    out->x = (unsigned int)v->x;
-    out->y = (unsigned int)v->y;
+    return (nsf_uvector_t){(unsigned int)v->x, (unsigned int)v->y};
 }
 
-void nsf_uvector_copy(const nsf_uvector_t v[],
-    nsf_uvector_t *out)
+nsf_uvector_t nsf_uvector_copy(const nsf_uvector_t v[])
 {
-    if (NSF_UNLIKELY(!v || !out)) {
+    if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_uvector_empty(out);
+        return nsf_uvector_empty();
     }
-    out->x = v->x;
-    out->y = v->y;
+    return (nsf_uvector_t){v->x, v->y};
 }

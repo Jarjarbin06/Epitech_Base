@@ -42,13 +42,12 @@ bool nsf_window_get_event(const nsf_window_t *window, nsf_event_t *event)
     return (bool)sfRenderWindow_pollEvent(window->window, event);
 }
 
-void nsf_window_get_mouse(const nsf_window_t *window, nsf_ivector_t out[])
+nsf_ivector_t nsf_window_get_mouse(const nsf_window_t *window)
 {
-    nsf_ivector_t pos = {0, 0};
-
-    if (NSF_UNLIKELY(!window || !out))
-        return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
+    if (NSF_UNLIKELY(!window)) {
+        nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
             "pointer corrupted");
-    pos = sfMouse_getPositionRenderWindow(window->window);
-    nsf_ivector_copy(&pos, out);
+        return nsf_ivector_empty();
+    }
+    return sfMouse_getPositionRenderWindow(window->window);
 }

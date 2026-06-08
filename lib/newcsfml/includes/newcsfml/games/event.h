@@ -90,8 +90,7 @@ typedef enum {
 // MANAGE //
 bool nsf_event_cmp(const nsf_event_t *event, nsf_event_type_t event_type);
 bool nsf_event_cmp_key(const nsf_event_t *event, nsf_key_code_t key_code);
-void nsf_event_get_mouse_move(const nsf_event_t *event,
-    nsf_ivector_t out[]);
+nsf_ivector_t nsf_event_get_mouse_move(const nsf_event_t *event);
 float nsf_event_get_mouse_wheel(const nsf_event_t *event);
 
 #endif

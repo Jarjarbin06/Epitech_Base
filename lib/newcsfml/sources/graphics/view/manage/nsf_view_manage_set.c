@@ -31,18 +31,15 @@ void nsf_view_set_center(nsf_view_t *view, const nsf_fvector_t *center)
     if (NSF_UNLIKELY(!view || !center))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VIEW, __FUNCTION__,
             "pointer corrupted");
-    nsf_fvector_copy(center, &view->center);
+    view->center = nsf_fvector_copy(center);
     sfView_setCenter(view->view, view->center);
 }
 
 void nsf_view_set_size(nsf_view_t *view, const nsf_uvector_t *size)
 {
-    nsf_fvector_t tmp = {0, 0};
-
     if (NSF_UNLIKELY(!view))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VIEW, __FUNCTION__,
             "pointer corrupted");
-    nsf_uvector_copy(size, &view->size);
-    nsf_fvector_from_u(&view->size, &tmp);
-    sfView_setSize(view->view, tmp);
+    view->size = nsf_uvector_copy(size);
+    sfView_setSize(view->view, nsf_fvector_from_u(&view->size));
 }

@@ -24,46 +24,51 @@
 #include "newcsfml/systems/utils.h"
 #include "newcsfml/systems/vector.h"
 
-void nsf_vector_clamp_x(const nsf_fvector_t v[], const float min,
-    const float max, nsf_fvector_t *out)
+nsf_fvector_t nsf_vector_clamp_x(const nsf_fvector_t v[], const float min,
+    const float max)
 {
+    nsf_fvector_t tmp = nsf_fvector_empty();
+
     if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    nsf_fvector_copy(v, out);
     if (v->x < min)
-        out->x = min;
+        tmp.x = min;
     if (v->x > max)
-        out->x = max;
+        tmp.x = max;
+    return nsf_fvector_copy(&tmp);
 }
 
-void nsf_vector_clamp_y(const nsf_fvector_t v[], const float min,
-    const float max, nsf_fvector_t *out)
+nsf_fvector_t nsf_vector_clamp_y(const nsf_fvector_t v[], const float min,
+    const float max)
 {
+    nsf_fvector_t tmp = nsf_fvector_empty();
+
     if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    nsf_fvector_copy(v, out);
     if (v->y < min)
-        out->y = min;
+        tmp.y = min;
     if (v->y > max)
-        out->y = max;
+        tmp.y = max;
+    return nsf_fvector_copy(&tmp);
 }
 
-void nsf_vector_clamp(const nsf_fvector_t v[], const float min,
-    const float max, nsf_fvector_t *out)
+nsf_fvector_t nsf_vector_clamp(const nsf_fvector_t v[], const float min,
+    const float max)
 {
-    nsf_fvector_t out_tmp = {0, 0};
+    nsf_fvector_t tmp = nsf_fvector_empty();
 
     if (NSF_UNLIKELY(!v)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_VECTOR,
             __FUNCTION__, "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    nsf_vector_clamp_x(v, min, max, &out_tmp);
-    nsf_vector_clamp_y(&out_tmp, min, max, out);
+    tmp = nsf_vector_clamp_x(v, min, max);
+    tmp = nsf_vector_clamp_y(&tmp, min, max);
+    return nsf_fvector_copy(&tmp);
 }

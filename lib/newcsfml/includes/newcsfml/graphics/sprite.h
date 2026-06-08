@@ -102,10 +102,12 @@ void nsf_sprite_set_size(nsf_sprite_t *sprite, const nsf_uvector_t size[]);
 void nsf_sprite_set_position(nsf_sprite_t *sprite,
     const nsf_fvector_t position[]);
 void nsf_sprite_set_origin(nsf_sprite_t *sprite, const nsf_fvector_t origin[]);
-void nsf_sprite_get_scale(const nsf_sprite_t *sprite, nsf_fvector_t *out);
-void nsf_sprite_get_size(const nsf_sprite_t *sprite, nsf_uvector_t *out);
-void nsf_sprite_get_position(const nsf_sprite_t *sprite, nsf_fvector_t *out);
-void nsf_sprite_get_origin(const nsf_sprite_t *sprite, nsf_fvector_t *out);
+void nsf_sprite_set_data(nsf_sprite_t *sprite, void *data);
+nsf_fvector_t nsf_sprite_get_scale(const nsf_sprite_t *sprite);
+nsf_uvector_t nsf_sprite_get_size(const nsf_sprite_t *sprite);
+nsf_fvector_t nsf_sprite_get_position(const nsf_sprite_t *sprite);
+nsf_fvector_t nsf_sprite_get_origin(const nsf_sprite_t *sprite);
+void *nsf_sprite_get_data(nsf_sprite_t *sprite);
 void nsf_sprite_update(nsf_sprite_t *sprite);
 
 // DRAW //

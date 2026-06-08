@@ -28,43 +28,51 @@
 #include "newcsfml/graphics/sprite.h"
 #include "newcsfml/systems/utils.h"
 
-void nsf_sprite_get_scale(const nsf_sprite_t *sprite, nsf_fvector_t *out)
+nsf_fvector_t nsf_sprite_get_scale(const nsf_sprite_t *sprite)
 {
     if (NSF_UNLIKELY(!sprite)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
             "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    nsf_fvector_copy(&sprite->scale, out);
+    return nsf_fvector_copy(&sprite->scale);
 }
 
-void nsf_sprite_get_size(const nsf_sprite_t *sprite, nsf_uvector_t *out)
+nsf_uvector_t nsf_sprite_get_size(const nsf_sprite_t *sprite)
 {
     if (NSF_UNLIKELY(!sprite)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
             "pointer corrupted");
-        return nsf_uvector_empty(out);
+        return nsf_uvector_empty();
     }
-    nsf_uvector_copy((nsf_uvector_t[]){
-            sfTexture_getSize(nsf_sprite_get_deep_texture(sprite))}, out);
+    return nsf_uvector_copy(
+        U_TO_PTR(sfTexture_getSize(nsf_sprite_get_deep_texture(sprite))));
 }
 
-void nsf_sprite_get_position(const nsf_sprite_t *sprite, nsf_fvector_t *out)
+nsf_fvector_t nsf_sprite_get_position(const nsf_sprite_t *sprite)
 {
     if (NSF_UNLIKELY(!sprite)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
             "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    nsf_fvector_copy(&sprite->position, out);
+    return nsf_fvector_copy(&sprite->position);
 }
 
-void nsf_sprite_get_origin(const nsf_sprite_t *sprite, nsf_fvector_t *out)
+nsf_fvector_t nsf_sprite_get_origin(const nsf_sprite_t *sprite)
 {
     if (NSF_UNLIKELY(!sprite)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
             "pointer corrupted");
-        return nsf_fvector_empty(out);
+        return nsf_fvector_empty();
     }
-    nsf_fvector_copy(&sprite->origin, out);
+    return nsf_fvector_copy(&sprite->origin);
+}
+
+void *nsf_sprite_get_data(nsf_sprite_t *sprite)
+{
+    if (NSF_UNLIKELY(!sprite))
+        return nsf_utils_log_null(NSF_LOG_LVL_ERROR, NSF_SPRITE, __FUNCTION__,
+            "pointer corrupted");
+    return sprite->data;
 }

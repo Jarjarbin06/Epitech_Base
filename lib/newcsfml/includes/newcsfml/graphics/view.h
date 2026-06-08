@@ -70,7 +70,7 @@ int nsf_view_destroy(nsf_view_t **view, nsf_game_t *game);
 // MANAGE //
 void nsf_view_set_center(nsf_view_t *view, const nsf_fvector_t *center);
 void nsf_view_set_size(nsf_view_t *view, const nsf_uvector_t *size);
-void nsf_view_get_center(nsf_view_t *view, nsf_fvector_t *out);
-void nsf_view_get_size(nsf_view_t *view, nsf_uvector_t *out);
+nsf_fvector_t nsf_view_get_center(nsf_view_t *view);
+nsf_uvector_t nsf_view_get_size(nsf_view_t *view);
 
 #endif

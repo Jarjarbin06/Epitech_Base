@@ -52,8 +52,8 @@ nsf_animation_t *nsf_animation_create(const char path[], const char name[],
     new_animation->name = name_str;
     new_animation->sheet_size = sfTexture_getSize(sf_texture);
     new_animation->sprite_size = (nsf_uvector_t){
-        .x = new_animation->sheet_size.x / size->x,
-        .y = new_animation->sheet_size.y / size->y};
+        new_animation->sheet_size.x / size->x,
+        new_animation->sheet_size.y / size->y};
     new_animation->columns = size->x;
     new_animation->rows = size->y;
     init_values(new_animation);

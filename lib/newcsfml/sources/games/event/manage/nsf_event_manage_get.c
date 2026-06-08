@@ -28,17 +28,14 @@
 #include "newcsfml/games/mouse.h"
 #include "newcsfml/systems/utils.h"
 
-void nsf_event_get_mouse_move(const nsf_event_t *event,
-    nsf_ivector_t out[])
+nsf_ivector_t nsf_event_get_mouse_move(const nsf_event_t *event)
 {
-    nsf_ivector_t out_tmp = {0, 0};
-
-    if (NSF_UNLIKELY(!event || !out))
-        return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_EVENT, __FUNCTION__,
+    if (NSF_UNLIKELY(!event)) {
+        nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_EVENT, __FUNCTION__,
             "pointer corrupted");
-    out_tmp.x = event->mouseMove.x;
-    out_tmp.y = event->mouseMove.y;
-    nsf_ivector_copy(&out_tmp, out);
+        return nsf_ivector_empty();
+    }
+    return (nsf_ivector_t){event->mouseMove.x, event->mouseMove.y};
 }
 
 float nsf_event_get_mouse_wheel(const nsf_event_t *event)
