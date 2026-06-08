@@ -44,10 +44,15 @@ bool nsf_window_get_event(const nsf_window_t *window, nsf_event_t *event)
 
 nsf_ivector_t nsf_window_get_mouse(const nsf_window_t *window)
 {
+    nsf_ivector_t pixel = {0, 0};
+    nsf_fvector_t world = {0.0f, 0.0f};
+
     if (NSF_UNLIKELY(!window)) {
         nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_WINDOW, __FUNCTION__,
             "pointer corrupted");
         return nsf_ivector_empty();
     }
-    return sfMouse_getPositionRenderWindow(window->window);
+    pixel = sfMouse_getPositionRenderWindow(window->window);
+    world = sfRenderWindow_mapPixelToCoords(window->window, pixel, NULL);
+    return (nsf_ivector_t){(int)world.x, (int)world.y};
 }

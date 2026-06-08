@@ -67,6 +67,7 @@ typedef struct nsf_single_particle_s {
     float rotation;
     nsf_uint_t lifetime;
     nsf_uint_t max_lifetime;
+    void *data;
 } nsf_single_particle_t;
 
 typedef void (*nsf_particle_modifier_func_t)(nsf_single_particle_t *particle);
@@ -111,6 +112,8 @@ void nsf_particle_set_start(nsf_particle_t *particle,
 void nsf_particle_set_ups(nsf_particle_t *particle,
     nsf_uint_t ups);
 void nsf_particle_update(nsf_particle_t *particle);
+void nsf_particle_set_data(nsf_particle_t *particle, void *data);
+void *nsf_particle_get_data(nsf_particle_t *particle);
 
 // DRAW //
 void nsf_particle_draw(const nsf_particle_t *particle,

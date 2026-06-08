@@ -40,7 +40,8 @@ static void spawn_particles(nsf_particle_t *particle)
             .velocity = (nsf_fvector_t){0.0f, 0.0f},
             .rotation = 0.0f,
             .lifetime = particle->max_lifetime,
-            .max_lifetime = particle->max_lifetime
+            .max_lifetime = particle->max_lifetime,
+            .data = nsf_sprite_get_data(particle->sprite)
         };
         particle->start_func(ptr);
         particle->alive_count++;
