@@ -71,6 +71,8 @@ static void init_values(nsf_particle_t *new_particle,
     new_particle->alive_count = 0;
     new_particle->ups = 0;
     new_particle->source = (nsf_fvector_t){0.0f, 0.0f};
+    new_particle->start_func = base_func;
+    new_particle->update_func = base_func;
 }
 
 nsf_particle_t *nsf_particle_create(const char name[],
@@ -89,22 +91,10 @@ nsf_particle_t *nsf_particle_create(const char name[],
             __FUNCTION__, "particles initialization failed");
     new_particle->sprite = nsf_sprite;
     new_particle->name = particle_name;
-    new_particle->start_func = base_func;
-    new_particle->update_func = base_func;
     new_particle->clock = nsf_clock_create(name, game);
     if (game)
         game->allocations += 2;
     return new_particle;
-}
-
-static void destroy_particles(nsf_particle_t *particle, nsf_game_t *game)
-{
-    if (NSF_UNLIKELY(!particle || !particle->particles))
-        return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_PARTICLE, __FUNCTION__,
-            "pointer corrupted");
-    free_any(particle->particles);
-    if (game)
-        game->allocations++;
 }
 
 int nsf_particle_destroy(nsf_particle_t **particle, nsf_game_t *game)
@@ -113,9 +103,11 @@ int nsf_particle_destroy(nsf_particle_t **particle, nsf_game_t *game)
         return nsf_utils_log_failure(NSF_LOG_LVL_ERROR, NSF_PARTICLE,
             __FUNCTION__, "pointer corrupted");
     if (NSF_LIKELY((*particle)->particles))
-        destroy_particles(*particle, game);
+        free_any((*particle)->particles);
     if (NSF_LIKELY((*particle)->sprite))
         nsf_sprite_destroy(&(*particle)->sprite, game);
+    if (NSF_LIKELY((*particle)->clock))
+        nsf_clock_destroy(&(*particle)->clock, game);
     if (NSF_LIKELY((*particle)->name))
         free_any((nsf_str_t)(*particle)->name);
     *particle = free_any(*particle);
