@@ -30,7 +30,6 @@ static const nsf_cstr_t log_level_terminal[] = {
     NSF_TERMINAL_UNKNOWN,
     NSF_TERMINAL_DEBUG,
     NSF_TERMINAL_INFO,
-    NSF_TERMINAL_OK,
     NSF_TERMINAL_WARNING,
     NSF_TERMINAL_ERROR,
     NSF_TERMINAL_CORRUPTION,
@@ -41,7 +40,6 @@ static const nsf_cstr_t log_level_str[] = {
     NSF_TEXT_UNKNOWN,
     NSF_TEXT_DEBUG,
     NSF_TEXT_INFO,
-    NSF_TEXT_OK,
     NSF_TEXT_WARNING,
     NSF_TEXT_ERROR,
     NSF_TEXT_CORRUPTION,
@@ -104,11 +102,15 @@ static void print_message(const nsf_log_level_t log_level, nsf_cstr_t message)
 void nsf_utils_log(const nsf_log_level_t log_level, const nsf_cstr_t module,
     const nsf_cstr_t name, const nsf_cstr_t message)
 {
+    nsf_log_level_t tmp_lvl = log_level;
+
+    if (tmp_lvl <= NSF_LOG_LVL_UNKNOWN || tmp_lvl >= NSF_LOG_LVL_COUNT)
+        tmp_lvl = NSF_LOG_LVL_UNKNOWN;
     print_log(module);
-    print_log_level(log_level);
+    print_log_level(tmp_lvl);
     print_module(module);
     print_name(name);
-    print_message(log_level, message);
+    print_message(tmp_lvl, message);
 }
 
 void *nsf_utils_log_null(const nsf_log_level_t log_level,

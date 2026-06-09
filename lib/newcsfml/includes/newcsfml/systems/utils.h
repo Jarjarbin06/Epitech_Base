@@ -50,9 +50,8 @@
     #define NSF_UTILS "NSF_UTILS"
     #define SPECIAL_STR_MODULE_NSF "NSF_"
     #define NSF_TERMINAL_UNKNOWN "\x1b[38;2;255;255;255m"
-    #define NSF_TERMINAL_DEBUG "\x1b[38;2;0;255;255m"
-    #define NSF_TERMINAL_INFO "\x1b[38;2;0;0;255m"
-    #define NSF_TERMINAL_OK "\x1b[38;2;0;255;0m"
+    #define NSF_TERMINAL_DEBUG "\x1b[38;2;0;255;0m"
+    #define NSF_TERMINAL_INFO "\x1b[38;2;0;255;255m"
     #define NSF_TERMINAL_WARNING "\x1b[38;2;255;255;0m"
     #define NSF_TERMINAL_FAIL "\x1b[38;2;255;255;0m"
     #define NSF_TERMINAL_ERROR "\x1b[38;2;255;0;0m"
@@ -61,7 +60,6 @@
     #define NSF_TEXT_UNKNOWN "UNKNOWN"
     #define NSF_TEXT_DEBUG "DEBUG"
     #define NSF_TEXT_INFO "INFO"
-    #define NSF_TEXT_OK "OK"
     #define NSF_TEXT_WARNING "WARNING"
     #define NSF_TEXT_FAIL "WARNING"
     #define NSF_TEXT_ERROR "ERROR"
@@ -85,11 +83,11 @@ typedef enum {
     NSF_LOG_LVL_UNKNOWN = -1,
     NSF_LOG_LVL_DEBUG,
     NSF_LOG_LVL_INFO,
-    NSF_LOG_LVL_OK,
     NSF_LOG_LVL_WARNING,
     NSF_LOG_LVL_ERROR,
     NSF_LOG_LVL_CORRUPTION,
-    NSF_LOG_LVL_FAIL
+    NSF_LOG_LVL_FAIL,
+    NSF_LOG_LVL_COUNT
 } nsf_log_level_t;
 
 typedef struct {
