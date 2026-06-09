@@ -27,6 +27,7 @@
 #include "newcsfml/graphics/button.h"
 #include "newcsfml/audios/sound.h"
 #include "newcsfml/graphics/sprite.h"
+#include "newcsfml/graphics/particle.h"
 #include "newcsfml/games/game.h"
 #include "newcsfml/games/window_settings.h"
 #include "newcsfml/systems/other.h"
@@ -131,6 +132,8 @@ static void destroy_element(nsf_elements_t *element, nsf_game_t *game)
         nsf_sound_destroy((nsf_sound_t **)&(element->ptr), game);
     if (element->element_type == NSF_TEXT_ELEMENT)
         nsf_text_destroy((nsf_text_t **)&(element->ptr), game);
+    if (element->element_type == NSF_PARTICLE_ELEMENT)
+        nsf_particle_destroy((nsf_particle_t **)&(element->ptr), game);
     if (element->name)
         free_any((void *)element->name);
     free_any(element);
