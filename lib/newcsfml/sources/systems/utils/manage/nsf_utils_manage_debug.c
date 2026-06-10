@@ -26,24 +26,34 @@
 #include "newcsfml/systems/other.h"
 #include "newcsfml/systems/utils.h"
 
+static const bool log_level_permission[] = {
+    DO_INFO, // NSF_LOG_LVL_UNKNOWN
+    DO_DEBUG, // NSF_LOG_LVL_DEBUG
+    DO_INFO, // NSF_LOG_LVL_INFO
+    DO_WARNING, // NSF_LOG_LVL_WARNING
+    DO_WARNING, // NSF_LOG_LVL_FAIL
+    DO_ERROR, // NSF_LOG_LVL_ERROR
+    DO_ERROR // NSF_LOG_LVL_CORRUPTION
+};
+
 static const nsf_cstr_t log_level_terminal[] = {
-    NSF_TERMINAL_UNKNOWN,
-    NSF_TERMINAL_DEBUG,
-    NSF_TERMINAL_INFO,
-    NSF_TERMINAL_WARNING,
-    NSF_TERMINAL_ERROR,
-    NSF_TERMINAL_CORRUPTION,
-    NSF_TERMINAL_FAIL
+    NSF_TERMINAL_UNKNOWN, // NSF_LOG_LVL_UNKNOWN
+    NSF_TERMINAL_DEBUG, // NSF_LOG_LVL_DEBUG
+    NSF_TERMINAL_INFO, // NSF_LOG_LVL_INFO
+    NSF_TERMINAL_WARNING, // NSF_LOG_LVL_WARNING
+    NSF_TERMINAL_FAIL, // NSF_LOG_LVL_FAIL
+    NSF_TERMINAL_ERROR, // NSF_LOG_LVL_ERROR
+    NSF_TERMINAL_CORRUPTION // NSF_LOG_LVL_CORRUPTION
 };
 
 static const nsf_cstr_t log_level_str[] = {
-    NSF_TEXT_UNKNOWN,
-    NSF_TEXT_DEBUG,
-    NSF_TEXT_INFO,
-    NSF_TEXT_WARNING,
-    NSF_TEXT_ERROR,
-    NSF_TEXT_CORRUPTION,
-    NSF_TEXT_FAIL
+    NSF_TEXT_UNKNOWN, // NSF_LOG_LVL_UNKNOWN
+    NSF_TEXT_DEBUG, // NSF_LOG_LVL_DEBUG
+    NSF_TEXT_INFO, // NSF_LOG_LVL_INFO
+    NSF_TEXT_WARNING, // NSF_LOG_LVL_WARNING
+    NSF_TEXT_FAIL, // NSF_LOG_LVL_FAIL
+    NSF_TEXT_ERROR, // NSF_LOG_LVL_ERROR
+    NSF_TEXT_CORRUPTION // NSF_LOG_LVL_CORRUPTION
 };
 
 static bool is_nsf_module(const nsf_cstr_t module)
@@ -66,8 +76,8 @@ static void print_log(nsf_cstr_t module)
 static void print_log_level(const nsf_log_level_t log_level)
 {
     printf("[%s%s%s]",
-        log_level_terminal[log_level + 1],
-        log_level_str[log_level + 1],
+        log_level_terminal[log_level],
+        log_level_str[log_level],
         NSF_TERMINAL_RESET);
 }
 
@@ -87,7 +97,7 @@ static void print_name(nsf_cstr_t name)
 
 static void print_message(const nsf_log_level_t log_level, nsf_cstr_t message)
 {
-    printf(" %s", log_level_terminal[log_level + 1]);
+    printf(" %s", log_level_terminal[log_level]);
     if (log_level == NSF_LOG_LVL_CORRUPTION)
         printf("Corruption: ");
     if (log_level == NSF_LOG_LVL_FAIL)
@@ -99,6 +109,11 @@ static void print_message(const nsf_log_level_t log_level, nsf_cstr_t message)
         NSF_TERMINAL_RESET);
 }
 
+static bool check_permission(const nsf_log_level_t log_level)
+{
+    return log_level_permission[log_level];
+}
+
 void nsf_utils_log(const nsf_log_level_t log_level, const nsf_cstr_t module,
     const nsf_cstr_t name, const nsf_cstr_t message)
 {
@@ -106,6 +121,9 @@ void nsf_utils_log(const nsf_log_level_t log_level, const nsf_cstr_t module,
 
     if (tmp_lvl <= NSF_LOG_LVL_UNKNOWN || tmp_lvl >= NSF_LOG_LVL_COUNT)
         tmp_lvl = NSF_LOG_LVL_UNKNOWN;
+    tmp_lvl++;
+    if (!check_permission(tmp_lvl))
+        return;
     print_log(module);
     print_log_level(tmp_lvl);
     print_module(module);

@@ -29,6 +29,8 @@
     #include <stdbool.h>
     #include <stddef.h>
 
+    #include "newcsfml/config.h"
+
     #ifndef EXIT_D
         #define EXIT_D
 
@@ -47,6 +49,26 @@
     #endif
 
 /// MACRO ///
+    #ifdef NO_DEBUG
+        #define DO_DEBUG 0
+    #else
+        #define DO_DEBUG 1
+    #endif
+    #ifdef NO_INFO
+        #define DO_INFO 0
+    #else
+        #define DO_INFO 1
+    #endif
+    #ifdef NO_WARNING
+        #define DO_WARNING 0
+    #else
+        #define DO_WARNING 1
+    #endif
+    #ifdef NO_ERROR
+        #define DO_ERROR 0
+    #else
+        #define DO_ERROR 1
+    #endif
     #define NSF_UTILS "NSF_UTILS"
     #define SPECIAL_STR_MODULE_NSF "NSF_"
     #define NSF_TERMINAL_UNKNOWN "\x1b[38;2;255;255;255m"
@@ -84,9 +106,9 @@ typedef enum {
     NSF_LOG_LVL_DEBUG,
     NSF_LOG_LVL_INFO,
     NSF_LOG_LVL_WARNING,
+    NSF_LOG_LVL_FAIL,
     NSF_LOG_LVL_ERROR,
     NSF_LOG_LVL_CORRUPTION,
-    NSF_LOG_LVL_FAIL,
     NSF_LOG_LVL_COUNT
 } nsf_log_level_t;
 

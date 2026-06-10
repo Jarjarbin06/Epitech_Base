@@ -84,3 +84,20 @@ void nsf_particle_update(nsf_particle_t *particle)
     }
     update_particles(particle);
 }
+
+void nsf_particle_clear(nsf_particle_t *particle)
+{
+    if (NSF_UNLIKELY(!particle))
+        return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_PARTICLE, __FUNCTION__,
+        "pointer corrupted");
+    for (size_t idx = 0; idx < particle->alive_count; idx++)
+        particle->particles[idx] = (nsf_single_particle_t){
+            .position = (nsf_fvector_t){0.0f, 0.0f},
+            .velocity = (nsf_fvector_t){0.0f, 0.0f},
+            .rotation = 0.0f,
+            .lifetime = 0,
+            .max_lifetime = 0,
+            .data = NULL
+        };
+    particle->alive_count = 0;
+}

@@ -21,17 +21,28 @@
 ** It is a custom implementation layer built on top of CSFML.
 */
 
-#ifndef NEWCSFML
-    #define NEWCSFML
+#ifndef NEWCSFML_CONFIG_H
+    #define NEWCSFML_CONFIG_H
 
-    #include "newcsfml/audios.h"
-    #include "newcsfml/games.h"
-    #include "newcsfml/graphics.h"
-    #include "newcsfml/systems.h"
-    #include "newcsfml/config.h"
+    // NewCSFML version, do not touch
+    #define NCSFML_VERSION_MAJOR 0
+    #define NCSFML_VERSION_MINOR 2
+    #define NCSFML_VERSION_PATCH 9
 
-/// PROTOTYPES ///
-// BASE //
-void newcsfml_exist(void);
+    #ifndef LOG_CONFIG
+        #define LOG_CONFIG
+
+        // Uncomment the next line to disable debug logging
+        #define NO_DEBUG
+
+        // Uncomment the next line to disable info logging
+        //#define NO_INFO
+
+        // Uncomment the next line to disable warning logging
+        //#define NO_WARNING
+
+        // Uncomment the next line to disable error logging
+        //#define NO_ERROR
+    #endif
 
 #endif

@@ -114,6 +114,7 @@ void nsf_particle_set_spawn_rate(nsf_particle_t *particle,
 void nsf_particle_update(nsf_particle_t *particle);
 void nsf_particle_set_data(nsf_particle_t *particle, void *data);
 void *nsf_particle_get_data(nsf_particle_t *particle);
+void nsf_particle_clear(nsf_particle_t *particle);
 
 // DRAW //
 void nsf_particle_draw(const nsf_particle_t *particle,
