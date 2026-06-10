@@ -71,7 +71,6 @@ static void update_particles(nsf_particle_t *particle)
 void nsf_particle_update(nsf_particle_t *particle)
 {
     float seconds = 0.0f;
-    size_t n = 0;
 
     if (NSF_UNLIKELY(!particle))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_PARTICLE, __FUNCTION__,
@@ -79,10 +78,9 @@ void nsf_particle_update(nsf_particle_t *particle)
     nsf_particle_set_max_lifetime(particle, particle->max_lifetime);
     seconds = 1.0f / particle->spawn_rate;
     nsf_clock_update(particle->clock);
-    while (nsf_clock_is_new_loop(particle->clock, seconds) && n < 20) {
+    while (nsf_clock_is_new_loop(particle->clock, seconds)) {
         nsf_clock_set_new_loop(particle->clock, seconds);
         spawn_particles(particle);
-        n++;
     }
     update_particles(particle);
 }
