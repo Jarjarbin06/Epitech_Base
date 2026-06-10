@@ -43,11 +43,11 @@ void nsf_particle_set_start(nsf_particle_t *particle,
     particle->start_func = start_func;
 }
 
-void nsf_particle_set_ups(nsf_particle_t *particle,
-    const nsf_uint_t ups)
+void nsf_particle_set_spawn_rate(nsf_particle_t *particle,
+    const nsf_uint_t spawn_rate)
 {
     if (NSF_UNLIKELY(!particle))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_PARTICLE, __FUNCTION__,
             "pointer corrupted");
-    particle->ups = ups;
+    particle->spawn_rate = spawn_rate;
 }

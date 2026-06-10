@@ -69,7 +69,7 @@ static void init_values(nsf_particle_t *new_particle,
     new_particle->max_particles = max_particles;
     new_particle->max_lifetime = 0;
     new_particle->alive_count = 0;
-    new_particle->ups = 0;
+    new_particle->spawn_rate = 0;
     new_particle->source = (nsf_fvector_t){0.0f, 0.0f};
     new_particle->start_func = base_func;
     new_particle->update_func = base_func;

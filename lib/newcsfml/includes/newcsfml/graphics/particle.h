@@ -84,7 +84,7 @@ typedef struct nsf_particle_s {
     nsf_particle_start_func_t start_func;
     nsf_uint_t max_lifetime;
     nsf_clock_t *clock;
-    nsf_uint_t ups;
+    nsf_uint_t spawn_rate;
     nsf_cstr_t name;
 } nsf_particle_t;
 
@@ -109,8 +109,8 @@ void nsf_particle_set_update(nsf_particle_t *particle,
     nsf_particle_update_func_t update_func);
 void nsf_particle_set_start(nsf_particle_t *particle,
     nsf_particle_start_func_t start_func);
-void nsf_particle_set_ups(nsf_particle_t *particle,
-    nsf_uint_t ups);
+void nsf_particle_set_spawn_rate(nsf_particle_t *particle,
+    nsf_uint_t spawn_rate);
 void nsf_particle_update(nsf_particle_t *particle);
 void nsf_particle_set_data(nsf_particle_t *particle, void *data);
 void *nsf_particle_get_data(nsf_particle_t *particle);

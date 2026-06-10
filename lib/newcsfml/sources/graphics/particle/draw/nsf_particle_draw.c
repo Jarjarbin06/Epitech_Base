@@ -26,7 +26,6 @@
 #include "newcsfml/graphics/sprite.h"
 #include "newcsfml/systems/utils.h"
 #include "newcsfml/systems/vector.h"
-#include "newcsfml/systems/clock.h"
 
 static void update_and_draw_every_particles(const nsf_particle_t *particle,
     const nsf_window_t *window)
@@ -49,16 +48,9 @@ static void update_and_draw_every_particles(const nsf_particle_t *particle,
 void nsf_particle_draw(const nsf_particle_t *particle,
     const nsf_window_t *window)
 {
-    float seconds = 0.0f;
-
     if (NSF_UNLIKELY(!particle || !window))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_PARTICLE, __FUNCTION__,
             "pointer corrupted");
-    seconds = 1.0f / particle->ups;
-    nsf_clock_update(particle->clock);
-    if (nsf_clock_is_new_loop(particle->clock, seconds)) {
-        nsf_clock_set_new_loop(particle->clock, seconds);
-        nsf_particle_update((nsf_particle_t *)particle);
-    }
+    nsf_particle_update((nsf_particle_t *)particle);
     update_and_draw_every_particles(particle, window);
 }

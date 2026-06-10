@@ -59,9 +59,10 @@ static void update_particles(nsf_particle_t *particle)
         ptr = &particle->particles[idx];
         ptr->lifetime--;
         if (ptr->lifetime <= 0) {
-            *ptr = particle->particles[particle->alive_count - 1];
+            particle->particles[idx] =
+                particle->particles[particle->alive_count - 1];
             particle->alive_count--;
-            spawn_particles(particle);
+            idx--;
         }
         particle->update_func(ptr);
     }
@@ -69,10 +70,19 @@ static void update_particles(nsf_particle_t *particle)
 
 void nsf_particle_update(nsf_particle_t *particle)
 {
+    float seconds = 0.0f;
+    size_t n = 0;
+
     if (NSF_UNLIKELY(!particle))
         return nsf_utils_log(NSF_LOG_LVL_ERROR, NSF_PARTICLE, __FUNCTION__,
             "pointer corrupted");
     nsf_particle_set_max_lifetime(particle, particle->max_lifetime);
-    spawn_particles(particle);
+    seconds = 1.0f / particle->spawn_rate;
+    nsf_clock_update(particle->clock);
+    while (nsf_clock_is_new_loop(particle->clock, seconds) && n < 20) {
+        nsf_clock_set_new_loop(particle->clock, seconds);
+        spawn_particles(particle);
+        n++;
+    }
     update_particles(particle);
 }
