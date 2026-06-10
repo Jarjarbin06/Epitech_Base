@@ -33,6 +33,8 @@ else
 CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_RELEASE)
 endif
 
+CFLAGS	+=	$(CFLAGS_EXTRA)
+
 CPPFLAGS	=	-Iincludes
 
 

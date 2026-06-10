@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.9
+** Version: ncsfml-v0.2.10
 ** Author: Jarjarbin06
 ** Licence: GPL v3
 ** •
@@ -24,25 +24,66 @@
 #ifndef NEWCSFML_CONFIG_H
     #define NEWCSFML_CONFIG_H
 
-    // NewCSFML version, do not touch
-    #define NCSFML_VERSION_MAJOR 0
-    #define NCSFML_VERSION_MINOR 2
-    #define NCSFML_VERSION_PATCH 9
+    #ifndef VERSION_D
+        #define VERSION_D
 
-    #ifndef LOG_CONFIG
-        #define LOG_CONFIG
+        // NewCSFML version, do not touch
+        #define NCSFML_VERSION_MAJOR 0
+        #define NCSFML_VERSION_MINOR 2
+        #define NCSFML_VERSION_PATCH 10
 
-        // Uncomment the next line to disable debug logging
-        #define NO_DEBUG
+        #endif
 
-        // Uncomment the next line to disable info logging
-        //#define NO_INFO
+    #ifndef MANUAL_CONFIGS_D
+        #define MANUAL_CONFIGS_D
 
-        // Uncomment the next line to disable warning logging
-        //#define NO_WARNING
+        // Uncomment the following lines to activate them
+        //#define NCSFML_INTERN_NO_DEBUG
+        //#define NCSFML_INTERN_NO_INFO
+        //#define NCSFML_INTERN_NO_WARNING
+        //#define NCSFML_INTERN_NO_ERROR
 
-        // Uncomment the next line to disable error logging
-        //#define NO_ERROR
+    #endif
+
+    #ifndef AUTO_CONFIGS_D
+        #define AUTO_CONFIGS_D
+
+        /// LOG ///
+        #ifndef NCSFML_LOG_D
+            #define NCSFML_LOG_D
+
+            // Minimal logging (only warning and errors)(better for releases)
+            #ifdef NCSFML_LOG_MINIMAL
+
+                #define NCSFML_INTERN_NO_DEBUG
+                #define NCSFML_INTERN_NO_INFO
+
+            #endif
+
+            // No logging (only warning and errors)
+            #ifdef NCSFML_LOG_NONE
+
+                #define NCSFML_INTERN_NO_DEBUG
+                #define NCSFML_INTERN_NO_INFO
+                #define NCSFML_INTERN_NO_WARNING
+                #define NCSFML_INTERN_NO_ERROR
+
+            #endif
+
+            // No coloured logging (better for unit-tests)
+            #ifdef NCSFML_LOG_COLOR_NONE
+            #endif
+
+            // Show timestamp logging (better for accuracy)
+            #ifdef NCSFML_LOG_USE_TIMESTAMP
+            #endif
+
+            // File logging (better for log historic)
+            #ifdef NCSFML_LOG_WRITE_TO_FILE
+            #endif
+
+        #endif
+
     #endif
 
 #endif

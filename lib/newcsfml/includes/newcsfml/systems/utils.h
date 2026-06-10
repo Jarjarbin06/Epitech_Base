@@ -6,7 +6,7 @@
 ** NSFML is a lightweight wrapper over CSFML that simplifies usage
 ** while reducing low-level flexibility for easier game development.
 ** •
-** Version: ncsfml-v0.2.9
+** Version: ncsfml-v0.2.10
 ** Author: Jarjarbin06
 ** Licence: GPL v3
 ** •
@@ -49,22 +49,22 @@
     #endif
 
 /// MACRO ///
-    #ifdef NO_DEBUG
+    #ifdef NCSFML_INTERN_NO_DEBUG
         #define DO_DEBUG 0
     #else
         #define DO_DEBUG 1
     #endif
-    #ifdef NO_INFO
+    #ifdef NCSFML_INTERN_NO_INFO
         #define DO_INFO 0
     #else
         #define DO_INFO 1
     #endif
-    #ifdef NO_WARNING
+    #ifdef NCSFML_INTERN_NO_WARNING
         #define DO_WARNING 0
     #else
         #define DO_WARNING 1
     #endif
-    #ifdef NO_ERROR
+    #ifdef NCSFML_INTERN_NO_ERROR
         #define DO_ERROR 0
     #else
         #define DO_ERROR 1

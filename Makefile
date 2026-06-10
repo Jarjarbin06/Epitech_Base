@@ -13,8 +13,8 @@
 # Project metadata and build configuration reference.
 ###############################################################################
 info_NAME	=	Epitech Base
-info_VERSION	=	v1.0.6
-info_LAST_UPDATE	=	2026/06/03 09h
+info_VERSION	=	v1.0.7
+info_LAST_UPDATE	=	2026/06/10 16h
 info_LIB_MAKER	=	Makefile
 
 
@@ -28,14 +28,24 @@ info_LIB_MAKER	=	Makefile
 # CONFIG (CUSTOMIZABLE)
 # Safe to modify unless stated otherwise.
 # -----------------------------------------------------------------------------
+#	path to Epitech_Base repository
 EPITECH_BASE_PATH	?=	/home/jarjarbin/Desktop/c/Epitech_Base
+
+#	true / false
 HAS_CSFML	?=	false
-ALLOW_UNBUILD	?=	false	#	true / false
-ALLOW_AUTO_PUSH	?=	false	#	true / false
-BONUS	?=	false			#	true / false
-DEBUG	?=	false			#	true / false
-ARCH	?=	generic			#	native / generic
-NAME	?=	binary			#	binary name
+ALLOW_UNBUILD	?=	false
+ALLOW_AUTO_PUSH	?=	false
+BONUS	?=	false
+DEBUG	?=	false
+
+#	native / generic
+ARCH	?=	generic
+
+#	binary name
+NAME	?=	binary
+
+#	extra flags
+CFLAGS_EXTRA	?=
 
 # -----------------------------------------------------------------------------
 # PATHS
@@ -114,7 +124,7 @@ else
 CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_RELEASE)
 endif
 
-CFLAGS	+=	$(LDFLAGS_EXTRA)
+CFLAGS	+=	$(CFLAGS_EXTRA)
 
 ifeq ($(BONUS), true)
 CFLAGS	+=	-DBONUS=1
@@ -141,7 +151,7 @@ else
 CFLAGS_PLUS	+=
 endif
 
-CFLAGS_PLUS	+=	$(LDFLAGS_EXTRA)
+CFLAGS_PLUS	+=	$(CFLAGS_EXTRA)
 
 # -----------------------------------------------------------------------------
 # TEST FLAGS
@@ -212,7 +222,7 @@ run: all
 # SANITIZER BUILD
 # -----------------------------------------------------------------------------
 debug-asan:
-	make DEBUG=true LDFLAGS_EXTRA="-fsanitize=address -fno-omit-frame-pointer" re
+	make DEBUG=true CFLAGS_EXTRA="-fsanitize=address -fno-omit-frame-pointer" re
 
 
 # =============================================================================
@@ -270,7 +280,7 @@ test-valgrind:
 # COVERAGE
 # -----------------------------------------------------------------------------
 test-gcovr:
-	make --no-print-directory DEBUG=true LDFLAGS_EXTRA="-fprofile-arcs -ftest-coverage -fprofile-instr-generate -fcoverage-mapping" test-run
+	make --no-print-directory DEBUG=true CFLAGS_EXTRA="-fprofile-arcs -ftest-coverage -fprofile-instr-generate -fcoverage-mapping" test-run
 	gcovr --gcov-executable "llvm-cov gcov" -e $(TEST_PATH)
 
 # -----------------------------------------------------------------------------
@@ -370,7 +380,7 @@ setup-unbuild:
 endif
 
 maint-update:
-	cp $(EPITECH_BASE_PATH)/Makefile ./
+	cp "$(EPITECH_BASE_PATH)/Makefile" ./
 	-make git-push-makefile
 
 
@@ -542,9 +552,6 @@ help-setup:
 .SILENT: \
 	git-commit-msg git-pull git-status git-push-repo git-push-libs git-push-makefile \
 	setup-build setup-unbuild setup-import-all \
-	setup-import-newerror setup-import-llist setup-import-newcsfml \
-	setup-import-print setup-import-str setup-import-file \
-	setup-import-flag setup-import-twodlist setup-import-utils \
 	maint-update help help-base help-test help-lib help-git help-setup
 
 .PHONY: \

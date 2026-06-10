@@ -6,7 +6,7 @@
 ## NSFML is a lightweight wrapper over CSFML that simplifies usage
 ## while reducing low-level flexibility for easier game development.
 ## •
-## Version: ncsfml-v0.2.9
+## Version: ncsfml-v0.2.10
 ## Author: Jarjarbin06
 ## Licence: GPL v3
 ## •
@@ -27,7 +27,7 @@
 ###############################################################################
 
 info_NAME	=	newcsfml
-info_VERSION	=	0.2.9
+info_VERSION	=	0.2.10
 info_LAST_UPDATE	=	2026/06/03 10h
 info_LIB_MAKER	=	Makefile
 
@@ -49,6 +49,8 @@ CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_DEBUG)
 else
 CFLAGS	=	$(CFLAGS_BASE) $(CFLAGS_RELEASE)
 endif
+
+CFLAGS	+=	$(CFLAGS_EXTRA)
 
 CPPFLAGS	=	-Iincludes
 
