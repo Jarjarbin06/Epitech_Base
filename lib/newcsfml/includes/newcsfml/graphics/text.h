@@ -90,6 +90,9 @@ void nsf_text_set_color(nsf_text_t *text, const nsf_color_t color[]);
 void nsf_text_set_watcher(nsf_text_t *text, nsf_watcher_t *watcher);
 nsf_watcher_t *nsf_text_get_watcher(nsf_text_t *text);
 void nsf_text_update_from_watcher(nsf_text_t *text);
+nsf_cstr_t nsf_text_get_string(nsf_text_t *text);
+nsf_fvector_t nsf_text_get_size(nsf_text_t *text);
+nsf_fvector_t nsf_text_get_position(nsf_text_t *text);
 
 // DRAW //
 void nsf_text_draw(const nsf_text_t *text, const nsf_window_t *window);
