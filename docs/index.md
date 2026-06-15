@@ -4,6 +4,7 @@ title: Welcome
 sidebar: sidebar
 permalink: /
 ---
+<meta name="google-site-verification" content="m2TW22pEcGk9aPAguGHhgaOdHwyY3nagfMMIv_6OsHw" />
 
 # 📦 Epitech Base
 
