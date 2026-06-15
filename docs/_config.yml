@@ -18,6 +18,7 @@ company_name: Jarjarbin06
 github_editme_path:
 # if you're using Github, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
 
+
 # gitlab_editme_path: tomjoht/documentation-theme-jekyll/blob/gh-pages/
 # if you're using GitLab, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
 
@@ -113,7 +114,7 @@ description: "Centralized repository of reusable C libraries, build tools, and p
 # the description is used in the feed.xml file
 
 # needed for sitemap.xml file only
-# url: http://idratherbewriting.com
+url: https://jarjarbin06.github.io/Epitech_Base
 # baseurl: /documentation-theme-jekyll
 
 
