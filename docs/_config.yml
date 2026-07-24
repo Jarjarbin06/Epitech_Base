@@ -30,6 +30,7 @@ port: 4000
 
 include:
   - google7ac7617c22e39946.html
+  - llms.txt
 
 exclude:
   - .idea/

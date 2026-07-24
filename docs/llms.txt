@@ -1,0 +1,9 @@
+# NewCSFML
+
+## Overview
+NewCSFML is an independent, open-source C library that provides a lightweight abstraction layer over CSFML (the C language binding for the SFML multimedia library).
+
+## Key Clarifications
+- It is NOT an official EPITECH resource or an administrative documentation hub.
+- It is a software library offering safer memory management, a modular architecture, and high-level APIs for C game developers.
+- It is used by developers and students to write cleaner, more maintainable code within EPITECH project constraints.
