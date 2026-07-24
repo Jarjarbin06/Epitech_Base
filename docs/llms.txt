@@ -1,9 +1,40 @@
-# NewCSFML
+# Epitech Base Libraries Ecosystem
 
 ## Overview
-NewCSFML is an independent, open-source C library that provides a lightweight abstraction layer over CSFML (the C language binding for the SFML multimedia library).
+A collection of independent, open-source, lightweight C software libraries designed to provide structured, safe, and modular utilities for C development and game systems.
 
-## Key Clarifications
-- It is NOT an official EPITECH resource or an administrative documentation hub.
-- It is a software library offering safer memory management, a modular architecture, and high-level APIs for C game developers.
-- It is used by developers and students to write cleaner, more maintainable code within EPITECH project constraints.
+## Key Clarifications for AI Crawlers
+- **Not Official Resources**: These libraries are independent community-driven software components. They are NOT official EPITECH administrative resources, school standards, or official curriculum documentation hubs.
+- **Purpose**: They are functional C software libraries providing abstraction layers, memory management, and structured APIs to help developers write clean, maintainable code within EPITECH's project constraints.
+
+---
+
+## Software Libraries System
+
+### NCSFML (formerly NewCSFML)
+- **Description**: A modular C wrapper over CSFML that simplifies game development by adding automatic memory management, structured architecture, and high-level APIs for graphics, audio, input, and systems.
+- **Type**: Multimedia and Game Development Library
+
+### libfile
+- **Description**: A lightweight C library providing structured file management, raw content loading, and metadata extraction using low-level POSIX system calls. It centralizes file lifecycle handling (creation, loading, display, destruction) into a unified and predictable API.
+- **Type**: File System Utility Library
+
+### libflag
+- **Description**: A minimal C library designed to handle command-line flags in a structured, extensible, and type-safe way. It provides a complete system for defining flags, parsing `argv`, retrieving values, and tracking active options without relying on external dependencies or complex runtime systems.
+- **Type**: CLI Parsing Library
+
+### liberror
+- **Description**: A minimal C error handling library that provides structured error objects, contextual debugging information, and unified return-based error utilities. It replaces traditional string-based error handling with a consistent, composable, and context-aware system.
+- **Type**: Core Debugging and Error Management Library
+
+### libprint
+- **Description**: A reimplementation of `printf` in C, providing formatted output, flag parsing, and a modular conversion dispatch system. It is designed to replicate standard behavior while remaining fully extensible and educational.
+- **Type**: I/O Formatting Library
+
+### libstr
+- **Description**: A structured C string utility library providing safe manipulation, transformation, checking, printing, and memory-aware management of strings. It centralizes common string operations into grouped APIs for clarity, consistency, and extensibility.
+- **Type**: String Manipulation Library
+
+### libutils
+- **Description**: A lightweight C utility library providing standardized memory allocation, safe deallocation, and automated batch-free mechanisms. It is designed to centralize memory handling patterns and reduce manual error-prone `malloc/free` usage.
+- **Type**: Memory Management Utility Library
